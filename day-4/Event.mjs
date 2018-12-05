@@ -2,7 +2,7 @@ const DEFINITION_REGEXP = /\[(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2})\] (?:Guard 
 
 class Event {
   constructor(definition) {
-    this.label = definition;
+    this.definition = definition;
 
     const match = definition.match(DEFINITION_REGEXP);
     this.year = +match[1];
@@ -13,12 +13,10 @@ class Event {
 
     this.guardID = match[6] ? +match[6] : null;
     this.action = `${match[7]}`;
+  }
 
-    this.at = new Date(
-      this.year, this.month, this.day,
-      this.hour, this.minute,
-    );
-    this.offset = +this.at;
+  get label() {
+    return this.definition;
   }
 }
 

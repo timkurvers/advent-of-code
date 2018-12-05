@@ -7,7 +7,7 @@ import input from './input';
 import { day } from '../utils';
 
 const events = input.map(definition => new Event(definition)).sort((a, b) => (
-  a.offset - b.offset
+  a.definition.localeCompare(b.definition)
 ));
 
 const guards = (() => {
