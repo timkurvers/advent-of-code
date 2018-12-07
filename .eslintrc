@@ -1,6 +1,7 @@
 {
   "extends": "timkurvers",
   "rules": {
+    "no-bitwise": 0,
     "no-console": 0,
     "no-constant-condition": 0,
     "no-continue": 0,
