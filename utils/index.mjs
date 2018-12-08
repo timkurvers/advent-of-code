@@ -30,3 +30,5 @@ class Challenge {
 export const day = number => (
   new Challenge().day(number)
 );
+
+export const sum = array => array.reduce((total, next) => total + next, 0);
