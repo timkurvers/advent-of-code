@@ -1,6 +1,7 @@
 /* eslint-disable import/prefer-default-export */
 
 import colors from 'colors';
+import { performance } from 'perf_hooks';
 
 class Challenge {
   constructor() {
@@ -20,8 +21,11 @@ class Challenge {
 
   solution(implementation) {
     console.log(colors.cyan(`Day ${this._day} – Part ${this._part}`));
+    const start = performance.now();
     const answer = implementation(console.log, this);
-    console.log(` => Answer: ${colors.green(answer)}`);
+    const end = performance.now();
+    const duration = `${Math.ceil(end - start)}ms`;
+    console.log(` => Answer: ${colors.green(answer)} ${colors.gray(duration)}`);
     console.log();
     return this;
   }
