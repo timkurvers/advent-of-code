@@ -2,7 +2,7 @@
 
 JavaScript / ES6+ solutions for https://adventofcode.com/2018.
 
-**Supported Node version: 10 or higher**
+**Supported Node versions: 10 or higher**
 
 ## Setup
 
