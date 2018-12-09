@@ -1,7 +1,8 @@
 #!/usr/bin/env node --experimental-modules --no-warnings
 
+import Marble from './Marble';
 import input from './input';
-import { day, mod } from '../utils';
+import { day } from '../utils';
 
 const entryToConfig = (entry) => {
   const match = entry.match(/\d+/g);
@@ -12,31 +13,25 @@ const entryToConfig = (entry) => {
 };
 
 const play = ({ playerCount, targetRound }) => {
-  const marbles = [0];
-
   const scores = new Array(playerCount).fill(0);
 
-  let marbleIndex = 0;
-
-  const unwrap = index => mod(index, marbles.length) + 1;
+  const root = new Marble(0);
+  let current = root;
 
   let round = 1;
   while (round <= targetRound) {
-    const next = round;
-
     if (round % 23 === 0) {
       // Special round
+      const sought = current.seek(-7);
+      current = sought.next;
+      sought.remove();
+
       const playerIndex = round % playerCount;
-
-      const at = unwrap(marbleIndex - 8);
-      const [worth] = marbles.splice(at, 1);
-      scores[playerIndex] += next + worth;
-
-      marbleIndex = at;
+      scores[playerIndex] += round + sought.id;
     } else {
-      const at = unwrap(marbleIndex + 1);
-      marbles.splice(at, 0, next);
-      marbleIndex = at;
+      const next = new Marble(round);
+      next.insertAt(current.seek(1));
+      current = next;
     }
 
     ++round;
@@ -50,6 +45,15 @@ const play = ({ playerCount, targetRound }) => {
 };
 
 const config = entryToConfig(input);
-const initial = play(config);
+const playthrough = play(config);
 
-day(9).part(1).solution(() => initial.highscore);
+day(9).part(1).solution(() => (
+  playthrough.highscore
+));
+
+day(9).part(2).solution(() => (
+  play({
+    ...config,
+    targetRound: playthrough.round * 100,
+  }).highscore
+));

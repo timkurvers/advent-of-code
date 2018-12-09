@@ -32,5 +32,3 @@ export const day = number => (
 );
 
 export const sum = array => array.reduce((total, next) => total + next, 0);
-
-export const mod = (n, m) => ((n % m) + m) % m;
