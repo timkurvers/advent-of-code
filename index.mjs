@@ -1,11 +1,24 @@
 #!/usr/bin/env node --experimental-modules --no-warnings
 
-import './day-1';
-import './day-2';
-import './day-3';
-import './day-4';
-import './day-5';
-import './day-6';
-import './day-7';
-import './day-8';
-import './day-9';
+import fs from 'fs';
+
+const days = fs.readdirSync('.').reduce((list, entry) => {
+  const match = entry.match(/day-(\d+)/);
+  if (match) {
+    list.push(match[1]);
+  }
+  return list;
+}, []);
+
+let [,, ...requested] = process.argv;
+if (!requested.length) {
+  requested = days;
+}
+
+(async () => {
+  for (const nr of requested) {
+    if (days.includes(nr)) {
+      await import(`./day-${nr}`);
+    }
+  }
+})();

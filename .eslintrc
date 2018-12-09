@@ -1,6 +1,7 @@
 {
   "extends": "timkurvers",
   "rules": {
+    "no-await-in-loop": 0,
     "no-bitwise": 0,
     "no-console": 0,
     "no-constant-condition": 0,
