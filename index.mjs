@@ -17,8 +17,12 @@ if (!requested.length) {
 
 (async () => {
   for (const nr of requested) {
-    if (days.includes(nr)) {
-      await import(`./day-${nr}`);
+    if (days.includes(+nr)) {
+      try {
+        await import(`./day-${nr}`);
+      } catch (e) {
+        console.error(e);
+      }
     }
   }
 })();
