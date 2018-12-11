@@ -5,10 +5,10 @@ import fs from 'fs';
 const days = fs.readdirSync('.').reduce((list, entry) => {
   const match = entry.match(/day-(\d+)/);
   if (match) {
-    list.push(match[1]);
+    list.push(+match[1]);
   }
   return list;
-}, []);
+}, []).sort((a, b) => a - b);
 
 let [,, ...requested] = process.argv;
 if (!requested.length) {
