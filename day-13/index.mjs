@@ -1,7 +1,7 @@
 #!/usr/bin/env node --experimental-modules --no-warnings
 
 import Mine from './Mine';
-import input from './input/example';
+import input from './input';
 import { day } from '../utils';
 
 day(13).part(1).solution(() => {
