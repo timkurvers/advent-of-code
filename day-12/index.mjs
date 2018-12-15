@@ -53,3 +53,5 @@ day(12).part(1).solution(() => {
   }
   return totalScoreFor(current);
 });
+
+day(12).part(2).solution(() => '<not yet solved>');
