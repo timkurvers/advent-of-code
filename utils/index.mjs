@@ -25,7 +25,8 @@ class Challenge {
     const answer = implementation(console.log, this);
     const end = performance.now();
     const duration = `${Math.ceil(end - start)}ms`;
-    console.log(` => Answer: ${colors.green(answer)} ${colors.gray(duration)}`);
+    const text = answer ? colors.green(answer) : colors.red('<not yet solved>');
+    console.log(` => Answer: ${text} ${colors.gray(duration)}`);
     console.log();
     return this;
   }

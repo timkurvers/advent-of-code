@@ -2,4 +2,4 @@
 
 import { day } from '../utils';
 
-day(15).part(1).solution(() => '<not yet solved>');
+day(15).part(1).solution(() => null);
