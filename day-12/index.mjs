@@ -7,7 +7,7 @@ import { day } from '../utils';
 
 const NOTE_MATCHER = /((?:\.|#){2})(\.|#)((?:\.|#){2}) => (#|\.)/;
 
-const pad = '.'.repeat(input.initial.length);
+const pad = '.'.repeat(input.initial.length * 2);
 const initial = `${pad}${input.initial}${pad}`;
 
 const notes = input.notes.map((note) => {
@@ -37,6 +37,8 @@ const step = (current) => {
   return next;
 };
 
+const compact = generation => generation.replace(/^\.+|\.+$/g, '');
+
 const totalScoreFor = generation => (
   generation.split('').reduce((total, next, index) => {
     if (next === '#') {
@@ -47,11 +49,31 @@ const totalScoreFor = generation => (
 );
 
 day(12).part(1).solution(() => {
+  const generations = 20;
+
   let current = initial;
-  for (let i = 1; i <= 20; ++i) {
-    current = step(current, i);
+  for (let i = 1; i <= generations; ++i) {
+    current = step(current);
   }
   return totalScoreFor(current);
 });
 
-day(12).part(2).solution(() => null);
+day(12).part(2).solution(() => {
+  let start;
+  let base;
+  let increase;
+  let current = initial;
+  for (let i = 1; i <= 1000; ++i) {
+    const previous = current;
+    current = step(current);
+    if (compact(previous) === compact(current)) {
+      start = i;
+      base = totalScoreFor(current);
+      increase = base - totalScoreFor(previous);
+      break;
+    }
+  }
+
+  const generations = 50000000000;
+  return base + ((generations - start) * increase);
+});
