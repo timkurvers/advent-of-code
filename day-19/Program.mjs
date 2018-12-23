@@ -25,12 +25,12 @@ class Program {
         return;
       }
 
-      this.data[this.ipbinding] = this.ip;
+      data[this.ipbinding] = this.ip;
       const {
         operation, inputA, inputB, outputC,
       } = instruction;
       operation(data, inputA, inputB, outputC);
-      this.ip = this.data[this.ipbinding];
+      this.ip = data[this.ipbinding];
       this.ip++;
     }
   }
