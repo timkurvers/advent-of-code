@@ -3,7 +3,9 @@
 import colors from 'colors';
 import { performance } from 'perf_hooks';
 
-class Challenge {
+export const INEFFICIENT = 0;
+
+export class Challenge {
   constructor() {
     this._day = 0;
     this._part = 1;
@@ -19,8 +21,14 @@ class Challenge {
     return this;
   }
 
-  solution(implementation) {
+  solution(flag, implementation = flag) {
     console.log(colors.cyan(`Day ${this._day} – Part ${this._part}`));
+    if (flag === INEFFICIENT) {
+      console.log(' => Skipped (inefficient solution)');
+      console.log();
+      return this;
+    }
+
     const start = performance.now();
     const answer = implementation(console.log, this);
     const end = performance.now();

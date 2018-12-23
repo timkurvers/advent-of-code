@@ -17,9 +17,8 @@ day(19).part(2).solution(() => {
   const program = new Program(input);
   program.data[0] = 1;
 
-  // At instruction #34, the number is available in register 2. Clearing the
-  // instruction effectively short-circuits the program.
-  program.instructions[34] = null;
+  // Intercept instruction #34 ending the program
+  program.intercept(34);
   program.run();
 
   // Extract number from register 2
