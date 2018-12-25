@@ -1,4 +1,6 @@
-import Region, { Type } from './Region';
+/* eslint-disable prefer-destructuring */
+
+import Region from './Region';
 
 class Cave {
   constructor(definition) {
@@ -8,12 +10,14 @@ class Cave {
       this.targetY = this.targetX,
     ] = definition.match(/\d+/g).map(Number);
 
-    this.regions = [];
+    this.width = Math.ceil(this.targetX * 7);
+    this.height = Math.ceil(this.targetY * 1.5);
 
+    this.regions = [];
     this.grid = [];
-    for (let y = 0; y <= this.targetY; ++y) {
+    for (let y = 0; y <= this.height; ++y) {
       this.grid[y] = [];
-      for (let x = 0; x <= this.targetX; ++x) {
+      for (let x = 0; x <= this.width; ++x) {
         const region = new Region(this, x, y);
         this.grid[y][x] = region;
         this.regions.push(region);
@@ -21,20 +25,15 @@ class Cave {
     }
 
     // Mark mouth of the cave and target regions
-    this.grid[0][0].isMouth = true;
-    this.grid[this.targetY][this.targetX].isTarget = true;
+    this.mouth = this.grid[0][0];
+    this.mouth.isMouth = true;
+    this.target = this.grid[this.targetY][this.targetX];
+    this.target.isTarget = true;
   }
 
   get visual() {
     return this.grid.map(row => (
-      row.map(({ type, isMouth, isTarget }) => {
-        if (isMouth) return 'M';
-        if (isTarget) return 'T';
-        if (type === Type.ROCKY) return '.';
-        if (type === Type.WET) return '=';
-        if (type === Type.NARROW) return '|';
-        return '?';
-      }).join('')
+      row.map(region => region.visual).join('')
     )).join('\n');
   }
 }

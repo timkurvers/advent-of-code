@@ -1,8 +1,5 @@
-const Type = {
-  ROCKY: 0,
-  WET: 1,
-  NARROW: 2,
-};
+import RegionWithTool from './WithTool';
+import Type from './Type';
 
 class Region {
   constructor(cave, x, y) {
@@ -15,6 +12,7 @@ class Region {
 
     // Cached properties
     this._geologicIndex = null;
+    this._withTools = null;
   }
 
   calculateGeologicIndex() {
@@ -43,12 +41,41 @@ class Region {
     return `(${this.x},${this.y})`;
   }
 
+  get neighbors() {
+    const { width, height } = this.cave;
+    return [
+      this.y > 0 ? this.cave.grid[this.y - 1][this.x] : null,
+      this.x > 0 ? this.cave.grid[this.y][this.x - 1] : null,
+      this.x < width - 1 ? this.cave.grid[this.y][this.x + 1] : null,
+      this.y < height - 1 ? this.cave.grid[this.y + 1][this.x] : null,
+    ].filter(Boolean);
+  }
+
   get riskLevel() {
     return this.type;
   }
 
   get type() {
     return this.erosionLevel % 3;
+  }
+
+  get visual() {
+    const { isMouth, isTarget, type } = this;
+    if (isMouth) return 'M';
+    if (isTarget) return 'T';
+    if (type === Type.ROCKY) return '.';
+    if (type === Type.WET) return '=';
+    if (type === Type.NARROW) return '|';
+    return '?';
+  }
+
+  get withTools() {
+    this._withTools = this._withTools || RegionWithTool.for(this);
+    return this._withTools;
+  }
+
+  withTool(tool) {
+    return this.withTools.find(rwt => rwt.tool === tool);
   }
 }
 
