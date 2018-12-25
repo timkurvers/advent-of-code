@@ -1,6 +1,7 @@
 /* eslint-disable no-param-reassign */
 
 import Entity from './Entity';
+import { astar } from '../../utils';
 
 let ord = 65;
 
@@ -66,10 +67,14 @@ class Unit extends Entity {
     this.enemies.forEach((enemy) => {
       const coords = enemy.coord.unoccupiedNeighbors;
       coords.forEach((coord) => {
-        const path = this.coord.pathTo(coord);
-        if (!path) {
+        const pathing = astar(this.coord, coord, {
+          neighborsFor: current => current.unoccupiedNeighbors,
+          cost: (current, neighbor) => current.distanceTo(neighbor),
+        });
+        if (!pathing) {
           return;
         }
+        const { path } = pathing;
 
         if (!shortestPath || path.length < shortestPath.length) {
           shortestPath = path;
