@@ -1,6 +1,6 @@
-# Advent of Code 2018
+# Advent of Code
 
-JavaScript / ES6+ solutions for https://adventofcode.com/2018.
+JavaScript / ES6+ solutions for https://adventofcode.com.
 
 **Supported Node versions: 10 or higher**
 
