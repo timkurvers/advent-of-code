@@ -1,28 +1,54 @@
 #!/usr/bin/env node --experimental-modules --no-warnings
 
 import fs from 'fs';
+import path from 'path';
 
-const days = fs.readdirSync('.').reduce((list, entry) => {
-  const match = entry.match(/day-(\d+)/);
+const years = fs.readdirSync(path.resolve('.')).reduce((list, entry) => {
+  const match = entry.match(/\d{4}/);
   if (match) {
-    list.push(+match[1]);
+    list.push(match[0]);
   }
   return list;
-}, []).sort((a, b) => a - b);
+}, []).sort();
 
-let [,, ...requested] = process.argv;
+let [,, year, ...requested] = process.argv;
+
+if (!year || !year.match(/\d{4}/)) {
+  if (year) {
+    requested.unshift(year);
+  }
+  year = years[years.length - 1];
+}
+
+if (!years.includes(year)) {
+  console.error(new Error(`No solutions for ${year}`));
+  process.exit(0);
+}
+
+const days = fs.readdirSync(path.resolve(year)).reduce((list, entry) => {
+  const match = entry.match(/\d{2}/);
+  if (match) {
+    list.push(match[0]);
+  }
+  return list;
+}, []).sort();
+
 if (!requested.length) {
   requested = days;
 }
 
 (async () => {
-  for (const nr of requested) {
-    if (days.includes(+nr)) {
-      try {
-        await import(`./day-${nr}`);
-      } catch (e) {
-        console.error(e);
+  try {
+    for (const nr of requested) {
+      const padded = nr.padStart(2, '0');
+      if (days.includes(padded)) {
+        await import(path.resolve(year, padded));
+      } else {
+        throw new Error(`No solutions for ${year} day ${nr}`);
       }
     }
+  } catch (e) {
+    console.error(e);
+    process.exit();
   }
 })();

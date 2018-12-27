@@ -16,7 +16,7 @@ npm install
 
 ## Running solutions
 
-To run solutions for all days:
+To run solutions for the most recent edition for all days:
 
 ```bash
 npm start
@@ -26,6 +26,13 @@ To run specific solutions, pass one or more day numbers as arguments:
 
 ```bash
 npm start 1 4 9
+```
+
+To run solutions for a different edition, pass the year as the first argument:
+
+```bash
+npm start 2017
+npm start 2017 1 4 9
 ```
 
 [Node.js]: https://nodejs.org/en/
