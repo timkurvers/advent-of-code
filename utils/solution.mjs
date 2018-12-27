@@ -4,8 +4,8 @@ import { performance } from 'perf_hooks';
 export const INEFFICIENT = 0;
 
 export class Challenge {
-  constructor() {
-    this._year = 2018;
+  constructor(year) {
+    this._year = year;
     this._day = 0;
     this._part = 1;
   }
