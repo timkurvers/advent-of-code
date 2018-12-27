@@ -1,7 +1,7 @@
 {
-  "name": "@timkurvers/advent-of-code-2018",
+  "name": "@timkurvers/advent-of-code",
   "author": "Tim Kurvers @timkurvers",
-  "repository": "github:timkurvers/advent-of-code-2018",
+  "repository": "github:timkurvers/advent-of-code",
   "license": "MIT",
   "private": true,
   "scripts": {
