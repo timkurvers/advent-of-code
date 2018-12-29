@@ -1,1 +1,1 @@
-export default '^WNE$';
+export default '^WSSEESWWWNW(S|NENNEEEENN(ESSSSW(NWSW|SSEN)|WSWWN(E|WWS(E|SS))))$';
