@@ -7,7 +7,14 @@ export class Challenge {
   constructor(year) {
     this._year = year;
     this._day = 0;
-    this._part = 1;
+    this._part = null;
+  }
+
+  get label() {
+    if (this._part) {
+      return `${this._year} - Day ${this._day} – Part ${this._part}`;
+    }
+    return `${this._year} - Day ${this._day}`;
   }
 
   year(number) {
@@ -26,9 +33,7 @@ export class Challenge {
   }
 
   solution(flag, implementation = flag) {
-    console.log(
-      colors.cyan(`${this._year} - Day ${this._day} – Part ${this._part}`),
-    );
+    console.log(colors.cyan(this.label));
     if (flag === INEFFICIENT) {
       console.log(' => Skipped (inefficient solution)');
       console.log();

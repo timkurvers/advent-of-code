@@ -5,7 +5,7 @@ import { day } from '..';
 import Point from './Point';
 import input from './input';
 
-day(25).part(1).solution(() => {
+day(25).solution(() => {
   const points = input.split('\n').map(line => new Point(line));
   for (const point of points) {
     for (const candidate of points) {
