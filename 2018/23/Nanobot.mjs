@@ -1,10 +1,13 @@
 class Nanobot {
-  constructor(definition) {
-    const match = definition.match(/-?\d+/g);
-    this.x = +match[0];
-    this.y = +match[1];
-    this.z = +match[2];
-    this.radius = +match[3];
+  constructor(x, y, z, radius) {
+    this.x = x;
+    this.y = y;
+    this.z = z;
+    this.radius = radius;
+  }
+
+  get label() {
+    return `(${this.x},${this.y},${this.z})`;
   }
 
   distanceTo(other) {
@@ -13,10 +16,17 @@ class Nanobot {
            + Math.abs(other.z - this.z);
   }
 
-  inRange(others) {
-    return others.filter(other => (
-      this.distanceTo(other) <= this.radius
-    ));
+  inRange(other) {
+    return this.distanceTo(other) <= this.radius;
+  }
+
+  static from(definition) {
+    const match = definition.match(/-?\d+/g);
+    const x = +match[0];
+    const y = +match[1];
+    const z = +match[2];
+    const radius = +match[3];
+    return new this(x, y, z, radius);
   }
 }
 

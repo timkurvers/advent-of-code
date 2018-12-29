@@ -68,11 +68,11 @@ class Facility {
     const xs = coords.map(coord => coord.x);
     const ys = coords.map(coord => coord.y);
 
-    const xmin = Math.min(...xs);
-    const ymin = Math.min(...ys);
+    const minX = Math.min(...xs);
+    const minY = Math.min(...ys);
 
-    this.width = Math.max(...xs) - xmin + 1;
-    this.height = Math.max(...ys) - ymin + 1;
+    this.width = Math.max(...xs) - minX + 1;
+    this.height = Math.max(...ys) - minY + 1;
 
     // Construct a properly sized grid consisting of walls (initially)
     this.grid = [];
@@ -85,8 +85,8 @@ class Facility {
 
     // Adjust coordinates and add them to the grid
     coords.forEach((coord) => {
-      coord.x -= xmin;
-      coord.y -= ymin;
+      coord.x -= minX;
+      coord.y -= minY;
       this.grid[coord.y][coord.x] = coord;
     });
   }
