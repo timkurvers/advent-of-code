@@ -67,7 +67,7 @@ export class Challenge {
     };
 
     const offset = Math.max(this._part - 1, 0);
-    const applicable = this._tests.filter(test => test.expected[offset]);
+    const applicable = this._tests.filter(test => test.expected[offset] != null);
     for (const test of applicable) {
       const { answer, duration } = this.execute(test.input, true);
       const expected = test.expected[offset];
