@@ -3,19 +3,25 @@
 import { day } from '..';
 
 import Sample from './Sample';
-import input from './input';
 import operations from './operations';
+import puzzleInput from './input';
 
-const [sampling, program] = input.split('\n\n\n\n');
-const samples = sampling.split('\n\n').map(definition => new Sample(definition));
+const parse = (input) => {
+  const [sampling, program] = input.split('\n\n\n\n');
+  const samples = sampling.split('\n\n').map(definition => new Sample(definition));
+  return { program, samples };
+};
 
-day(16).part(1).solution(() => (
-  samples.filter(sample => (
+day(16).part(1).feed(puzzleInput).solution((input) => {
+  const { samples } = parse(input);
+  return samples.filter(sample => (
     sample.probe().length >= 3
-  )).length
-));
+  )).length;
+});
 
-day(16).part(2).solution(() => {
+day(16).part(2).feed(puzzleInput).solution((input) => {
+  const { program, samples } = parse(input);
+
   const remaining = new Set(samples);
   while (remaining.size) {
     for (const sample of remaining) {

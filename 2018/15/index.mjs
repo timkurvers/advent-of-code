@@ -3,11 +3,12 @@
 /* eslint-disable no-loop-func, no-param-reassign */
 
 import { day } from '..';
+import { sum } from '../../utils';
 
 import Map from './Map';
-import input from './input/example';
+import examples from './input/examples';
+import puzzleInput from './input';
 import { Elf } from './entities';
-import { sum } from '../../utils';
 
 const simulate = (map) => {
   try {
@@ -19,11 +20,11 @@ const simulate = (map) => {
   }
 };
 
-day(15).part(1).solution(() => (
+day(15).part(1).test(examples).feed(puzzleInput).inefficient.solution(input => (
   simulate(new Map(input))
 ));
 
-day(15).part(2).solution(() => {
+day(15).part(2).test(examples).feed(puzzleInput).inefficient.solution((input) => {
   for (let ap = 4; ; ++ap) {
     const map = new Map(input);
     map.units.forEach((unit) => {

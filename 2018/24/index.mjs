@@ -4,9 +4,10 @@ import { bisect } from '../../utils';
 import { day } from '..';
 
 import Reindeer from './Reindeer';
-import input from './input';
+import examples from './input/examples';
+import puzzleInput from './input';
 
-day(24).part(1).solution(() => {
+day(24).part(1).test(examples).feed(puzzleInput).solution((input) => {
   const reindeer = new Reindeer(input);
 
   let winner;
@@ -17,7 +18,7 @@ day(24).part(1).solution(() => {
   return winner.units;
 });
 
-day(24).part(2).solution(() => {
+day(24).part(2).test(examples).feed(puzzleInput).solution((input) => {
   const outcomes = new Map();
 
   const optimalBonusDamage = bisect(0, 10000, 1, (bonusDamage) => {

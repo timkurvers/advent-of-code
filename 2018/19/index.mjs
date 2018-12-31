@@ -4,15 +4,16 @@ import { day } from '..';
 import { sum } from '../../utils';
 
 import Program from './Program';
-import input from './input';
+import examples from './input/examples';
+import puzzleInput from './input';
 
-day(19).part(1).solution(() => {
+day(19).part(1).test(examples).feed(puzzleInput).solution((input) => {
   const program = new Program(input);
   program.run();
   return program.data[0];
 });
 
-day(19).part(2).solution(() => {
+day(19).part(2).test(examples).feed(puzzleInput).solution((input) => {
   // Manual analysis: this program calculates the factors of a certain number.
   // Initially, this number is small enough for the routine to complete. When
   // setting register 0 to 1, however, this becomes infeasible to compute.

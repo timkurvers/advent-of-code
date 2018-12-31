@@ -3,18 +3,21 @@
 import { day } from '..';
 
 import Nanobot from './Nanobot';
-import input from './input';
+import examples from './input/examples';
+import puzzleInput from './input';
 
-const nanobots = input.split('\n').map(definition => Nanobot.from(definition));
+day(23).part(1).test(examples).feed(puzzleInput).solution((input) => {
+  const nanobots = Nanobot.from(input);
 
-day(23).part(1).solution(() => {
   const strongest = nanobots.reduce((nanobot, next) => (
     nanobot.radius > next.radius ? nanobot : next
   ));
   return nanobots.filter(nanobot => strongest.inRange(nanobot)).length;
 });
 
-day(23).part(2).solution(() => {
+day(23).part(2).test(examples).feed(puzzleInput).solution((input) => {
+  const nanobots = Nanobot.from(input);
+
   const xs = nanobots.map(nanobot => nanobot.x);
   const ys = nanobots.map(nanobot => nanobot.y);
   const zs = nanobots.map(nanobot => nanobot.z);

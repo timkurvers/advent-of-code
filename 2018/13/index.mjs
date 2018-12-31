@@ -3,9 +3,10 @@
 import { day } from '..';
 
 import Mine from './Mine';
-import input from './input';
+import examples from './input/examples';
+import puzzleInput from './input';
 
-day(13).part(1).solution(() => {
+day(13).part(1).test(examples).feed(puzzleInput).solution((input) => {
   try {
     const mine = new Mine(input);
     while (true) {
@@ -16,7 +17,7 @@ day(13).part(1).solution(() => {
   }
 });
 
-day(13).part(2).solution(() => {
+day(13).part(2).test(examples).feed(puzzleInput).solution((input) => {
   const mine = new Mine(input);
   mine.cleanUpCrashes = true;
   while (mine.carts.length > 1) {

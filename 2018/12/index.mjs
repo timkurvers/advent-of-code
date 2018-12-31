@@ -4,24 +4,31 @@
 
 import { day } from '..';
 
-import input from './input';
+import examples from './input/examples';
+import puzzleInput from './input';
 
 const NOTE_MATCHER = /((?:\.|#){2})(\.|#)((?:\.|#){2}) => (#|\.)/;
 
-const pad = '.'.repeat(input.initial.length * 2);
-const initial = `${pad}${input.initial}${pad}`;
+const parse = (input) => {
+  const lines = input.split('\n');
+  const [, start] = lines.shift().split('initial state: ');
+  lines.shift();
+  const notes = lines.map((note) => {
+    const [, before, pot, after, change] = note.match(NOTE_MATCHER);
+    return {
+      before,
+      after,
+      pot,
+      change,
+    };
+  });
 
-const notes = input.notes.map((note) => {
-  const [, before, pot, after, change] = note.match(NOTE_MATCHER);
-  return {
-    before,
-    after,
-    pot,
-    change,
-  };
-});
+  const pad = '.'.repeat(start.length * 2);
+  const initial = `${pad}${start}${pad}`;
+  return { initial, notes, pad };
+};
 
-const step = (current) => {
+const step = (current, notes) => {
   const generation = [];
   for (let i = 0; i < current.length; ++i) {
     const pot = current[i];
@@ -40,7 +47,7 @@ const step = (current) => {
 
 const compact = generation => generation.replace(/^\.+|\.+$/g, '');
 
-const totalScoreFor = generation => (
+const totalScoreFor = (generation, pad) => (
   generation.split('').reduce((total, next, index) => {
     if (next === '#') {
       return total + index - pad.length;
@@ -49,28 +56,32 @@ const totalScoreFor = generation => (
   }, 0)
 );
 
-day(12).part(1).solution(() => {
+day(12).part(1).test(examples).feed(puzzleInput).solution((input) => {
+  const { initial, notes, pad } = parse(input);
+
   const generations = 20;
 
   let current = initial;
   for (let i = 1; i <= generations; ++i) {
-    current = step(current);
+    current = step(current, notes);
   }
-  return totalScoreFor(current);
+  return totalScoreFor(current, pad);
 });
 
-day(12).part(2).solution(() => {
+day(12).part(2).test(examples).feed(puzzleInput).solution((input) => {
+  const { initial, notes, pad } = parse(input);
+
   let start;
   let base;
   let increase;
   let current = initial;
   for (let i = 1; i <= 1000; ++i) {
     const previous = current;
-    current = step(current);
+    current = step(current, notes);
     if (compact(previous) === compact(current)) {
       start = i;
-      base = totalScoreFor(current);
-      increase = base - totalScoreFor(previous);
+      base = totalScoreFor(current, pad);
+      increase = base - totalScoreFor(previous, pad);
       break;
     }
   }

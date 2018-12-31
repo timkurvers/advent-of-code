@@ -2,7 +2,8 @@
 
 import { day } from '..';
 
-import input from './input';
+import examples from './input/examples';
+import puzzleInput from './input';
 
 const OPEN_GROUND = '.';
 const TREES = '|';
@@ -12,14 +13,7 @@ const isOpenGround = tile => tile === OPEN_GROUND;
 const isTrees = tile => tile === TREES;
 const isLumberyard = tile => tile === LUMBERYARD;
 
-const initial = input.split('\n').map(line => (
-  line.split('')
-));
-
-const maxX = initial[0].length - 1;
-const maxY = initial.length - 1;
-
-const next = grid => (
+const next = ({ grid, maxX, maxY }) => (
   grid.map((row, y) => (
     row.map((tile, x) => {
       const neighbors = [
@@ -57,10 +51,15 @@ const flatten = grid => (
   }, [])
 );
 
-const generate = (generations, hook = null) => {
+const generate = (input, generations, hook = null) => {
+  const initial = input.split('\n').map(line => line.split(''));
+
+  const maxX = initial[0].length - 1;
+  const maxY = initial.length - 1;
+
   let current = initial;
   for (let i = 0; i < generations; ++i) {
-    current = next(current);
+    current = next({ grid: current, maxX, maxY });
     if (hook && hook(i, current) === false) {
       break;
     }
@@ -69,16 +68,16 @@ const generate = (generations, hook = null) => {
   return final.filter(isTrees).length * final.filter(isLumberyard).length;
 };
 
-day(18).part(1).solution(() => (
-  generate(10)
+day(18).part(1).test(examples).feed(puzzleInput).solution(input => (
+  generate(input, 10)
 ));
 
-day(18).part(2).solution(() => {
+day(18).part(2).test(examples).feed(puzzleInput).solution((input) => {
   const cache = {};
   let start;
   let repeat;
 
-  generate(Infinity, (generation, current) => {
+  generate(input, Infinity, (generation, current) => {
     // Cache flattened state of this generation
     const flattened = flatten(current);
     if (!cache[flattened]) {
@@ -96,5 +95,5 @@ day(18).part(2).solution(() => {
   });
 
   const generations = 1000000000;
-  return generate(start + ((generations - start) % repeat));
+  return generate(input, start + ((generations - start) % repeat));
 });

@@ -1,8 +1,8 @@
+/* eslint-disable no-param-reassign */
+
 import { flatMap } from '../../utils';
 
 import Coord, { Type } from './Coord';
-
-/* eslint-disable no-param-reassign */
 
 class Facility {
   constructor(regex) {

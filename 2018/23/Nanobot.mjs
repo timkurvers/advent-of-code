@@ -20,13 +20,15 @@ class Nanobot {
     return this.distanceTo(other) <= this.radius;
   }
 
-  static from(definition) {
-    const match = definition.match(/-?\d+/g);
-    const x = +match[0];
-    const y = +match[1];
-    const z = +match[2];
-    const radius = +match[3];
-    return new this(x, y, z, radius);
+  static from(input) {
+    return input.split('\n').map((definition) => {
+      const match = definition.match(/-?\d+/g);
+      const x = +match[0];
+      const y = +match[1];
+      const z = +match[2];
+      const radius = +match[3];
+      return new this(x, y, z, radius);
+    });
   }
 }
 

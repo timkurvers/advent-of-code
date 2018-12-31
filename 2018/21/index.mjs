@@ -5,9 +5,9 @@
 import Program, { Interceptor } from '../19/Program';
 import { day } from '..';
 
-import input from './input';
+import puzzleInput from './input';
 
-day(21).part(1).solution(() => {
+day(21).part(1).feed(puzzleInput).solution((input) => {
   const program = new Program(input);
 
   // Intercept instruction #28, retrieve the answer from register 4 and halt
@@ -23,7 +23,7 @@ day(21).part(1).solution(() => {
   return answer;
 });
 
-day(21).part(2).inefficient.solution(() => {
+day(21).part(2).feed(puzzleInput).inefficient.solution((input) => {
   const program = new Program(input);
 
   // Intercept instruction #28, retrieve candidate answer from register 4 and

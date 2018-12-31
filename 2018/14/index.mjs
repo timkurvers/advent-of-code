@@ -1,29 +1,29 @@
 #!/usr/bin/env node --experimental-modules --no-warnings
 
+/* eslint-disable no-param-reassign */
+
 import { day } from '..';
 
-import input from './input/example';
+import examples from './input/examples';
+import puzzleInput from './input';
 
-let recipes;
-let first;
-let second;
+const initialize = () => ({
+  first: 0,
+  second: 1,
+  recipes: [3, 7],
+});
 
-const initialize = () => {
-  first = 0;
-  second = 1;
-  recipes = [3, 7];
-};
-
-const create = () => {
+const create = (state) => {
+  const { first, second, recipes } = state;
   const sum = recipes[first] + recipes[second];
   const numbers = sum.toString().split('').map(Number);
   recipes.push(...numbers);
 
-  first = (first + 1 + recipes[first]) % recipes.length;
-  second = (second + 1 + recipes[second]) % recipes.length;
+  state.first = (first + 1 + recipes[first]) % recipes.length;
+  state.second = (second + 1 + recipes[second]) % recipes.length;
 };
 
-const match = (start, seek) => {
+const match = (recipes, start, seek) => {
   const { length } = seek;
   for (let i = 0; i < length; ++i) {
     if (recipes[start + i] !== seek[i]) {
@@ -33,30 +33,34 @@ const match = (start, seek) => {
   return true;
 };
 
-day(14).part(1).solution(() => {
-  initialize();
+day(14).part(1).test(examples).feed(puzzleInput).solution((input) => {
+  const target = +input;
+
+  const state = initialize();
+  const { recipes } = state;
 
   const required = 10;
-  while (recipes.length < input + required) {
-    create();
+  while (recipes.length < target + required) {
+    create(state);
   }
-  return recipes.slice(input, input + required).join('');
+  return recipes.slice(target, target + required).join('');
 });
 
-day(14).part(2).solution(() => {
-  initialize();
+day(14).part(2).test(examples).feed(puzzleInput).inefficient.solution((input) => {
+  const state = initialize();
+  const { recipes } = state;
 
-  const seek = input.toString().split('').map(Number);
+  const seek = input.split('').map(Number);
   const { length } = seek;
 
   while (true) {
-    create();
+    create(state);
 
     const offset = recipes.length - length;
-    if (match(offset, seek)) {
+    if (match(recipes, offset, seek)) {
       return offset;
     }
-    if (match(offset - 1, seek)) {
+    if (match(recipes, offset - 1, seek)) {
       return offset - 1;
     }
   }
