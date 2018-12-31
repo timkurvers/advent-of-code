@@ -83,6 +83,12 @@ export class Challenge {
       return;
     }
 
+    if (this._inefficient) {
+      line('Answer', '<inefficient solution; skipping>');
+      console.log();
+      return;
+    }
+
     const { answer, duration } = this.execute(this._input);
     line('Answer', answer, true, duration);
     console.log();
