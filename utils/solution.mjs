@@ -78,7 +78,7 @@ export class Challenge {
     }
 
     if (!this._input || !this._solution) {
-      line('Answer', '<not yet solved>');
+      line('Answer', '<no input/solution provided>');
       console.log();
       return;
     }
@@ -90,6 +90,11 @@ export class Challenge {
     }
 
     const { answer, duration } = this.execute(this._input);
+    if (!answer) {
+      line('Answer', '<not yet solved>');
+      console.log();
+      return;
+    }
     line('Answer', answer, true, duration);
     console.log();
   }
