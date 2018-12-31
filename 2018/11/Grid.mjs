@@ -1,6 +1,6 @@
 class Grid {
   constructor(serialNumber, size = 300) {
-    this.serialNumber = serialNumber;
+    this.serialNumber = +serialNumber;
     this.size = size;
 
     this.levels = [];

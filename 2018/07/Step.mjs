@@ -1,11 +1,13 @@
-const cache = new Map();
+const INSTRUCTION_MATCHER = /Step (\w) .+ step (\w)/i;
 
 class Step {
   constructor(id) {
     this.id = id;
     this.prerequisites = [];
 
-    this.reset();
+    this.startedAt = null;
+    this.completedAt = null;
+    this.worker = null;
   }
 
   get completed() {
@@ -37,27 +39,24 @@ class Step {
     this.worker = null;
   }
 
-  reset() {
-    this.startedAt = null;
-    this.completedAt = null;
-    this.worker = null;
-  }
+  static from(input) {
+    const cache = new Map();
 
-  static get all() {
+    const stepFor = (id) => {
+      let step = cache.get(id);
+      if (!step) {
+        step = new this(id);
+        cache.set(id, step);
+      }
+      return step;
+    };
+
+    input.split('\n').forEach((instruction) => {
+      const [, prequisite, id] = instruction.match(INSTRUCTION_MATCHER);
+      stepFor(id).prerequisites.push(stepFor(prequisite));
+    });
+
     return Array.from(cache.values());
-  }
-
-  static for(id) {
-    let step = cache.get(id);
-    if (!step) {
-      step = new this(id);
-      cache.set(id, step);
-    }
-    return step;
-  }
-
-  static reset() {
-    cache.forEach(step => step.reset());
   }
 }
 

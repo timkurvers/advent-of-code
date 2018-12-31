@@ -3,9 +3,10 @@
 import { day } from '..';
 import { sum } from '../../utils';
 
-import input from './input';
+import examples from './input/examples';
+import puzzleInput from './input';
 
-day(2).part(1).solution(() => {
+day(2).part(1).test(examples).feed(puzzleInput).solution((input) => {
   const diffs = input.split('\n').map((line) => {
     const row = line.split('\t').map(Number);
     return Math.max(...row) - Math.min(...row);
@@ -13,7 +14,7 @@ day(2).part(1).solution(() => {
   return sum(diffs);
 });
 
-day(2).part(2).solution(() => {
+day(2).part(2).test(examples).feed(puzzleInput).solution((input) => {
   const divisions = input.split('\n').map((line) => {
     const row = line.split('\t').map(Number);
     for (let i = 0; i < row.length; ++i) {

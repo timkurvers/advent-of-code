@@ -3,7 +3,7 @@
 /* eslint-disable prefer-destructuring */
 
 import Program, { Interceptor } from '../19/Program';
-import { INEFFICIENT, day } from '..';
+import { day } from '..';
 
 import input from './input';
 
@@ -23,7 +23,7 @@ day(21).part(1).solution(() => {
   return answer;
 });
 
-day(21).part(2).solution(INEFFICIENT, () => {
+day(21).part(2).inefficient.solution(() => {
   const program = new Program(input);
 
   // Intercept instruction #28, retrieve candidate answer from register 4 and

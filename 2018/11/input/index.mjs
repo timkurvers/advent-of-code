@@ -1,3 +1,1 @@
-export default [
-  6303,
-];
+export default '6303';

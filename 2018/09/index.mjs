@@ -3,7 +3,8 @@
 import { day } from '..';
 
 import Marble from './Marble';
-import input from './input';
+import examples from './input/examples';
+import puzzleInput from './input';
 
 const entryToConfig = (entry) => {
   const match = entry.match(/\d+/g);
@@ -45,16 +46,17 @@ const play = ({ playerCount, targetRound }) => {
   };
 };
 
-const config = entryToConfig(input);
-const playthrough = play(config);
+day(9).part(1).test(examples).feed(puzzleInput).solution((input) => {
+  const config = entryToConfig(input);
+  const playthrough = play(config);
+  return playthrough.highscore;
+});
 
-day(9).part(1).solution(() => (
-  playthrough.highscore
-));
-
-day(9).part(2).solution(() => (
-  play({
+day(9).part(2).test(examples).feed(puzzleInput).solution((input) => {
+  const config = entryToConfig(input);
+  const playthrough = play(config);
+  return play({
     ...config,
     targetRound: playthrough.round * 100,
-  }).highscore
-));
+  }).highscore;
+});

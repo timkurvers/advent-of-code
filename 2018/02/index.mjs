@@ -3,18 +3,23 @@
 import { day } from '..';
 
 import Box from './Box';
-import input from './input';
+import examples from './input/examples';
+import puzzleInput from './input';
 
-const boxes = input.map(id => new Box(id));
+const parse = input => input.split('\n').map(id => new Box(id));
 
-day(2).part(1).solution(() => {
+day(2).part(1).test(examples).feed(puzzleInput).solution((input) => {
+  const boxes = parse(input);
+
   const doublesCount = boxes.reduce((sum, next) => sum + next.hasDoubles, 0);
   const triplesCount = boxes.reduce((sum, next) => sum + next.hasTriples, 0);
 
   return doublesCount * triplesCount;
 });
 
-day(2).part(2).solution(() => {
+day(2).part(2).test(examples).feed(puzzleInput).solution((input) => {
+  const boxes = parse(input);
+
   let smallestDiff = boxes[0].letters;
   let smallestCommons = [];
 

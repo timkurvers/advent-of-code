@@ -5,13 +5,14 @@ import { day } from '..';
 import Event from './Event';
 import Guard from './Guard';
 import Shift from './Shift';
-import input from './input';
+import examples from './input/examples';
+import puzzleInput from './input';
 
-const events = input.map(definition => new Event(definition)).sort((a, b) => (
-  a.definition.localeCompare(b.definition)
-));
+const schedule = (input) => {
+  const events = input.split('\n').sort().map(definition => (
+    new Event(definition)
+  ));
 
-const guards = (() => {
   let guard = null;
   let shift = null;
 
@@ -30,9 +31,11 @@ const guards = (() => {
     shift.events.push(event);
   });
   return Array.from(set);
-})();
+};
 
-day(4).part(1).solution(() => {
+day(4).part(1).test(examples).feed(puzzleInput).solution((input) => {
+  const guards = schedule(input);
+
   const sleepy = guards.sort((a, b) => (
     b.totalMinutesAsleep - a.totalMinutesAsleep
   ))[0];
@@ -40,7 +43,9 @@ day(4).part(1).solution(() => {
   return sleepy.id * sleepy.mostAsleepPerMinute.minute;
 });
 
-day(4).part(2).solution(() => {
+day(4).part(2).test(examples).feed(puzzleInput).solution((input) => {
+  const guards = schedule(input);
+
   const sleepyPerMinute = guards.sort((a, b) => (
     b.mostAsleepPerMinute.frequency - a.mostAsleepPerMinute.frequency
   ))[0];

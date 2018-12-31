@@ -3,11 +3,9 @@
 import { day } from '..';
 
 import Star from './Star';
-import input from './input';
+import puzzleInput from './input';
 
-const stars = input.map(definition => new Star(definition));
-
-const snapshot = (t) => {
+const snapshot = (stars, t) => {
   const points = stars.map(star => star.at(t));
 
   const xs = points.map(point => point.x);
@@ -21,28 +19,34 @@ const snapshot = (t) => {
   const size = (maxX - minX) * (maxY - minY);
 
   return {
-    points, xs, ys, minX, maxX, minY, maxY, size,
+    points, xs, ys, minX, maxX, minY, maxY, size, t,
   };
 };
 
-let t = 0;
-let smallest = Infinity;
-do {
-  const { size } = snapshot(t);
-  if (size < smallest) {
-    smallest = size;
-  } else if (size > smallest) {
-    --t;
-    break;
-  }
-  ++t;
-} while (true);
+const find = (input) => {
+  const stars = input.split('\n').map(definition => new Star(definition));
 
-const {
-  minY, maxY, minX, maxX, points,
-} = snapshot(t);
+  let t = 0;
+  let smallest = Infinity;
+  do {
+    const { size } = snapshot(stars, t);
+    if (size < smallest) {
+      smallest = size;
+    } else if (size > smallest) {
+      --t;
+      break;
+    }
+    ++t;
+  } while (true);
 
-day(10).part(1).solution(() => {
+  return snapshot(stars, t);
+};
+
+day(10).part(1).feed(puzzleInput).solution((input) => {
+  const {
+    minY, maxY, minX, maxX, points,
+  } = find(input);
+
   let output = '\n';
   for (let y = minY; y <= maxY; ++y) {
     for (let x = minX; x <= maxX; ++x) {
@@ -56,4 +60,7 @@ day(10).part(1).solution(() => {
   return '<see visually above>';
 });
 
-day(10).part(2).solution(() => t);
+day(10).part(2).feed(puzzleInput).solution((input) => {
+  const { t } = find(input);
+  return t;
+});
