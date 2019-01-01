@@ -42,7 +42,7 @@ class Step {
   static from(input) {
     const cache = new Map();
 
-    const stepFor = (id) => {
+    const lookup = (id) => {
       let step = cache.get(id);
       if (!step) {
         step = new this(id);
@@ -53,7 +53,7 @@ class Step {
 
     input.split('\n').forEach((instruction) => {
       const [, prequisite, id] = instruction.match(INSTRUCTION_MATCHER);
-      stepFor(id).prerequisites.push(stepFor(prequisite));
+      lookup(id).prerequisites.push(lookup(prequisite));
     });
 
     return Array.from(cache.values());
