@@ -1,20 +1,8 @@
 import { example } from '../../../utils';
 
 export default [
-  example('{}', 1),
-  example('{{{}}}', 6),
-  example('{{},{}}', 5),
-  example('{{{},{},{{}}}}', 16),
-  example('{<a>,<a>,<a>,<a>}', 1),
-  example('{{<ab>},{<ab>},{<ab>},{<ab>}}', 9),
-  example('{{<!!>},{<!!>},{<!!>},{<!!>}}', 9),
-  example('{{<a!>},{<a!>},{<a!>},{<ab>}}', 3),
-
-  example('{<>}', null, 0),
-  example('{<random characters>}', null, 17),
-  example('{<<<<>}', null, 3),
-  example('{<{!>}>}', null, 2),
-  example('{<!!>}', null, 0),
-  example('{<!!!>>}', null, 0),
-  example('{<{o"i!a,<{i<a>}', null, 10),
+  example(`b inc 5 if a > 1
+a inc 1 if b < 5
+c dec -10 if a >= 1
+c inc -20 if c == 10`, 1, 10),
 ];
