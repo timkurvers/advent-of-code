@@ -35,4 +35,12 @@ npm start 2017
 npm start 2017 1 4 9
 ```
 
+## Development
+
+To monitor code changes and re-run solutions during development:
+
+```bash
+npm run start:dev 2018 6
+```
+
 [Node.js]: https://nodejs.org/en/
