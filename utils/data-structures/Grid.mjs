@@ -1,4 +1,4 @@
-import { flatMap } from '.';
+import { Point, flatMap } from '.';
 
 class Grid {
   constructor() {
@@ -21,6 +21,17 @@ class Grid {
     return maxY - minY;
   }
 
+  find(condition) {
+    for (const [y, row] of this.map.entries()) {
+      for (const [x, char] of row.entries()) {
+        if (condition(x, y, char, row)) {
+          return new Point(x, y);
+        }
+      }
+    }
+    return null;
+  }
+
   get(x, y) {
     const row = this.map.get(y);
     return row && row.get(x);
@@ -34,6 +45,20 @@ class Grid {
     }
     row.set(x, value);
     return this;
+  }
+
+  static from(gfx, { ignoreBlanks = true } = {}) {
+    const grid = new this();
+    const lines = gfx.split('\n');
+    lines.forEach((line, y) => {
+      line.split('').forEach((char, x) => {
+        if (char === ' ' && ignoreBlanks) {
+          return;
+        }
+        grid.set(x, y, char);
+      });
+    });
+    return grid;
   }
 }
 
