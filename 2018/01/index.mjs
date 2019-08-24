@@ -15,7 +15,7 @@ day(1).part(2).test(examples).feed(puzzleInput).solution((input) => {
   const parsed = parse(input);
 
   const findDuplicateFrequency = () => {
-    const frequencies = new Set();
+    const frequencies = new Set([0]);
     let frequency = 0;
 
     while (true) {
