@@ -1,11 +1,15 @@
-const LEFT_TURN = -Math.PI * 0.5;
-const RIGHT_TURN = Math.PI * 0.5;
-const STRAIGHT_AHEAD = 0;
+import {
+  Orientation,
+  Rotation,
+  isHorizontalOrientation,
+  dx,
+  dy,
+} from '../../utils';
 
 const INTERSECTION_OPTIONS = [
-  LEFT_TURN,
-  STRAIGHT_AHEAD,
-  RIGHT_TURN,
+  Rotation.TURN_LEFT,
+  Rotation.NONE,
+  Rotation.TURN_RIGHT,
 ];
 
 let ord = 65;
@@ -20,26 +24,18 @@ class Cart {
     switch (char) {
       default:
       case '>':
-        this.angle = 0;
+        this.angle = Orientation.RIGHT;
         break;
       case '^':
-        this.angle = -Math.PI * 0.5;
+        this.angle = Orientation.UP;
         break;
       case '<':
-        this.angle = Math.PI;
+        this.angle = Orientation.LEFT;
         break;
       case 'v':
-        this.angle = -Math.PI * 1.5;
+        this.angle = Orientation.DOWN;
         break;
     }
-  }
-
-  get dx() {
-    return Math.round(Math.cos(this.angle));
-  }
-
-  get dy() {
-    return Math.round(Math.sin(this.angle));
   }
 
   next(mine) {
@@ -48,17 +44,17 @@ class Cart {
     let change;
     switch (char) {
       case '/':
-        if (this.dx !== 0) {
-          change = LEFT_TURN;
+        if (isHorizontalOrientation(this.angle)) {
+          change = Rotation.TURN_LEFT;
         } else {
-          change = RIGHT_TURN;
+          change = Rotation.TURN_RIGHT;
         }
         break;
       case '\\':
-        if (this.dx !== 0) {
-          change = RIGHT_TURN;
+        if (isHorizontalOrientation(this.angle)) {
+          change = Rotation.TURN_RIGHT;
         } else {
-          change = LEFT_TURN;
+          change = Rotation.TURN_LEFT;
         }
         break;
       case '+': {
@@ -78,8 +74,8 @@ class Cart {
       this.angle += change;
     }
 
-    const x = this.x + this.dx;
-    const y = this.y + this.dy;
+    const x = this.x + dx(this.angle);
+    const y = this.y + dy(this.angle);
 
     const otherCart = mine.cartAt(x, y);
     if (otherCart) {
