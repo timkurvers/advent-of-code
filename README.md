@@ -4,7 +4,7 @@ JavaScript / ES6+ solutions for https://adventofcode.com.
 
 **Supported Node versions: 10 or higher**
 
-![Advent of Code](https://user-images.githubusercontent.com/378235/63643275-58af7580-c6cd-11e9-8911-36b7b64285e0.png)
+![Advent of Code](https://user-images.githubusercontent.com/378235/63643295-fc008a80-c6cd-11e9-941a-102c557c36ca.png)
 
 ## Setup
 
