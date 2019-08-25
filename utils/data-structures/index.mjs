@@ -1,3 +1,4 @@
+export { CircularLinkedList, LinkedListNode } from './LinkedList';
 export { default as Grid } from './Grid';
 export { default as Point } from './Point';
 

@@ -1,8 +1,8 @@
 #!/usr/bin/env node --experimental-modules --no-warnings
 
+import { LinkedListNode as Marble } from '../../utils';
 import { day } from '..';
 
-import Marble from './Marble';
 import examples from './input/examples';
 import puzzleInput from './input';
 
@@ -29,10 +29,10 @@ const play = ({ playerCount, targetRound }) => {
       sought.remove();
 
       const playerIndex = round % playerCount;
-      scores[playerIndex] += round + sought.id;
+      scores[playerIndex] += round + sought.value;
     } else {
       const next = new Marble(round);
-      next.insertAt(current.seek(1));
+      current.seek(1).append(next);
       current = next;
     }
 
