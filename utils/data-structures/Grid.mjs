@@ -5,27 +5,64 @@ class Grid {
     this.map = new Map();
   }
 
-  get width() {
-    const xs = flatMap(Array.from(this.map.values()), row => (
+  get center() {
+    const { width, height } = this;
+    return new Point(Math.floor(width / 2), Math.floor(height / 2));
+  }
+
+  get xs() {
+    return flatMap(Array.from(this.map.values()), row => (
       Array.from(row.keys())
     ));
-    const minX = Math.min(...xs);
-    const maxX = Math.max(...xs);
-    return maxX - minX;
+  }
+
+  get ys() {
+    return Array.from(this.map.keys());
+  }
+
+  get minX() {
+    return Math.min(...this.xs);
+  }
+
+  get maxX() {
+    return Math.max(...this.xs);
+  }
+
+  get minY() {
+    return Math.min(...this.ys);
+  }
+
+  get maxY() {
+    return Math.max(...this.ys);
+  }
+
+  get width() {
+    return this.maxX - this.minX;
   }
 
   get height() {
-    const ys = Array.from(this.map.keys());
-    const minY = Math.min(...ys);
-    const maxY = Math.max(...ys);
-    return maxY - minY;
+    return this.maxY - this.minY;
+  }
+
+  filter(condition) {
+    const filtered = [];
+    for (const [y, row] of this.map.entries()) {
+      for (const [x, char] of row.entries()) {
+        const point = new Point(x, y);
+        if (condition(point, char, row)) {
+          filtered.push(point);
+        }
+      }
+    }
+    return filtered;
   }
 
   find(condition) {
     for (const [y, row] of this.map.entries()) {
       for (const [x, char] of row.entries()) {
-        if (condition(x, y, char, row)) {
-          return new Point(x, y);
+        const point = new Point(x, y);
+        if (condition(point, char, row)) {
+          return point;
         }
       }
     }
