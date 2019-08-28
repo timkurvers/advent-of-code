@@ -23,6 +23,8 @@ class Program {
     this.inbox = [];
     this.waiting = false;
     this.link = null;
+
+    this.hook = null;
   }
 
   clone() {
@@ -61,12 +63,17 @@ class Program {
   step() {
     const instruction = this.instructions[this.pointer];
     if (!instruction) {
+      this.end();
       return;
     }
 
     const { opcode, register, value } = instruction;
     const operation = this.operations[opcode];
     operation(this, register, value);
+
+    if (this.hook) {
+      this.hook(opcode, register, value);
+    }
   }
 
   run() {
