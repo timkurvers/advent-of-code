@@ -1,5 +1,5 @@
 class Point {
-  constructor(grid, x, y) {
+  constructor(grid, x = 0, y = 0) {
     this.x = x;
     this.y = y;
 
