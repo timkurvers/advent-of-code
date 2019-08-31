@@ -3,6 +3,7 @@
 import colors from 'colors';
 
 import Tile, { Type } from './Tile';
+import { Grid } from '../../utils';
 
 const AREA_MATCHER = /(x|y)=(\d+)(?:\.\.(\d+))?, (x|y)=(\d+)(?:\.\.(\d+))?/;
 
@@ -25,12 +26,10 @@ class Ground {
     this.maxY = Math.max(...this.areas.map(area => area.y2));
 
     this.tiles = [];
-    this.grid = [];
+    this.grid = new Grid(Tile);
     for (let y = 0; y <= this.maxY; ++y) {
-      this.grid[y] = [];
       for (let x = this.minX; x <= this.maxX; ++x) {
-        const tile = new Tile(this, x, y);
-        this.grid[y][x] = tile;
+        const tile = this.grid.set(x, y, null);
         this.tiles.push(tile);
       }
     }
@@ -39,13 +38,13 @@ class Ground {
     this.areas.forEach((area) => {
       for (let y = area.y1; y <= area.y2; ++y) {
         for (let x = area.x1; x <= area.x2; ++x) {
-          this.grid[y][x].type = Type.OBSTRUCTED;
+          this.grid.set(x, y, Type.OBSTRUCTED);
         }
       }
     });
 
     // Mark spring tile
-    const spring = this.grid[0][500];
+    const spring = this.grid.getPoint(500, 0);
     spring.type = Type.SPRING;
 
     // Mark initial water tile and add it as the sole active tile

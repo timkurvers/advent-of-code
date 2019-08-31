@@ -1,6 +1,5 @@
 export { CircularLinkedList, LinkedListNode } from './LinkedList';
-export { default as Grid } from './Grid';
-export { default as Point } from './Point';
+export { default as Grid, GridPoint } from './Grid';
 
 export const flatMap = (arr, callbackfn) => (
   arr.reduce((flattened, ...args) => (

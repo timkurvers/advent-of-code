@@ -10,22 +10,11 @@ const spiral = (until) => {
   const grid = new Grid();
 
   const create = (nr, x, y) => {
-    const neighbors = [
-      grid.get(x - 1, y - 1), grid.get(x, y - 1), grid.get(x + 1, y - 1),
-      grid.get(x - 1, y), grid.get(x + 1, y),
-      grid.get(x - 1, y + 1), grid.get(x, y + 1), grid.get(x + 1, y + 1),
-    ].filter(Boolean);
-
-    const entry = {
-      nr,
-      x,
-      y,
-      distance: Math.abs(x) + Math.abs(y),
-      value: nr === 1 ? nr : sum(neighbors.map(neighbor => neighbor.value)),
-    };
-
-    grid.set(x, y, entry);
-    return entry;
+    const point = grid.set(x, y);
+    point.nr = nr;
+    point.distance = Math.abs(x) + Math.abs(y);
+    point.value = nr === 1 ? nr : sum(point.neighbors.map(neighbor => neighbor.value));
+    return point;
   };
 
   let size = 1;

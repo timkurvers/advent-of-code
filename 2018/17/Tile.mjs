@@ -1,3 +1,5 @@
+import { GridPoint } from '../../utils';
+
 const Type = {
   SPRING: 1,
   OBSTRUCTED: 2,
@@ -7,17 +9,13 @@ const Type = {
   WATER_FLOWING_RIGHT: 6,
 };
 
-class Tile {
-  constructor(ground, x, y) {
-    this.ground = ground;
-    this.x = x;
-    this.y = y;
-    this.type = null;
+class Tile extends GridPoint {
+  get type() {
+    return this.value;
   }
 
-  get down() {
-    const { ground } = this;
-    return this.y < ground.maxY ? ground.grid[this.y + 1][this.x] : null;
+  set type(type) {
+    this.value = type;
   }
 
   get isWater() {
@@ -34,25 +32,6 @@ class Tile {
   get isHorizontalFlowingWater() {
     return this.type === Type.WATER_FLOWING_LEFT
            || this.type === Type.WATER_FLOWING_RIGHT;
-  }
-
-  get label() {
-    return `(${this.y},${this.x})`;
-  }
-
-  get left() {
-    const { ground } = this;
-    return this.x > 0 ? ground.grid[this.y][this.x - 1] : null;
-  }
-
-  get right() {
-    const { ground } = this;
-    return this.x < ground.maxX ? ground.grid[this.y][this.x + 1] : null;
-  }
-
-  get up() {
-    const { ground } = this;
-    return this.y > 0 ? ground.grid[this.y - 1][this.x] : null;
   }
 }
 
