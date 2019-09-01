@@ -1,7 +1,5 @@
 #!/usr/bin/env node --experimental-modules --no-warnings
 
-/* eslint-disable no-param-reassign */
-
 import Program from '../18/Program';
 import { day } from '..';
 
