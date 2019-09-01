@@ -24,13 +24,23 @@ const parse = input => (
   }))
 );
 
-const follow = (instructions) => {
+const follow = (instructions, { stopOnSeen = false } = {}) => {
+  const seen = new Set();
+
   let orientation = Orientation.UP;
   const position = new GridPoint();
   for (const { rotation, blocks } of instructions) {
     orientation += rotation;
-    position.x += dx(orientation) * blocks;
-    position.y += dy(orientation) * blocks;
+
+    for (let step = 0; step < blocks; ++step) {
+      const { label } = position;
+      if (stopOnSeen && seen.has(label)) {
+        break;
+      }
+      seen.add(label);
+      position.x += dx(orientation);
+      position.y += dy(orientation);
+    }
   }
 
   const distance = Math.abs(position.x) + Math.abs(position.y);
@@ -40,4 +50,9 @@ const follow = (instructions) => {
 day(1).part(1).test(examples).feed(puzzleInput).solution((input) => {
   const instructions = parse(input);
   return follow(instructions).distance;
+});
+
+day(1).part(2).test(examples).feed(puzzleInput).solution((input) => {
+  const instructions = parse(input);
+  return follow(instructions, { stopOnSeen: true }).distance;
 });
