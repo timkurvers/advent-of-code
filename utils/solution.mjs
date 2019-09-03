@@ -12,11 +12,15 @@ export class Challenge {
     this._input = null;
     this._tests = [];
     this._solution = () => {};
-    this._inefficient = false;
+    this._inefficientTests = false;
+    this._inefficientSolution = false;
   }
 
   get inefficient() {
-    this._inefficient = true;
+    if (!this._tests.length) {
+      this._inefficientTests = true;
+    }
+    this._inefficientSolution = true;
     return this;
   }
 
@@ -68,6 +72,12 @@ export class Challenge {
 
     const offset = Math.max(this._part - 1, 0);
     const applicable = this._tests.filter(test => test.expected[offset] != null);
+    if (applicable.length && this._inefficientTests) {
+      line('Example', '<inefficient tests; skipping>');
+      console.log();
+      return;
+    }
+
     for (const test of applicable) {
       const { answer, duration } = this.execute(test.input, true);
       const expected = test.expected[offset];
@@ -83,7 +93,7 @@ export class Challenge {
       return;
     }
 
-    if (this._inefficient) {
+    if (this._inefficientSolution) {
       line('Answer', '<inefficient solution; skipping>');
       console.log();
       return;
