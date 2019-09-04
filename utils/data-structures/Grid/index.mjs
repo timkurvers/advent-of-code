@@ -42,17 +42,25 @@ class Grid {
   }
 
   get width() {
-    return this.maxX - this.minX;
+    return this.maxX - this.minX + 1;
   }
 
   get height() {
-    return this.maxY - this.minY;
+    return this.maxY - this.minY + 1;
   }
 
   each(callback) {
     for (const [y, row] of this.map.entries()) {
       for (const [x, point] of row.entries()) {
         callback(point, x, y);
+      }
+    }
+  }
+
+  fill(minX, minY, maxX, maxY, value) {
+    for (let y = minY; y <= maxY; ++y) {
+      for (let x = minX; x <= maxX; ++x) {
+        this.set(x, y, value);
       }
     }
   }
@@ -104,6 +112,24 @@ class Grid {
     }
     point.value = value;
     return point;
+  }
+
+  column(x) {
+    const { minY, maxY } = this;
+    const column = [];
+    for (let y = minY; y <= maxY; ++y) {
+      column.push(this.get(x, y));
+    }
+    return column;
+  }
+
+  row(y) {
+    const { minX, maxX } = this;
+    const row = [];
+    for (let x = minX; x <= maxX; ++x) {
+      row.push(this.get(x, y));
+    }
+    return row;
   }
 
   toString(renderer, opts = {}) {
