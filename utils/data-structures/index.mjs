@@ -6,3 +6,11 @@ export const flatMap = (arr, callbackfn) => (
     flattened.concat(callbackfn(...args))
   ), [])
 );
+
+export const wrap = (index, length) => {
+  const maxIndex = length - 1;
+  if (index < 0) {
+    return maxIndex - Math.abs(index % length) + 1;
+  }
+  return index % length;
+};
