@@ -2,7 +2,7 @@
 
 // See: https://en.wikipedia.org/wiki/A*_search_algorithm#Pseudocode
 // And: https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm#Pseudocode
-export const astar = (start, goal, { neighborsFor, cost }) => {
+export const astar = (start, goal, { neighborsFor, cost = () => 1 }) => {
   // For each node, which node it can most efficiently be reached from.
   // If a node can be reached from many nodes, cameFrom will eventually contain the
   // most efficient previous step.

@@ -82,7 +82,7 @@ export class Challenge {
       const { answer, duration } = this.execute(test.input, true);
       const expected = test.expected[offset];
       const passed = answer === expected;
-      const excerpt = test.input.replace(/\t/g, ' ').replace(/\n/g, ' ').slice(0, 25);
+      const excerpt = String(test.input).replace(/\n|\t/g, ' ').slice(0, 25);
       const text = passed ? answer : `${answer} (expected: ${expected})`;
       line(`Example ${colors.yellow(excerpt)}`, text, passed, duration);
     }
