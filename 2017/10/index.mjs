@@ -14,7 +14,7 @@ import {
 
 day(10).part(1).test(examples).feed(puzzleInput).solution((input, isExample) => {
   const lengths = parse(input);
-  const root = CircularLinkedList.from(...createRange(isExample ? 5 : undefined));
+  const root = CircularLinkedList.from(createRange(isExample ? 5 : undefined));
   twist(root, lengths);
   return root.value * root.next.value;
 });

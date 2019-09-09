@@ -13,7 +13,7 @@ class CircularLinkedList {
     return values;
   }
 
-  static from(...values) {
+  static from(values) {
     let root;
     let current;
     for (const value of values) {

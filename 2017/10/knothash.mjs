@@ -49,7 +49,7 @@ const hexhash = dense => (
 export const knothash = (source, { range } = {}) => {
   const lengths = parse(source, { asASCII: true });
   lengths.push(17, 31, 73, 47, 23);
-  const root = CircularLinkedList.from(...createRange(range));
+  const root = CircularLinkedList.from(createRange(range));
   twist(root, lengths, { rounds: 64 });
   const sparse = CircularLinkedList.toArray(root);
   return densify(sparse);
