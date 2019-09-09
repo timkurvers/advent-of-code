@@ -10,7 +10,7 @@ export const flatMap = (arr, callbackfn) => (
 export const wrap = (index, length) => {
   const maxIndex = length - 1;
   if (index < 0) {
-    return maxIndex - Math.abs(index % length) + 1;
+    return maxIndex - (Math.abs(index + 1) % length);
   }
   return index % length;
 };
