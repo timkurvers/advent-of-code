@@ -4,7 +4,7 @@ import Point from './Point';
 
 class Grid {
   constructor(pointClass = Point) {
-    this.map = new Map();
+    this.rows = new Map();
     this.pointClass = pointClass;
   }
 
@@ -16,13 +16,13 @@ class Grid {
   }
 
   get xs() {
-    return flatMap(Array.from(this.map.values()), row => (
+    return flatMap(Array.from(this.rows.values()), row => (
       Array.from(row.keys())
     ));
   }
 
   get ys() {
-    return Array.from(this.map.keys());
+    return Array.from(this.rows.keys());
   }
 
   get minX() {
@@ -50,11 +50,13 @@ class Grid {
   }
 
   each(callback) {
-    for (const [y, row] of this.map.entries()) {
+    const mapped = [];
+    for (const [y, row] of this.rows.entries()) {
       for (const [x, point] of row.entries()) {
-        callback(point, x, y);
+        mapped.push(callback(point, x, y));
       }
     }
+    return mapped;
   }
 
   fill(minX, minY, maxX, maxY, value) {
@@ -67,7 +69,7 @@ class Grid {
 
   filter(condition) {
     const filtered = [];
-    for (const [y, row] of this.map.entries()) {
+    for (const [y, row] of this.rows.entries()) {
       for (const [x, point] of row.entries()) {
         if (condition(point, x, y)) {
           filtered.push(point);
@@ -78,7 +80,7 @@ class Grid {
   }
 
   find(condition) {
-    for (const [y, row] of this.map.entries()) {
+    for (const [y, row] of this.rows.entries()) {
       for (const [x, point] of row.entries()) {
         if (condition(point, x, y)) {
           return point;
@@ -94,16 +96,16 @@ class Grid {
   }
 
   getPoint(x, y) {
-    const row = this.map.get(y);
+    const row = this.rows.get(y);
     return row && row.get(x);
   }
 
   set(x, y, value = true) {
-    const { map, pointClass: PointClass } = this;
-    let row = map.get(y);
+    const { rows, pointClass: PointClass } = this;
+    let row = rows.get(y);
     if (!row) {
       row = new Map();
-      map.set(y, row);
+      rows.set(y, row);
     }
     let point = row.get(x);
     if (!point) {
@@ -164,6 +166,8 @@ class Grid {
     return grid;
   }
 }
+
+Grid.prototype.map = Grid.prototype.each;
 
 export default Grid;
 export { Point as GridPoint };
