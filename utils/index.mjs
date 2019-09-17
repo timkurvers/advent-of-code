@@ -1,5 +1,6 @@
 export * from './crypto';
 export * from './data-structures';
+export * from './esm';
 export * from './math';
 export * from './navigation';
 export * from './pathfinding';
