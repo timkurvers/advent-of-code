@@ -6,4 +6,6 @@ export const cast = (value) => {
   return value;
 };
 
-export const identity = val => val;
+export const identity = value => value;
+
+export const isNumber = value => typeof value === 'number';
