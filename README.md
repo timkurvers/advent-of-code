@@ -2,13 +2,13 @@
 
 JavaScript / ES6+ solutions for https://adventofcode.com.
 
-**Supported Node versions: 10 or higher**
+**Supported Node versions: 12 or higher**
 
 ![Advent of Code](https://user-images.githubusercontent.com/378235/63643295-fc008a80-c6cd-11e9-941a-102c557c36ca.png)
 
 ## Setup
 
-Install [Node.js] 12+ or higher for your platform.
+Install [Node.js] 12 or higher for your platform.
 
 Install dependencies through npm:
 
