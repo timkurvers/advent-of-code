@@ -1,5 +1,3 @@
-#!/usr/bin/env node --experimental-modules --no-warnings
-
 import { bisect } from '../../utils';
 import { day } from '..';
 

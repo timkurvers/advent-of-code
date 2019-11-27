@@ -1,5 +1,3 @@
-#!/usr/bin/env node --experimental-modules --no-warnings
-
 /* eslint-disable guard-for-in */
 
 import { day } from '..';

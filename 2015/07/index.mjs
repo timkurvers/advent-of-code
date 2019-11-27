@@ -1,5 +1,3 @@
-#!/usr/bin/env node --experimental-modules --no-warnings
-
 import { cast, isNumber } from '../../utils/types';
 import { day } from '..';
 

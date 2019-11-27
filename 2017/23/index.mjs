@@ -1,5 +1,3 @@
-#!/usr/bin/env node --experimental-modules --no-warnings
-
 import Program from '../18/Program';
 import { day } from '..';
 

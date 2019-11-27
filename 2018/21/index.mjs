@@ -1,5 +1,3 @@
-#!/usr/bin/env node --experimental-modules --no-warnings
-
 /* eslint-disable prefer-destructuring */
 
 import Program, { Interceptor } from '../19/Program';

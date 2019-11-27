@@ -1,5 +1,3 @@
-#!/usr/bin/env node --experimental-modules --no-warnings
-
 import { CircularLinkedList, LinkedListNode } from '../../utils';
 import { day } from '..';
 

@@ -1,5 +1,3 @@
-#!/usr/bin/env node --experimental-modules --no-warnings
-
 /* eslint-disable no-loop-func */
 
 import { day } from '..';

@@ -1,5 +1,3 @@
-#!/usr/bin/env node --experimental-modules --no-warnings
-
 /* eslint-disable no-eval */
 
 import { day } from '..';

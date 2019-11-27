@@ -1,5 +1,3 @@
-#!/usr/bin/env node --experimental-modules --no-warnings
-
 import { LinkedListNode as Marble } from '../../utils';
 import { day } from '..';
 

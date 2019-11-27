@@ -1,5 +1,3 @@
-#!/usr/bin/env node --experimental-modules --no-warnings
-
 import { Grid, sum } from '../../utils';
 import { day } from '..';
 
