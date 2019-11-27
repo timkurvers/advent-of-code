@@ -8,7 +8,7 @@ JavaScript / ES6+ solutions for https://adventofcode.com.
 
 ## Setup
 
-Install [Node.js] 10 or higher for your platform.
+Install [Node.js] 12+ or higher for your platform.
 
 Install dependencies through npm:
 
