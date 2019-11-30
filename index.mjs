@@ -26,7 +26,7 @@ if (!years.includes(year)) {
 }
 
 const days = fs.readdirSync(path.resolve(year)).reduce((list, entry) => {
-  const match = entry.match(/\d{2}/);
+  const match = entry.match(/^\d{2}$/);
   if (match) {
     list.push(match[0]);
   }
