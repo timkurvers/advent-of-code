@@ -6,12 +6,10 @@ import { sum } from '../../utils';
 import examples from './input/examples';
 import puzzleInput from './input';
 
-const parse = input => input.split('\n').map((code) => {
-  return {
-    code,
-    string: eval(code),
-  };
-});
+const parse = input => input.split('\n').map(code => ({
+  code,
+  string: eval(code),
+}));
 
 const encode = str => JSON.stringify(str);
 
