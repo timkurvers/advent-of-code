@@ -7,6 +7,10 @@ export const flatMap = (arr, callbackfn) => (
   ), [])
 );
 
+export const range = ({ start = 0, end, length = end + 1 - start } = {}) => (
+  new Array(length).fill(0).map((_, index) => start + index)
+);
+
 export const wrap = (index, length) => {
   const maxIndex = length - 1;
   if (index < 0) {

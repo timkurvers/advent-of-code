@@ -1,4 +1,4 @@
-import { CircularLinkedList } from '../../utils';
+import { CircularLinkedList, range as createBaseRange } from '../../utils';
 
 export const parse = (source, { asASCII = false } = {}) => {
   if (asASCII) {
@@ -7,9 +7,7 @@ export const parse = (source, { asASCII = false } = {}) => {
   return source.split(',').map(Number);
 };
 
-export const createRange = (range = 256) => (
-  new Array(range).fill(0).map((_, index) => index)
-);
+export const createRange = (length = 256) => createBaseRange({ length });
 
 export const twist = (root, lengths, { rounds = 1 } = {}) => {
   let position = root;
