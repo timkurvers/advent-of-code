@@ -16,7 +16,7 @@ class Program {
 
   run() {
     let offset = 0;
-    do {
+    while (true) {
       const {
         [offset]: opcode,
         [offset + 1]: a,
@@ -34,7 +34,7 @@ class Program {
         this.memory[target] = this.memory[a] * this.memory[b];
       }
       offset += 4;
-    } while (true);
+    }
   }
 
   static from(input) {
