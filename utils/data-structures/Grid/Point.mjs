@@ -18,6 +18,10 @@ class Point {
     );
   }
 
+  distanceTo(x, y) {
+    return Math.abs(x - this.x) + Math.abs(y - this.y);
+  }
+
   get adjacentNeighbors() {
     return [
       this.up,
