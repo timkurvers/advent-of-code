@@ -134,7 +134,7 @@ class Grid {
     return row;
   }
 
-  toString(renderer, opts = {}) {
+  toString(renderer = point => (point ? point.value : ' '), opts = {}) {
     const {
       minY = this.minY,
       maxY = this.maxY,
