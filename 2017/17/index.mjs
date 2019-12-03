@@ -8,7 +8,7 @@ day(17).part(1).test(examples).feed(puzzleInput).solution((input) => {
   const steps = +input;
 
   let value = 0;
-  const root = CircularLinkedList.from(value);
+  const root = CircularLinkedList.from([value]);
   let current = root;
   do {
     ++value;
