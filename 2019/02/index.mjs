@@ -1,3 +1,5 @@
+/* eslint-disable consistent-return */
+
 import { day } from '..';
 import { range } from '../../utils';
 
