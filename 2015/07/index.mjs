@@ -56,7 +56,6 @@ export const partOne = solution((input) => {
   return circuit.resolve('a');
 });
 
-
 export const partTwo = solution((input) => {
   const instructions = parse(input);
   const circuit = build(instructions);

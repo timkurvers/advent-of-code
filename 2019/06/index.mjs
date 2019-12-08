@@ -30,7 +30,6 @@ export const partOne = solution((input) => {
   return COM.totalOrbits;
 });
 
-
 export const partTwo = solution((input) => {
   const { YOU, SAN } = build(input);
 

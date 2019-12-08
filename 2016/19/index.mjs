@@ -19,7 +19,6 @@ const play = (count) => {
       break;
     }
 
-
     const target = current.next;
     currentElf.presents += target.value.presents;
     target.remove();
