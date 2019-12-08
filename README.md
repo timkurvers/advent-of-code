@@ -43,7 +43,7 @@ and days, reading from left to right.
 Example to run 2017 day 1 and 4, 2018 all days, and 2019 day 5:
 
 ```bash
-npm run start 2017 1 4 2018 2019 5
+npm start 2017 1 4 2018 2019 5
 ```
 
 ## Development
