@@ -101,6 +101,12 @@ class Challenge {
       return;
     }
 
+    if (!puzzleInput) {
+      line('Answer', '<no puzzle input provided>');
+      console.log();
+      return;
+    }
+
     const { answer, duration } = await execute(puzzleInput);
     if (answer == null) {
       line('Answer', '<not yet solved>');
