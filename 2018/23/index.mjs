@@ -1,10 +1,8 @@
-import { day } from '..';
+import { solution } from '../../utils';
 
 import Nanobot from './Nanobot';
-import examples from './input/examples';
-import puzzleInput from './input';
 
-day(23).part(1).test(examples).feed(puzzleInput).solution((input) => {
+export const partOne = solution((input) => {
   const nanobots = Nanobot.from(input);
 
   const strongest = nanobots.reduce((nanobot, next) => (
@@ -13,7 +11,7 @@ day(23).part(1).test(examples).feed(puzzleInput).solution((input) => {
   return nanobots.filter(nanobot => strongest.inRange(nanobot)).length;
 });
 
-day(23).part(2).test(examples).feed(puzzleInput).solution((input) => {
+export const partTwo = solution((input) => {
   const nanobots = Nanobot.from(input);
 
   const xs = nanobots.map(nanobot => nanobot.x);

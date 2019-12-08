@@ -1,8 +1,4 @@
-import { Grid, sum } from '../../utils';
-import { day } from '..';
-
-import examples from './input/examples';
-import puzzleInput from './input';
+import { Grid, solution, sum } from '../../utils';
 
 const spiral = (until) => {
   const grid = new Grid();
@@ -55,13 +51,13 @@ const spiral = (until) => {
   };
 };
 
-day(3).part(1).test(examples).feed(puzzleInput).solution((input) => {
+export const partOne = solution((input) => {
   const target = +input;
   const { square } = spiral(until => until.nr === target);
   return square.distance;
 });
 
-day(3).part(2).test(examples).feed(puzzleInput).solution((input) => {
+export const partTwo = solution((input) => {
   const target = +input;
   const { square } = spiral(until => until.value > target);
   return square.value;

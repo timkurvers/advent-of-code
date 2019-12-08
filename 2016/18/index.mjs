@@ -1,7 +1,4 @@
-import { day } from '..';
-
-import examples from './input/examples';
-import puzzleInput from './input';
+import { solution } from '../../utils';
 
 const Tile = {
   SAFE: '.',
@@ -44,12 +41,12 @@ const traverse = (input, { numRows } = {}) => {
   return { safeCount };
 };
 
-day(18).part(1).test(examples).feed(puzzleInput).solution((input, isExample) => {
+export const partOne = solution((input, isExample) => {
   const numRows = isExample ? 10 : 40;
   return traverse(input, { numRows }).safeCount;
 });
 
-day(18).part(2).test(examples).feed(puzzleInput).inefficient.solution((input) => {
+export const partTwo = solution.inefficient((input) => {
   const numRows = 400000;
   return traverse(input, { numRows }).safeCount;
 });

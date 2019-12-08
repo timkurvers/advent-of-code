@@ -1,11 +1,8 @@
 /* eslint-disable no-param-reassign */
 
-import { Grid, flatMap } from '../../utils';
-import { day } from '..';
+import { Grid, flatMap, solution } from '../../utils';
 import { knothash } from '../10/knothash';
 
-import examples from './input/examples';
-import puzzleInput from './input';
 import Region from './Region';
 
 const keyToGrid = (key, size = 128) => {
@@ -23,12 +20,12 @@ const keyToGrid = (key, size = 128) => {
   return grid;
 };
 
-day(14).part(1).test(examples).feed(puzzleInput).solution((input) => {
+export const partOne = solution.inefficient((input) => {
   const grid = keyToGrid(input);
   return grid.filter(point => point.value).length;
 });
 
-day(14).part(2).test(examples).feed(puzzleInput).solution((input) => {
+export const partTwo = solution.inefficient((input) => {
   const regions = new Set();
   const grid = keyToGrid(input);
 

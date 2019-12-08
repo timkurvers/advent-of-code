@@ -1,7 +1,4 @@
-import { day } from '..';
-
-import examples from './input/examples';
-import puzzleInput from './input';
+import { solution } from '../../utils';
 
 function* generator(seed, factor, onlyMultiplesOf = null) {
   let previous = seed;
@@ -33,12 +30,12 @@ const judge = (a, b, samples) => {
   return matches;
 };
 
-day(15).part(1).test(examples).feed(puzzleInput).inefficient.solution((input) => {
+export const partOne = solution.inefficient((input) => {
   const [a, b] = initialize(input);
   return judge(a, b, 40000000);
 });
 
-day(15).part(2).test(examples).feed(puzzleInput).inefficient.solution((input) => {
+export const partTwo = solution.inefficient((input) => {
   const [a, b] = initialize(input, true);
   return judge(a, b, 5000000);
 });

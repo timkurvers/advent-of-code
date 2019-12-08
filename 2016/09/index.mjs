@@ -1,9 +1,6 @@
 /* eslint-disable no-cond-assign */
 
-import { day } from '..';
-
-import examples from './input/examples';
-import puzzleInput from './input';
+import { solution } from '../../utils';
 
 const decompress = (str, { recursive } = {}) => {
   const matcher = /\((\d+)x(\d+)\)/y;
@@ -38,10 +35,10 @@ const decompress = (str, { recursive } = {}) => {
   return total;
 };
 
-day(9).part(1).test(examples).feed(puzzleInput).solution(input => (
+export const partOne = solution(input => (
   decompress(input)
 ));
 
-day(9).part(2).test(examples).feed(puzzleInput).inefficient.solution(input => (
+export const partTwo = solution.inefficient(input => (
   decompress(input, { recursive: true })
 ));

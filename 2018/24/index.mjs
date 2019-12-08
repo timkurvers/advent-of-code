@@ -1,11 +1,8 @@
-import { bisect } from '../../utils';
-import { day } from '..';
+import { bisect, solution } from '../../utils';
 
 import Reindeer from './Reindeer';
-import examples from './input/examples';
-import puzzleInput from './input';
 
-day(24).part(1).test(examples).feed(puzzleInput).solution((input) => {
+export const partOne = solution((input) => {
   const reindeer = new Reindeer(input);
 
   let winner;
@@ -16,7 +13,7 @@ day(24).part(1).test(examples).feed(puzzleInput).solution((input) => {
   return winner.units;
 });
 
-day(24).part(2).test(examples).feed(puzzleInput).solution((input) => {
+export const partTwo = solution((input) => {
   const outcomes = new Map();
 
   const optimalBonusDamage = bisect(0, 10000, 1, (bonusDamage) => {

@@ -1,8 +1,6 @@
-import { day } from '..';
+import { solution } from '../../utils';
 
 import Group from './Group';
-import examples from './input/examples';
-import puzzleInput from './input';
 
 const parse = (input) => {
   const { length } = input;
@@ -54,12 +52,12 @@ const parse = (input) => {
   return { root, trashcan };
 };
 
-day(9).part(1).test(examples).feed(puzzleInput).solution((input) => {
+export const partOne = solution((input) => {
   const { root } = parse(input);
   return root.score;
 });
 
-day(9).part(2).test(examples).feed(puzzleInput).solution((input) => {
+export const partTwo = solution((input) => {
   const { trashcan } = parse(input);
   return trashcan.length;
 });

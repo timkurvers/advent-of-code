@@ -1,9 +1,6 @@
-import { day } from '..';
-import { sum } from '../../utils';
+import { solution, sum } from '../../utils';
 
 import Node from './Node';
-import examples from './input/examples';
-import puzzleInput from './input';
 
 const build = (input) => {
   const data = input.split(' ');
@@ -18,12 +15,12 @@ const build = (input) => {
   return { context, root };
 };
 
-day(8).part(1).test(examples).feed(puzzleInput).solution((input) => {
+export const partOne = solution((input) => {
   const { context } = build(input);
   return sum(context.nodes.map(node => node.metadataSum));
 });
 
-day(8).part(2).test(examples).feed(puzzleInput).solution((input) => {
+export const partTwo = solution((input) => {
   const { root } = build(input);
   return root.value;
 });

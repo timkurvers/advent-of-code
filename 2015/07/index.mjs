@@ -1,8 +1,5 @@
-import { cast, isNumber } from '../../utils/types';
-import { day } from '..';
+import { cast, isNumber, solution } from '../../utils';
 
-import examples from './input/examples';
-import puzzleInput from './input';
 import * as operations from './operations';
 
 const INSTRUCTION_MATCHER = /(?:(NOT) )?(.+?)(?: (.+?) (.+?))? -> (.+)/;
@@ -53,13 +50,14 @@ const build = (instructions) => {
   return { override, resolve };
 };
 
-day(7).part(1).test(examples).feed(puzzleInput).solution((input) => {
+export const partOne = solution((input) => {
   const instructions = parse(input);
   const circuit = build(instructions);
   return circuit.resolve('a');
 });
 
-day(7).part(2).test(examples).feed(puzzleInput).solution((input) => {
+
+export const partTwo = solution((input) => {
   const instructions = parse(input);
   const circuit = build(instructions);
   circuit.override('b', circuit.resolve('a'));

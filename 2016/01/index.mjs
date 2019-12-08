@@ -4,11 +4,8 @@ import {
   Rotation,
   dx,
   dy,
+  solution,
 } from '../../utils';
-import { day } from '..';
-
-import examples from './input/examples';
-import puzzleInput from './input';
 
 const rotations = {
   R: Rotation.TURN_RIGHT,
@@ -45,12 +42,12 @@ const follow = (instructions, { stopOnSeen = false } = {}) => {
   return { distance };
 };
 
-day(1).part(1).test(examples).feed(puzzleInput).solution((input) => {
+export const partOne = solution((input) => {
   const instructions = parse(input);
   return follow(instructions).distance;
 });
 
-day(1).part(2).test(examples).feed(puzzleInput).solution((input) => {
+export const partTwo = solution((input) => {
   const instructions = parse(input);
   return follow(instructions, { stopOnSeen: true }).distance;
 });

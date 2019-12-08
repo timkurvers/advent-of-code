@@ -1,7 +1,4 @@
-import { day } from '..';
-
-import examples from './input/examples';
-import puzzleInput from './input';
+import { solution } from '../../utils';
 
 const parse = input => input.split(',');
 
@@ -52,12 +49,12 @@ const trek = (path) => {
   return { distance, maxDistance };
 };
 
-day(11).part(1).test(examples).feed(puzzleInput).solution((input) => {
+export const partOne = solution((input) => {
   const path = parse(input);
   return trek(path).distance;
 });
 
-day(11).part(2).test(examples).feed(puzzleInput).solution((input) => {
+export const partTwo = solution((input) => {
   const path = parse(input);
   return trek(path).maxDistance;
 });

@@ -1,10 +1,6 @@
-import { day } from '..';
 import {
-  flatMap, identity, isNumber, isPrimitive, sum,
+  flatMap, identity, isNumber, isPrimitive, solution, sum,
 } from '../../utils';
-
-import examples from './input/examples';
-import puzzleInput from './input';
 
 const parse = input => JSON.parse(input);
 
@@ -28,12 +24,12 @@ const collect = (data, filter = identity) => {
   return flatMap(values, value => collect(value, filter));
 };
 
-day(12).part(1).test(examples).feed(puzzleInput).solution((input) => {
+export const partOne = solution((input) => {
   const data = parse(input);
   return sum(collect(data));
 });
 
-day(12).part(2).test(examples).feed(puzzleInput).solution((input) => {
+export const partTwo = solution((input) => {
   const data = parse(input);
   return sum(collect(data, values => !values.includes('red')));
 });

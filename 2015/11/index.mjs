@@ -1,7 +1,4 @@
-import { day } from '..';
-
-import examples from './input/examples';
-import puzzleInput from './input';
+import { solution } from '../../utils';
 
 const A = 'a'.charCodeAt(0);
 const Z = 'z'.charCodeAt(0);
@@ -60,10 +57,10 @@ const next = (start) => {
   return current;
 };
 
-day(11).part(1).test(examples).feed(puzzleInput).solution(input => (
+export const partOne = solution(input => (
   reconstruct(next(parse(input)))
 ));
 
-day(11).part(2).test(examples).feed(puzzleInput).solution(input => (
+export const partTwo = solution(input => (
   reconstruct(next(next(parse(input))))
 ));

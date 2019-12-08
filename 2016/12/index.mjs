@@ -1,16 +1,14 @@
-import { day } from '..';
+import { solution } from '../../utils';
 
 import Program from './Program';
-import examples from './input/examples';
-import puzzleInput from './input';
 
-day(12).part(1).test(examples).feed(puzzleInput).solution((input) => {
+export const partOne = solution((input) => {
   const program = Program.from(input);
   program.run();
   return program.data.a;
 });
 
-day(12).part(2).test(examples).feed(puzzleInput).inefficient.solution((input) => {
+export const partTwo = solution.inefficient((input) => {
   const program = Program.from(input);
   program.data.c = 1;
   program.run();

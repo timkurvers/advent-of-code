@@ -1,6 +1,4 @@
-import { day } from '..';
-
-import puzzleInput from './input';
+import { solution } from '../../utils';
 
 const generate = (input) => {
   let output = '';
@@ -29,10 +27,11 @@ const run = (start, { iterations }) => {
   return current;
 };
 
-day(10).part(1).feed(puzzleInput).solution(input => (
+export const partOne = solution(input => (
   run(input, { iterations: 40 }).length
 ));
 
-day(10).part(2).feed(puzzleInput).inefficient.solution(input => (
+
+export const partTwo = solution.inefficient(input => (
   run(input, { iterations: 50 }).length
 ));

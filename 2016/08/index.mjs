@@ -1,8 +1,4 @@
-import { day } from '..';
-import { Grid, wrap } from '../../utils';
-
-import examples from './input/examples';
-import puzzleInput from './input';
+import { Grid, solution, wrap } from '../../utils';
 
 const INSTRUCTION_MATCHER = /(rect|row|column).+?(\d+).+?(\d+)/;
 
@@ -41,12 +37,12 @@ const swipe = (instructions) => {
   return grid;
 };
 
-day(8).part(1).test(examples).feed(puzzleInput).solution((input) => {
+export const partOne = solution((input) => {
   const grid = swipe(parse(input));
   return grid.filter(point => point.value).length;
 });
 
-day(8).part(2).test(examples).feed(puzzleInput).solution((input) => {
+export const partTwo = solution((input) => {
   const grid = swipe(parse(input));
   const output = grid.toString(point => (point && point.value ? '#' : '.'));
   console.log();

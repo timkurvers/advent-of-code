@@ -1,8 +1,4 @@
-import { Grid } from '../../utils';
-import { day } from '..';
-
-import examples from './input/examples';
-import puzzleInput from './input';
+import { Grid, solution } from '../../utils';
 
 const directions = {
   U: 'up',
@@ -27,13 +23,13 @@ const crack = (keypad, instructions) => {
   return code;
 };
 
-day(2).part(1).test(examples).feed(puzzleInput).solution((input) => {
+export const partOne = solution((input) => {
   const keypad = Grid.from('123\n456\n789');
   const instructions = parse(input);
   return crack(keypad, instructions);
 });
 
-day(2).part(2).test(examples).feed(puzzleInput).solution((input) => {
+export const partTwo = solution((input) => {
   const keypad = Grid.from('  1  \n 234 \n56789\n ABC \n  D  ');
   const instructions = parse(input);
   return crack(keypad, instructions);

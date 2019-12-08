@@ -1,18 +1,16 @@
-import { day } from '..';
+import { solution } from '../../utils';
 
 import Program from './Program';
-import examples from './input/examples';
-import puzzleInput from './input';
 import * as operationsWithMessaging from './operations/with-messaging';
 import * as operationsWithSounds from './operations/with-sounds';
 
-day(18).part(1).test(examples).feed(puzzleInput).solution((input) => {
+export const partOne = solution((input) => {
   const program = Program.from(input, operationsWithSounds);
   program.run();
   return program.recoveries[0];
 });
 
-day(18).part(2).test(examples).feed(puzzleInput).solution((input) => {
+export const partTwo = solution((input) => {
   const program1 = Program.from(input, operationsWithMessaging);
   const program2 = program1.clone();
 

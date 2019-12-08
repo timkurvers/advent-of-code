@@ -1,10 +1,6 @@
-import { CircularLinkedList, LinkedListNode } from '../../utils';
-import { day } from '..';
+import { CircularLinkedList, LinkedListNode, solution } from '../../utils';
 
-import examples from './input/examples';
-import puzzleInput from './input';
-
-day(17).part(1).test(examples).feed(puzzleInput).solution((input) => {
+export const partOne = solution((input) => {
   const steps = +input;
 
   let value = 0;
@@ -20,7 +16,7 @@ day(17).part(1).test(examples).feed(puzzleInput).solution((input) => {
   return current.next.value;
 });
 
-day(17).part(2).test(examples).feed(puzzleInput).solution((input) => {
+export const partTwo = solution((input) => {
   const steps = +input;
 
   let index = 0;

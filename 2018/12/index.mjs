@@ -1,9 +1,6 @@
 /* eslint-disable no-loop-func */
 
-import { day } from '..';
-
-import examples from './input/examples';
-import puzzleInput from './input';
+import { solution } from '../../utils';
 
 const NOTE_MATCHER = /((?:\.|#){2})(\.|#)((?:\.|#){2}) => (#|\.)/;
 
@@ -54,7 +51,7 @@ const totalScoreFor = (generation, pad) => (
   }, 0)
 );
 
-day(12).part(1).test(examples).feed(puzzleInput).solution((input) => {
+export const partOne = solution((input) => {
   const { initial, notes, pad } = parse(input);
 
   const generations = 20;
@@ -66,7 +63,7 @@ day(12).part(1).test(examples).feed(puzzleInput).solution((input) => {
   return totalScoreFor(current, pad);
 });
 
-day(12).part(2).test(examples).feed(puzzleInput).solution((input) => {
+export const partTwo = solution((input) => {
   const { initial, notes, pad } = parse(input);
 
   let start;

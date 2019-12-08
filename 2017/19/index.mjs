@@ -3,12 +3,10 @@ import {
   Rotation,
   dx,
   dy,
+  solution,
 } from '../../utils';
-import { day } from '..';
 
 import Diagram from './Diagram';
-import examples from './input/examples';
-import puzzleInput from './input';
 
 const follow = (diagram) => {
   const position = diagram.start.clone();
@@ -49,12 +47,12 @@ const follow = (diagram) => {
   };
 };
 
-day(19).part(1).test(examples).feed(puzzleInput).solution((input) => {
+export const partOne = solution((input) => {
   const diagram = Diagram.from(input);
   return follow(diagram).seen;
 });
 
-day(19).part(2).test(examples).feed(puzzleInput).solution((input) => {
+export const partTwo = solution((input) => {
   const diagram = Diagram.from(input);
   return follow(diagram).steps;
 });

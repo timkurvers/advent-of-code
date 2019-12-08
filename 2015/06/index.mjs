@@ -1,10 +1,6 @@
 /* eslint-disable object-curly-newline */
 
-import { day } from '..';
-import { Grid, sum } from '../../utils';
-
-import examples from './input/examples';
-import puzzleInput from './input';
+import { Grid, solution, sum } from '../../utils';
 
 const INSTRUCTION_MATCHER = /(on|off|toggle) (\d+),(\d+) through (\d+),(\d+)/;
 
@@ -44,10 +40,10 @@ const configure = (instructions, { version = '1' } = {}) => {
   return { lights, brightness, on };
 };
 
-day(6).part(1).test(examples).feed(puzzleInput).inefficient.solution(input => (
+export const partOne = solution.inefficient(input => (
   configure(parse(input), { version: 1 }).on.length
 ));
 
-day(6).part(2).test(examples).feed(puzzleInput).inefficient.solution(input => (
+export const partTwo = solution.inefficient(input => (
   configure(parse(input), { version: 2 }).brightness
 ));

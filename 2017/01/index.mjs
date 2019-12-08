@@ -1,9 +1,6 @@
-import { day } from '..';
+import { solution } from '../../utils';
 
-import examples from './input/examples';
-import puzzleInput from './input';
-
-day(1).part(1).test(examples).feed(puzzleInput).solution((input) => {
+export const partOne = solution((input) => {
   let sum = 0;
   const { length } = input;
   for (let i = 0; i < length; ++i) {
@@ -15,7 +12,7 @@ day(1).part(1).test(examples).feed(puzzleInput).solution((input) => {
   return sum;
 });
 
-day(1).part(2).test(examples).feed(puzzleInput).solution((input) => {
+export const partTwo = solution((input) => {
   let sum = 0;
   const { length } = input;
   for (let i = 0; i < length; ++i) {

@@ -1,9 +1,7 @@
-import { day } from '..';
+import { solution } from '../../utils';
 
 import Coordinate from './Coordinate';
 import Location from './Location';
-import examples from './input/examples';
-import puzzleInput from './input';
 
 const build = (input) => {
   const coords = input.split('\n').map(definition => (
@@ -36,13 +34,13 @@ const build = (input) => {
   return { coords, grid };
 };
 
-day(6).part(1).test(examples).feed(puzzleInput).solution((input) => {
+export const partOne = solution((input) => {
   const { coords } = build(input);
   const finites = coords.filter(coord => !coord.infinite);
   return finites.sort((a, b) => b.area - a.area)[0].area;
 });
 
-day(6).part(2).test(examples).feed(puzzleInput).solution((input, isExample) => {
+export const partTwo = solution((input, isExample) => {
   const { grid } = build(input);
   const target = isExample ? 32 : 10000;
   return grid.filter(location => location.totalDistanceToAllCoords < target).length;

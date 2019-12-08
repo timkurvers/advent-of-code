@@ -1,7 +1,4 @@
-import { day } from '..';
-
-import examples from './input/examples';
-import puzzleInput from './input';
+import { solution } from '../../utils';
 
 const parse = input => input.split('\n');
 
@@ -24,10 +21,10 @@ const recover = (words, { frequency } = {}) => {
   return result;
 };
 
-day(6).part(1).test(examples).feed(puzzleInput).solution(input => (
+export const partOne = solution(input => (
   recover(parse(input), { frequency: 'most' })
 ));
 
-day(6).part(2).test(examples).feed(puzzleInput).solution(input => (
+export const partTwo = solution(input => (
   recover(parse(input), { frequency: 'least' })
 ));

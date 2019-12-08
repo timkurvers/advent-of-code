@@ -1,8 +1,4 @@
-import { day } from '..';
-import { hexmd5 } from '../../utils';
-
-import examples from './input/examples';
-import puzzleInput from './input';
+import { hexmd5, solution } from '../../utils';
 
 const TRIPLET_MATCHER = /(\w)\1{2}/;
 
@@ -41,13 +37,14 @@ function* generate(salt, { iterations } = {}) {
   }
 }
 
-day(14).part(1).test(examples).feed(puzzleInput).solution((input) => {
+export const partOne = solution((input) => {
   const generator = generate(input);
   const keys = Array.from({ length: 64 }, () => generator.next().value);
   return keys[keys.length - 1].index;
 });
 
-day(14).part(2).inefficient.test(examples).feed(puzzleInput).solution((input) => {
+// TODO: This solution is currently broken
+export const partTwo = solution((input) => {
   const generator = generate(input, { iterations: 1 + 2016 });
   const keys = Array.from({ length: 64 }, () => generator.next().value);
   return keys[keys.length - 1].index;

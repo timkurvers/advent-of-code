@@ -1,8 +1,4 @@
-import { day } from '..';
-import { hexmd5 } from '../../utils';
-
-import examples from './input/examples';
-import puzzleInput from './input';
+import { hexmd5, solution } from '../../utils';
 
 const mine = (secret, { startPattern } = {}) => {
   let index = 1;
@@ -15,10 +11,10 @@ const mine = (secret, { startPattern } = {}) => {
   }
 };
 
-day(4).part(1).inefficient.test(examples).feed(puzzleInput).solution(input => (
+export const partOne = solution.inefficient(input => (
   mine(input, { startPattern: '00000' })
 ));
 
-day(4).part(2).inefficient.test(examples).feed(puzzleInput).solution(input => (
+export const partTwo = solution.inefficient(input => (
   mine(input, { startPattern: '000000' })
 ));

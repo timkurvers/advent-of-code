@@ -1,8 +1,6 @@
-import { day } from '..';
+import { solution } from '../../utils';
 
 import Ground from './Ground';
-import examples from './input/examples';
-import puzzleInput from './input';
 
 const prepare = (input) => {
   const ground = new Ground(input);
@@ -12,12 +10,12 @@ const prepare = (input) => {
   return ground;
 };
 
-day(17).part(1).test(examples).feed(puzzleInput).solution((input) => {
+export const partOne = solution((input) => {
   const ground = prepare(input);
   return ground.eligibleTiles.filter(tile => tile.isWater).length;
 });
 
-day(17).part(2).test(examples).feed(puzzleInput).solution((input) => {
+export const partTwo = solution((input) => {
   const ground = prepare(input);
   return ground.eligibleTiles.filter(tile => tile.isStillWater).length;
 });

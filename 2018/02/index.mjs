@@ -1,12 +1,10 @@
-import { day } from '..';
+import { solution } from '../../utils';
 
 import Box from './Box';
-import examples from './input/examples';
-import puzzleInput from './input';
 
 const parse = input => input.split('\n').map(id => new Box(id));
 
-day(2).part(1).test(examples).feed(puzzleInput).solution((input) => {
+export const partOne = solution((input) => {
   const boxes = parse(input);
 
   const doublesCount = boxes.reduce((sum, next) => sum + next.hasDoubles, 0);
@@ -15,7 +13,7 @@ day(2).part(1).test(examples).feed(puzzleInput).solution((input) => {
   return doublesCount * triplesCount;
 });
 
-day(2).part(2).test(examples).feed(puzzleInput).solution((input) => {
+export const partTwo = solution((input) => {
   const boxes = parse(input);
 
   let smallestDiff = boxes[0].letters;

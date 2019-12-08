@@ -1,16 +1,14 @@
-import { day } from '..';
+import { solution } from '../../utils';
 
 import Program from './Program';
-import examples from './input/examples';
-import puzzleInput from './input';
 
-day(12).part(1).test(examples).feed(puzzleInput).solution((input) => {
+export const partOne = solution((input) => {
   const programs = Program.from(input);
   const program0 = programs.find(program => program.id === 0);
   return program0.group.size;
 });
 
-day(12).part(2).test(examples).feed(puzzleInput).solution((input) => {
+export const partTwo = solution((input) => {
   const programs = Program.from(input);
 
   const hash = group => (

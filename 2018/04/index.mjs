@@ -1,10 +1,8 @@
-import { day } from '..';
+import { solution } from '../../utils';
 
 import Event from './Event';
 import Guard from './Guard';
 import Shift from './Shift';
-import examples from './input/examples';
-import puzzleInput from './input';
 
 const schedule = (input) => {
   const events = input.split('\n').sort().map(definition => (
@@ -31,7 +29,7 @@ const schedule = (input) => {
   return Array.from(set);
 };
 
-day(4).part(1).test(examples).feed(puzzleInput).solution((input) => {
+export const partOne = solution((input) => {
   const guards = schedule(input);
 
   const sleepy = guards.sort((a, b) => (
@@ -41,7 +39,7 @@ day(4).part(1).test(examples).feed(puzzleInput).solution((input) => {
   return sleepy.id * sleepy.mostAsleepPerMinute.minute;
 });
 
-day(4).part(2).test(examples).feed(puzzleInput).solution((input) => {
+export const partTwo = solution((input) => {
   const guards = schedule(input);
 
   const sleepyPerMinute = guards.sort((a, b) => (

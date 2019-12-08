@@ -1,7 +1,4 @@
-import { day } from '..';
-
-import examples from './input/examples';
-import puzzleInput from './input';
+import { solution } from '../../utils';
 
 const counter = regexp => str => (
   (str.match(regexp) || []).length
@@ -10,11 +7,11 @@ const counter = regexp => str => (
 const up = counter(/\(/g);
 const down = counter(/\)/g);
 
-day(1).part(1).test(examples).feed(puzzleInput).solution(input => (
+export const partOne = solution(input => (
   up(input) - down(input)
 ));
 
-day(1).part(2).test(examples).feed(puzzleInput).solution((input) => {
+export const partTwo = solution((input) => {
   let floor = 0;
   let position = 0;
   while (floor !== -1) {

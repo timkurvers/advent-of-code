@@ -1,9 +1,7 @@
 /* eslint-disable no-param-reassign */
 
-import { day } from '..';
+import { solution } from '../../utils';
 
-import examples from './input/examples';
-import puzzleInput from './input';
 import * as operations from './operations';
 
 const INSTRUCTION_MATCHER = /^(\w+)/;
@@ -27,6 +25,6 @@ const scramble = (instructions, password) => {
   return chars.join('');
 };
 
-day(20).part(1).test(examples).feed(puzzleInput).solution((input, isExample) => (
+export default solution((input, isExample) => (
   scramble(parse(input), isExample ? 'abcde' : 'abcdefgh')
 ));

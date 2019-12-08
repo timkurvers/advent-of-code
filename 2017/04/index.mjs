@@ -1,7 +1,4 @@
-import { day } from '..';
-
-import examples from './input/examples';
-import puzzleInput from './input';
+import { solution } from '../../utils';
 
 const noDuplicates = (passphrase) => {
   const words = passphrase.split(' ');
@@ -23,10 +20,10 @@ const process = (input, validate) => {
   }));
 };
 
-day(4).part(1).test(examples).feed(puzzleInput).solution(input => (
+export const partOne = solution(input => (
   process(input, noDuplicates).filter(passphrase => passphrase.valid).length
 ));
 
-day(4).part(2).test(examples).feed(puzzleInput).solution(input => (
+export const partTwo = solution(input => (
   process(input, noAnagrams).filter(passphrase => passphrase.valid).length
 ));

@@ -1,10 +1,8 @@
-import { day } from '..';
+import { solution } from '../../utils';
 
 import TuringMachine from './TuringMachine';
-import examples from './input/examples';
-import puzzleInput from './input';
 
-day(25).part(1).test(examples).feed(puzzleInput).solution((input) => {
+export default solution((input) => {
   const machine = TuringMachine.from(input);
   machine.run();
   return machine.checksum;

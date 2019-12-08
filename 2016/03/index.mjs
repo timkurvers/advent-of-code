@@ -1,7 +1,4 @@
-import { day } from '..';
-
-import examples from './input/examples';
-import puzzleInput from './input';
+import { solution } from '../../utils';
 
 const parse = input => (
   input.split('\n').map(row => (
@@ -25,10 +22,10 @@ const isPossibleTriangle = (sides) => {
   return a + b > c && a + c > b && b + c > a;
 };
 
-day(3).part(1).test(examples).feed(puzzleInput).solution(input => (
+export const partOne = solution(input => (
   parse(input).filter(isPossibleTriangle).length
 ));
 
-day(3).part(2).test(examples).feed(puzzleInput).solution(input => (
+export const partTwo = solution(input => (
   transpose(parse(input)).filter(isPossibleTriangle).length
 ));

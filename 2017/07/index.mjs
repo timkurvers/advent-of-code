@@ -1,15 +1,13 @@
-import { day } from '..';
+import { solution } from '../../utils';
 
 import Program from './Program';
-import examples from './input/examples';
-import puzzleInput from './input';
 
-day(7).part(1).test(examples).feed(puzzleInput).solution((input) => {
+export const partOne = solution((input) => {
   const { root } = Program.parse(input);
   return root.id;
 });
 
-day(7).part(2).test(examples).feed(puzzleInput).solution((input) => {
+export const partTwo = solution((input) => {
   const { root } = Program.parse(input);
 
   let current = root;

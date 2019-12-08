@@ -1,9 +1,6 @@
 /* eslint-disable no-param-reassign */
 
-import { day } from '..';
-
-import examples from './input/examples';
-import puzzleInput from './input';
+import { solution } from '../../utils';
 
 const parse = input => input.split('\n').reduce((firewall, line) => {
   const [depth, range] = line.split(': ').map(Number);
@@ -33,12 +30,12 @@ const probe = (firewall, { delay = 0 } = {}) => {
   return { caught, severity };
 };
 
-day(13).part(1).test(examples).feed(puzzleInput).solution((input) => {
+export const partOne = solution((input) => {
   const firewall = parse(input);
   return probe(firewall).severity;
 });
 
-day(13).part(2).test(examples).feed(puzzleInput).solution((input) => {
+export const partTwo = solution.inefficient((input) => {
   const firewall = parse(input);
 
   let delay = 0;

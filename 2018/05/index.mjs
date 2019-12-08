@@ -1,15 +1,13 @@
-import { day } from '..';
+import { solution } from '../../utils';
 
 import Polymer from './Polymer';
-import examples from './input/examples';
-import puzzleInput from './input';
 
-day(5).part(1).test(examples).feed(puzzleInput).solution((input) => {
+export const partOne = solution((input) => {
   const polymer = Polymer.fromString(input);
   return polymer.react().length;
 });
 
-day(5).part(2).test(examples).feed(puzzleInput).solution((input) => {
+export const partTwo = solution((input) => {
   const polymer = Polymer.fromString(input);
 
   const permutations = polymer.uniqueUnits.map(unit => polymer.without(unit));

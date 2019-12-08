@@ -1,7 +1,4 @@
-import { day } from '..';
-
-import examples from './input/examples';
-import puzzleInput from './input';
+import { solution } from '../../utils';
 
 const process = (input, strangerThings = false) => {
   const registry = input.split('\n').map(Number);
@@ -23,10 +20,10 @@ const process = (input, strangerThings = false) => {
   }
 };
 
-day(5).part(1).test(examples).feed(puzzleInput).solution(input => (
+export const partOne = solution(input => (
   process(input).steps
 ));
 
-day(5).part(2).test(examples).feed(puzzleInput).solution(input => (
+export const partTwo = solution(input => (
   process(input, true).steps
 ));

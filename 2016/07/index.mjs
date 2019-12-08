@@ -1,8 +1,4 @@
-import { day } from '..';
-import { flatMap } from '../../utils';
-
-import examples from './input/examples';
-import puzzleInput from './input';
+import { flatMap, solution } from '../../utils';
 
 const parse = input => (
   input.split('\n').map((address) => {
@@ -50,10 +46,10 @@ const supportsSSL = (address) => {
   });
 };
 
-day(7).part(1).test(examples).feed(puzzleInput).solution(input => (
+export const partOne = solution(input => (
   parse(input).filter(supportsTLS).length
 ));
 
-day(7).part(2).test(examples).feed(puzzleInput).solution(input => (
+export const partTwo = solution(input => (
   parse(input).filter(supportsSSL).length
 ));

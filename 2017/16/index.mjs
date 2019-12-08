@@ -1,9 +1,6 @@
 /* eslint-disable no-cond-assign, no-param-reassign */
 
-import { day } from '..';
-
-import examples from './input/examples';
-import puzzleInput from './input';
+import { solution } from '../../utils';
 
 const DANCE_MOVE_MATCHER = /(s|x|p)(\w+)(?:\/(\w+))?/g;
 
@@ -81,13 +78,13 @@ const participants = isExample => (
   (isExample ? 'abcde' : 'abcdefghijklmnop').split('')
 );
 
-day(16).part(1).test(examples).feed(puzzleInput).solution((input, isExample) => {
+export const partOne = solution((input, isExample) => {
   const programs = participants(isExample);
   const moves = parse(input);
   return dance(programs, moves).join('');
 });
 
-day(16).part(2).test(examples).feed(puzzleInput).solution((input, isExample) => {
+export const partTwo = solution((input, isExample) => {
   const programs = participants(isExample);
   const moves = parse(input);
   return dance(programs, moves, 1000000000).join('');

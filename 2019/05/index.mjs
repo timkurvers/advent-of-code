@@ -1,18 +1,16 @@
 import Program from '../02/Program';
-import { day } from '..';
+import { solution } from '../../utils';
 
-import examples from './input/examples';
-import puzzleInput from './input';
 import * as operations from './operations';
 
-day(5).part(1).test(examples).feed(puzzleInput).solution((input) => {
+export const partOne = solution((input) => {
   const program = Program.from(input, operations);
   program.inputs.push(1);
   program.run();
   return program.test();
 });
 
-day(5).part(2).test(examples).feed(puzzleInput).solution((input) => {
+export const partTwo = solution((input) => {
   const program = Program.from(input, operations);
   program.inputs.push(5);
   program.run();

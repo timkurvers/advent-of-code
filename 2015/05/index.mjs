@@ -1,7 +1,4 @@
-import { day } from '..';
-
-import examples from './input/examples';
-import puzzleInput from './input';
+import { solution } from '../../utils';
 
 const parse = input => input.split('\n');
 
@@ -46,10 +43,10 @@ const isActuallyNice = (str) => {
   return true;
 };
 
-day(5).part(1).test(examples).feed(puzzleInput).solution(input => (
+export const partOne = solution(input => (
   parse(input).filter(isNice).length
 ));
 
-day(5).part(2).test(examples).feed(puzzleInput).solution(input => (
+export const partTwo = solution(input => (
   parse(input).filter(isActuallyNice).length
 ));

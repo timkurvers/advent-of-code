@@ -1,9 +1,6 @@
 /* eslint-disable no-param-reassign */
 
-import { day } from '..';
-
-import examples from './input/examples';
-import puzzleInput from './input';
+import { solution } from '../../utils';
 
 const initialize = () => ({
   first: 0,
@@ -31,7 +28,7 @@ const match = (recipes, start, seek) => {
   return true;
 };
 
-day(14).part(1).test(examples).feed(puzzleInput).solution((input) => {
+export const partOne = solution((input) => {
   const target = +input;
 
   const state = initialize();
@@ -44,7 +41,7 @@ day(14).part(1).test(examples).feed(puzzleInput).solution((input) => {
   return recipes.slice(target, target + required).join('');
 });
 
-day(14).part(2).test(examples).feed(puzzleInput).inefficient.solution((input) => {
+export const partTwo = solution.inefficient((input) => {
   const state = initialize();
   const { recipes } = state;
 

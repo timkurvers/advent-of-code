@@ -4,11 +4,8 @@ import {
   Rotation,
   dx,
   dy,
+  solution,
 } from '../../utils';
-import { day } from '..';
-
-import examples from './input/examples';
-import puzzleInput from './input';
 
 const State = {
   CLEAN: '.',
@@ -71,12 +68,12 @@ const infect = (grid, { bursts = 1, version = v1 } = {}) => {
   return infections;
 };
 
-day(22).part(1).test(examples).feed(puzzleInput).inefficient.solution((input) => {
+export const partOne = solution.inefficient((input) => {
   const grid = Grid.from(input);
   return infect(grid, { bursts: 10000 });
 });
 
-day(22).part(2).test(examples).feed(puzzleInput).inefficient.solution((input) => {
+export const partTwo = solution.inefficient((input) => {
   const grid = Grid.from(input);
   return infect(grid, { bursts: 10000000, version: v2 });
 });

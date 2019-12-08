@@ -1,7 +1,6 @@
-import { day } from '..';
+import { solution } from '../../utils';
 
 import Star from './Star';
-import puzzleInput from './input';
 
 const snapshot = (stars, t) => {
   const points = stars.map(star => star.at(t));
@@ -40,7 +39,7 @@ const find = (input) => {
   return snapshot(stars, t);
 };
 
-day(10).part(1).feed(puzzleInput).solution((input) => {
+export const partOne = solution((input) => {
   const {
     minY, maxY, minX, maxX, points,
   } = find(input);
@@ -58,7 +57,7 @@ day(10).part(1).feed(puzzleInput).solution((input) => {
   return '<see visually above>';
 });
 
-day(10).part(2).feed(puzzleInput).solution((input) => {
+export const partTwo = solution((input) => {
   const { t } = find(input);
   return t;
 });

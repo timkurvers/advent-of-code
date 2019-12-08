@@ -1,9 +1,6 @@
-import { day } from '..';
-import { astar } from '../../utils';
+import { astar, solution } from '../../utils';
 
 import Planet from './Planet';
-import examples from './input/examples';
-import puzzleInput from './input';
 
 const ORBIT_MATCHER = /(\w+)\)(\w+)/g;
 
@@ -28,12 +25,13 @@ const build = (input) => {
   return system;
 };
 
-day(6).part(1).test(examples).feed(puzzleInput).solution((input) => {
+export const partOne = solution((input) => {
   const { COM } = build(input);
   return COM.totalOrbits;
 });
 
-day(6).part(2).test(examples).feed(puzzleInput).solution((input) => {
+
+export const partTwo = solution((input) => {
   const { YOU, SAN } = build(input);
 
   const pathing = astar(YOU, SAN, {

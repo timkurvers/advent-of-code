@@ -1,8 +1,7 @@
-import { day } from '..';
+import { solution } from '../../utils';
 
 import Sample from './Sample';
 import operations from './operations';
-import puzzleInput from './input';
 
 const parse = (input) => {
   const [sampling, program] = input.split('\n\n\n\n');
@@ -10,14 +9,14 @@ const parse = (input) => {
   return { program, samples };
 };
 
-day(16).part(1).feed(puzzleInput).solution((input) => {
+export const partOne = solution((input) => {
   const { samples } = parse(input);
   return samples.filter(sample => (
     sample.probe().length >= 3
   )).length;
 });
 
-day(16).part(2).feed(puzzleInput).solution((input) => {
+export const partTwo = solution((input) => {
   const { program, samples } = parse(input);
 
   const remaining = new Set(samples);

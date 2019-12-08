@@ -1,15 +1,12 @@
-import { day } from '..';
-
-import examples from './input/examples';
-import puzzleInput from './input';
+import { solution } from '../../utils';
 
 const parse = input => input.split(/,?\s+/).map(Number);
 
-day(1).part(1).test(examples).feed(puzzleInput).solution(input => (
+export const partOne = solution(input => (
   parse(input).reduce((sum, next) => sum + next, 0)
 ));
 
-day(1).part(2).test(examples).feed(puzzleInput).solution((input) => {
+export const partTwo = solution((input) => {
   const parsed = parse(input);
 
   const findDuplicateFrequency = () => {

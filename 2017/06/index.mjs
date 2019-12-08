@@ -1,10 +1,6 @@
 /* eslint-disable no-param-reassign */
 
-import { day } from '..';
-import { maxIndex } from '../../utils';
-
-import examples from './input/examples';
-import puzzleInput from './input';
+import { maxIndex, solution } from '../../utils';
 
 const parse = input => input.split(/\s+/).map(Number);
 
@@ -47,12 +43,12 @@ const reallocate = (banks, { maxSeenCount = 1 } = {}) => {
   return { cycles, seen, snapshot };
 };
 
-day(6).part(1).test(examples).feed(puzzleInput).solution((input) => {
+export const partOne = solution((input) => {
   const banks = parse(input);
   return reallocate(banks).cycles;
 });
 
-day(6).part(2).test(examples).feed(puzzleInput).solution((input) => {
+export const partTwo = solution((input) => {
   const banks = parse(input);
   const { snapshot, seen } = reallocate(banks, { maxSeenCount: 2 });
   const entry = seen[snapshot];

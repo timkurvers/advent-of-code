@@ -1,10 +1,6 @@
-import { day } from '..';
-import { sum } from '../../utils';
+import { solution, sum } from '../../utils';
 
-import examples from './input/examples';
-import puzzleInput from './input';
-
-day(2).part(1).test(examples).feed(puzzleInput).solution((input) => {
+export const partOne = solution((input) => {
   const diffs = input.split('\n').map((line) => {
     const row = line.split('\t').map(Number);
     return Math.max(...row) - Math.min(...row);
@@ -12,7 +8,7 @@ day(2).part(1).test(examples).feed(puzzleInput).solution((input) => {
   return sum(diffs);
 });
 
-day(2).part(2).test(examples).feed(puzzleInput).solution((input) => {
+export const partTwo = solution((input) => {
   const divisions = input.split('\n').map((line) => {
     const row = line.split('\t').map(Number);
     for (let i = 0; i < row.length; ++i) {

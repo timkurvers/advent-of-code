@@ -5,11 +5,8 @@ import {
   Orientation,
   dx,
   dy,
+  solution,
 } from '../../utils';
-import { day } from '..';
-
-import examples from './input/examples';
-import puzzleInput from './input';
 
 const directions = {
   '^': Orientation.UP,
@@ -41,10 +38,10 @@ const deliver = (input, { santas = 1 } = {}) => {
   return { grid, visited };
 };
 
-day(3).part(1).test(examples).feed(puzzleInput).solution(input => (
+export const partOne = solution(input => (
   deliver(input).visited.length
 ));
 
-day(3).part(2).test(examples).feed(puzzleInput).solution(input => (
+export const partTwo = solution(input => (
   deliver(input, { santas: 2 }).visited.length
 ));

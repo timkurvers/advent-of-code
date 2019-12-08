@@ -1,11 +1,9 @@
 /* eslint-disable no-cond-assign, no-loop-func */
 
-import { day } from '..';
+import { solution } from '../../utils';
 
 import Step from './Step';
 import Worker from './Worker';
-import examples from './input/examples';
-import puzzleInput from './input';
 
 const solve = (steps, { instantCompletion, workerCount = 1, fixedDuration = 0 }) => {
   const workers = Array.from(new Array(workerCount).keys(), nr => (
@@ -61,14 +59,14 @@ const solve = (steps, { instantCompletion, workerCount = 1, fixedDuration = 0 })
   };
 };
 
-day(7).part(1).test(examples).feed(puzzleInput).solution((input) => {
+export const partOne = solution((input) => {
   const steps = Step.from(input);
   return solve(steps, {
     instantCompletion: true,
   }).order.map(step => step.id).join('');
 });
 
-day(7).part(2).test(examples).feed(puzzleInput).solution((input, isExample) => {
+export const partTwo = solution((input, isExample) => {
   const steps = Step.from(input);
   return solve(steps, {
     instantCompletion: false,

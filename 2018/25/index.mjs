@@ -1,10 +1,8 @@
-import { day } from '..';
+import { solution } from '../../utils';
 
 import Point from './Point';
-import examples from './input/examples';
-import puzzleInput from './input';
 
-day(25).test(examples).feed(puzzleInput).solution((input) => {
+export default solution((input) => {
   const points = input.split('\n').map(line => new Point(line));
   for (const point of points) {
     for (const candidate of points) {

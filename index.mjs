@@ -1,50 +1,52 @@
 #!/usr/bin/env node --experimental-modules --es-module-specifier-resolution=node --no-warnings
 
-import fs from 'fs';
-import path from 'path';
+/* eslint-disable no-loop-func */
 
-const years = fs.readdirSync(path.resolve('.')).reduce((list, entry) => {
-  const match = entry.match(/\d{4}/);
-  if (match) {
-    list.push(match[0]);
-  }
-  return list;
-}, []).sort();
+import { Challenge } from './utils';
 
-let [,, year, ...requested] = process.argv;
+const [,, ...args] = process.argv;
+const requested = args.map(Number);
 
-if (!year || !year.match(/\d{4}/)) {
-  if (year) {
-    requested.unshift(year);
-  }
-  year = years[years.length - 1];
-}
-
-if (!years.includes(year)) {
-  console.error(new Error(`No solutions for ${year}`));
-  process.exit(0);
-}
-
-const days = fs.readdirSync(path.resolve(year)).reduce((list, entry) => {
-  const match = entry.match(/^\d{2}$/);
-  if (match) {
-    list.push(match[0]);
-  }
-  return list;
-}, []).sort();
-
-if (!requested.length) {
-  requested = days;
-}
+const isYear = nr => nr > 1000;
 
 (async () => {
   try {
-    for (const nr of requested) {
-      const padded = nr.padStart(2, '0');
-      if (days.includes(padded)) {
-        await import(path.resolve(year, padded));
+    const challenges = await Challenge.list();
+
+    // If no specific year was requested, default to the current edition
+    if (!isYear(requested[0])) {
+      const current = challenges[challenges.length - 1];
+      requested.unshift(current.year);
+    }
+
+    let year = null;
+    for (let i = 0; i < requested.length; ++i) {
+      const nr = requested[i];
+      const next = requested[i + 1];
+
+      if (isYear(nr)) {
+        year = nr;
+
+        // Let the next iteration handle executing days
+        if (next && !isYear(next)) {
+          continue;
+        }
+
+        // Collect and insert all available days for requested year (if any)
+        const days = challenges.filter(c => c.year === year).map(c => c.day);
+        if (!days.length) {
+          throw new Error(`Could not find any days for year ${year}`);
+        }
+        requested.splice(i + 1, 0, ...days);
+        continue;
+      }
+
+      // Find challenge for this requested year and day
+      const challenge = challenges.find(c => c.day === nr && c.year === year);
+      if (challenge) {
+        await challenge.run();
       } else {
-        throw new Error(`No solutions for ${year} day ${nr}`);
+        throw new Error(`Could not find year ${year} day ${nr}`);
       }
     }
   } catch (e) {

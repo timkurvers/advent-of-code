@@ -1,8 +1,6 @@
 /* eslint-disable guard-for-in */
 
-import { day } from '..';
-
-import puzzleInput from './input';
+import { solution } from '../../utils';
 
 const LINE_MATCHER = /Sue (\d+): (\w+): (\d+), (\w+): (\d+), (\w+): (\d+)/;
 
@@ -58,13 +56,13 @@ const isCandidate = (clues, sue) => {
   return true;
 };
 
-day(16).part(1).feed(puzzleInput).solution((input) => {
+export const partOne = solution((input) => {
   const sues = parse(input);
   const predicate = isCandidate.bind(null, initialClues);
   return sues.find(predicate).id;
 });
 
-day(16).part(2).feed(puzzleInput).solution((input) => {
+export const partTwo = solution((input) => {
   const sues = parse(input);
   const predicate = isCandidate.bind(null, revisedClues);
   return sues.find(predicate).id;

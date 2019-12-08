@@ -1,11 +1,9 @@
 import Program from '../18/Program';
-import { day } from '..';
+import { solution } from '../../utils';
 
-import examples from './input/examples';
-import puzzleInput from './input';
 import * as operations from './operations';
 
-day(23).part(1).test(examples).feed(puzzleInput).solution((input) => {
+export const partOne = solution((input) => {
   let count = 0;
   const program = Program.from(input, operations);
   program.hook = (opcode) => {
@@ -16,3 +14,5 @@ day(23).part(1).test(examples).feed(puzzleInput).solution((input) => {
   program.run();
   return count;
 });
+
+export const partTwo = solution();

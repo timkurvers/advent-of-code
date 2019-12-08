@@ -1,8 +1,4 @@
-import { day } from '..';
-import { hexmd5 } from '../../utils';
-
-import examples from './input/examples';
-import puzzleInput from './input';
+import { hexmd5, solution } from '../../utils';
 
 const crack = (door, { positional = false } = {}) => {
   let index = 0;
@@ -29,10 +25,10 @@ const crack = (door, { positional = false } = {}) => {
   return password.join('');
 };
 
-day(5).part(1).inefficient.test(examples).feed(puzzleInput).solution(input => (
+export const partOne = solution.inefficient(input => (
   crack(input)
 ));
 
-day(5).part(2).inefficient.test(examples).feed(puzzleInput).solution(input => (
+export const partTwo = solution.inefficient(input => (
   crack(input, { positional: true })
 ));

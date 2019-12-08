@@ -1,7 +1,4 @@
-import { day } from '..';
-
-import examples from './input/examples';
-import puzzleInput from './input';
+import { solution } from '../../utils';
 
 const OPEN_GROUND = '.';
 const TREES = '|';
@@ -66,11 +63,11 @@ const generate = (input, generations, hook = null) => {
   return final.filter(isTrees).length * final.filter(isLumberyard).length;
 };
 
-day(18).part(1).test(examples).feed(puzzleInput).solution(input => (
+export const partOne = solution(input => (
   generate(input, 10)
 ));
 
-day(18).part(2).test(examples).feed(puzzleInput).solution((input) => {
+export const partTwo = solution((input) => {
   const cache = {};
   let start;
   let repeat;

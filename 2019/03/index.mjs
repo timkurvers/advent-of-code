@@ -1,15 +1,12 @@
-import { day } from '..';
 import {
   Grid,
   Orientation,
   dx,
   dy,
   reduceMinBy,
+  solution,
   sum,
 } from '../../utils';
-
-import examples from './input/examples';
-import puzzleInput from './input';
 
 const orientations = {
   U: Orientation.UP,
@@ -75,13 +72,13 @@ const trace = (wires) => {
   return { grid, overlaps };
 };
 
-day(3).part(1).test(examples).feed(puzzleInput).solution((input) => {
+export const partOne = solution((input) => {
   const wires = parse(input);
   const { overlaps } = trace(wires);
   return reduceMinBy(overlaps, 'distance').distance;
 });
 
-day(3).part(2).test(examples).feed(puzzleInput).solution((input) => {
+export const partTwo = solution((input) => {
   const wires = parse(input);
   const { overlaps } = trace(wires);
   return reduceMinBy(overlaps, 'steps').steps;

@@ -1,8 +1,4 @@
-import { day } from '..';
-import { range } from '../../utils';
-
-import examples from './input/examples';
-import puzzleInput from './input';
+import { range, solution } from '../../utils';
 
 const parse = (input) => {
   const [start, end] = input.split('-');
@@ -39,12 +35,12 @@ const isStrictlyValid = password => (
   isValid(password, { adjacentPredicate: isStrictlyDouble })
 );
 
-day(4).part(1).test(examples).feed(puzzleInput).solution((input) => {
+export const partOne = solution((input) => {
   const passwords = parse(input);
   return passwords.filter(isValid).length;
 });
 
-day(4).part(2).test(examples).feed(puzzleInput).solution((input) => {
+export const partTwo = solution((input) => {
   const passwords = parse(input);
   return passwords.filter(isStrictlyValid).length;
 });

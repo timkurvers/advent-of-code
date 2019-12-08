@@ -1,8 +1,4 @@
-import { LinkedListNode as Marble } from '../../utils';
-import { day } from '..';
-
-import examples from './input/examples';
-import puzzleInput from './input';
+import { LinkedListNode as Marble, solution } from '../../utils';
 
 const entryToConfig = (entry) => {
   const match = entry.match(/\d+/g);
@@ -44,13 +40,13 @@ const play = ({ playerCount, targetRound }) => {
   };
 };
 
-day(9).part(1).test(examples).feed(puzzleInput).solution((input) => {
+export const partOne = solution((input) => {
   const config = entryToConfig(input);
   const playthrough = play(config);
   return playthrough.highscore;
 });
 
-day(9).part(2).test(examples).feed(puzzleInput).solution((input) => {
+export const partTwo = solution((input) => {
   const config = entryToConfig(input);
   const playthrough = play(config);
   return play({

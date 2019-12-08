@@ -1,8 +1,4 @@
-import { CircularLinkedList } from '../../utils';
-import { day } from '..';
-
-import examples from './input/examples';
-import puzzleInput from './input';
+import { CircularLinkedList, solution } from '../../utils';
 
 class Elf {
   constructor(id) {
@@ -34,6 +30,8 @@ const play = (count) => {
   return current.value;
 };
 
-day(19).part(1).test(examples).feed(puzzleInput).inefficient.solution(input => (
+export const partOne = solution(input => (
   play(+input).id
 ));
+
+export const partTwo = solution();
