@@ -36,7 +36,7 @@ class Program {
     return this.memory[this.pointer++];
   }
 
-  run() {
+  async run() {
     while (!this.halt) {
       const opcode = String(this.read());
       this.opcode = +opcode.slice(-2);
@@ -45,7 +45,7 @@ class Program {
       if (!operation) {
         throw new Error(`Unknown opcode: ${this.opcode} @ ${this.pointer}`);
       }
-      operation(this);
+      await operation(this);
     }
   }
 

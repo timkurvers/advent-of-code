@@ -1,12 +1,16 @@
 /* eslint-disable no-param-reassign */
 
 import operation from '../02/operations/operation';
+import { wait } from '../../utils';
 
 export * from '../02/operations';
 
-export const input = operation(3, (program) => {
+export const input = operation(3, async (program) => {
   const { memory } = program;
   const target = program.read();
+  while (!program.inputs.length) {
+    await wait(10);
+  }
   const value = program.inputs.shift();
   memory[target] = value;
 });

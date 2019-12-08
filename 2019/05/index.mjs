@@ -3,16 +3,16 @@ import { solution } from '../../utils';
 
 import * as operations from './operations';
 
-export const partOne = solution((input) => {
+export const partOne = solution(async (input) => {
   const program = Program.from(input, operations);
   program.inputs.push(1);
-  program.run();
+  await program.run();
   return program.test();
 });
 
-export const partTwo = solution((input) => {
+export const partTwo = solution(async (input) => {
   const program = Program.from(input, operations);
   program.inputs.push(5);
-  program.run();
+  await program.run();
   return program.test();
 });
