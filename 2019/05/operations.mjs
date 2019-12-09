@@ -7,7 +7,7 @@ export * from '../02/operations';
 
 export const input = operation(3, async (program) => {
   const { memory } = program;
-  const target = program.read();
+  const target = program.ref();
   while (!program.inputs.length) {
     await wait(10);
   }
@@ -16,38 +16,38 @@ export const input = operation(3, async (program) => {
 });
 
 export const output = operation(4, (program) => {
-  const value = program.resolve();
+  const value = program.value();
   program.outputs.push(value);
 });
 
 export const jumpIfTrue = operation(5, (program) => {
-  const value = program.resolve();
-  const target = program.resolve();
+  const value = program.value();
+  const pointer = program.value();
   if (value !== 0) {
-    program.pointer = target;
+    program.pointer = pointer;
   }
 });
 
 export const jumpIfFalse = operation(6, (program) => {
-  const value = program.resolve();
-  const target = program.resolve();
+  const value = program.value();
+  const pointer = program.value();
   if (value === 0) {
-    program.pointer = target;
+    program.pointer = pointer;
   }
 });
 
 export const lessThan = operation(7, (program) => {
   const { memory } = program;
-  const a = program.resolve();
-  const b = program.resolve();
-  const target = program.read();
+  const a = program.value();
+  const b = program.value();
+  const target = program.ref();
   memory[target] = a < b ? 1 : 0;
 });
 
 export const equals = operation(8, (program) => {
   const { memory } = program;
-  const a = program.resolve();
-  const b = program.resolve();
-  const target = program.read();
+  const a = program.value();
+  const b = program.value();
+  const target = program.ref();
   memory[target] = a === b ? 1 : 0;
 });

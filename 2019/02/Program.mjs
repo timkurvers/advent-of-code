@@ -15,6 +15,7 @@ class Program {
     this.halt = false;
     this.inputs = [];
     this.outputs = [];
+    this.relativeBase = 0;
   }
 
   override({ noun, verb } = {}) {
@@ -23,17 +24,31 @@ class Program {
     this.memory[2] = verb;
   }
 
-  resolve() {
-    const value = this.read();
-    const mode = this.modes.shift() || 0;
-    if (mode) {
-      return value;
-    }
-    return this.memory[value];
+  read() {
+    return this.memory[this.pointer++] || 0;
   }
 
-  read() {
-    return this.memory[this.pointer++];
+  value() {
+    return this.resolve();
+  }
+
+  ref() {
+    return this.resolve({ ref: true });
+  }
+
+  resolve({ ref = false } = {}) {
+    let value = this.read();
+    const mode = this.modes.shift() || 0;
+    if (mode === 1) {
+      return value;
+    }
+    if (mode === 2) {
+      value = this.relativeBase + value;
+    }
+    if (!ref) {
+      return this.memory[value] || 0;
+    }
+    return value;
   }
 
   async run() {

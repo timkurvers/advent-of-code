@@ -8,16 +8,16 @@ export const halt = operation(99, (program) => {
 
 export const add = operation(1, (program) => {
   const { memory } = program;
-  const a = program.resolve();
-  const b = program.resolve();
-  const target = program.read();
+  const a = program.value();
+  const b = program.value();
+  const target = program.ref();
   memory[target] = a + b;
 });
 
 export const multiply = operation(2, (program) => {
   const { memory } = program;
-  const a = program.resolve();
-  const b = program.resolve();
-  const target = program.read();
+  const a = program.value();
+  const b = program.value();
+  const target = program.ref();
   memory[target] = a * b;
 });
