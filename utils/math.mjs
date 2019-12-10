@@ -1,4 +1,6 @@
-/* eslint-disable import/prefer-default-export, no-param-reassign */
+/* eslint-disable no-param-reassign */
+
+export const TAU = 2 * Math.PI;
 
 export const sum = array => array.reduce((total, next) => total + next, 0);
 
