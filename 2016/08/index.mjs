@@ -44,7 +44,7 @@ export const partOne = solution((input) => {
 
 export const partTwo = solution((input) => {
   const grid = swipe(parse(input));
-  const output = grid.toString(point => (point && point.value ? '#' : '.'));
+  const output = grid.toString(point => (point && point.value ? '#' : ' '));
   console.log();
   console.log(output);
   return '<see visually above>';

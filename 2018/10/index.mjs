@@ -48,7 +48,7 @@ export const partOne = solution((input) => {
   for (let y = minY; y <= maxY; ++y) {
     for (let x = minX; x <= maxX; ++x) {
       const present = points.find(point => point.x === x && point.y === y);
-      output += present ? '#' : '.';
+      output += present ? '#' : ' ';
     }
     output += '\n';
   }
