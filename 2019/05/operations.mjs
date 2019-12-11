@@ -9,7 +9,7 @@ export const input = operation(3, async (program) => {
   const { memory } = program;
   const target = program.ref();
   while (!program.inputs.length) {
-    await wait(10);
+    await wait(1);
   }
   const value = program.inputs.shift();
   memory[target] = value;
