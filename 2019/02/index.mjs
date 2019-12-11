@@ -2,10 +2,10 @@
 
 import { range, solution } from '../../utils';
 
-import Program from './Program';
+import IntcodeProgram from './IntcodeProgram';
 
 export const partOne = solution(async (input, isExample) => {
-  const program = Program.from(input);
+  const program = IntcodeProgram.from(input);
   if (!isExample) {
     program.override({ noun: 12, verb: 2 });
   }
@@ -14,7 +14,7 @@ export const partOne = solution(async (input, isExample) => {
 });
 
 export const partTwo = solution(async (input) => {
-  const program = Program.from(input);
+  const program = IntcodeProgram.from(input);
   for (const noun of range({ end: 99 })) {
     for (const verb of range({ end: 99 })) {
       program.override({ noun, verb });

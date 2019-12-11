@@ -1,4 +1,4 @@
-import Program from '../02/Program';
+import IntcodeProgram from '../02/IntcodeProgram';
 import {
   Grid,
   Orientation,
@@ -7,9 +7,7 @@ import {
   dy,
   identity,
   solution,
-  wait,
 } from '../../utils';
-import * as operations from '../09/operations';
 
 const Panel = {
   BLACK: 0,
@@ -22,18 +20,9 @@ const Direction = {
 };
 
 const run = async (input, { initialPanel = Panel.BLACK } = {}) => {
-  const program = Program.from(input, operations);
+  const program = IntcodeProgram.from(input);
 
   const grid = new Grid();
-
-  const result = async () => {
-    let output = program.outputs.shift();
-    while (output === undefined) {
-      await wait(1);
-      output = program.outputs.shift();
-    }
-    return output;
-  };
 
   program.run();
 
@@ -44,10 +33,10 @@ const run = async (input, { initialPanel = Panel.BLACK } = {}) => {
 
   while (!program.halt) {
     const value = grid.get(x, y) || Panel.BLACK;
-    program.inputs.push(value);
+    program.input(value);
 
-    const paint = await result();
-    const turn = await result();
+    const paint = await program.output();
+    const turn = await program.output();
 
     grid.set(x, y, paint);
 

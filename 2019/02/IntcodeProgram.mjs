@@ -1,7 +1,9 @@
-import * as defaultOperations from './operations';
+import { wait } from '../../utils';
 
-class Program {
-  constructor(source, operations = defaultOperations) {
+import * as operations from './operations';
+
+class IntcodeProgram {
+  constructor(source) {
     this.source = source;
     this.operations = Object.values(operations);
     this.reset();
@@ -22,6 +24,19 @@ class Program {
     this.reset();
     this.memory[1] = noun;
     this.memory[2] = verb;
+  }
+
+  input(value) {
+    this.inputs.push(value);
+  }
+
+  async output() {
+    let value = this.outputs.shift();
+    while (value === undefined) {
+      await wait(1);
+      value = this.outputs.shift();
+    }
+    return value;
   }
 
   read() {
@@ -75,10 +90,10 @@ class Program {
     return diagcode;
   }
 
-  static from(input, operations) {
+  static from(input) {
     const source = input.split(',').map(Number);
-    return new Program(source, operations);
+    return new this(source);
   }
 }
 
-export default Program;
+export default IntcodeProgram;

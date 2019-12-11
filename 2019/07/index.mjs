@@ -1,17 +1,16 @@
-import Program from '../02/Program';
+import IntcodeProgram from '../02/IntcodeProgram';
 import { permute, solution } from '../../utils';
-import * as operations from '../05/operations';
 
 const calculate = async (input, phases, { feedback } = {}) => {
   const programs = [];
   let last = null;
   for (const phase of phases) {
-    const program = Program.from(input, operations);
+    const program = IntcodeProgram.from(input);
     program.label = programs.length + 1;
     if (last) {
       program.inputs = last.outputs;
     }
-    program.inputs.push(phase);
+    program.input(phase);
     programs.push(program);
     last = program;
   }
@@ -21,11 +20,11 @@ const calculate = async (input, phases, { feedback } = {}) => {
   // Create feedback loop and restore phase value
   if (feedback) {
     first.inputs = last.outputs;
-    first.inputs.push(phases[0]);
+    first.input(phases[0]);
   }
 
   // Initial input value (always 0) for first program
-  first.inputs.push(0);
+  first.input(0);
 
   await Promise.all(programs.map(program => program.run()));
   return last.outputs[0];
