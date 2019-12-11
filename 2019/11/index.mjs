@@ -14,7 +14,7 @@ const Panel = {
   WHITE: 1,
 };
 
-const Direction = {
+const Turn = {
   LEFT: 0,
   RIGHT: 1,
 };
@@ -40,7 +40,7 @@ const run = async (input, { initialPanel = Panel.BLACK } = {}) => {
 
     grid.set(x, y, paint);
 
-    if (turn === Direction.LEFT) {
+    if (turn === Turn.LEFT) {
       orientation += Rotation.TURN_LEFT;
     } else {
       orientation += Rotation.TURN_RIGHT;
@@ -53,7 +53,7 @@ const run = async (input, { initialPanel = Panel.BLACK } = {}) => {
   return grid;
 };
 
-export const partOne = solution(async (input) => {
+export const partOne = solution.inefficient(async (input) => {
   const grid = await run(input);
   return grid.filter(identity).length;
 });
