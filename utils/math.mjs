@@ -47,23 +47,23 @@ export function* combine(array, { k } = {}) {
 }
 
 // See: https://stackoverflow.com/a/37580979
-export function* permute(permutation) {
-  const { length } = permutation;
+export function* permute(array) {
+  const { length } = array;
   const c = Array(length).fill(0);
   let i = 1;
   let k = null;
   let p = null;
 
-  yield permutation.slice();
+  yield array.slice();
   while (i < length) {
     if (c[i] < i) {
       k = i % 2 && c[i];
-      p = permutation[i];
-      permutation[i] = permutation[k];
-      permutation[k] = p;
+      p = array[i];
+      array[i] = array[k];
+      array[k] = p;
       ++c[i];
       i = 1;
-      yield permutation.slice();
+      yield array.slice();
     } else {
       c[i] = 0;
       ++i;
