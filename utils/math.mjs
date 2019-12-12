@@ -70,3 +70,15 @@ export function* permute(array) {
     }
   }
 }
+
+// Greatest / least common divisor of two or more integers
+// See: https://stackoverflow.com/a/34955386
+export const gcd2 = (a, b) => {
+  if (!b) {
+    return b === 0 ? a : NaN;
+  }
+  return gcd2(b, a % b);
+};
+export const lcm2 = (a, b) => a * b / gcd2(a, b);
+export const gcd = array => array.reduce(gcd2);
+export const lcm = array => array.reduce(lcm2);
