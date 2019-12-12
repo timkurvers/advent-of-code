@@ -53,7 +53,7 @@ const run = async (input, { initialPanel = Panel.BLACK } = {}) => {
   return grid;
 };
 
-export const partOne = solution.inefficient(async (input) => {
+export const partOne = solution(async (input) => {
   const grid = await run(input);
   return grid.filter(identity).length;
 });
