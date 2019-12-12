@@ -1,5 +1,11 @@
-export default (opcode, fn) => {
-  const operation = (...args) => fn(...args);
-  operation.opcode = opcode;
-  return operation;
-};
+const noop = () => {};
+
+class Operation {
+  constructor(definition) {
+    this.opcode = definition.opcode;
+    this.operands = definition.operands || [];
+    this.exec = definition.exec || noop;
+  }
+}
+
+export default Operation;

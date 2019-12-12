@@ -1,19 +1,19 @@
 import { wait } from '../../utils';
 
-import * as operations from './operations';
+import Operand from './operations/Operand';
+import operations from './operations/lookup';
 
 class IntcodeProgram {
   constructor(source) {
     this.source = source;
-    this.operations = Object.values(operations);
     this.reset();
+
+    this.resolve = this.resolve.bind(this);
   }
 
   reset() {
     this.memory = [...this.source];
     this.pointer = 0;
-    this.opcode = null;
-    this.modes = [];
     this.halt = false;
     this.inputs = [];
     this.outputs = [];
@@ -33,7 +33,7 @@ class IntcodeProgram {
   async output() {
     let value = this.outputs.shift();
     while (value === undefined) {
-      await wait(1);
+      await wait();
       value = this.outputs.shift();
     }
     return value;
@@ -43,24 +43,15 @@ class IntcodeProgram {
     return this.memory[this.pointer++] || 0;
   }
 
-  value() {
-    return this.resolve();
-  }
-
-  ref() {
-    return this.resolve({ ref: true });
-  }
-
-  resolve({ ref = false } = {}) {
+  resolve(operand, mode) {
     let value = this.read();
-    const mode = this.modes.shift() || 0;
     if (mode === 1) {
       return value;
     }
     if (mode === 2) {
       value = this.relativeBase + value;
     }
-    if (!ref) {
+    if (operand === Operand.VALUE) {
       return this.memory[value] || 0;
     }
     return value;
@@ -68,14 +59,19 @@ class IntcodeProgram {
 
   async run() {
     while (!this.halt) {
-      const opcode = String(this.read());
-      this.opcode = +opcode.slice(-2);
-      this.modes = opcode.slice(0, -2).split('').reverse().map(Number);
-      const operation = this.operations.find(op => op.opcode === this.opcode);
+      const int = this.read();
+      const opcode = int % 100;
+      const modes = int / 100 | 0;
+      const operation = operations.get(opcode);
       if (!operation) {
-        throw new Error(`Unknown opcode: ${this.opcode} @ ${this.pointer}`);
+        throw new Error(`Unknown opcode: ${opcode} @ ${this.pointer}`);
       }
-      await operation(this);
+      const values = operation.operands.map((operand, index) => {
+        const base = 10 ** index;
+        const mode = ((modes % (base * 10)) / base) | 0;
+        return this.resolve(operand, mode);
+      });
+      await operation.exec(this, ...values);
     }
   }
 

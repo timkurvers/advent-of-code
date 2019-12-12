@@ -2,76 +2,92 @@
 
 import { wait } from '../../../utils';
 
-import operation from './operation';
+import Operand from './Operand';
+import Operation from './Operation';
 
-export const halt = operation(99, (program) => {
-  program.halt = true;
+export const halt = new Operation({
+  opcode: 99,
+  exec: (program) => {
+    program.halt = true;
+  },
 });
 
-export const add = operation(1, (program) => {
-  const { memory } = program;
-  const a = program.value();
-  const b = program.value();
-  const target = program.ref();
-  memory[target] = a + b;
+export const add = new Operation({
+  opcode: 1,
+  operands: [Operand.VALUE, Operand.VALUE, Operand.ADDRESS],
+  exec: (program, a, b, target) => {
+    program.memory[target] = a + b;
+  },
 });
 
-export const multiply = operation(2, (program) => {
-  const { memory } = program;
-  const a = program.value();
-  const b = program.value();
-  const target = program.ref();
-  memory[target] = a * b;
+export const multiply = new Operation({
+  opcode: 2,
+  operands: [Operand.VALUE, Operand.VALUE, Operand.ADDRESS],
+  exec: (program, a, b, target) => {
+    program.memory[target] = a * b;
+  },
 });
 
-export const input = operation(3, async (program) => {
-  const { memory } = program;
-  const target = program.ref();
-  while (!program.inputs.length) {
-    await wait(1);
-  }
-  const value = program.inputs.shift();
-  memory[target] = value;
+export const input = new Operation({
+  opcode: 3,
+  operands: [Operand.ADDRESS],
+  exec: async (program, target) => {
+    while (!program.inputs.length) {
+      await wait();
+    }
+    const value = program.inputs.shift();
+    program.memory[target] = value;
+  },
 });
 
-export const output = operation(4, (program) => {
-  const value = program.value();
-  program.outputs.push(value);
+export const output = new Operation({
+  opcode: 4,
+  operands: [Operand.VALUE],
+  exec: (program, value) => {
+    program.outputs.push(value);
+  },
 });
 
-export const jumpIfTrue = operation(5, (program) => {
-  const value = program.value();
-  const pointer = program.value();
-  if (value !== 0) {
-    program.pointer = pointer;
-  }
+export const jumpIfTrue = new Operation({
+  opcode: 5,
+  operands: [Operand.VALUE, Operand.VALUE],
+  exec: (program, value, pointer) => {
+    if (value !== 0) {
+      program.pointer = pointer;
+    }
+  },
 });
 
-export const jumpIfFalse = operation(6, (program) => {
-  const value = program.value();
-  const pointer = program.value();
-  if (value === 0) {
-    program.pointer = pointer;
-  }
+export const jumpIfFalse = new Operation({
+  opcode: 6,
+  operands: [Operand.VALUE, Operand.VALUE],
+  exec: (program, value, pointer) => {
+    if (value === 0) {
+      program.pointer = pointer;
+    }
+  },
 });
 
-export const lessThan = operation(7, (program) => {
-  const { memory } = program;
-  const a = program.value();
-  const b = program.value();
-  const target = program.ref();
-  memory[target] = a < b ? 1 : 0;
+export const lessThan = new Operation({
+  opcode: 7,
+  operands: [Operand.VALUE, Operand.VALUE, Operand.ADDRESS],
+  exec: (program, a, b, target) => {
+    program.memory[target] = a < b ? 1 : 0;
+  },
 });
 
-export const equals = operation(8, (program) => {
-  const { memory } = program;
-  const a = program.value();
-  const b = program.value();
-  const target = program.ref();
-  memory[target] = a === b ? 1 : 0;
+export const equals = new Operation({
+  opcode: 8,
+  operands: [Operand.VALUE, Operand.VALUE, Operand.ADDRESS],
+  exec: (program, a, b, target) => {
+    program.memory[target] = a === b ? 1 : 0;
+  },
 });
 
-export const adjustRelativeBase = operation(9, (program) => {
-  const value = program.value();
-  program.relativeBase += value;
+export const adjustRelativeBase = new Operation({
+  opcode: 9,
+  operands: [Operand.VALUE],
+  exec: (program, value) => {
+    program.relativeBase += value;
+  },
 });
