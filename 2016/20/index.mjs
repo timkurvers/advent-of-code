@@ -25,6 +25,6 @@ const scramble = (instructions, password) => {
   return chars.join('');
 };
 
-export default solution((input, isExample) => (
-  scramble(parse(input), isExample ? 'abcde' : 'abcdefgh')
+export const partOne = solution((input, { password = 'abcdefgh' }) => (
+  scramble(parse(input), password)
 ));

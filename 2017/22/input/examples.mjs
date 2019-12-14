@@ -1,11 +1,11 @@
 import { example } from '../../../utils';
 
-export default [
+export const partOne = [
   example(`..#
 #..
 ...`, 5587),
+];
 
-  example.inefficient(`..#
-#..
-...`, null, 2511944),
+export const partTwo = [
+  example.inefficient(partOne[0].input, 2511944),
 ];

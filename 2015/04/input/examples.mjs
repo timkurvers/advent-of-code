@@ -1,6 +1,6 @@
 import { example } from '../../../utils';
 
-export default [
-  example('abcdef', 609043),
-  example('pqrstuv', 1048970),
+export const partOne = [
+  example.inefficient('abcdef', 609043),
+  example.inefficient('pqrstuv', 1048970),
 ];

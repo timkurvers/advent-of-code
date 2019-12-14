@@ -1,5 +1,9 @@
 import { example } from '../../../utils';
 
-export default [
-  example(5, 3, 2),
+export const partOne = [
+  example(5, 3),
+];
+
+export const partTwo = [
+  example(partOne[0].input, 2),
 ];

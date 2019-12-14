@@ -1,14 +1,6 @@
 import { example } from '../../../utils';
 
-export default [
-  example(`#######
-#.G...#
-#...EG#
-#.#.#G#
-#..G#E#
-#.....#
-#######`, 27730, 4988),
-
+export const partOne = [
   example(`#######
 #G..#E#
 #E#E.E#
@@ -17,14 +9,21 @@ export default [
 #...E.#
 #######`, 36334),
 
-  // TODO: Solution does not work for Part Two
+  example(`#######
+#.G...#
+#...EG#
+#.#.#G#
+#..G#E#
+#.....#
+#######`, 27730),
+
   example(`#######
 #E..EG#
 #.#G.E#
 #E.##E#
 #G..#.#
 #..E#.#
-#######`, 39514, 31284),
+#######`, 39514),
 
   example(`#######
 #E.G#.#
@@ -32,7 +31,7 @@ export default [
 #G.#.G#
 #G..#.#
 #...E.#
-#######`, 27755, 3478),
+#######`, 27755),
 
   example(`#######
 #.E...#
@@ -40,7 +39,7 @@ export default [
 #.###.#
 #E#G#G#
 #...#G#
-#######`, 28944, 6474),
+#######`, 28944),
 
   example(`#########
 #G......#
@@ -50,5 +49,13 @@ export default [
 #...#...#
 #.G...G.#
 #.....G.#
-#########`, 18740, 1140),
+#########`, 18740),
+];
+
+export const partTwo = [
+  example(partOne[1].input, 4988),
+  example(partOne[2].input, 31284), // TODO: Fails
+  example(partOne[3].input, 3478),
+  example(partOne[4].input, 6474),
+  example(partOne[5].input, 1140),
 ];

@@ -66,11 +66,11 @@ export const partOne = solution((input) => {
   }).order.map(step => step.id).join('');
 });
 
-export const partTwo = solution((input, isExample) => {
+export const partTwo = solution((input, { workerCount = 5, fixedDuration = 60 }) => {
   const steps = Step.from(input);
   return solve(steps, {
     instantCompletion: false,
-    workerCount: isExample ? 2 : 5,
-    fixedDuration: isExample ? 0 : 60,
+    workerCount,
+    fixedDuration,
   }).seconds;
 });

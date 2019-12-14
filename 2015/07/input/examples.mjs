@@ -1,6 +1,6 @@
 import { example } from '../../../utils';
 
-export default [
+export const partOne = [
   example(`123 -> x
 456 -> y
 x AND y -> d

@@ -1,6 +1,6 @@
 import { example } from '../../../utils';
 
-export default [
+export const partOne = [
   example('9 players; last marble is worth 25 points', 32),
   example('10 players; last marble is worth 1618 points', 8317),
   example('13 players; last marble is worth 7999 points', 146373),

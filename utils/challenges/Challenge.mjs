@@ -21,33 +21,18 @@ class Challenge {
 
   async run() {
     const parts = await import(path.resolve(this.path));
+    const examples = await import(path.resolve(this.path, 'input/examples'));
     const {
       default: puzzleInput,
     } = await import(path.resolve(this.path, 'input'));
-    const {
-      default: allExamples = [],
-    } = await import(path.resolve(this.path, 'input/examples'));
 
-    let index = 0;
     for (const [part, solution] of Object.entries(parts)) {
-      // Find all applicable examples for this part
-      // TODO: Currently a bit flimsy (relies on lexical export ordering)
-      const examples = allExamples.reduce((list, example) => {
-        const expected = example.expected[index];
-        if (expected) {
-          list.push({ ...example, expected });
-        }
-        return list;
-      }, []);
-
       await this.runPart({
         part,
-        index,
         solution,
         puzzleInput,
-        examples,
+        examples: examples[part],
       });
-      ++index;
     }
   }
 
@@ -61,9 +46,9 @@ class Challenge {
     console.log(colors.cyan(heading));
 
     // Executes and times the solution (used for both puzzle input and examples)
-    const execute = async (input, isExample) => {
+    const execute = async (input, args = {}) => {
       const start = performance.now();
-      const answer = await solution(input, isExample);
+      const answer = await solution(input, args);
       const end = performance.now();
       const duration = Math.ceil(end - start);
       return { answer, duration };
@@ -77,14 +62,15 @@ class Challenge {
     };
 
     // Run examples (if any) through this part's solution
-    for (const { input, inefficient, expected } of examples) {
+    for (const example of examples) {
+      const { input, expected, inefficient } = example;
       const excerpt = String(input).replace(/\n|\t/g, ' ').slice(0, 25);
       if (inefficient) {
         line(`Example ${colors.yellow(excerpt)}`, '<inefficient; skipping>');
         continue;
       }
 
-      const { answer, duration } = await execute(input, true);
+      const { answer, duration } = await execute(input, example.args);
       if (answer == null) {
         line(`Example ${colors.yellow(excerpt)}`, '<not yet solved>');
         continue;

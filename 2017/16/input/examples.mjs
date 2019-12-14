@@ -1,5 +1,5 @@
 import { example } from '../../../utils';
 
-export default [
-  example('s1,x3/4,pe/b', 'baedc'),
+export const partOne = [
+  example('s1,x3/4,pe/b', 'baedc', { lineup: 'abcde' }),
 ];

@@ -1,10 +1,14 @@
 import { example } from '../../../utils';
 
-export default [
+export const partOne = [
   example(`     |
      |  +--+
      A  |  C
  F---|----E|--+
      |  |  |  D
-     +B-+  +--+`, 'ABCDEF', 38),
+     +B-+  +--+`, 'ABCDEF'),
+];
+
+export const partTwo = [
+  example(partOne[0].input, 38),
 ];

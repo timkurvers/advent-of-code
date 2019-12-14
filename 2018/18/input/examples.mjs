@@ -1,6 +1,6 @@
 import { example } from '../../../utils';
 
-export default [
+export const partOne = [
   example(`.#.#...|#.
 .....#|##|
 .|..|...#.

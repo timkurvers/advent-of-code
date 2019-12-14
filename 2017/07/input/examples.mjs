@@ -1,6 +1,6 @@
 import { example } from '../../../utils';
 
-export default [
+export const partOne = [
   example(`pbga (66)
 xhth (57)
 ebii (61)
@@ -13,5 +13,9 @@ tknk (41) -> ugml, padx, fwft
 jptl (61)
 ugml (68) -> gyxo, ebii, jptl
 gyxo (61)
-cntj (57)`, 'tknk', 60),
+cntj (57)`, 'tknk'),
+];
+
+export const partTwo = [
+  example(partOne[0].input, 60),
 ];

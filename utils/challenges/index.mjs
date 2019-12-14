@@ -10,6 +10,8 @@ export const inefficiency = (fn) => {
   return wrapper;
 };
 
-export const example = inefficiency((input, ...expected) => ({ input, expected }));
+export const example = inefficiency((input, expected, args = {}) => ({
+  input, expected, args,
+}));
 
 export const solution = inefficiency((fn = () => {}) => fn);

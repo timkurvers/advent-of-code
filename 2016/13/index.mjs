@@ -10,10 +10,10 @@ const traverse = (start, goal) => (
   })
 );
 
-export const partOne = solution((input, isExample) => {
+export const partOne = solution((input, { goalX = 31, goalY = 39 }) => {
   const maze = new Maze(input);
   const start = maze.getPoint(1, 1);
-  const goal = isExample ? maze.getPoint(7, 4) : maze.getPoint(31, 39);
+  const goal = maze.getPoint(goalX, goalY);
   return traverse(start, goal).score;
 });
 

@@ -74,18 +74,16 @@ const dance = (programs, moves, iterations = 1) => {
   return programs;
 };
 
-const participants = isExample => (
-  (isExample ? 'abcde' : 'abcdefghijklmnop').split('')
-);
+const participants = lineup => lineup.split('');
 
-export const partOne = solution((input, isExample) => {
-  const programs = participants(isExample);
+export const partOne = solution((input, { lineup = 'abcdefghijklmnop' }) => {
+  const programs = participants(lineup);
   const moves = parse(input);
   return dance(programs, moves).join('');
 });
 
-export const partTwo = solution((input, isExample) => {
-  const programs = participants(isExample);
+export const partTwo = solution((input, { lineup = 'abcdefghijklmnop' }) => {
+  const programs = participants(lineup);
   const moves = parse(input);
   return dance(programs, moves, 1000000000).join('');
 });

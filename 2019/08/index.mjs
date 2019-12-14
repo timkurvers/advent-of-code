@@ -23,21 +23,14 @@ const layerify = (input, { width, height } = {}) => {
   return layers;
 };
 
-const width = 25;
-const height = 6;
-
-export const partOne = solution((input, isExample) => {
-  const layers = layerify(input, {
-    width: isExample ? 3 : width,
-    height: isExample ? 2 : height,
-  });
-
+export const partOne = solution((input, { width = 25, height = 6 }) => {
+  const layers = layerify(input, { width, height });
   const candidates = layers.filter(layer => layer.zeroes > 0);
   const layer = reduceMinBy(candidates, 'zeroes');
   return count(layer.source, '1') * count(layer.source, '2');
 });
 
-export const partTwo = solution((input) => {
+export const partTwo = solution((input, { width = 25, height = 6 }) => {
   const grid = new Grid();
 
   const layers = layerify(input, { width, height });

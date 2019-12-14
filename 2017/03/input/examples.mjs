@@ -1,6 +1,6 @@
 import { example } from '../../../utils';
 
-export default [
+export const partOne = [
   example('1', 0),
   example('12', 3),
   example('23', 2),

@@ -1,6 +1,6 @@
 import { example } from '../../../utils';
 
-export default [
+export const partOne = [
   example(`#ip 0
 seti 5 0 1
 seti 6 0 2

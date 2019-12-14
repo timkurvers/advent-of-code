@@ -1,6 +1,6 @@
 import { example } from '../../../utils';
 
-export default [
+export const partOne = [
   example('^WNE$', 3),
   example('^ENWWW(NEEE|SSE(EE|N))$', 10),
   example('^ENNWSWW(NEWS|)SSSEEN(WNSE|)EE(SWEN|)NNN$', 18),

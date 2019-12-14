@@ -1,6 +1,6 @@
 import { example } from '../../../utils';
 
-export default [
+export const partOne = [
   example(`
 COM)B
 B)C
@@ -13,7 +13,9 @@ D)I
 E)J
 J)K
 K)L`, 42),
+];
 
+export const partTwo = [
   example(`COM)B
 B)C
 C)D
@@ -26,5 +28,5 @@ E)J
 J)K
 K)L
 K)YOU
-I)SAN`, null, 4),
+I)SAN`, 4),
 ];

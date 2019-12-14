@@ -47,9 +47,8 @@ const snapshot = (moons, prop) => {
   return moons.map(moon => `${moon[prop]},${moon[dprop]}`).join(';');
 };
 
-export const partOne = solution((input, isExample) => {
+export const partOne = solution((input, { steps = 1000 }) => {
   const moons = Moon.from(input);
-  const steps = isExample ? 10 : 1000;
   for (let i = 1; i <= steps; ++i) {
     step(moons);
   }

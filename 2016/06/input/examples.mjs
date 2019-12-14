@@ -1,6 +1,6 @@
 import { example } from '../../../utils';
 
-export default [
+export const partOne = [
   example(`eedadn
 drvtee
 eandsr
@@ -16,5 +16,9 @@ tesnvt
 vntsnd
 vrdear
 dvrsen
-enarar`, 'easter', 'advent'),
+enarar`, 'easter'),
+];
+
+export const partTwo = [
+  example(partOne[0].input, 'advent'),
 ];

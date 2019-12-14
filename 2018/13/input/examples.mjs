@@ -1,18 +1,20 @@
 import { example } from '../../../utils';
 
-export default [
+export const partOne = [
   example(`/->-\\
 |   |  /----\\
 | /-+--+-\\  |
 | | |  | v  |
 \\-+-/  \\-+--/
   \\------/`, '7,3'),
+];
 
+export const partTwo = [
   example(`/>-<\\
 |   |
 | /<+-\\
 | | | v
 \\>+</ |
   |   ^
-  \\<->/`, null, '6,4'),
+  \\<->/`, '6,4'),
 ];

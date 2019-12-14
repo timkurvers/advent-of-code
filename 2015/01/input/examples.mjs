@@ -1,6 +1,6 @@
 import { example } from '../../../utils';
 
-export default [
+export const partOne = [
   example('(())', 0),
   example('()()', 0),
   example('(((', 3),
@@ -10,7 +10,9 @@ export default [
   example('))(', -1),
   example(')))', -3),
   example(')())())', -3),
+];
 
-  example(')', null, 1),
-  example('()())', null, 5),
+export const partTwo = [
+  example(')', 1),
+  example('()())', 5),
 ];

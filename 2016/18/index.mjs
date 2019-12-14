@@ -41,10 +41,9 @@ const traverse = (input, { numRows } = {}) => {
   return { safeCount };
 };
 
-export const partOne = solution((input, isExample) => {
-  const numRows = isExample ? 10 : 40;
-  return traverse(input, { numRows }).safeCount;
-});
+export const partOne = solution((input, { numRows = 40 }) => (
+  traverse(input, { numRows }).safeCount
+));
 
 export const partTwo = solution.inefficient((input) => {
   const numRows = 400000;

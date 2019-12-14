@@ -1,5 +1,9 @@
 import { example } from '../../../utils';
 
-export default [
-  example('.^^.^.^^^^', 38, 1935478),
+export const partOne = [
+  example('.^^.^.^^^^', 38, { numRows: 10 }),
+];
+
+export const partTwo = [
+  example(partOne[0].input, 1935478),
 ];

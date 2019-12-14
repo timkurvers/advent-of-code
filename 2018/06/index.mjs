@@ -40,8 +40,7 @@ export const partOne = solution((input) => {
   return finites.sort((a, b) => b.area - a.area)[0].area;
 });
 
-export const partTwo = solution((input, isExample) => {
+export const partTwo = solution((input, { target = 10000 }) => {
   const { grid } = build(input);
-  const target = isExample ? 32 : 10000;
   return grid.filter(location => location.totalDistanceToAllCoords < target).length;
 });

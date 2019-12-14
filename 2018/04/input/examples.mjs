@@ -1,6 +1,6 @@
 import { example } from '../../../utils';
 
-export default [
+export const partOne = [
   example(`[1518-11-01 00:00] Guard #10 begins shift
 [1518-11-01 00:05] falls asleep
 [1518-11-01 00:25] wakes up
@@ -17,5 +17,9 @@ export default [
 [1518-11-04 00:46] wakes up
 [1518-11-05 00:03] Guard #99 begins shift
 [1518-11-05 00:45] falls asleep
-[1518-11-05 00:55] wakes up`, 240, 4455),
+[1518-11-05 00:55] wakes up`, 240),
+];
+
+export const partTwo = [
+  example(partOne[0].input, 4455),
 ];
