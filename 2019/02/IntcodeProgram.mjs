@@ -32,7 +32,7 @@ class IntcodeProgram {
 
   async output() {
     let value = this.outputs.shift();
-    while (value === undefined) {
+    while (value === undefined && !this.halt) {
       await wait();
       value = this.outputs.shift();
     }

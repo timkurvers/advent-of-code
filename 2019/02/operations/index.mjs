@@ -32,7 +32,7 @@ export const input = new Operation({
   opcode: 3,
   operands: [Operand.ADDRESS],
   exec: async (program, target) => {
-    while (!program.inputs.length) {
+    while (!program.inputs.length && !program.halt) {
       await wait();
     }
     const value = program.inputs.shift();

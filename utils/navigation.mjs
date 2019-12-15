@@ -1,6 +1,6 @@
 export const Orientation = {
-  UP: -Math.PI * 0.5,
-  DOWN: -Math.PI * 1.5,
+  UP: Math.PI * 1.5,
+  DOWN: Math.PI * 0.5,
   LEFT: Math.PI,
   RIGHT: 0,
 };
