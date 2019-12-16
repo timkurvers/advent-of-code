@@ -27,8 +27,8 @@ const Output = {
 const Type = {
   UNKNOWN: '?',
   WALL: '#',
-  VISITED: '.',
-  GOAL: '$',
+  EMPTY: '.',
+  OXYGEN: 'O',
 };
 
 const explore = async (grid, { approach, program, start }) => {
@@ -54,23 +54,23 @@ const explore = async (grid, { approach, program, start }) => {
       }
 
       if (output === Output.GOAL) {
-        grid.set(x, y, Type.GOAL);
+        grid.set(x, y, Type.OXYGEN);
         program.halt = true;
         return;
       }
 
       orientation = proposed;
-      current = grid.set(x, y, Type.VISITED);
+      current = grid.set(x, y, Type.EMPTY);
       break;
     }
   }
 };
 
-export const partOne = solution(async (input) => {
+const build = async (input) => {
   const program = IntcodeProgram.from(input);
 
   const grid = new Grid();
-  const start = grid.set(0, 0, Type.VISITED);
+  const start = grid.set(0, 0, Type.EMPTY);
 
   await explore(grid, {
     // See: https://en.wikipedia.org/wiki/Maze_solving_algorithm#Wall_follower
@@ -92,12 +92,44 @@ export const partOne = solution(async (input) => {
     start,
   });
 
-  const goal = grid.find(point => point && point.value === Type.GOAL);
+  const goal = grid.find(point => point && point.value === Type.OXYGEN);
 
+  return { grid, goal, start };
+};
+
+export const partOne = solution(async (input) => {
+  const { start, goal } = await build(input);
   const result = astar(start, goal, {
     neighborsFor: point => point.adjacentNeighbors.filter(neighbor => (
       neighbor.value !== Type.WALL
     )),
   });
   return result.score;
+});
+
+export const partTwo = solution(async (input, { gridFromInput }) => {
+  const grid = gridFromInput ? Grid.from(input) : (await build(input)).grid;
+  const start = grid.find(point => point && point.value === Type.OXYGEN);
+
+  const remaining = new Set([start]);
+
+  let mins = -1;
+  while (remaining.size) {
+    const queue = new Set(remaining);
+    for (const point of queue) {
+      grid.set(point.x, point.y, Type.OXYGEN);
+      remaining.delete(point);
+
+      const accessible = point.adjacentNeighbors.filter(neighbor => (
+        neighbor.value === Type.EMPTY
+      ));
+
+      for (const next of accessible) {
+        remaining.add(next);
+      }
+    }
+    ++mins;
+  }
+
+  return mins;
 });
