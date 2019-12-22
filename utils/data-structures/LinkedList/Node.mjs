@@ -3,8 +3,8 @@
 class Node {
   constructor(value) {
     this.value = value;
-    this.prev = this;
-    this.next = this;
+    this.prev = null;
+    this.next = null;
   }
 
   seek(offset) {
@@ -12,28 +12,35 @@ class Node {
     const count = Math.abs(offset);
     const direction = offset > 0 ? 'next' : 'prev';
     for (let i = 0; i < count; ++i) {
-      node = node[direction];
+      node = node[direction] || node;
     }
     return node;
   }
 
   append(node) {
-    this.next.prev = node;
+    if (this.next) {
+      this.next.prev = node;
+    }
     node.next = this.next;
     this.next = node;
     node.prev = this;
   }
 
   prepend(node) {
-    this.prev.next = node;
+    if (this.prev) {
+      this.prev.next = node;
+    }
     node.next = this;
     this.prev = node;
-    node.next = this;
   }
 
   remove() {
-    this.prev.next = this.next;
-    this.next.prev = this.prev;
+    if (this.prev) {
+      this.prev.next = this.next;
+    }
+    if (this.next) {
+      this.next.prev = this.prev;
+    }
     this.next = null;
     this.prev = null;
   }

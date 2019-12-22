@@ -2,22 +2,22 @@
 
 import Node from './Node';
 
-class CircularLinkedList {
+class LinkedList {
   static toArray(start) {
     const values = [];
     let node = start;
     do {
       values.push(node.value);
       node = node.next;
-    } while (node !== start);
+    } while (node && node !== start);
     return values;
   }
 
-  static from(values) {
+  static from(values, { nodeClass: NodeClass = Node } = {}) {
     let root;
     let current;
     for (const value of values) {
-      const node = new Node(value);
+      const node = new NodeClass(value);
       if (!root) {
         root = node;
       }
@@ -30,5 +30,5 @@ class CircularLinkedList {
   }
 }
 
+export default LinkedList;
 export { Node as LinkedListNode };
-export { CircularLinkedList };

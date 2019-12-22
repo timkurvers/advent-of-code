@@ -1,4 +1,5 @@
-export { CircularLinkedList, LinkedListNode } from './LinkedList';
+export { default as CircularLinkedList, CircularLinkedListNode } from './CircularLinkedList';
+export { default as LinkedList, LinkedListNode } from './LinkedList';
 export { default as Grid, GridPoint } from './Grid';
 
 export const flatMap = (arr, callbackfn) => (

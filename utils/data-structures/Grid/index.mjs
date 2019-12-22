@@ -152,8 +152,8 @@ class Grid {
     return string;
   }
 
-  static from(gfx, { ignoreBlanks = true } = {}) {
-    const grid = new this();
+  static from(gfx, { ignoreBlanks = true, pointClass } = {}) {
+    const grid = new this(pointClass);
     const lines = gfx.split('\n');
     lines.forEach((line, y) => {
       line.split('').forEach((value, x) => {
