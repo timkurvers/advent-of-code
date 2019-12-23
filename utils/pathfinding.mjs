@@ -1,34 +1,28 @@
 /* eslint-disable import/prefer-default-export */
 
-// See: https://en.wikipedia.org/wiki/A*_search_algorithm#Pseudocode
-// And: https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm#Pseudocode
-export const astar = (start, goal, { neighborsFor, cost = () => 1 }) => {
-  // For each node, which node it can most efficiently be reached from.
-  // If a node can be reached from many nodes, cameFrom will eventually contain the
-  // most efficient previous step.
+import { PriorityQueue } from './data-structures';
+
+// See: https://www.redblobgames.com/pathfinding/a-star/introduction.html
+// Also: https://en.wikipedia.org/wiki/A*_search_algorithm#Pseudocode
+export const astar = (start, goal, {
+  cost = () => 1,
+  heuristic = () => 0,
+  neighborsFor,
+}) => {
+  const frontier = new PriorityQueue();
+  frontier.put(start, 0);
+
   const cameFrom = new Map();
+  const costSoFar = new Map();
+  cameFrom.set(start, null);
+  costSoFar.set(start, 0);
 
-  // For each node, the cost of getting from the start node to that node.
-  const score = new Map();
-
-  // The set of nodes already evaluated
-  const closedSet = new Set();
-
-  // The set of currently discovered nodes that are not evaluated yet.
-  // Initially, only the start node is known.
-  const openSet = new Set([start]);
-
-  // The cost of going from start to start is zero.
-  score.set(start, 0);
-
-  while (openSet.size) {
-    const current = Array.from(openSet).reduce((found, next) => (
-      score.get(next) < score.get(found) ? next : found
-    ));
+  while (!frontier.isEmpty) {
+    const current = frontier.get();
 
     if (current === goal) {
       const path = [];
-      let step = goal;
+      let step = current;
       do {
         path.push(step);
         step = cameFrom.get(step);
@@ -36,31 +30,18 @@ export const astar = (start, goal, { neighborsFor, cost = () => 1 }) => {
 
       return {
         path: path.reverse(),
-        score: score.get(goal),
+        score: costSoFar.get(current),
       };
     }
 
-    openSet.delete(current);
-    closedSet.add(current);
-
     for (const neighbor of neighborsFor(current)) {
-      if (closedSet.has(neighbor)) {
-        continue;
+      const newCost = costSoFar.get(current) + cost(current, neighbor);
+      if (!costSoFar.has(neighbor) || newCost < costSoFar.get(neighbor)) {
+        costSoFar.set(neighbor, newCost);
+        const priority = newCost + heuristic(goal, neighbor);
+        frontier.put(neighbor, priority);
+        cameFrom.set(neighbor, current);
       }
-
-      // The distance from start to a neighbor
-      const scoreTentative = score.get(current) + cost(current, neighbor);
-
-      // Discover a new node
-      if (!openSet.has(neighbor)) {
-        openSet.add(neighbor);
-      } else if (scoreTentative >= score.get(neighbor)) {
-        continue;
-      }
-
-      // Best path until now
-      cameFrom.set(neighbor, current);
-      score.set(neighbor, scoreTentative);
     }
   }
 
