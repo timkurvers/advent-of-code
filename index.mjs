@@ -1,5 +1,3 @@
-#!/usr/bin/env node --experimental-modules --es-module-specifier-resolution=node --no-warnings
-
 /* eslint-disable no-loop-func */
 
 import { Challenge } from './utils';
