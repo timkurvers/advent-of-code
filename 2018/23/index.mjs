@@ -8,15 +8,15 @@ export const partOne = solution((input) => {
   const strongest = nanobots.reduce((nanobot, next) => (
     nanobot.radius > next.radius ? nanobot : next
   ));
-  return nanobots.filter(nanobot => strongest.inRange(nanobot)).length;
+  return nanobots.filter((nanobot) => strongest.inRange(nanobot)).length;
 });
 
 export const partTwo = solution((input) => {
   const nanobots = Nanobot.from(input);
 
-  const xs = nanobots.map(nanobot => nanobot.x);
-  const ys = nanobots.map(nanobot => nanobot.y);
-  const zs = nanobots.map(nanobot => nanobot.z);
+  const xs = nanobots.map((nanobot) => nanobot.x);
+  const ys = nanobots.map((nanobot) => nanobot.y);
+  const zs = nanobots.map((nanobot) => nanobot.z);
 
   let minX = Math.min(...xs);
   let maxX = Math.max(...xs);
@@ -42,7 +42,7 @@ export const partTwo = solution((input) => {
       for (let y = minY; y <= maxY; y += divisor) {
         for (let x = minX; x <= maxX; x += divisor) {
           const point = new Nanobot(x, y, z);
-          const count = nanobots.filter(nanobot => nanobot.inRange(point)).length;
+          const count = nanobots.filter((nanobot) => nanobot.inRange(point)).length;
 
           if (count < max) {
             continue;

@@ -1,8 +1,8 @@
 import { solution } from '../../utils';
 
-const parse = input => input.split(/,?\s+/).map(Number);
+const parse = (input) => input.split(/,?\s+/).map(Number);
 
-export const partOne = solution(input => (
+export const partOne = solution((input) => (
   parse(input).reduce((sum, next) => sum + next, 0)
 ));
 

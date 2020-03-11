@@ -7,8 +7,8 @@ const parse = (input) => {
 
 const ADJACENT_DIGITS_MATCHER = /(\d)\1+/g;
 
-const isStrictlyDouble = str => str.length === 2;
-const isDouble = str => str.length >= 2;
+const isStrictlyDouble = (str) => str.length === 2;
+const isDouble = (str) => str.length >= 2;
 
 const isValid = (password, { adjacentPredicate = isDouble } = {}) => {
   const { length } = password;
@@ -31,7 +31,7 @@ const isValid = (password, { adjacentPredicate = isDouble } = {}) => {
   return true;
 };
 
-const isStrictlyValid = password => (
+const isStrictlyValid = (password) => (
   isValid(password, { adjacentPredicate: isStrictlyDouble })
 );
 

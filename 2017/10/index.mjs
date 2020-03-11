@@ -14,6 +14,6 @@ export const partOne = solution((input, { size = undefined }) => {
   return root.value * root.next.value;
 });
 
-export const partTwo = solution(input => (
+export const partTwo = solution((input) => (
   hexknothash(input)
 ));

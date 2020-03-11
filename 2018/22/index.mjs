@@ -5,9 +5,9 @@ import { Tool } from './Region/WithTool';
 
 export const partOne = solution((input) => {
   const cave = new Cave(input);
-  return sum(cave.regions.filter(region => (
+  return sum(cave.regions.filter((region) => (
     region.x <= cave.targetX && region.y <= cave.targetY
-  )).map(region => region.riskLevel));
+  )).map((region) => region.riskLevel));
 });
 
 export const partTwo = solution((input) => {
@@ -16,7 +16,7 @@ export const partTwo = solution((input) => {
     cave.mouth.withTool(Tool.TORCH),
     cave.target.withTool(Tool.TORCH),
     {
-      neighborsFor: current => current.options,
+      neighborsFor: (current) => current.options,
       cost: (current, neighbor) => current.costTowards(neighbor),
     },
   );

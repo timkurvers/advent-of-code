@@ -2,7 +2,7 @@ import {
   flatMap, identity, isNumber, isPrimitive, solution, sum,
 } from '../../utils';
 
-const parse = input => JSON.parse(input);
+const parse = (input) => JSON.parse(input);
 
 const collect = (data, filter = identity) => {
   if (isNumber(data)) {
@@ -14,14 +14,14 @@ const collect = (data, filter = identity) => {
   }
 
   if (data instanceof Array) {
-    return flatMap(data, value => collect(value, filter));
+    return flatMap(data, (value) => collect(value, filter));
   }
 
   const values = Object.values(data);
   if (!filter(values)) {
     return [];
   }
-  return flatMap(values, value => collect(value, filter));
+  return flatMap(values, (value) => collect(value, filter));
 };
 
 export const partOne = solution((input) => {
@@ -31,5 +31,5 @@ export const partOne = solution((input) => {
 
 export const partTwo = solution((input) => {
   const data = parse(input);
-  return sum(collect(data, values => !values.includes('red')));
+  return sum(collect(data, (values) => !values.includes('red')));
 });

@@ -40,7 +40,7 @@ const step = (current, notes) => {
   return next;
 };
 
-const compact = generation => generation.replace(/^\.+|\.+$/g, '');
+const compact = (generation) => generation.replace(/^\.+|\.+$/g, '');
 
 const totalScoreFor = (generation, pad) => (
   generation.split('').reduce((total, next, index) => {

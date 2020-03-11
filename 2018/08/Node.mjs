@@ -17,7 +17,7 @@ class Node {
       return this.metadataSum;
     }
 
-    return sum(this.metadata.map(ref => (
+    return sum(this.metadata.map((ref) => (
       this.children[ref - 1] ? this.children[ref - 1].value : 0
     )));
   }

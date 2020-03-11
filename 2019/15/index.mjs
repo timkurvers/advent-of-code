@@ -92,7 +92,7 @@ const build = async (input) => {
     start,
   });
 
-  const goal = grid.find(point => point && point.value === Type.OXYGEN);
+  const goal = grid.find((point) => point && point.value === Type.OXYGEN);
 
   return { grid, goal, start };
 };
@@ -100,7 +100,7 @@ const build = async (input) => {
 export const partOne = solution(async (input) => {
   const { start, goal } = await build(input);
   const result = astar(start, goal, {
-    neighborsFor: point => point.adjacentNeighbors.filter(neighbor => (
+    neighborsFor: (point) => point.adjacentNeighbors.filter((neighbor) => (
       neighbor.value !== Type.WALL
     )),
   });
@@ -109,7 +109,7 @@ export const partOne = solution(async (input) => {
 
 export const partTwo = solution(async (input, { gridFromInput }) => {
   const grid = gridFromInput ? Grid.from(input) : (await build(input)).grid;
-  const start = grid.find(point => point && point.value === Type.OXYGEN);
+  const start = grid.find((point) => point && point.value === Type.OXYGEN);
 
   const remaining = new Set([start]);
 
@@ -120,7 +120,7 @@ export const partTwo = solution(async (input, { gridFromInput }) => {
       grid.set(point.x, point.y, Type.OXYGEN);
       remaining.delete(point);
 
-      const accessible = point.adjacentNeighbors.filter(neighbor => (
+      const accessible = point.adjacentNeighbors.filter((neighbor) => (
         neighbor.value === Type.EMPTY
       ));
 

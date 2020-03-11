@@ -2,7 +2,7 @@
 
 import { solution } from '../../utils';
 
-const parse = input => input.split('\n').reduce((firewall, line) => {
+const parse = (input) => input.split('\n').reduce((firewall, line) => {
   const [depth, range] = line.split(': ').map(Number);
   firewall[depth] = { depth, range };
   return firewall;

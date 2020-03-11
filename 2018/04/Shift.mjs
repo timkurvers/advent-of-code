@@ -4,7 +4,7 @@ class Shift {
   }
 
   get summary() {
-    return this.events.map(event => event.label).join('\n');
+    return this.events.map((event) => event.label).join('\n');
   }
 
   get minutesAsleep() {
@@ -31,7 +31,7 @@ class Shift {
   }
 
   get visualMidnightHourState() {
-    return this.midnightHourState.map(s => (s ? '#' : '.')).join('');
+    return this.midnightHourState.map((s) => (s ? '#' : '.')).join('');
   }
 }
 

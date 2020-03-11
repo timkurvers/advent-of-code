@@ -13,13 +13,13 @@ class Polymer {
 
   get uniqueUnits() {
     const letters = new Set();
-    this.units.forEach(unit => letters.add(unit.toLowerCase()));
+    this.units.forEach((unit) => letters.add(unit.toLowerCase()));
     return Array.from(letters).sort();
   }
 
   without(exclude) {
     return new this.constructor(
-      this.units.filter(unit => !match(unit, exclude)),
+      this.units.filter((unit) => !match(unit, exclude)),
     );
   }
 

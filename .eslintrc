@@ -1,7 +1,8 @@
 {
-  "extends": "timkurvers",
+  "extends": "@timkurvers",
   "rules": {
-    "newline-per-chained-call": "off",
+    "import/no-cycle": "off",
+    "max-classes-per-file": "off",
     "no-await-in-loop": "off",
     "no-bitwise": "off",
     "no-console": "off",

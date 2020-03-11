@@ -43,7 +43,7 @@ class Map {
   }
 
   death(deceased) {
-    this.units = this.units.filter(unit => unit !== deceased);
+    this.units = this.units.filter((unit) => unit !== deceased);
     this.graveyard.push(deceased);
   }
 
@@ -64,7 +64,7 @@ class Map {
   }
 
   get visual() {
-    const overview = this.grid.map(row => (
+    const overview = this.grid.map((row) => (
       row.map(({ entity }) => {
         if (!entity) return ' ';
         if (entity instanceof Wall) return '#';

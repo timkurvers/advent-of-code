@@ -2,9 +2,9 @@
 
 export const TAU = 2 * Math.PI;
 
-export const sum = array => array.reduce((total, next) => total + next, 0);
+export const sum = (array) => array.reduce((total, next) => total + next, 0);
 
-export const maxIndex = array => array.reduce((current, value, index) => (
+export const maxIndex = (array) => array.reduce((current, value, index) => (
   value > array[current] ? index : current
 ), 0);
 
@@ -79,6 +79,6 @@ export const gcd2 = (a, b) => {
   }
   return gcd2(b, a % b);
 };
-export const lcm2 = (a, b) => a * b / gcd2(a, b);
-export const gcd = array => array.reduce(gcd2);
-export const lcm = array => array.reduce(lcm2);
+export const lcm2 = (a, b) => (a * b) / gcd2(a, b);
+export const gcd = (array) => array.reduce(gcd2);
+export const lcm = (array) => array.reduce(lcm2);

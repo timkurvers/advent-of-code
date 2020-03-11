@@ -4,7 +4,7 @@ import Maze, { Type } from './Maze';
 
 const traverse = (start, goal) => (
   astar(start, goal, {
-    neighborsFor: point => point.adjacentNeighbors.filter(neighbor => (
+    neighborsFor: (point) => point.adjacentNeighbors.filter((neighbor) => (
       neighbor.value === Type.OPEN_SPACE
     )),
   })

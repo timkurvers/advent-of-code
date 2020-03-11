@@ -20,10 +20,10 @@ const process = (input, strangerThings = false) => {
   }
 };
 
-export const partOne = solution(input => (
+export const partOne = solution((input) => (
   process(input).steps
 ));
 
-export const partTwo = solution(input => (
+export const partTwo = solution((input) => (
   process(input, true).steps
 ));

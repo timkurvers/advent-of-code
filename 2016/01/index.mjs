@@ -12,8 +12,8 @@ const rotations = {
   L: Rotation.TURN_LEFT,
 };
 
-const parse = input => (
-  input.split(', ').map(instruction => ({
+const parse = (input) => (
+  input.split(', ').map((instruction) => ({
     rotation: rotations[instruction[0]],
     blocks: +instruction.slice(1),
   }))

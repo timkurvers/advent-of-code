@@ -1,6 +1,6 @@
 import { solution, sum } from '../../utils';
 
-const parse = input => input.split('\n').map(Number);
+const parse = (input) => input.split('\n').map(Number);
 
 const fuelFor = (mass, { recursive } = {}) => {
   let fuel = Math.max(0, Math.floor(mass / 3) - 2);
@@ -12,10 +12,10 @@ const fuelFor = (mass, { recursive } = {}) => {
 
 export const partOne = solution((input) => {
   const modules = parse(input);
-  return sum(modules.map(mass => fuelFor(mass)));
+  return sum(modules.map((mass) => fuelFor(mass)));
 });
 
 export const partTwo = solution((input) => {
   const modules = parse(input);
-  return sum(modules.map(mass => fuelFor(mass, { recursive: true })));
+  return sum(modules.map((mass) => fuelFor(mass, { recursive: true })));
 });

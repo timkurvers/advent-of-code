@@ -108,7 +108,7 @@ class Challenge {
       onlyDirectories: true,
     });
     ids.sort();
-    return ids.map(id => new this(id));
+    return ids.map((id) => new this(id));
   }
 }
 

@@ -2,7 +2,7 @@ import { Grid, solution, wrap } from '../../utils';
 
 const INSTRUCTION_MATCHER = /(rect|row|column).+?(\d+).+?(\d+)/;
 
-const parse = input => input.split('\n').map((line) => {
+const parse = (input) => input.split('\n').map((line) => {
   const [, opcode, a, b] = line.match(INSTRUCTION_MATCHER);
   return { opcode, a: +a, b: +b };
 });
@@ -39,12 +39,12 @@ const swipe = (instructions) => {
 
 export const partOne = solution((input) => {
   const grid = swipe(parse(input));
-  return grid.filter(point => point.value).length;
+  return grid.filter((point) => point.value).length;
 });
 
 export const partTwo = solution((input) => {
   const grid = swipe(parse(input));
-  const output = grid.toString(point => (point && point.value ? '#' : ' '));
+  const output = grid.toString((point) => (point && point.value ? '#' : ' '));
   console.log();
   console.log(output);
   return '<see visually above>';

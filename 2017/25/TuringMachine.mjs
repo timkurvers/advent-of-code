@@ -14,7 +14,7 @@ class TuringMachine {
   }
 
   get checksum() {
-    return Array.from(this.tape.values()).filter(val => val === 1).length;
+    return Array.from(this.tape.values()).filter((val) => val === 1).length;
   }
 
   get state() {

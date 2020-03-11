@@ -13,7 +13,7 @@ class Guard {
   }
 
   get mostAsleepPerMinute() {
-    const states = this.shifts.map(shift => shift.midnightHourState);
+    const states = this.shifts.map((shift) => shift.midnightHourState);
 
     let minute = 0;
     let max = -Infinity;

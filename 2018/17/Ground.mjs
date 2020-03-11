@@ -20,10 +20,10 @@ class Ground {
       };
     });
 
-    this.minX = Math.min(...this.areas.map(area => area.x1)) - 1;
-    this.maxX = Math.max(...this.areas.map(area => area.x2)) + 1;
-    this.minY = Math.min(...this.areas.map(area => area.y1));
-    this.maxY = Math.max(...this.areas.map(area => area.y2));
+    this.minX = Math.min(...this.areas.map((area) => area.x1)) - 1;
+    this.maxX = Math.max(...this.areas.map((area) => area.x2)) + 1;
+    this.minY = Math.min(...this.areas.map((area) => area.y1));
+    this.maxY = Math.max(...this.areas.map((area) => area.y2));
 
     this.tiles = [];
     this.grid = new Grid(Tile);
@@ -54,13 +54,13 @@ class Ground {
   }
 
   get eligibleTiles() {
-    return this.tiles.filter(tile => (
+    return this.tiles.filter((tile) => (
       tile.y >= this.minY && tile.y <= this.maxY
     ));
   }
 
   get visual() {
-    const overview = this.grid.map(row => (
+    const overview = this.grid.map((row) => (
       row.map((tile) => {
         const { type } = tile;
         let char = ' ';

@@ -17,7 +17,7 @@ const scan = async (input) => {
 export const partOne = solution(async (input, { gridFromInput }) => {
   const grid = gridFromInput ? Grid.from(input) : await scan(input);
 
-  const intersections = grid.filter(point => (
+  const intersections = grid.filter((point) => (
     point.value === Type.SCAFFOLD
     && point.down && point.down.value === Type.SCAFFOLD
     && point.left && point.left.value === Type.SCAFFOLD
@@ -25,5 +25,5 @@ export const partOne = solution(async (input, { gridFromInput }) => {
     && point.up && point.up.value === Type.SCAFFOLD
   ));
 
-  return sum(intersections.map(point => point.x * point.y));
+  return sum(intersections.map((point) => point.x * point.y));
 });

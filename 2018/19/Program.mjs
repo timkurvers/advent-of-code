@@ -13,7 +13,7 @@ class Program {
     this.ipbinding = +lines.shift().match(/\d/)[0];
     this.instructions = lines.map((line) => {
       const opname = line.slice(0, 4);
-      const operation = operations.find(candidate => candidate.name === opname);
+      const operation = operations.find((candidate) => candidate.name === opname);
       const [inputA, inputB, outputC] = line.match(/\d+/g).map(Number);
       return {
         opname, operation, inputA, inputB, outputC,
@@ -41,7 +41,7 @@ class Program {
   log(operation, preA, preB, inputA, inputB, outputC) {
     const { data, ip, ipbinding } = this;
 
-    const reg = nr => (
+    const reg = (nr) => (
       nr === ipbinding ? colors.yellow('[ip]') : colors.gray(`[r${nr}]`)
     );
 

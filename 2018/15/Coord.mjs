@@ -21,7 +21,7 @@ class Coord {
   }
 
   get unoccupiedNeighbors() {
-    return this.neighbors.filter(coord => !coord.entity);
+    return this.neighbors.filter((coord) => !coord.entity);
   }
 
   distanceTo(other) {

@@ -32,8 +32,8 @@ class Cave {
   }
 
   get visual() {
-    return this.grid.map(row => (
-      row.map(region => region.visual).join('')
+    return this.grid.map((row) => (
+      row.map((region) => region.visual).join('')
     )).join('\n');
   }
 }

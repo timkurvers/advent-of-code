@@ -20,7 +20,7 @@ class Step {
 
   get eligible() {
     return !this.started
-           && this.prerequisites.every(step => step.completed);
+           && this.prerequisites.every((step) => step.completed);
   }
 
   get started() {

@@ -65,8 +65,8 @@ class Facility {
       }
     }
 
-    const xs = coords.map(coord => coord.x);
-    const ys = coords.map(coord => coord.y);
+    const xs = coords.map((coord) => coord.x);
+    const ys = coords.map((coord) => coord.y);
 
     const minX = Math.min(...xs);
     const minY = Math.min(...ys);
@@ -92,14 +92,14 @@ class Facility {
   }
 
   get rooms() {
-    return flatMap(this.grid, row => (
-      row.filter(coord => coord.type === Type.ROOM)
+    return flatMap(this.grid, (row) => (
+      row.filter((coord) => coord.type === Type.ROOM)
     ));
   }
 
   get visual() {
-    const overview = this.grid.map(row => (
-      row.map(coord => coord.visual).join('')
+    const overview = this.grid.map((row) => (
+      row.map((coord) => coord.visual).join('')
     )).join('\n');
     return overview;
   }

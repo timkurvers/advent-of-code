@@ -29,7 +29,7 @@ const play = (count) => {
   return current.value;
 };
 
-export const partOne = solution(input => (
+export const partOne = solution((input) => (
   play(+input).id
 ));
 

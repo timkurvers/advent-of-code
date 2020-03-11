@@ -1,6 +1,6 @@
 import { solution } from '../../utils';
 
-const parse = input => input.split(',');
+const parse = (input) => input.split(',');
 
 const trek = (path) => {
   // Use cube coordinates

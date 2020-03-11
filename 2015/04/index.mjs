@@ -11,10 +11,10 @@ const mine = (secret, { startPattern } = {}) => {
   }
 };
 
-export const partOne = solution.inefficient(input => (
+export const partOne = solution.inefficient((input) => (
   mine(input, { startPattern: '00000' })
 ));
 
-export const partTwo = solution.inefficient(input => (
+export const partTwo = solution.inefficient((input) => (
   mine(input, { startPattern: '000000' })
 ));

@@ -7,13 +7,13 @@ const directions = {
   R: 'right',
 };
 
-const parse = input => (
-  input.split('\n').map(row => row.split('').map(dir => directions[dir]))
+const parse = (input) => (
+  input.split('\n').map((row) => row.split('').map((dir) => directions[dir]))
 );
 
 const crack = (keypad, instructions) => {
   let code = '';
-  let current = keypad.find(point => point.value === '5');
+  let current = keypad.find((point) => point.value === '5');
   for (const instruction of instructions) {
     for (const step of instruction) {
       current = current[step] || current;

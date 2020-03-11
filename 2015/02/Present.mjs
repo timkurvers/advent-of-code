@@ -40,7 +40,7 @@ class Present {
   }
 
   static from(input) {
-    return input.split('\n').map(line => (
+    return input.split('\n').map((line) => (
       new this(...line.split('x').map(Number))
     ));
   }

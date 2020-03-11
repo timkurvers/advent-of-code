@@ -2,7 +2,7 @@ import { CircularLinkedList, range as createBaseRange } from '../../utils';
 
 export const parse = (source, { asASCII = false } = {}) => {
   if (asASCII) {
-    return source.split('').map(char => char.charCodeAt(0));
+    return source.split('').map((char) => char.charCodeAt(0));
   }
   return source.split(',').map(Number);
 };
@@ -40,8 +40,8 @@ const densify = (sparse) => {
   return dense;
 };
 
-const hexhash = dense => (
-  dense.map(number => number.toString(16).padStart(2, '0')).join('')
+const hexhash = (dense) => (
+  dense.map((number) => number.toString(16).padStart(2, '0')).join('')
 );
 
 export const knothash = (source, { range } = {}) => {

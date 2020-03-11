@@ -10,5 +10,5 @@ export const partOne = solution((input) => {
 
 export const partTwo = solution((input) => {
   const facility = new Facility(input);
-  return facility.rooms.filter(room => room.doors >= 1000).length;
+  return facility.rooms.filter((room) => room.doors >= 1000).length;
 });

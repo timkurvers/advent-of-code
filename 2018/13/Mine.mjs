@@ -35,7 +35,7 @@ class Mine {
   }
 
   cartAt(x, y) {
-    return this.carts.find(cart => cart.x === x && cart.y === y);
+    return this.carts.find((cart) => cart.x === x && cart.y === y);
   }
 
   parse(gfx) {
@@ -59,7 +59,7 @@ class Mine {
         cart.next(this);
       } catch (crash) {
         if (this.cleanUpCrashes) {
-          this.carts = this.carts.filter(c => (
+          this.carts = this.carts.filter((c) => (
             c !== crash.cart && c !== crash.otherCart
           ));
         } else {

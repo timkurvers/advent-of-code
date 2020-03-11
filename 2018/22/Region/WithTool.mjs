@@ -39,7 +39,7 @@ class RegionWithTool {
     const options = [];
 
     // Add gear changes to the list of options
-    options.push(...this.region.withTools.filter(rwt => rwt !== this));
+    options.push(...this.region.withTools.filter((rwt) => rwt !== this));
 
     // Add neighbors with current tool to the list of options
     this.region.neighbors.forEach((neighbor) => {

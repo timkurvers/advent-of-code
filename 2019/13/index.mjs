@@ -25,7 +25,7 @@ export const partOne = solution(async (input) => {
     const type = outputs.shift();
     grid.set(x, y, type);
   }
-  return grid.filter(point => point && point.value === Type.BLOCK).length;
+  return grid.filter((point) => point && point.value === Type.BLOCK).length;
 });
 
 export const partTwo = solution(async (input) => {

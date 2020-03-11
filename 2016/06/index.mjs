@@ -1,6 +1,6 @@
 import { solution } from '../../utils';
 
-const parse = input => input.split('\n');
+const parse = (input) => input.split('\n');
 
 const recover = (words, { frequency } = {}) => {
   let result = '';
@@ -21,10 +21,10 @@ const recover = (words, { frequency } = {}) => {
   return result;
 };
 
-export const partOne = solution(input => (
+export const partOne = solution((input) => (
   recover(parse(input), { frequency: 'most' })
 ));
 
-export const partTwo = solution(input => (
+export const partTwo = solution((input) => (
   recover(parse(input), { frequency: 'least' })
 ));

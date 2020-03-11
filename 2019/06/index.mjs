@@ -34,7 +34,7 @@ export const partTwo = solution((input) => {
   const { YOU, SAN } = build(input);
 
   const pathing = astar(YOU, SAN, {
-    neighborsFor: current => current.connections,
+    neighborsFor: (current) => current.connections,
   });
 
   // Do not count YOU and SAN themselves as orbital transfers

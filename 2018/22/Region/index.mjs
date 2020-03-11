@@ -75,7 +75,7 @@ class Region {
   }
 
   withTool(tool) {
-    return this.withTools.find(rwt => rwt.tool === tool);
+    return this.withTools.find((rwt) => rwt.tool === tool);
   }
 }
 

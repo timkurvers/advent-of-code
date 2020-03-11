@@ -64,7 +64,7 @@ const dance = (programs, moves, iterations = 1) => {
       const permutations = tracking.size;
       const offset = iterations % permutations;
 
-      const found = Array.from(tracking.values()).find(seen => (
+      const found = Array.from(tracking.values()).find((seen) => (
         seen.offset === offset
       ));
       return found.programs;
@@ -74,7 +74,7 @@ const dance = (programs, moves, iterations = 1) => {
   return programs;
 };
 
-const participants = lineup => lineup.split('');
+const participants = (lineup) => lineup.split('');
 
 export const partOne = solution((input, { lineup = 'abcdefghijklmnop' }) => {
   const programs = participants(lineup);

@@ -1,6 +1,6 @@
 import { flatMap, solution } from '../../utils';
 
-const parse = input => (
+const parse = (input) => (
   input.split('\n').map((address) => {
     const split = address.split(/\[|\]/);
     const hypernets = split.filter((_, index) => index % 2 === 1);
@@ -19,7 +19,7 @@ const hasABBA = (word) => {
   return false;
 };
 
-const noABBA = word => !hasABBA(word);
+const noABBA = (word) => !hasABBA(word);
 
 const supportsTLS = (address) => {
   const { hypernets, words } = address;
@@ -42,14 +42,14 @@ const supportsSSL = (address) => {
   const abas = flatMap(words, findABAs);
   return abas.some((aba) => {
     const bab = `${aba[1]}${aba[0]}${aba[1]}`;
-    return hypernets.some(word => word.includes(bab));
+    return hypernets.some((word) => word.includes(bab));
   });
 };
 
-export const partOne = solution(input => (
+export const partOne = solution((input) => (
   parse(input).filter(supportsTLS).length
 ));
 
-export const partTwo = solution(input => (
+export const partTwo = solution((input) => (
   parse(input).filter(supportsSSL).length
 ));

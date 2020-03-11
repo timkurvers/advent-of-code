@@ -52,12 +52,12 @@ class Reindeer {
         diff = b.initiative - a.initiative;
       }
       return diff;
-    }).forEach(group => group.prepare());
+    }).forEach((group) => group.prepare());
 
     // Attack phase (sorted by initiative)
     activeGroups.sort((a, b) => (
       b.initiative - a.initiative
-    )).forEach(group => group.attack());
+    )).forEach((group) => group.attack());
 
     // Army defeat clause
     if (this.immuneSystem.defeated) {

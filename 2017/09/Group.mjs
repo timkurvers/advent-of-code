@@ -7,7 +7,7 @@ class Group {
   }
 
   get score() {
-    return this.level + sum(this.children.map(child => child.score));
+    return this.level + sum(this.children.map((child) => child.score));
   }
 }
 

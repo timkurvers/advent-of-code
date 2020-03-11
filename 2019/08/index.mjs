@@ -25,7 +25,7 @@ const layerify = (input, { width, height } = {}) => {
 
 export const partOne = solution((input, { width = 25, height = 6 }) => {
   const layers = layerify(input, { width, height });
-  const candidates = layers.filter(layer => layer.zeroes > 0);
+  const candidates = layers.filter((layer) => layer.zeroes > 0);
   const layer = reduceMinBy(candidates, 'zeroes');
   return count(layer.source, '1') * count(layer.source, '2');
 });

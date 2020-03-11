@@ -6,10 +6,10 @@ export const cast = (value) => {
   return value;
 };
 
-export const identity = value => value;
+export const identity = (value) => value;
 
-export const isNumber = value => typeof value === 'number';
+export const isNumber = (value) => typeof value === 'number';
 
-export const isPrimitive = value => (
+export const isPrimitive = (value) => (
   typeof value !== 'object' && typeof value !== 'function'
 ) || value === null;

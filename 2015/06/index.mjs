@@ -4,7 +4,7 @@ import { Grid, solution, sum } from '../../utils';
 
 const INSTRUCTION_MATCHER = /(on|off|toggle) (\d+),(\d+) through (\d+),(\d+)/;
 
-const parse = input => input.split('\n').map((line) => {
+const parse = (input) => input.split('\n').map((line) => {
   const [, op, fromX, fromY, toX, toY] = line.match(INSTRUCTION_MATCHER);
   return { op, fromX: +fromX, fromY: +fromY, toX: +toX, toY: +toY };
 });
@@ -35,15 +35,15 @@ const configure = (instructions, { version = '1' } = {}) => {
     }
   }
 
-  const brightness = sum(lights.map(point => point && point.value));
-  const on = lights.filter(point => point && point.value);
+  const brightness = sum(lights.map((point) => point && point.value));
+  const on = lights.filter((point) => point && point.value);
   return { lights, brightness, on };
 };
 
-export const partOne = solution.inefficient(input => (
+export const partOne = solution.inefficient((input) => (
   configure(parse(input), { version: 1 }).on.length
 ));
 
-export const partTwo = solution.inefficient(input => (
+export const partTwo = solution.inefficient((input) => (
   configure(parse(input), { version: 2 }).brightness
 ));

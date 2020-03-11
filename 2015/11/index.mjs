@@ -3,8 +3,8 @@ import { solution } from '../../utils';
 const A = 'a'.charCodeAt(0);
 const Z = 'z'.charCodeAt(0);
 
-const parse = input => input.split('').map(char => char.charCodeAt(0));
-const reconstruct = chars => String.fromCharCode(...chars);
+const parse = (input) => input.split('').map((char) => char.charCodeAt(0));
+const reconstruct = (chars) => String.fromCharCode(...chars);
 
 const ILLEGAL_CHARACTERS = parse('ilo');
 
@@ -57,10 +57,10 @@ const next = (start) => {
   return current;
 };
 
-export const partOne = solution(input => (
+export const partOne = solution((input) => (
   reconstruct(next(parse(input)))
 ));
 
-export const partTwo = solution(input => (
+export const partTwo = solution((input) => (
   reconstruct(next(next(parse(input))))
 ));

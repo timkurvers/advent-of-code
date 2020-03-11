@@ -25,10 +25,10 @@ const crack = (door, { positional = false } = {}) => {
   return password.join('');
 };
 
-export const partOne = solution.inefficient(input => (
+export const partOne = solution.inefficient((input) => (
   crack(input)
 ));
 
-export const partTwo = solution.inefficient(input => (
+export const partTwo = solution.inefficient((input) => (
   crack(input, { positional: true })
 ));

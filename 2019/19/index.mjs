@@ -21,5 +21,5 @@ export const partOne = solution(async (input) => {
     }
   }
 
-  return grid.filter(point => point.value === Type.BEAM).length;
+  return grid.filter((point) => point.value === Type.BEAM).length;
 });

@@ -24,7 +24,7 @@ class Maze extends Grid {
 
     const base = x * x + 3 * x + 2 * x * y + y + y * y;
     const sum = base + this.seed;
-    const ones = sum.toString(2).split('').filter(char => char === '1');
+    const ones = sum.toString(2).split('').filter((char) => char === '1');
     const even = ones.length % 2 === 0;
     const value = even ? Type.OPEN_SPACE : Type.WALL;
 

@@ -38,7 +38,7 @@ class Planet {
 
   get totalOrbits() {
     return this.orbits + sum(
-      Array.from(this.children).map(child => child.totalOrbits),
+      Array.from(this.children).map((child) => child.totalOrbits),
     );
   }
 }

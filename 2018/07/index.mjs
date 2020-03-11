@@ -6,7 +6,7 @@ import Step from './Step';
 import Worker from './Worker';
 
 const solve = (steps, { instantCompletion, workerCount = 1, fixedDuration = 0 }) => {
-  const workers = Array.from(new Array(workerCount).keys(), nr => (
+  const workers = Array.from(new Array(workerCount).keys(), (nr) => (
     new Worker(nr)
   ));
 
@@ -17,7 +17,7 @@ const solve = (steps, { instantCompletion, workerCount = 1, fixedDuration = 0 })
   let seconds = 0;
   while (true) {
     // Remaining steps (not yet completed)
-    remaining = steps.filter(step => !step.completed);
+    remaining = steps.filter((step) => !step.completed);
 
     // Complete and filter out steps that have run their duration
     remaining = remaining.filter((step) => {
@@ -38,8 +38,8 @@ const solve = (steps, { instantCompletion, workerCount = 1, fixedDuration = 0 })
     }
 
     let worker;
-    while (worker = workers.find(w => w.idle)) {
-      const index = remaining.findIndex(step => step.eligible);
+    while (worker = workers.find((w) => w.idle)) {
+      const index = remaining.findIndex((step) => step.eligible);
       const step = remaining[index];
 
       // No eligible steps at the moment, try next iteration
@@ -63,7 +63,7 @@ export const partOne = solution((input) => {
   const steps = Step.from(input);
   return solve(steps, {
     instantCompletion: true,
-  }).order.map(step => step.id).join('');
+  }).order.map((step) => step.id).join('');
 });
 
 export const partTwo = solution((input, { workerCount = 5, fixedDuration = 60 }) => {

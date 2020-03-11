@@ -1,6 +1,6 @@
 import { solution } from '../../utils';
 
-const parse = input => input.split('\n');
+const parse = (input) => input.split('\n');
 
 const VOWEL_MATCHER = /[aeiou]/g;
 const DOUBLE_MATCHER = /(\w)\1/g;
@@ -43,10 +43,10 @@ const isActuallyNice = (str) => {
   return true;
 };
 
-export const partOne = solution(input => (
+export const partOne = solution((input) => (
   parse(input).filter(isNice).length
 ));
 
-export const partTwo = solution(input => (
+export const partTwo = solution((input) => (
   parse(input).filter(isActuallyNice).length
 ));

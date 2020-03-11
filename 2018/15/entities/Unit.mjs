@@ -35,13 +35,13 @@ class Unit extends Entity {
   }
 
   get enemiesInRange() {
-    return this.enemies.filter(enemy => (
+    return this.enemies.filter((enemy) => (
       this.coord.distanceTo(enemy.coord) <= 1
     ));
   }
 
   get enemies() {
-    return this.map.units.filter(unit => (
+    return this.map.units.filter((unit) => (
       unit.constructor !== this.constructor
     )).sort((a, b) => a.hp - b.hp);
   }
@@ -69,7 +69,7 @@ class Unit extends Entity {
       const coords = enemy.coord.unoccupiedNeighbors;
       coords.forEach((coord) => {
         const pathing = astar(this.coord, coord, {
-          neighborsFor: current => current.unoccupiedNeighbors,
+          neighborsFor: (current) => current.unoccupiedNeighbors,
           cost: (current, neighbor) => current.distanceTo(neighbor),
         });
         if (!pathing) {

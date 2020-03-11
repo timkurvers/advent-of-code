@@ -9,7 +9,7 @@ class Army {
   }
 
   get activeGroups() {
-    return this.groups.filter(group => group.active);
+    return this.groups.filter((group) => group.active);
   }
 
   get defeated() {
@@ -17,7 +17,7 @@ class Army {
   }
 
   get units() {
-    return sum(this.groups.map(group => group.units));
+    return sum(this.groups.map((group) => group.units));
   }
 }
 

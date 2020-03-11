@@ -35,10 +35,10 @@ const decompress = (str, { recursive } = {}) => {
   return total;
 };
 
-export const partOne = solution(input => (
+export const partOne = solution((input) => (
   decompress(input)
 ));
 
-export const partTwo = solution.inefficient(input => (
+export const partTwo = solution.inefficient((input) => (
   decompress(input, { recursive: true })
 ));

@@ -1,6 +1,6 @@
 {
   "name": "@timkurvers/advent-of-code",
-  "author": "Tim Kurvers @timkurvers",
+  "author": "Tim Kurvers <tim@moonsphere.net>",
   "repository": "github:timkurvers/advent-of-code",
   "license": "MIT",
   "private": true,
@@ -14,11 +14,11 @@
     "globby": "^10.0.1"
   },
   "devDependencies": {
-    "babel-eslint": "^10.0.1",
-    "eslint": "^5.9.0",
-    "eslint-config-airbnb": "^17.1.0",
-    "eslint-config-timkurvers": "^1.1.0",
-    "eslint-plugin-import": "^2.14.0",
+    "@timkurvers/eslint-config": "^2.0.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-plugin-import": "^2.20.1",
     "nodemon": "^1.19.1"
   }
 }

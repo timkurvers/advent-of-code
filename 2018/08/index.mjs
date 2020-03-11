@@ -17,7 +17,7 @@ const build = (input) => {
 
 export const partOne = solution((input) => {
   const { context } = build(input);
-  return sum(context.nodes.map(node => node.metadataSum));
+  return sum(context.nodes.map((node) => node.metadataSum));
 });
 
 export const partTwo = solution((input) => {

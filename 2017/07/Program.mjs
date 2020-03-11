@@ -16,7 +16,7 @@ class Program {
       return 0;
     }
 
-    const totalWeights = children.map(child => child.totalWeight);
+    const totalWeights = children.map((child) => child.totalWeight);
     for (let i = 0; i < length - 1; ++i) {
       const totalWeight = totalWeights[i];
       if (i === totalWeights.lastIndexOf(totalWeight)) {
@@ -50,7 +50,7 @@ class Program {
   }
 
   get totalWeight() {
-    const weights = Array.from(this.children).map(child => child.totalWeight);
+    const weights = Array.from(this.children).map((child) => child.totalWeight);
     return this.weight + sum(weights);
   }
 
@@ -79,7 +79,7 @@ class Program {
     }
 
     const programs = Array.from(cache.values());
-    const root = programs.find(program => !program.parent);
+    const root = programs.find((program) => !program.parent);
     return { programs, root };
   }
 }

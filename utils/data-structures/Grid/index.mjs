@@ -16,7 +16,7 @@ class Grid {
   }
 
   get xs() {
-    return flatMap(Array.from(this.rows.values()), row => (
+    return flatMap(Array.from(this.rows.values()), (row) => (
       Array.from(row.keys())
     ));
   }
@@ -134,7 +134,7 @@ class Grid {
     return row;
   }
 
-  toString(renderer = point => (point ? point.value : ' '), opts = {}) {
+  toString(renderer = (point) => (point ? point.value : ' '), opts = {}) {
     const {
       minY = this.minY,
       maxY = this.maxY,

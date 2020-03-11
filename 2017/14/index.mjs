@@ -9,7 +9,7 @@ const keyToGrid = (key, size = 128) => {
   const grid = new Grid();
   for (let y = 0; y < size; ++y) {
     const hash = knothash(`${key}-${y}`);
-    const bits = flatMap(hash, (byte => (
+    const bits = flatMap(hash, ((byte) => (
       byte.toString(2).padStart(8, '0').split('').map(Number)
     )));
 
@@ -22,7 +22,7 @@ const keyToGrid = (key, size = 128) => {
 
 export const partOne = solution.inefficient((input) => {
   const grid = keyToGrid(input);
-  return grid.filter(point => point.value).length;
+  return grid.filter((point) => point.value).length;
 });
 
 export const partTwo = solution.inefficient((input) => {
@@ -41,7 +41,7 @@ export const partTwo = solution.inefficient((input) => {
       return;
     }
 
-    const candidate = point.adjacentNeighbors.find(neighbor => neighbor.region);
+    const candidate = point.adjacentNeighbors.find((neighbor) => neighbor.region);
     let region = candidate && candidate.region;
     if (!region) {
       region = new Region(grid, regions.size + 1);

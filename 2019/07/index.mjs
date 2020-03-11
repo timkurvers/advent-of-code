@@ -26,14 +26,14 @@ const calculate = async (input, phases, { feedback } = {}) => {
   // Initial input value (always 0) for first program
   first.input(0);
 
-  await Promise.all(programs.map(program => program.run()));
+  await Promise.all(programs.map((program) => program.run()));
   return last.outputs[0];
 };
 
 const simulate = (input, config, options) => {
   const permutations = Array.from(permute(config));
   return Promise.all(
-    permutations.map(phases => calculate(input, phases, options)),
+    permutations.map((phases) => calculate(input, phases, options)),
   );
 };
 

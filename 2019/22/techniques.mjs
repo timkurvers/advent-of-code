@@ -1,4 +1,4 @@
-export const dealIntoNewStack = deck => deck.reverse();
+export const dealIntoNewStack = (deck) => deck.reverse();
 
 export const dealWithIncrement = (increment, deck) => {
   const { length } = deck;

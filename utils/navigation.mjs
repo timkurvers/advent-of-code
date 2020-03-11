@@ -12,8 +12,8 @@ export const Rotation = {
   NONE: 0,
 };
 
-export const dx = orientation => Math.round(Math.cos(orientation));
-export const dy = orientation => Math.round(Math.sin(orientation));
+export const dx = (orientation) => Math.round(Math.cos(orientation));
+export const dy = (orientation) => Math.round(Math.sin(orientation));
 
-export const isHorizontalOrientation = orientation => dx(orientation) !== 0;
-export const isVerticalOrientation = orientation => dy(orientation) !== 0;
+export const isHorizontalOrientation = (orientation) => dx(orientation) !== 0;
+export const isVerticalOrientation = (orientation) => dy(orientation) !== 0;

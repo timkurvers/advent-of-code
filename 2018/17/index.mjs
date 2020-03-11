@@ -12,10 +12,10 @@ const prepare = (input) => {
 
 export const partOne = solution((input) => {
   const ground = prepare(input);
-  return ground.eligibleTiles.filter(tile => tile.isWater).length;
+  return ground.eligibleTiles.filter((tile) => tile.isWater).length;
 });
 
 export const partTwo = solution((input) => {
   const ground = prepare(input);
-  return ground.eligibleTiles.filter(tile => tile.isStillWater).length;
+  return ground.eligibleTiles.filter((tile) => tile.isStillWater).length;
 });

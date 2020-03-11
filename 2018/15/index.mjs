@@ -11,11 +11,11 @@ const simulate = (map) => {
       map.step();
     }
   } catch (e) {
-    return map.round * sum(map.units.map(unit => unit.hp));
+    return map.round * sum(map.units.map((unit) => unit.hp));
   }
 };
 
-export const partOne = solution.inefficient(input => (
+export const partOne = solution.inefficient((input) => (
   simulate(new Map(input))
 ));
 
@@ -28,7 +28,7 @@ export const partTwo = solution.inefficient((input) => {
       }
     });
     const outcome = simulate(map);
-    if (map.graveyard.every(unit => !(unit instanceof Elf))) {
+    if (map.graveyard.every((unit) => !(unit instanceof Elf))) {
       return outcome;
     }
   }

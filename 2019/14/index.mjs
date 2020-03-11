@@ -4,7 +4,7 @@ import { solution, sum } from '../../utils';
 
 const REACTION_MATCHER = /(\d+) (\w+)/g;
 
-const parse = input => input.split('\n').reduce((lookup, line) => {
+const parse = (input) => input.split('\n').reduce((lookup, line) => {
   const matches = Array.from(line.matchAll(REACTION_MATCHER));
   const inputs = matches.map(([, quantity, type]) => ({
     quantity: +quantity,
@@ -36,7 +36,7 @@ const produce = (quantity, type, reactions, reserves = new Map()) => {
       break;
     }
 
-    const subcosts = reaction.inputs.map(input => (
+    const subcosts = reaction.inputs.map((input) => (
       produce(input.quantity, input.type, reactions, reserves)
     ));
 

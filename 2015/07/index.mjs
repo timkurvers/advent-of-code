@@ -4,7 +4,7 @@ import * as operations from './operations';
 
 const INSTRUCTION_MATCHER = /(?:(NOT) )?(.+?)(?: (.+?) (.+?))? -> (.+)/;
 
-const parse = input => input.split('\n').map((line) => {
+const parse = (input) => input.split('\n').map((line) => {
   const [, not, a, opcode, b, wire] = line.match(INSTRUCTION_MATCHER);
   return {
     a: cast(a),
@@ -26,7 +26,7 @@ const build = (instructions) => {
       return cache.get(identifier);
     }
 
-    const instruction = instructions.find(i => i.wire === identifier);
+    const instruction = instructions.find((i) => i.wire === identifier);
     const { a, opcode, b } = instruction;
 
     let value = resolve(a);
@@ -38,7 +38,7 @@ const build = (instructions) => {
   };
 
   const override = (wire, value) => {
-    const instruction = instructions.find(i => i.wire === wire);
+    const instruction = instructions.find((i) => i.wire === wire);
     Object.assign(instruction, {
       a: value,
       opcode: undefined,

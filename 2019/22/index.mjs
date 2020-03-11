@@ -2,7 +2,7 @@ import { range, solution } from '../../utils';
 
 import * as techniques from './techniques';
 
-const parse = input => input.split('\n').map((line) => {
+const parse = (input) => input.split('\n').map((line) => {
   if (line.includes('increment')) {
     const increment = +line.match(/\d+/);
     return techniques.dealWithIncrement.bind(null, increment);

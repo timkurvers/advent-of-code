@@ -7,7 +7,7 @@ import * as operations from './operations';
 const INSTRUCTION_MATCHER = /^(\w+)/;
 const ARGUMENT_MATCHER = /(?<=\s)(left|right|\w)(?=\s|$)/g;
 
-const parse = input => (
+const parse = (input) => (
   input.split('\n').map((line) => {
     const [opcode] = line.match(INSTRUCTION_MATCHER);
     const args = line.match(ARGUMENT_MATCHER);

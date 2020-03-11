@@ -2,7 +2,7 @@
 
 import { maxIndex, solution } from '../../utils';
 
-const parse = input => input.split(/\s+/).map(Number);
+const parse = (input) => input.split(/\s+/).map(Number);
 
 const reallocate = (banks, { maxSeenCount = 1 } = {}) => {
   let cycles = 0;

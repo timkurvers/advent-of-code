@@ -7,7 +7,7 @@ import { Challenge } from './utils';
 const [,, ...args] = process.argv;
 const requested = args.map(Number);
 
-const isYear = nr => nr > 1000;
+const isYear = (nr) => nr > 1000;
 
 (async () => {
   try {
@@ -33,7 +33,7 @@ const isYear = nr => nr > 1000;
         }
 
         // Collect and insert all available days for requested year (if any)
-        const days = challenges.filter(c => c.year === year).map(c => c.day);
+        const days = challenges.filter((c) => c.year === year).map((c) => c.day);
         if (!days.length) {
           throw new Error(`Could not find any days for year ${year}`);
         }
@@ -42,7 +42,7 @@ const isYear = nr => nr > 1000;
       }
 
       // Find challenge for this requested year and day
-      const challenge = challenges.find(c => c.day === nr && c.year === year);
+      const challenge = challenges.find((c) => c.day === nr && c.year === year);
       if (challenge) {
         await challenge.run();
       } else {

@@ -2,7 +2,7 @@
 
 import { solution, sum } from '../../utils';
 
-const parse = input => input.split('').map(Number);
+const parse = (input) => input.split('').map(Number);
 
 const fft = (list, { basePattern, phases }) => {
   for (let phase = 1; phase <= phases; ++phase) {

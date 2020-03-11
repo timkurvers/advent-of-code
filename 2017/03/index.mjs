@@ -7,7 +7,7 @@ const spiral = (until) => {
     const point = grid.set(x, y);
     point.nr = nr;
     point.distance = Math.abs(x) + Math.abs(y);
-    point.value = nr === 1 ? nr : sum(point.neighbors.map(neighbor => neighbor.value));
+    point.value = nr === 1 ? nr : sum(point.neighbors.map((neighbor) => neighbor.value));
     return point;
   };
 
@@ -53,12 +53,12 @@ const spiral = (until) => {
 
 export const partOne = solution((input) => {
   const target = +input;
-  const { square } = spiral(until => until.nr === target);
+  const { square } = spiral((until) => until.nr === target);
   return square.distance;
 });
 
 export const partTwo = solution((input) => {
   const target = +input;
-  const { square } = spiral(until => until.value > target);
+  const { square } = spiral((until) => until.value > target);
   return square.value;
 });

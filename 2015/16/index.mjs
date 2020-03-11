@@ -4,7 +4,7 @@ import { solution } from '../../utils';
 
 const LINE_MATCHER = /Sue (\d+): (\w+): (\d+), (\w+): (\d+), (\w+): (\d+)/;
 
-const parse = input => input.split('\n').map((line) => {
+const parse = (input) => input.split('\n').map((line) => {
   const match = line.match(LINE_MATCHER);
   return {
     id: +match[1],

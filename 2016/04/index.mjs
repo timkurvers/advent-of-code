@@ -3,7 +3,7 @@ import { solution, sum } from '../../utils';
 const ALPHABET_START = 'a'.charCodeAt(0);
 const ROOM_MATCHER = /([a-z-]+)-(\d+)\[([a-z]+)\]/;
 
-const parse = input => (
+const parse = (input) => (
   input.split('\n').map((row) => {
     const [, name, id, checksum] = row.match(ROOM_MATCHER);
     return { name, id: +id, checksum };
@@ -41,11 +41,11 @@ const decrypt = (room) => {
   return { ...room, name };
 };
 
-export const partOne = solution(input => (
-  sum(parse(input).filter(verify).map(room => room.id))
+export const partOne = solution((input) => (
+  sum(parse(input).filter(verify).map((room) => room.id))
 ));
 
 export const partTwo = solution((input) => {
   const rooms = parse(input).filter(verify).map(decrypt);
-  return rooms.find(room => room.name === 'northpole object storage').id;
+  return rooms.find((room) => room.name === 'northpole object storage').id;
 });

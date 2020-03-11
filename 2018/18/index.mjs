@@ -4,9 +4,9 @@ const OPEN_GROUND = '.';
 const TREES = '|';
 const LUMBERYARD = '#';
 
-const isOpenGround = tile => tile === OPEN_GROUND;
-const isTrees = tile => tile === TREES;
-const isLumberyard = tile => tile === LUMBERYARD;
+const isOpenGround = (tile) => tile === OPEN_GROUND;
+const isTrees = (tile) => tile === TREES;
+const isLumberyard = (tile) => tile === LUMBERYARD;
 
 const next = ({ grid, maxX, maxY }) => (
   grid.map((row, y) => (
@@ -39,7 +39,7 @@ const next = ({ grid, maxX, maxY }) => (
   ))
 );
 
-const flatten = grid => (
+const flatten = (grid) => (
   grid.reduce((flattened, row) => {
     flattened.push(...row);
     return flattened;
@@ -47,7 +47,7 @@ const flatten = grid => (
 );
 
 const generate = (input, generations, hook = null) => {
-  const initial = input.split('\n').map(line => line.split(''));
+  const initial = input.split('\n').map((line) => line.split(''));
 
   const maxX = initial[0].length - 1;
   const maxY = initial.length - 1;
@@ -63,7 +63,7 @@ const generate = (input, generations, hook = null) => {
   return final.filter(isTrees).length * final.filter(isLumberyard).length;
 };
 
-export const partOne = solution(input => (
+export const partOne = solution((input) => (
   generate(input, 10)
 ));
 

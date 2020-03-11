@@ -9,7 +9,7 @@ class Region {
   }
 
   get points() {
-    return this.grid.filter(point => point.region === this);
+    return this.grid.filter((point) => point.region === this);
   }
 }
 

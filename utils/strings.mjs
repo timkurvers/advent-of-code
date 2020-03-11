@@ -9,7 +9,7 @@ export const humanize = (str, { capitalize = true } = {}) => {
   str = str.replace(/[-_]/g, ' ');
   str = str.toLowerCase();
   if (capitalize) {
-    str = str.replace(/^[a-z]/, char => char.toUpperCase());
+    str = str.replace(/^[a-z]/, (char) => char.toUpperCase());
   }
   return str;
 };
@@ -17,7 +17,7 @@ export const humanize = (str, { capitalize = true } = {}) => {
 export const titleize = (str, { allWords = true } = {}) => {
   str = humanize(str);
   if (allWords) {
-    str = str.replace(/ [a-z]/g, chars => chars.toUpperCase());
+    str = str.replace(/ [a-z]/g, (chars) => chars.toUpperCase());
   }
   return str;
 };

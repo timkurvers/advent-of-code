@@ -5,13 +5,13 @@ import operations from './operations';
 
 const parse = (input) => {
   const [sampling, program] = input.split('\n\n\n\n');
-  const samples = sampling.split('\n\n').map(definition => new Sample(definition));
+  const samples = sampling.split('\n\n').map((definition) => new Sample(definition));
   return { program, samples };
 };
 
 export const partOne = solution((input) => {
   const { samples } = parse(input);
-  return samples.filter(sample => (
+  return samples.filter((sample) => (
     sample.probe().length >= 3
   )).length;
 });
@@ -22,7 +22,7 @@ export const partTwo = solution((input) => {
   const remaining = new Set(samples);
   while (remaining.size) {
     for (const sample of remaining) {
-      const candidates = sample.probe().filter(operation => (
+      const candidates = sample.probe().filter((operation) => (
         operation.opcode === undefined
       ));
       if (candidates.length === 1) {
@@ -39,7 +39,7 @@ export const partTwo = solution((input) => {
   const lines = program.split('\n');
   for (const line of lines) {
     const [opcode, inputA, inputB, outputC] = line.match(/\d+/g).map(Number);
-    const operation = operations.find(candidate => candidate.opcode === opcode);
+    const operation = operations.find((candidate) => candidate.opcode === opcode);
     operation(data, inputA, inputB, outputC);
   }
   return data[0];

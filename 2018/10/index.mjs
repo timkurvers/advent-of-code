@@ -3,10 +3,10 @@ import { solution } from '../../utils';
 import Star from './Star';
 
 const snapshot = (stars, t) => {
-  const points = stars.map(star => star.at(t));
+  const points = stars.map((star) => star.at(t));
 
-  const xs = points.map(point => point.x);
-  const ys = points.map(point => point.y);
+  const xs = points.map((point) => point.x);
+  const ys = points.map((point) => point.y);
 
   const minX = Math.min(...xs);
   const maxX = Math.max(...xs);
@@ -21,7 +21,7 @@ const snapshot = (stars, t) => {
 };
 
 const find = (input) => {
-  const stars = input.split('\n').map(definition => new Star(definition));
+  const stars = input.split('\n').map((definition) => new Star(definition));
 
   let t = 0;
   let smallest = Infinity;
@@ -47,7 +47,7 @@ export const partOne = solution((input) => {
   let output = '\n';
   for (let y = minY; y <= maxY; ++y) {
     for (let x = minX; x <= maxX; ++x) {
-      const present = points.find(point => point.x === x && point.y === y);
+      const present = points.find((point) => point.x === x && point.y === y);
       output += present ? '#' : ' ';
     }
     output += '\n';

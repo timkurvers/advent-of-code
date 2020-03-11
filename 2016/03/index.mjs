@@ -1,7 +1,7 @@
 import { solution } from '../../utils';
 
-const parse = input => (
-  input.split('\n').map(row => (
+const parse = (input) => (
+  input.split('\n').map((row) => (
     row.trim().split(/\s+/).map(Number)
   ))
 );
@@ -22,10 +22,10 @@ const isPossibleTriangle = (sides) => {
   return a + b > c && a + c > b && b + c > a;
 };
 
-export const partOne = solution(input => (
+export const partOne = solution((input) => (
   parse(input).filter(isPossibleTriangle).length
 ));
 
-export const partTwo = solution(input => (
+export const partTwo = solution((input) => (
   transpose(parse(input)).filter(isPossibleTriangle).length
 ));

@@ -12,7 +12,7 @@ export const partTwo = solution((input) => {
 
   let current = root;
   while (current.isImbalanced) {
-    const next = Array.from(current.children).find(child => child.isImbalanced);
+    const next = Array.from(current.children).find((child) => child.isImbalanced);
     if (!next) {
       break;
     }

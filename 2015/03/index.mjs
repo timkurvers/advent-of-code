@@ -34,14 +34,14 @@ const deliver = (input, { santas = 1 } = {}) => {
     grid.set(santa.x, santa.y, (grid.get(santa.x, santa.y) || 0) + 1);
   }
 
-  const visited = grid.filter(point => point && point.value);
+  const visited = grid.filter((point) => point && point.value);
   return { grid, visited };
 };
 
-export const partOne = solution(input => (
+export const partOne = solution((input) => (
   deliver(input).visited.length
 ));
 
-export const partTwo = solution(input => (
+export const partTwo = solution((input) => (
   deliver(input, { santas: 2 }).visited.length
 ));

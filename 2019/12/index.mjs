@@ -44,7 +44,7 @@ const step = (moons) => {
 
 const snapshot = (moons, prop) => {
   const dprop = `d${prop}`;
-  return moons.map(moon => `${moon[prop]},${moon[dprop]}`).join(';');
+  return moons.map((moon) => `${moon[prop]},${moon[dprop]}`).join(';');
 };
 
 export const partOne = solution((input, { steps = 1000 }) => {
@@ -52,7 +52,7 @@ export const partOne = solution((input, { steps = 1000 }) => {
   for (let i = 1; i <= steps; ++i) {
     step(moons);
   }
-  return sum(moons.map(moon => moon.energy));
+  return sum(moons.map((moon) => moon.energy));
 });
 
 export const partTwo = solution((input) => {
