@@ -1,8 +1,9 @@
 # Advent of Code
 
-JavaScript / ES6+ solutions for https://adventofcode.com.
+![Node Version](https://badgen.net/badge/node/12+/green)
+[![MIT License](https://badgen.net/github/license/timkurvers/advent-of-code)](LICENSE.md)
 
-**Supported Node versions: 12 or higher**
+JavaScript / ES6+ solutions for https://adventofcode.com.
 
 ![Advent of Code](https://user-images.githubusercontent.com/378235/70389655-bb99f380-19c2-11ea-86e1-3946c1884b0a.png)
 
