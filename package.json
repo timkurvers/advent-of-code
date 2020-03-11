@@ -6,7 +6,7 @@
   "private": true,
   "scripts": {
     "lint": "eslint . --ext js,mjs",
-    "start": "./index.mjs",
+    "start": "node --experimental-modules --experimental-specifier-resolution=node index.mjs",
     "start:dev": "nodemon --exec npm run start"
   },
   "dependencies": {

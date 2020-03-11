@@ -2,6 +2,7 @@
 
 ![Node Version](https://badgen.net/badge/node/12+/green)
 [![MIT License](https://badgen.net/github/license/timkurvers/advent-of-code)](LICENSE.md)
+![Checks](https://badgen.net/github/checks/timkurvers/advent-of-code)
 
 JavaScript / ES6+ solutions for https://adventofcode.com.
 
