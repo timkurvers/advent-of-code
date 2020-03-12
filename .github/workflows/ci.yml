@@ -1,7 +1,7 @@
 name: ci
 on: [push, pull_request]
 jobs:
-  build:
+  lint-and-run:
     name: lint and run solutions for current edition
     runs-on: ubuntu-latest
     steps:
