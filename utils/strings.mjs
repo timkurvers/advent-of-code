@@ -1,5 +1,32 @@
 /* eslint-disable no-param-reassign */
 
+export const toASCII = (string) => {
+  if (string.length > 1) {
+    return string.split('').map(toASCII);
+  }
+  return string.charCodeAt(0);
+};
+
+export const fromASCII = (codes) => String.fromCharCode(codes);
+
+export const stripIndent = (strings, ...params) => {
+  let source = strings.map((string, i) => (
+    `${string}${params[i] || ''}`
+  )).join('');
+
+  // Strip leading / trailing new lines
+  source = source.replace(/^\s|\s$/, '');
+
+  // See: https://github.com/zspecza/common-tags/blob/master/src/stripIndentTransformer/stripIndentTransformer.js
+  const match = source.match(/^[^\S\n]*(?=\S)/gm);
+  const indent = match && Math.min(...match.map((el) => el.length));
+  if (indent) {
+    const regexp = new RegExp(`^.{${indent}}`, 'gm');
+    source = source.replace(regexp, '');
+  }
+  return source;
+};
+
 // Loosely based on Ruby on Rails' Inflector
 // See: https://api.rubyonrails.org/classes/ActiveSupport/Inflector.html
 
