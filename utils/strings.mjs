@@ -7,7 +7,12 @@ export const toASCII = (string) => {
   return string.charCodeAt(0);
 };
 
-export const fromASCII = (codes) => String.fromCharCode(codes);
+export const fromASCII = (codes) => {
+  if (Array.isArray(codes)) {
+    return String.fromCharCode(...codes);
+  }
+  return String.fromCharCode(codes);
+};
 
 export const stripIndent = (strings, ...params) => {
   let source = strings.map((string, i) => (

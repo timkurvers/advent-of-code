@@ -1,4 +1,4 @@
-import { wait } from '../../utils';
+import { toASCII, wait } from '../../utils';
 
 import Operand from './operations/Operand';
 import operations from './operations/lookup';
@@ -27,7 +27,13 @@ class IntcodeProgram {
   }
 
   input(value) {
-    this.inputs.push(value);
+    if (typeof value === 'string') {
+      this.input(toASCII(value));
+    } else if (Array.isArray(value)) {
+      this.inputs.push(...value);
+    } else {
+      this.inputs.push(value);
+    }
   }
 
   async output() {
