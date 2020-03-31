@@ -9,7 +9,7 @@ const parse = (input) => input.split('\n').map((line) => {
   return { op, fromX: +fromX, fromY: +fromY, toX: +toX, toY: +toY };
 });
 
-const configure = (instructions, { version = '1' } = {}) => {
+const configure = (instructions, { version = 1 } = {}) => {
   const lights = new Grid();
 
   for (const instruction of instructions) {
