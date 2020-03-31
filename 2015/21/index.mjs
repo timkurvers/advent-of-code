@@ -1,6 +1,11 @@
 /* eslint-disable no-param-reassign */
 
-import { combine, reduceMaxBy, reduceMinBy, solution } from '../../utils';
+import {
+  combine,
+  reduceMaxBy,
+  reduceMinBy,
+  solution,
+} from '../../utils';
 
 import Unit from './Unit';
 import { Armor, Ring, Weapon } from './Equipment';
