@@ -56,4 +56,12 @@ To monitor code changes and re-run solutions during development:
 npm run start:dev 2018 6
 ```
 
+### Bootstrap solution
+
+To bootstrap an empty solution in a given location, run:
+
+```bash
+npm run bootstrap 2019/20
+```
+
 [Node.js]: https://nodejs.org/en/
