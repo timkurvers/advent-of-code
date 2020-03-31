@@ -1,9 +1,12 @@
 /* eslint-disable no-loop-func */
 
+import minimist from 'minimist';
+
 import { Challenge } from './utils';
 
-const [,, ...args] = process.argv;
-const requested = args.map(Number);
+const args = minimist(process.argv.slice(2));
+const exitCode = args['exit-code'];
+const requested = args._.map(Number);
 
 const isYear = (nr) => nr > 1000;
 
@@ -49,6 +52,6 @@ const isYear = (nr) => nr > 1000;
     }
   } catch (e) {
     console.error(e);
-    process.exit();
+    process.exit(exitCode ? 1 : 0);
   }
 })();
