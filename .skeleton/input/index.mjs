@@ -1,1 +1,5 @@
-export default '';
+import { stripIndent } from '../../../utils';
+
+export default stripIndent`
+  input
+`;
