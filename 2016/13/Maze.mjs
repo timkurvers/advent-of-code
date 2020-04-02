@@ -13,7 +13,7 @@ class Maze extends Grid {
 
   getPoint(x, y) {
     let point = super.getPoint(x, y);
-    if (!point) {
+    if (!point && x >= 0 && y >= 0) {
       point = this.set(x, y);
     }
     return point;
