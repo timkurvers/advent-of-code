@@ -48,6 +48,14 @@ Example to run 2017 day 1 and 4, 2018 all days, and 2019 day 5:
 npm start 2017 1 4 2018 2019 5
 ```
 
+## Progress overview
+
+To generate and display a progress overview, run:
+
+```bash
+npm run progress
+```
+
 ## Development
 
 To monitor code changes and re-run solutions during development:

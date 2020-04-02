@@ -1,17 +1,20 @@
+/* eslint-disable no-param-reassign */
+
 export { default as Challenge } from './Challenge';
 
-export const inefficiency = (fn) => {
-  const wrapper = (...args) => fn(...args);
-  wrapper.inefficient = (...args) => {
-    const result = wrapper(...args);
-    result.inefficient = true;
+const augment = (prop) => (fn) => {
+  fn[prop] = (...args) => {
+    const result = fn(...args);
+    result[prop] = true;
     return result;
   };
-  return wrapper;
+  return fn;
 };
 
-export const example = inefficiency((input, expected, args = {}) => ({
+const inefficient = augment('inefficient');
+
+export const example = inefficient((input, expected, args = {}) => ({
   input, expected, args,
 }));
 
-export const solution = inefficiency((fn = () => {}) => fn);
+export const solution = inefficient((fn = () => {}) => fn);

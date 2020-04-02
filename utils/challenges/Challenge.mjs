@@ -19,8 +19,12 @@ class Challenge {
     return this.id;
   }
 
+  async parts() {
+    return import(path.resolve(this.path));
+  }
+
   async run() {
-    const parts = await import(path.resolve(this.path));
+    const parts = await this.parts();
     const examples = await import(path.resolve(this.path, 'input/examples'));
     const {
       default: puzzleInput,
