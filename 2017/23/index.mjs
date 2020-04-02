@@ -14,5 +14,3 @@ export const partOne = solution((input) => {
   program.run();
   return count;
 });
-
-export const partTwo = solution();

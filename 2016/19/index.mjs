@@ -32,5 +32,3 @@ const play = (count) => {
 export const partOne = solution((input) => (
   play(+input).id
 ));
-
-export const partTwo = solution();

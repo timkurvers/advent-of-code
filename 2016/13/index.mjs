@@ -16,5 +16,3 @@ export const partOne = solution((input, { goalX = 31, goalY = 39 }) => {
   const goal = maze.getPoint(goalX, goalY);
   return traverse(start, goal).score;
 });
-
-export const partTwo = solution();
