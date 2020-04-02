@@ -1,5 +1,7 @@
 /* eslint-disable no-param-reassign */
 
+import { Cache } from '.';
+
 export const TAU = 2 * Math.PI;
 
 export const sum = (array) => array.reduce((total, next) => total + next, 0);
@@ -7,6 +9,13 @@ export const sum = (array) => array.reduce((total, next) => total + next, 0);
 export const maxIndex = (array) => array.reduce((current, value, index) => (
   value > array[current] ? index : current
 ), 0);
+
+export const groupBy = (array, prop) => array.reduce((groups, current) => {
+  const value = current[prop];
+  const group = groups.lookup(value);
+  group.push(current);
+  return groups;
+}, new Cache(() => []));
 
 export const reduceMinBy = (array, prop) => array.reduce((candidate, other) => (
   candidate[prop] > other[prop] ? other : candidate
