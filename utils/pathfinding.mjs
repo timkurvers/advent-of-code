@@ -6,8 +6,10 @@ import { PriorityQueue } from './data-structures';
 // Also: https://en.wikipedia.org/wiki/A*_search_algorithm#Pseudocode
 export const astar = (start, goal, {
   cost = () => 1,
+  done = (current) => current === goal,
   heuristic = () => 0,
-  neighborsFor,
+  nodesFor,
+  neighborsFor = nodesFor,
 }) => {
   const frontier = new PriorityQueue();
   frontier.put(start, 0);
@@ -20,7 +22,7 @@ export const astar = (start, goal, {
   while (!frontier.isEmpty) {
     const current = frontier.get();
 
-    if (current === goal) {
+    if (done(current, goal)) {
       const path = [];
       let step = current;
       do {
@@ -38,7 +40,7 @@ export const astar = (start, goal, {
       const newCost = costSoFar.get(current) + cost(current, neighbor);
       if (!costSoFar.has(neighbor) || newCost < costSoFar.get(neighbor)) {
         costSoFar.set(neighbor, newCost);
-        const priority = newCost + heuristic(goal, neighbor);
+        const priority = newCost + heuristic(neighbor, goal);
         frontier.put(neighbor, priority);
         cameFrom.set(neighbor, current);
       }
