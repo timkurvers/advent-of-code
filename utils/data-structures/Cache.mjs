@@ -5,10 +5,10 @@ class Cache extends Map {
     this.create = create;
   }
 
-  lookup(key) {
+  lookup(key, create = this.create) {
     let entry = this.get(key);
     if (!entry) {
-      entry = this.create(key);
+      entry = create(key);
       this.set(key, entry);
     }
     return entry;
