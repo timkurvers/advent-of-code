@@ -69,7 +69,7 @@ const validate = (floors, components) => (
 
 const serialize = (floors, components) => {
   const { length } = components;
-  return floors.map((floor, index) => {
+  return floors.map((floor) => {
     const { chips, generators } = componentsFor(floor, components);
 
     // Pairs are interchangable, ensure serializiation takes this into account
