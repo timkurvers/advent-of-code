@@ -31,6 +31,11 @@ class PriorityQueue {
     return current && current.value;
   }
 
+  peek() {
+    const current = this.first;
+    return current && current.value;
+  }
+
   put(value, priority = 0) {
     const entry = new Entry(value, priority);
     if (!this.first) {
