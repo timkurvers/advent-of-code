@@ -12,12 +12,5 @@ export const partOne = [
 ];
 
 export const partTwo = [
-  example(stripIndent`
-    .#.#.#
-    ...##.
-    #....#
-    ..#...
-    #.#..#
-    ####..
-  `, 17, { steps: 5 }),
+  example(partOne[0].input, 17, { steps: 5 }),
 ];
