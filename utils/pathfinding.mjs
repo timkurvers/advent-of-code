@@ -1,12 +1,12 @@
 /* eslint-disable import/prefer-default-export */
 
-import { PriorityQueue } from './data-structures';
+import { PriorityQueue, Queue } from './data-structures';
 
 // See: https://www.redblobgames.com/pathfinding/a-star/introduction.html
 // Also: https://en.wikipedia.org/wiki/A*_search_algorithm#Pseudocode
 export const astar = (start, goal, {
   cost = () => 1,
-  done = (current) => current === goal,
+  done = (current, _goal) => current === goal,
   heuristic = () => 0,
   nodesFor,
   neighborsFor = nodesFor,
@@ -48,4 +48,35 @@ export const astar = (start, goal, {
   }
 
   return null;
+};
+
+// See: https://en.wikipedia.org/wiki/Breadth-first_search
+export const bfs = (start, goal, {
+  nodesFor,
+  neighborsFor = nodesFor,
+}) => {
+  const visited = new Set();
+
+  const frontier = new Queue();
+  frontier.enqueue(start);
+
+  while (!frontier.isEmpty) {
+    const current = frontier.dequeue();
+
+    if (goal && current === goal) {
+      break;
+    }
+
+    for (const neighbor of neighborsFor(current)) {
+      if (visited.has(neighbor)) {
+        continue;
+      }
+
+      visited.add(neighbor);
+      // TODO: Parent tracking?
+      frontier.enqueue(neighbor);
+    }
+  }
+
+  return { visited };
 };
