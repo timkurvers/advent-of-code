@@ -1,6 +1,6 @@
 import * as operations from './operations';
 
-class Program {
+class AssembunnyProgram {
   constructor(instructions) {
     this.instructions = instructions;
     this.pointer = 0;
@@ -28,7 +28,7 @@ class Program {
   }
 
   static from(input) {
-    const instructions = input.split('\n').map((line) => {
+    const instructions = input.trim().split('\n').map((line) => {
       const [opcode, x, y] = line.split(' ');
       return { opcode, x, y };
     });
@@ -36,4 +36,4 @@ class Program {
   }
 }
 
-export default Program;
+export default AssembunnyProgram;
