@@ -26,8 +26,24 @@ export const dec = (program, x) => {
 export const jnz = (program, x, y) => {
   const value = resolve(program, x);
   if (value !== 0) {
-    program.pointer += +y;
+    program.pointer += resolve(program, y);
   } else {
     ++program.pointer;
   }
+};
+
+// tgl x: toggles the instruction x away
+export const tgl = (program, x) => {
+  const offset = program.pointer + resolve(program, x);
+  const operation = program.instructions[offset];
+
+  if (operation) {
+    if (operation.y === undefined) {
+      operation.opcode = operation.opcode === 'inc' ? 'dec' : 'inc';
+    } else {
+      operation.opcode = operation.opcode === 'jnz' ? 'cpy' : 'jnz';
+    }
+  }
+
+  ++program.pointer;
 };
