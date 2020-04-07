@@ -1,34 +1,34 @@
-import { CircularLinkedList, solution } from '../../utils';
+import { solution } from '../../utils';
 
-class Elf {
-  constructor(id) {
-    this.id = id;
-    this.presents = 1;
-  }
-}
+export const partOne = solution((input) => {
+  const elves = +input;
 
-const play = (count) => {
-  const elves = Array.from({ length: count }, (_, index) => (
-    new Elf(index + 1)
-  ));
+  // See: https://en.wikipedia.org/wiki/Josephus_problem#Bitwise
+  const bits = elves.toString(2);
+  return parseInt(`${bits.slice(1)}1`, 2);
+});
 
-  let current = CircularLinkedList.from(elves);
-  while (true) {
-    const currentElf = current.value;
-    if (currentElf.presents === count) {
-      break;
-    }
+export const partTwo = solution((input) => {
+  const elves = +input;
 
-    const target = current.next;
-    currentElf.presents += target.value.presents;
-    target.remove();
+  // Convert input to its ternary representation
+  const trits = elves.toString(3);
+  const highestThirdPower = 3 ** (trits.length - 1);
 
-    current = current.next;
+  // a) Number of elves is exactly its highest third power
+  if (elves === highestThirdPower) {
+    return elves;
   }
 
-  return current.value;
-};
+  const highestTrit = +trits[0];
+  const remainder = elves % highestThirdPower;
 
-export const partOne = solution((input) => (
-  play(+input).id
-));
+  // b) Highest third power once (example: 3², 9 fits once in 10)
+  if (highestTrit === 1) {
+    return remainder;
+  }
+
+  // c) Highest third power twice (example: 3², 9 fits twice in 21)
+  const quotient = elves / highestThirdPower | 0;
+  return highestThirdPower + (quotient * remainder);
+});
