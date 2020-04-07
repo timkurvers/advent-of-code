@@ -47,3 +47,10 @@ export const tgl = (program, x) => {
 
   ++program.pointer;
 };
+
+// out x:
+export const out = (program, x) => {
+  const value = resolve(program, x);
+  program.outputs.push(value);
+  ++program.pointer;
+};

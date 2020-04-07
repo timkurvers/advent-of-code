@@ -10,10 +10,11 @@ class AssembunnyProgram {
       c: 0,
       d: 0,
     };
+    this.outputs = [];
   }
 
-  run() {
-    while (true) {
+  run({ until = () => false } = {}) {
+    while (!until()) {
       const { instructions, pointer } = this;
 
       const instruction = instructions[pointer];
