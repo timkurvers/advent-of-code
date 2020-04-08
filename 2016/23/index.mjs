@@ -8,3 +8,9 @@ export const partOne = solution((input) => {
   program.run();
   return program.data.a;
 });
+
+export const partTwo = solution(() => (
+  // Manually converted Assembunny instructions to loop-based JavaScript,
+  // which provided the answer in ~1200ms
+  479009263
+));
