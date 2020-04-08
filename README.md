@@ -66,10 +66,12 @@ npm run start:dev 2018 6
 
 ### Bootstrap solution
 
-To bootstrap an empty solution in a given location, run:
+To bootstrap an empty solution for a given year and day, run:
 
 ```bash
-npm run bootstrap 2019/20
+npm run bootstrap 2019 20
 ```
+
+Bootstrapping solutions for multiple days is not supported.
 
 [Node.js]: https://nodejs.org/en/
