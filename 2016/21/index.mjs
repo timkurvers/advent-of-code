@@ -1,6 +1,6 @@
-/* eslint-disable no-param-reassign */
+/* eslint-disable consistent-return, no-param-reassign */
 
-import { solution } from '../../utils';
+import { permute, solution } from '../../utils';
 
 import * as operations from './operations';
 
@@ -25,6 +25,20 @@ const scramble = (instructions, password) => {
   return chars.join('');
 };
 
+const unscramble = (instructions, scrambled) => {
+  const chars = scrambled.split('');
+  for (const permutation of permute(chars)) {
+    const password = permutation.join('');
+    if (scramble(instructions, password) === scrambled) {
+      return password;
+    }
+  }
+};
+
 export const partOne = solution((input, { password = 'abcdefgh' }) => (
   scramble(parse(input), password)
+));
+
+export const partTwo = solution.inefficient((input, { scrambled = 'fbgdceah' }) => (
+  unscramble(parse(input), scrambled)
 ));

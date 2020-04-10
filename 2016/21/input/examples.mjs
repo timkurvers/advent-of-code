@@ -10,3 +10,7 @@ move position 3 to position 0
 rotate based on position of letter b
 rotate based on position of letter d`, 'decab', { password: 'abcde' }),
 ];
+
+export const partTwo = [
+  example(partOne[0].input, 'abcde', { scrambled: 'decab' }),
+];
