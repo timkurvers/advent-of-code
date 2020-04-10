@@ -158,8 +158,8 @@ const simulate = (floors, components) => {
       return nodes;
     },
     done: (current) => (current[TOP_FLOOR_INDEX] & done) === done,
-    heuristic: (current) => (
-      current.reduce((heuristic, floor, index) => {
+    heuristic: (next) => (
+      next.reduce((heuristic, floor, index) => {
         const { available } = componentsFor(floor, components);
 
         const distance = TOP_FLOOR_INDEX - index;

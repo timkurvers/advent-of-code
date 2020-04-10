@@ -68,7 +68,7 @@ class Challenge {
     // Run examples (if any) through this part's solution
     for (const example of examples) {
       const { input, expected, inefficient } = example;
-      const excerpt = String(input).replace(/\n|\t/g, ' ').trim().slice(0, 25);
+      const excerpt = String(input).replace(/\s+/g, ' ').trim().slice(0, 25);
       if (inefficient) {
         line(`Example ${colors.yellow(excerpt)}`, '<inefficient; skipping>');
         continue;
