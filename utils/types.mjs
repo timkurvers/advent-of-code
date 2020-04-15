@@ -6,6 +6,8 @@ export const cast = (value) => {
   return value;
 };
 
+export const clone = (obj) => JSON.parse(JSON.stringify(obj));
+
 export const identity = (value) => value;
 
 export const isNumber = (value) => typeof value === 'number';
