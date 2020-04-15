@@ -2,6 +2,16 @@
 
 import { PriorityQueue, Queue } from './data-structures';
 
+const reconstruct = (cameFrom, goal) => {
+  const path = [];
+  let step = goal;
+  do {
+    path.push(step);
+    step = cameFrom.get(step);
+  } while (step);
+  return path.reverse();
+};
+
 // See: https://www.redblobgames.com/pathfinding/a-star/introduction.html
 // Also: https://en.wikipedia.org/wiki/A*_search_algorithm#Pseudocode
 export const astar = (start, goal, {
@@ -23,15 +33,8 @@ export const astar = (start, goal, {
     const current = frontier.get();
 
     if (done(current, goal)) {
-      const path = [];
-      let step = current;
-      do {
-        path.push(step);
-        step = cameFrom.get(step);
-      } while (step);
-
       return {
-        path: path.reverse(),
+        path: reconstruct(cameFrom, current),
         score: costSoFar.get(current),
       };
     }
@@ -52,10 +55,15 @@ export const astar = (start, goal, {
 
 // See: https://en.wikipedia.org/wiki/Breadth-first_search
 export const bfs = (start, goal, {
+  done = (current, _goal) => current === goal,
   nodesFor,
   neighborsFor = nodesFor,
 }) => {
   const visited = new Set();
+  visited.add(start);
+
+  const cameFrom = new Map();
+  cameFrom.set(start, null);
 
   const frontier = new Queue();
   frontier.enqueue(start);
@@ -63,8 +71,11 @@ export const bfs = (start, goal, {
   while (!frontier.isEmpty) {
     const current = frontier.dequeue();
 
-    if (goal && current === goal) {
-      break;
+    if (done(current, goal)) {
+      return {
+        path: reconstruct(cameFrom, current),
+        visited,
+      };
     }
 
     for (const neighbor of neighborsFor(current)) {
@@ -73,10 +84,10 @@ export const bfs = (start, goal, {
       }
 
       visited.add(neighbor);
-      // TODO: Parent tracking?
+      cameFrom.set(neighbor, current);
       frontier.enqueue(neighbor);
     }
   }
 
-  return { visited };
+  return { path: null, visited };
 };
