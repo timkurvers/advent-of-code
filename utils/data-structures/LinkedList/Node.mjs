@@ -17,6 +17,8 @@ class Node {
     return node;
   }
 
+  // Appends given node after current node
+  // Example: A - C with A.append(B) becomes A - B - C
   append(node) {
     if (this.next) {
       this.next.prev = node;
@@ -26,12 +28,15 @@ class Node {
     node.prev = this;
   }
 
+  // Prepends given node before this node
+  // Example: A - C with C.prepend(B) becomes A - B - C
   prepend(node) {
     if (this.prev) {
       this.prev.next = node;
     }
-    node.next = this;
+    node.prev = this.prev;
     this.prev = node;
+    node.next = this;
   }
 
   remove() {
