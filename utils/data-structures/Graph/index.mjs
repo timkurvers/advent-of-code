@@ -1,3 +1,5 @@
+import { bfs } from '../..';
+
 import Edge from './Edge';
 import Vertex from './Vertex';
 
@@ -41,6 +43,35 @@ class Graph {
   link(a, b, options) {
     this.edge(a, b, options);
     this.edge(b, a, options);
+  }
+
+  static from(grid, {
+    isVertex,
+    ...options
+  } = {}) {
+    const {
+      edgeClass,
+      vertexClass,
+      ...bfsOptions
+    } = options;
+
+    const graph = new this({ edgeClass, vertexClass });
+    const vertices = grid.filter(isVertex);
+
+    for (const a of vertices) {
+      for (const b of vertices) {
+        if (a === b) {
+          continue;
+        }
+
+        const { path } = bfs(a, b, bfsOptions);
+        if (path) {
+          graph.edge(a.value, b.value, { cost: path.length - 1 });
+        }
+      }
+    }
+
+    return graph;
   }
 }
 
