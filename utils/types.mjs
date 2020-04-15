@@ -13,3 +13,5 @@ export const isNumber = (value) => typeof value === 'number';
 export const isPrimitive = (value) => (
   typeof value !== 'object' && typeof value !== 'function'
 ) || value === null;
+
+export const noop = () => {};

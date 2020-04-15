@@ -1,4 +1,4 @@
-const noop = () => {};
+import { noop } from '../../../utils';
 
 class Operation {
   constructor(definition) {
