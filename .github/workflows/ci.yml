@@ -12,3 +12,4 @@ jobs:
       - run: npm install
       - run: npm run lint
       - run: npm start -- --exit-code
+      - run: npm test

@@ -74,4 +74,12 @@ npm run bootstrap 2019 20
 
 Bootstrapping solutions for multiple days is not supported.
 
+### Tests
+
+To run tests for utilities:
+
+```bash
+npm run test
+```
+
 [Node.js]: https://nodejs.org/en/
