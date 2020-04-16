@@ -7,13 +7,13 @@ import {
 } from '../../utils';
 
 describe('string utilities', () => {
-  describe('toASCII', () => {
+  describe('toASCII()', () => {
     it('converts given string to an ASCII array of character codes', () => {
       expect(toASCII('AoC')).toEqual([65, 111, 67]);
     });
   });
 
-  describe('fromASCII', () => {
+  describe('fromASCII()', () => {
     it('converts given single ASCII character code to a string', () => {
       expect(fromASCII(111)).toEqual('o');
     });
@@ -23,7 +23,7 @@ describe('string utilities', () => {
     });
   });
 
-  describe('stripIndent', () => {
+  describe('stripIndent()', () => {
     it('strips indentation from given string', () => {
       const stripped = stripIndent`
         {
@@ -34,7 +34,7 @@ describe('string utilities', () => {
     });
   });
 
-  describe('humanize', () => {
+  describe('humanize()', () => {
     it('transforms given string into a human-readable one', () => {
       expect(humanize('partOne')).toEqual('Part one');
       expect(humanize('åKjøre')).toEqual('Å kjøre');
@@ -51,7 +51,7 @@ describe('string utilities', () => {
     });
   });
 
-  describe('titleize', () => {
+  describe('titleize()', () => {
     it('transforms given string into a capitalized human-readable one', () => {
       expect(titleize('partOne')).toEqual('Part One');
       expect(titleize('åKjøre')).toEqual('Å Kjøre');
