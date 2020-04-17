@@ -10,6 +10,16 @@ class Queue {
     return this.head === null;
   }
 
+  get size() {
+    let i = 0;
+    let node = this.tail;
+    while (node) {
+      ++i;
+      node = node.next;
+    }
+    return i;
+  }
+
   enqueue(value) {
     const node = new LinkedListNode(value);
     if (!this.tail) {
@@ -40,7 +50,10 @@ class Queue {
 
   peek() {
     const current = this.head;
-    return current && current.value;
+    if (!current) {
+      return undefined;
+    }
+    return current.value;
   }
 }
 

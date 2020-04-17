@@ -81,7 +81,7 @@ describe('type utilities', () => {
 
   describe('noop()', () => {
     it('does nothing', () => {
-      expect(noop()).toBe(undefined);
+      expect(noop()).toBeUndefined();
     });
   });
 });
