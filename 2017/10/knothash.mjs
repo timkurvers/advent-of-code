@@ -49,7 +49,7 @@ export const knothash = (source, { range } = {}) => {
   lengths.push(17, 31, 73, 47, 23);
   const root = CircularLinkedList.from(createRange(range));
   twist(root, lengths, { rounds: 64 });
-  const sparse = CircularLinkedList.toArray(root);
+  const sparse = CircularLinkedList.toValuesArray(root);
   return densify(sparse);
 };
 

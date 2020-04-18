@@ -26,6 +26,7 @@ class Node {
     node.next = this.next;
     this.next = node;
     node.prev = this;
+    return this;
   }
 
   // Prepends given node before this node
@@ -37,6 +38,7 @@ class Node {
     node.prev = this.prev;
     this.prev = node;
     node.next = this;
+    return this;
   }
 
   remove() {
@@ -48,6 +50,7 @@ class Node {
     }
     this.next = null;
     this.prev = null;
+    return this;
   }
 }
 

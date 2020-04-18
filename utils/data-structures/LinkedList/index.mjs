@@ -4,6 +4,16 @@ import Node from './Node';
 
 class LinkedList {
   static toArray(start) {
+    const nodes = [];
+    let node = start;
+    do {
+      nodes.push(node);
+      node = node.next;
+    } while (node && node !== start);
+    return nodes;
+  }
+
+  static toValuesArray(start) {
     const values = [];
     let node = start;
     do {
