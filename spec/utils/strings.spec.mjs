@@ -32,6 +32,10 @@ describe('string utilities', () => {
       `;
       expect(stripped).toEqual('{\n  // code block\n}\n');
     });
+
+    it('keeps strings without indentation intact', () => {
+      expect(stripIndent`not indented`).toEqual('not indented');
+    });
   });
 
   describe('humanize()', () => {
