@@ -142,21 +142,26 @@ describe('LinkedList', () => {
     it('creates a linked list of given values', () => {
       const values = ['a', 'b', 'c'];
       const root = LinkedList.from(values);
-      expect(root).toMatchObject({
+      const [a, b, c] = LinkedList.toArray(root);
+      expect(a).toEqual({
         value: 'a',
         prev: null,
-        next: {
-          value: 'b',
-          next: {
-            value: 'c',
-            next: null,
-          },
-        },
+        next: b,
+      });
+      expect(b).toEqual({
+        value: 'b',
+        prev: a,
+        next: c,
+      });
+      expect(c).toEqual({
+        value: 'c',
+        prev: b,
+        next: null,
       });
     });
 
     it('supports a custom node class', () => {
-      class CustomLinkedListNode extends LinkedListNode {
+      class CustomNode extends LinkedListNode {
         constructor(...args) {
           super(...args);
           this.custom = true;
@@ -164,16 +169,19 @@ describe('LinkedList', () => {
       }
 
       const values = ['a', 'b'];
-      const root = LinkedList.from(values, { nodeClass: CustomLinkedListNode });
-      expect(root).toMatchObject({
+      const root = LinkedList.from(values, { nodeClass: CustomNode });
+      const [a, b] = LinkedList.toArray(root);
+      expect(a).toEqual({
         value: 'a',
         custom: true,
         prev: null,
-        next: {
-          value: 'b',
-          custom: true,
-          next: null,
-        },
+        next: b,
+      });
+      expect(b).toEqual({
+        value: 'b',
+        custom: true,
+        prev: a,
+        next: null,
       });
     });
   });
