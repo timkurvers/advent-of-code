@@ -24,6 +24,7 @@ class Point {
     return `(${this.t},${this.x},${this.y},${this.z})`;
   }
 
+  // TODO: Refactor into navigation utility
   distanceTo(other) {
     return Math.abs(other.t - this.t)
            + Math.abs(other.x - this.x)

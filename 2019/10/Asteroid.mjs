@@ -18,6 +18,7 @@ class Asteroid {
     return ((Math.atan2(dy, dx) + TAU + Orientation.UP) % TAU);
   }
 
+  // TODO: Refactor into navigation utility
   distanceTo(other) {
     return Math.abs(other.x - this.x) + Math.abs(other.y - this.y);
   }

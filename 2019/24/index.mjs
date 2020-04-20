@@ -8,7 +8,7 @@ const Type = {
 };
 
 const rate = (grid) => (
-  sum(grid.each(({ x, y, value }) => (
+  sum(grid.map(({ x, y, value }) => (
     value === Type.BUG ? 2 ** (y * GRID_SIZE + x) : 0
   )))
 );
@@ -16,7 +16,7 @@ const rate = (grid) => (
 const step = (grid) => {
   const next = new Grid();
 
-  grid.each((point) => {
+  for (const point of grid) {
     const { x, y } = point;
     let { value } = point;
 
@@ -30,7 +30,7 @@ const step = (grid) => {
       value = Type.BUG;
     }
     next.set(x, y, value);
-  });
+  }
 
   return next;
 };

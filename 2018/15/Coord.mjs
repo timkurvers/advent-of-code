@@ -24,6 +24,7 @@ class Coord {
     return this.neighbors.filter((coord) => !coord.entity);
   }
 
+  // TODO: Refactor into navigation utility
   distanceTo(other) {
     return Math.abs(other.x - this.x) + Math.abs(other.y - this.y);
   }

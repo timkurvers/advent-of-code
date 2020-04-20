@@ -1,8 +1,8 @@
 class Point {
-  constructor(grid, x = 0, y = 0) {
+  constructor(grid, x = 0, y = 0, value = undefined) {
     this.x = x;
     this.y = y;
-    this.value = null;
+    this.value = value;
 
     Object.defineProperty(this, 'grid', {
       enumerable: false,
@@ -15,9 +15,11 @@ class Point {
       this.grid,
       this.x,
       this.y,
+      this.value,
     );
   }
 
+  // TODO: Refactor into navigation utility
   distanceTo(x, y) {
     return Math.abs(x - this.x) + Math.abs(y - this.y);
   }

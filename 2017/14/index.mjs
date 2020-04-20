@@ -36,9 +36,9 @@ export const partTwo = solution.inefficient((input) => {
     regions.delete(a);
   };
 
-  grid.each((point) => {
+  for (const point of grid) {
     if (!point.value) {
-      return;
+      continue;
     }
 
     const candidate = point.adjacentNeighbors.find((neighbor) => neighbor.region);
@@ -56,7 +56,7 @@ export const partTwo = solution.inefficient((input) => {
     if (left && left.region && left.region !== region) {
       merge(point.left.region, region);
     }
-  });
+  }
 
   return regions.size;
 });

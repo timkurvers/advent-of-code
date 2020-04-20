@@ -13,6 +13,7 @@ class Coordinate {
     return `(${this.x},${this.y})`;
   }
 
+  // TODO: Refactor into navigation utility
   distanceTo(x, y) {
     return Math.abs(x - this.x) + Math.abs(y - this.y);
   }

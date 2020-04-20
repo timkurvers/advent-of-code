@@ -8,7 +8,7 @@ const State = {
 const step = (grid, { isStuck = () => false } = {}) => {
   const next = new Grid();
 
-  grid.each((point) => {
+  for (const point of grid) {
     const { x, y } = point;
     let { value } = point;
 
@@ -25,7 +25,7 @@ const step = (grid, { isStuck = () => false } = {}) => {
     }
 
     next.set(x, y, value);
-  });
+  }
 
   return next;
 };

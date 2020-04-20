@@ -9,10 +9,9 @@ class Grid {
   }
 
   get center() {
-    const { pointClass: PointClass, width, height } = this;
-    const x = Math.floor(width / 2);
-    const y = Math.floor(height / 2);
-    return new PointClass(this, x, y);
+    const x = Math.floor(this.maxX / 2);
+    const y = Math.floor(this.maxY / 2);
+    return this.getPoint(x, y);
   }
 
   get xs() {
@@ -26,30 +25,58 @@ class Grid {
   }
 
   get minX() {
-    return Math.min(...this.xs);
+    const { xs } = this;
+    return xs.length ? Math.min(...xs) : undefined;
   }
 
   get maxX() {
-    return Math.max(...this.xs);
+    const { xs } = this;
+    return xs.length ? Math.max(...xs) : undefined;
   }
 
   get minY() {
-    return Math.min(...this.ys);
+    const { ys } = this;
+    return ys.length ? Math.min(...ys) : undefined;
   }
 
   get maxY() {
-    return Math.max(...this.ys);
+    const { ys } = this;
+    return ys.length ? Math.max(...ys) : undefined;
   }
 
   get width() {
-    return this.maxX - this.minX + 1;
+    const { minX, maxX } = this;
+    return minX !== undefined ? maxX - minX + 1 : 0;
   }
 
   get height() {
-    return this.maxY - this.minY + 1;
+    const { minY, maxY } = this;
+    return minY !== undefined ? maxY - minY + 1 : 0;
   }
 
-  each(callback) {
+  get points() {
+    return this.map((point) => point);
+  }
+
+  get values() {
+    return this.map((point) => point.value);
+  }
+
+  [Symbol.iterator]() {
+    const { points } = this;
+    let index = 0;
+    return {
+      next() {
+        const point = points[index++];
+        return {
+          value: point,
+          done: !point,
+        };
+      },
+    };
+  }
+
+  map(callback) {
     const mapped = [];
     for (const [y, row] of this.rows.entries()) {
       for (const [x, point] of row.entries()) {
@@ -134,13 +161,13 @@ class Grid {
     return row;
   }
 
-  toString(renderer = (point) => (point ? point.value : ' '), opts = {}) {
+  toString(renderer = (point) => (point ? point.value : ' ')) {
     const {
-      minY = this.minY,
-      maxY = this.maxY,
-      minX = this.minX,
-      maxX = this.maxX,
-    } = opts;
+      minY,
+      maxY,
+      minX,
+      maxX,
+    } = this;
 
     let string = '';
     for (let y = minY; y <= maxY; ++y) {
@@ -166,8 +193,6 @@ class Grid {
     return grid;
   }
 }
-
-Grid.prototype.map = Grid.prototype.each;
 
 export default Grid;
 export { Point as GridPoint };
