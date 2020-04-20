@@ -1,8 +1,8 @@
-import { example } from '../../../utils';
+import { example, stripIndent } from '../../../utils';
 
 export const partOne = [
-  example(`set a 1
-add a 2
-mul a a
-mod a 5`, 1),
+  example(stripIndent`
+    set a 1
+    mul a a
+  `, 1),
 ];

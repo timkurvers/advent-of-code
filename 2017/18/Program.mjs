@@ -83,7 +83,7 @@ class Program {
   }
 
   static from(input, operations) {
-    const instructions = input.split('\n').map((line) => {
+    const instructions = input.trim().split('\n').map((line) => {
       const [opcode, register, value] = line.split(' ');
       return {
         opcode,
