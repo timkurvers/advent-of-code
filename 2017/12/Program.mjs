@@ -6,13 +6,13 @@ class Program {
 
   get group() {
     const seen = new Set();
-    const todo = [this];
+    const remaining = [this];
 
-    while (todo.length) {
-      const program = todo.pop();
+    while (remaining.length) {
+      const program = remaining.pop();
       if (!seen.has(program)) {
         seen.add(program);
-        todo.push(...program.connections);
+        remaining.push(...program.connections);
       }
     }
 
