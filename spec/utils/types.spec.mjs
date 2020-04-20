@@ -40,7 +40,7 @@ describe('type utilities', () => {
 
   describe('identity()', () => {
     it('returns given value', () => {
-      const value = {};
+      const value = Symbol();
       expect(identity(value)).toBe(value);
     });
   });

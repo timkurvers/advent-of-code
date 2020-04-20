@@ -4,7 +4,7 @@ describe('LinkedList', () => {
   describe('Node', () => {
     describe('constructor', () => {
       it('creates an initially unlinked node with given value', () => {
-        const value = {};
+        const value = Symbol();
         const node = new LinkedListNode(value);
         expect(node.next).toBe(null);
         expect(node.prev).toBe(null);

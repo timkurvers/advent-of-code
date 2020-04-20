@@ -48,11 +48,11 @@ describe('Queue', () => {
     it('enqueues given value onto tail of the queue', () => {
       const queue = new Queue();
 
-      const foo = {};
+      const foo = Symbol();
       queue.enqueue(foo);
       expect(queue.tail.value).toBe(foo);
 
-      const bar = {};
+      const bar = Symbol();
       queue.enqueue(bar);
       expect(queue.tail.value).toBe(bar);
     });
@@ -62,8 +62,8 @@ describe('Queue', () => {
     it('dequeues head of the queue and returns its value', () => {
       const queue = new Queue();
 
-      const foo = {};
-      const bar = {};
+      const foo = Symbol();
+      const bar = Symbol();
       queue.enqueue(foo);
       queue.enqueue(bar);
       expect(queue.dequeue()).toBe(foo);
@@ -83,8 +83,8 @@ describe('Queue', () => {
     it('returns value of the head of the queue', () => {
       const queue = new Queue();
 
-      const foo = {};
-      const bar = {};
+      const foo = Symbol();
+      const bar = Symbol();
       queue.enqueue(foo);
       queue.enqueue(bar);
       expect(queue.peek()).toBe(foo);
