@@ -6,7 +6,7 @@ export const bisect = ({
   lower,
   upper,
   until,
-} = {}) => {
+}) => {
   while (lower < upper) {
     const middle = (upper + lower) >> 1;
     if (until(middle)) {
