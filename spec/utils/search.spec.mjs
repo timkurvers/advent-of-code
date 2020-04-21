@@ -2,7 +2,7 @@ import { bisect, range } from '../../utils';
 
 describe('search utilities', () => {
   describe('bisect()', () => {
-    it('finds lowest value where given predicate is truthy', () => {
+    it('finds lowest value where given condition is truthy', () => {
       const start = 0;
       const end = 10;
       const indices = range({ start, end });
