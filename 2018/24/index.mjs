@@ -16,17 +16,21 @@ export const partOne = solution((input) => {
 export const partTwo = solution((input) => {
   const outcomes = new Map();
 
-  const optimalBonusDamage = bisect(0, 10000, 1, (bonusDamage) => {
-    const reindeer = new Reindeer(input);
-    reindeer.immuneSystem.bonusDamage = bonusDamage;
+  const optimalBonusDamage = bisect({
+    lower: 0,
+    upper: 10000,
+    until: (bonusDamage) => {
+      const reindeer = new Reindeer(input);
+      reindeer.immuneSystem.bonusDamage = bonusDamage;
 
-    let winner;
-    do {
-      winner = reindeer.step();
-    } while (!winner);
+      let winner;
+      do {
+        winner = reindeer.step();
+      } while (!winner);
 
-    outcomes.set(bonusDamage, winner);
-    return winner === reindeer.immuneSystem;
+      outcomes.set(bonusDamage, winner);
+      return winner === reindeer.immuneSystem;
+    },
   });
-  return outcomes.get(optimalBonusDamage + 1).units;
+  return outcomes.get(optimalBonusDamage).units;
 });
