@@ -80,7 +80,7 @@ export function* permute(array) {
   }
 }
 
-// Greatest / least common divisor of two or more integers
+// Greatest common divisor / least common multiple of two or more integers
 // See: https://stackoverflow.com/a/34955386
 export const gcd2 = (a, b) => {
   if (!b) {
