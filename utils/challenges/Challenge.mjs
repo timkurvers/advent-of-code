@@ -3,9 +3,8 @@
 import colors from 'colors';
 import globby from 'globby';
 import path from 'path';
-import { performance } from 'perf_hooks';
 
-import { titleize } from '..';
+import { benchmark, titleize } from '..';
 
 class Challenge {
   constructor(id) {
@@ -51,10 +50,7 @@ class Challenge {
 
     // Executes and times the solution (used for both puzzle input and examples)
     const execute = async (input, args = {}) => {
-      const start = performance.now();
-      const answer = await solution(input, args);
-      const end = performance.now();
-      const duration = Math.ceil(end - start);
+      const [duration, answer] = await benchmark(() => solution(input, args));
       return { answer, duration };
     };
 

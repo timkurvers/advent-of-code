@@ -1,4 +1,12 @@
-/* eslint-disable import/prefer-default-export */
+import { performance } from 'perf_hooks';
+
+export const benchmark = async (procedure) => {
+  const start = performance.now();
+  const result = await procedure();
+  const end = performance.now();
+  const duration = Math.ceil(end - start);
+  return [duration, result];
+};
 
 export const wait = (duration = 0) => {
   if (!duration) {
