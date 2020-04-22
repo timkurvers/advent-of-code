@@ -24,8 +24,7 @@ class BinaryHeap {
   }
 
   extract() {
-    const { data } = this;
-    const [root] = data;
+    const { data, root } = this;
 
     const last = data.pop();
     if (data.length > 0) {
@@ -53,15 +52,15 @@ class BinaryHeap {
   _bubbleDown(index) {
     const { compare, data } = this;
 
-    const left = (2 * index) - 1;
-    const right = 2 * index;
+    const left = (2 * index) + 1;
+    const right = (2 * index) + 2;
     let best = index;
 
-    if (data[left] !== undefined && compare(data[left], data[best]) > 0) {
+    if (data[left] !== undefined && compare(data[left], data[best]) < 0) {
       best = left;
     }
 
-    if (data[right] !== undefined && compare(data[right], data[best]) > 0) {
+    if (data[right] !== undefined && compare(data[right], data[best]) < 0) {
       best = right;
     }
 
