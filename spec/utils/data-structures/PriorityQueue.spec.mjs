@@ -101,7 +101,7 @@ describe('PriorityQueue', () => {
       expect(queue.peek()).toBe(bar);
     });
 
-    it.skip('can process a large amount of entries within a second', async () => {
+    it('can process a large amount of entries within a second', async () => {
       const count = 100000;
 
       const build = () => {
