@@ -1,3 +1,4 @@
+export { default as BinaryHeap } from './BinaryHeap';
 export { default as Cache } from './Cache';
 export { default as CircularLinkedList, CircularLinkedListNode } from './CircularLinkedList';
 export { default as LinkedList, LinkedListNode } from './LinkedList';
