@@ -114,10 +114,12 @@ describe('pathfinding utilities', () => {
     });
 
     it('supports nodesFor as an alternative to neighborsFor', () => {
-      const result = astar(start, goal, {
+      const result = bfs(start, goal, {
         nodesFor: neighborsFor,
       });
-      expect(result).toEqual({ path, score: 5 });
+      expect(result.path).toEqual(path);
+      expect(result.visited).toBeInstanceOf(Set);
+      expect(result.visited.size).toEqual(13);
     });
 
     it('omits path if none to goal exists', () => {
