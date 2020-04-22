@@ -66,7 +66,7 @@ class Graph {
 
         const { path } = bfs(a, b, bfsOptions);
         if (path) {
-          graph.edge(a.value, b.value, { cost: path.length - 1 });
+          graph.edge(a.value, b.value, { path, cost: path.length - 1 });
         }
       }
     }
