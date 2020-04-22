@@ -4,7 +4,7 @@ import colors from 'colors';
 import globby from 'globby';
 import path from 'path';
 
-import { benchmark, titleize } from '..';
+import { time, titleize } from '..';
 
 class Challenge {
   constructor(id) {
@@ -50,7 +50,7 @@ class Challenge {
 
     // Executes and times the solution (used for both puzzle input and examples)
     const execute = async (input, args = {}) => {
-      const [duration, answer] = await benchmark(() => solution(input, args));
+      const [duration, answer] = await time(() => solution(input, args));
       return { answer, duration };
     };
 

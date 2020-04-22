@@ -1,10 +1,10 @@
-import { benchmark, wait } from '../../utils';
+import { time, wait } from '../../utils';
 
 describe('concurrency utilities', () => {
-  describe('benchmark()', () => {
+  describe('time()', () => {
     it('executes given sync procedure, returning duration and result', async () => {
       const sync = () => 1337;
-      const [duration, result] = await benchmark(sync);
+      const [duration, result] = await time(sync);
       expect(duration).toBeLessThan(5);
       expect(result).toEqual(1337);
     });
@@ -14,7 +14,7 @@ describe('concurrency utilities', () => {
         await wait(1000);
         return 322;
       };
-      const [duration, result] = await benchmark(async);
+      const [duration, result] = await time(async);
       expect(duration).toBeGreaterThan(1000);
       expect(duration).toBeLessThan(1250);
       expect(result).toEqual(322);

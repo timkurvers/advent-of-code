@@ -1,6 +1,6 @@
 import { performance } from 'perf_hooks';
 
-export const benchmark = async (procedure) => {
+export const time = async (procedure) => {
   const start = performance.now();
   const result = await procedure();
   const end = performance.now();
