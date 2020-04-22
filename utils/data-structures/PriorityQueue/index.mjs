@@ -23,17 +23,21 @@ class PriorityQueue {
 
   get() {
     const current = this.first;
-    if (current) {
-      const { next } = current;
-      current.remove();
-      this.first = next;
+    if (!current) {
+      return undefined;
     }
-    return current && current.value;
+    const { next } = current;
+    current.remove();
+    this.first = next;
+    return current.value;
   }
 
   peek() {
     const current = this.first;
-    return current && current.value;
+    if (!current) {
+      return undefined;
+    }
+    return current.value;
   }
 
   put(value, priority = 0) {
@@ -64,5 +68,7 @@ class PriorityQueue {
     }
   }
 }
+
+PriorityQueue.prototype.pop = PriorityQueue.prototype.get;
 
 export default PriorityQueue;
