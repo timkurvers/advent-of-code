@@ -1,3 +1,5 @@
+/* eslint-disable no-param-reassign */
+
 import { bfs } from '../..';
 
 import Edge from './Edge';
@@ -14,10 +16,12 @@ class Graph {
     return this.vertices.flatMap((vertex) => vertex.edges);
   }
 
-  find(value) {
-    return this.vertices.find((vertex) => (
-      vertex === value || vertex.value === value
-    ));
+  find(condition) {
+    if (!(condition instanceof Function)) {
+      const value = condition;
+      condition = (vertex) => vertex === value || vertex.value === value;
+    }
+    return this.vertices.find(condition);
   }
 
   lookup(value) {
@@ -25,7 +29,7 @@ class Graph {
 
     let vertex = this.find(value);
     if (!vertex) {
-      vertex = new VertexClass(value);
+      vertex = value instanceof VertexClass ? value : new VertexClass(value);
       this.vertices.push(vertex);
     }
     return vertex;
@@ -47,6 +51,9 @@ class Graph {
 
   static from(grid, {
     isVertex,
+    vertexForPoint = (point, graph) => (
+      isVertex(point) && graph.lookup(point.value)
+    ),
     ...options
   } = {}) {
     const {
@@ -56,17 +63,20 @@ class Graph {
     } = options;
 
     const graph = new this({ edgeClass, vertexClass });
-    const vertices = grid.filter(isVertex);
+    const vps = grid.map((point) => {
+      const vertex = vertexForPoint(point, graph);
+      return vertex && { point, vertex };
+    }).filter(Boolean);
 
-    for (const a of vertices) {
-      for (const b of vertices) {
+    for (const a of vps) {
+      for (const b of vps) {
         if (a === b) {
           continue;
         }
 
-        const { path } = bfs(a, b, bfsOptions);
+        const { path } = bfs(a.point, b.point, bfsOptions);
         if (path) {
-          graph.edge(a.value, b.value, { path, cost: path.length - 1 });
+          graph.edge(a.vertex, b.vertex, { path, cost: path.length - 1 });
         }
       }
     }
