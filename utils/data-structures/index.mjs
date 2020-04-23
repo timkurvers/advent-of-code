@@ -13,7 +13,7 @@ export const flatMap = (arr, callbackfn) => (
   ), [])
 );
 
-export const range = ({ start = 0, end, length = end + 1 - start } = {}) => (
+export const range = ({ start = 0, end, length = end + 1 - start }) => (
   new Array(length).fill(0).map((_, index) => start + index)
 );
 
