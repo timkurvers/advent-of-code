@@ -88,5 +88,3 @@ export const partOne = solution.inefficient((input) => {
   const grid = Grid.from(input);
   return collect(grid).score;
 });
-
-export const partTwo = solution();
