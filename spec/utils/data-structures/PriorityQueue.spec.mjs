@@ -4,6 +4,7 @@ describe('PriorityQueue', () => {
   describe('constructor', () => {
     it('creates an initially empty priority queue', () => {
       const queue = new PriorityQueue();
+      expect(queue.size).toEqual(0);
       expect(queue.peek()).toBeUndefined();
     });
   });
