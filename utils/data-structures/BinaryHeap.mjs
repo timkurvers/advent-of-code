@@ -71,6 +71,14 @@ class BinaryHeap {
       this._bubbleDown(best);
     }
   }
+
+  static from(array, compare) {
+    const heap = new this(compare);
+    for (const value of array) {
+      heap.insert(value);
+    }
+    return heap;
+  }
 }
 
 export default BinaryHeap;
