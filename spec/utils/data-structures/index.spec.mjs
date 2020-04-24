@@ -1,18 +1,6 @@
-import {
-  flatMap,
-  range,
-  sum,
-  wrap,
-} from '../../../utils';
+import { range, wrap } from '../../../utils';
 
 describe('data structure utilities', () => {
-  describe('flatMap()', () => {
-    it('invokes given callback for all entries and flattens results', () => {
-      const result = flatMap([[1, 2], [3], [1, 2, 3]], sum);
-      expect(result).toEqual([3, 3, 6]);
-    });
-  });
-
   describe('range()', () => {
     it('generates a range until given end index', () => {
       expect(range({ end: 3 })).toEqual([0, 1, 2, 3]);

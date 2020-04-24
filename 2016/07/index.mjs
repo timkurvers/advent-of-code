@@ -1,4 +1,4 @@
-import { flatMap, solution } from '../../utils';
+import { solution } from '../../utils';
 
 const parse = (input) => (
   input.split('\n').map((address) => {
@@ -39,7 +39,7 @@ const findABAs = (word) => {
 
 const supportsSSL = (address) => {
   const { hypernets, words } = address;
-  const abas = flatMap(words, findABAs);
+  const abas = words.flatMap(findABAs);
   return abas.some((aba) => {
     const bab = `${aba[1]}${aba[0]}${aba[1]}`;
     return hypernets.some((word) => word.includes(bab));

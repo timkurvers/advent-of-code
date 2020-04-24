@@ -1,5 +1,5 @@
 import {
-  flatMap, identity, isNumber, isPrimitive, solution, sum,
+  identity, isNumber, isPrimitive, solution, sum,
 } from '../../utils';
 
 const parse = (input) => JSON.parse(input);
@@ -14,14 +14,14 @@ const collect = (data, filter = identity) => {
   }
 
   if (data instanceof Array) {
-    return flatMap(data, (value) => collect(value, filter));
+    return data.flatMap((value) => collect(value, filter));
   }
 
   const values = Object.values(data);
   if (!filter(values)) {
     return [];
   }
-  return flatMap(values, (value) => collect(value, filter));
+  return values.flatMap((value) => collect(value, filter));
 };
 
 export const partOne = solution((input) => {

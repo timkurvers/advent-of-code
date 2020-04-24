@@ -1,5 +1,3 @@
-import { flatMap } from '..';
-
 import Point from './Point';
 
 class Grid {
@@ -15,7 +13,7 @@ class Grid {
   }
 
   get xs() {
-    return flatMap(Array.from(this.rows.values()), (row) => (
+    return Array.from(this.rows.values()).flatMap((row) => (
       Array.from(row.keys())
     ));
   }

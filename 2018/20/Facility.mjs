@@ -1,7 +1,5 @@
 /* eslint-disable no-param-reassign */
 
-import { flatMap } from '../../utils';
-
 import Coord, { Type } from './Coord';
 
 class Facility {
@@ -92,7 +90,7 @@ class Facility {
   }
 
   get rooms() {
-    return flatMap(this.grid, (row) => (
+    return this.grid.flatMap((row) => (
       row.filter((coord) => coord.type === Type.ROOM)
     ));
   }

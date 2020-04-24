@@ -7,12 +7,6 @@ export { default as Grid, GridPoint } from './Grid';
 export { default as PriorityQueue } from './PriorityQueue';
 export { default as Queue } from './Queue';
 
-export const flatMap = (arr, callbackfn) => (
-  arr.reduce((flattened, ...args) => (
-    flattened.concat(callbackfn(...args))
-  ), [])
-);
-
 export const range = ({ start = 0, end, length = end + 1 - start }) => (
   new Array(length).fill(0).map((_, index) => start + index)
 );
