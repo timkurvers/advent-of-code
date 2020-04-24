@@ -29,6 +29,7 @@ class PriorityQueue extends BinaryHeap {
   put(value, priority = 0) {
     const entry = new Entry(value, priority);
     this.insert(entry);
+    return entry;
   }
 }
 

@@ -89,16 +89,28 @@ describe('PriorityQueue', () => {
   });
 
   describe('put()', () => {
-    it('puts given value into the queue at the given priority', () => {
+    it('puts given value into the queue with given priority, returns entry', () => {
       const queue = new PriorityQueue();
 
       const foo = Symbol();
-      queue.put(foo, 2);
+      let entry = queue.put(foo, 2);
+      expect(entry.value).toBe(foo);
+      expect(entry.priority).toEqual(2);
       expect(queue.peek()).toBe(foo);
 
       const bar = Symbol();
-      queue.put(bar, 1);
+      entry = queue.put(bar, 1);
+      expect(entry.value).toBe(bar);
+      expect(entry.priority).toEqual(1);
       expect(queue.peek()).toBe(bar);
+    });
+
+    it('defaults priority when omitted', () => {
+      const queue = new PriorityQueue();
+      const foo = Symbol();
+      const entry = queue.put(foo);
+      expect(entry.value).toBe(foo);
+      expect(entry.priority).toEqual(0);
     });
 
     it('can process a large amount of entries within a second', async () => {
