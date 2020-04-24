@@ -52,7 +52,7 @@ const collect = (grid) => {
   const cache = new Map();
 
   return astar(initial, null, {
-    cost: (current, next) => current.vertex.edgeTo(next.vertex).cost,
+    cost: (current, next) => current.vertex.edge(next.vertex).cost,
     done: (current) => current.keys === allKeys,
     nodesFor: (current) => {
       const { vertex, keys } = current;

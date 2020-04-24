@@ -18,7 +18,7 @@ const travel = (route) => {
   for (let i = 0; i < length - 1; i++) {
     const a = route[i];
     const b = route[i + 1];
-    steps += a.edgeTo(b).cost;
+    steps += a.edge(b).cost;
   }
 
   return steps;

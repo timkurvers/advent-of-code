@@ -36,17 +36,16 @@ class Graph {
   }
 
   edge(a, b, options) {
-    const { edgeClass: EdgeClass } = this;
-
     const from = this.lookup(a);
     const to = this.lookup(b);
-    const edge = new EdgeClass(from, to, options);
-    from.edges.push(edge);
+    return from.edge(to, { edgeClass: this.edgeClass, ...options });
   }
 
   link(a, b, options) {
-    this.edge(a, b, options);
-    this.edge(b, a, options);
+    return [
+      this.edge(a, b, options),
+      this.edge(b, a, options),
+    ];
   }
 
   static from(grid, {
@@ -55,7 +54,7 @@ class Graph {
       isVertex(point) && graph.lookup(point.value)
     ),
     ...options
-  } = {}) {
+  }) {
     const {
       edgeClass,
       vertexClass,
@@ -75,9 +74,17 @@ class Graph {
         }
 
         const { path } = bfs(a.point, b.point, bfsOptions);
-        if (path) {
-          graph.edge(a.vertex, b.vertex, { path, cost: path.length - 1 });
+        if (!path) {
+          continue;
         }
+
+        const edge = graph.edge(a.vertex, b.vertex, { cost: path.length - 1 });
+
+        // Augment edge with the path between these vertices
+        Object.defineProperty(edge, 'path', {
+          enumerable: false,
+          value: path,
+        });
       }
     }
 

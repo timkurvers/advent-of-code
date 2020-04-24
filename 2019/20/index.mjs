@@ -93,7 +93,7 @@ const travel = (graph, { recursiveSpaces = false } = {}) => {
   const cache = new Map();
 
   return astar(initial, null, {
-    cost: (current, next) => current.vertex.edgeTo(next.vertex).cost,
+    cost: (current, next) => current.vertex.edge(next.vertex).cost,
     done: (current) => (
       current.vertex === goal && (!recursiveSpaces || current.level === 0)
     ),
