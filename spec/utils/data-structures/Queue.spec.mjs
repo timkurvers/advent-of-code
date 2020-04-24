@@ -51,10 +51,12 @@ describe('Queue', () => {
       const foo = Symbol();
       queue.enqueue(foo);
       expect(queue.tail.value).toBe(foo);
+      expect(queue.head.value).toBe(foo);
 
       const bar = Symbol();
       queue.enqueue(bar);
       expect(queue.tail.value).toBe(bar);
+      expect(queue.head.value).toBe(foo);
     });
   });
 

@@ -6,8 +6,8 @@ describe('LinkedList', () => {
       it('creates an initially unlinked node with given value', () => {
         const value = Symbol();
         const node = new LinkedListNode(value);
-        expect(node.next).toBe(null);
-        expect(node.prev).toBe(null);
+        expect(node.next).toBeNull();
+        expect(node.prev).toBeNull();
         expect(node.value).toBe(value);
       });
     });
