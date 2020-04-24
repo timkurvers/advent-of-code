@@ -1,11 +1,16 @@
 import { BinaryHeap, range } from '../../../utils';
 
 describe('BinaryHeap', () => {
-  const compare = (a, b) => b - a;
+  class BinaryMaxHeap extends BinaryHeap {
+    constructor() {
+      const compare = (a, b) => b - a;
+      super(compare);
+    }
+  }
 
   describe('constructor', () => {
     it('creates an initially empty binary heap', () => {
-      const heap = new BinaryHeap(compare);
+      const heap = new BinaryMaxHeap();
       expect(heap.size).toEqual(0);
       expect(heap.root).toBeUndefined();
     });
@@ -32,7 +37,7 @@ describe('BinaryHeap', () => {
 
   describe('get isEmpty', () => {
     it('returns whether the heap is empty', () => {
-      const heap = new BinaryHeap(compare);
+      const heap = new BinaryMaxHeap();
       expect(heap.isEmpty).toBe(true);
 
       heap.insert(1);
@@ -49,7 +54,7 @@ describe('BinaryHeap', () => {
 
   describe('get root', () => {
     it('returns root of the heap', () => {
-      const heap = new BinaryHeap(compare);
+      const heap = new BinaryMaxHeap();
 
       heap.insert(1);
       expect(heap.root).toBe(1);
@@ -59,14 +64,14 @@ describe('BinaryHeap', () => {
     });
 
     it('returns undefined if the heap is empty', () => {
-      const heap = new BinaryHeap(compare);
+      const heap = new BinaryMaxHeap();
       expect(heap.root).toBeUndefined();
     });
   });
 
   describe('get size', () => {
     it('returns size of the heap', () => {
-      const heap = new BinaryHeap(compare);
+      const heap = new BinaryMaxHeap();
       expect(heap.size).toEqual(0);
 
       heap.insert(1);
@@ -83,7 +88,7 @@ describe('BinaryHeap', () => {
 
   describe('extract()', () => {
     it('removes and returns root from the heap', () => {
-      const heap = new BinaryHeap(compare);
+      const heap = new BinaryMaxHeap();
 
       heap.insert(1);
       heap.insert(2);
@@ -94,7 +99,7 @@ describe('BinaryHeap', () => {
     });
 
     it('returns undefined if the heap is empty', () => {
-      const heap = new BinaryHeap(compare);
+      const heap = new BinaryMaxHeap();
       expect(heap.extract()).toBeUndefined();
     });
   });
@@ -102,7 +107,7 @@ describe('BinaryHeap', () => {
 
   describe('insert()', () => {
     it('inserts given value into the heap', () => {
-      const heap = new BinaryHeap(compare);
+      const heap = new BinaryMaxHeap();
 
       heap.insert(1);
       expect(heap.root).toBe(1);
@@ -119,7 +124,8 @@ describe('BinaryHeap', () => {
       const values = range({ start: 1, end: 1000 });
       const randomized = values.slice().sort(() => Math.round(Math.random() * -1));
 
-      const heap = BinaryHeap.from(randomized, (a, b) => a - b);
+      const compare = (a, b) => a - b;
+      const heap = BinaryHeap.from(randomized, compare);
       for (const value of values) {
         expect(heap.extract()).toBe(value);
       }
