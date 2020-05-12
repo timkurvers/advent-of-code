@@ -49,9 +49,9 @@ export const partTwo = [
   example(stripIndent`
     #######
     #a.#Cd#
-    ##@#@##
-    #######
-    ##@#@##
+    ##...##
+    ##.@.##
+    ##...##
     #cB#Ab#
     #######
   `, 8),
