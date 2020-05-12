@@ -4,6 +4,7 @@ import { Cache } from '.';
 
 export const TAU = 2 * Math.PI;
 
+export const multiply = (array) => array.reduce((total, next) => total * next, 1);
 export const sum = (array) => array.reduce((total, next) => total + next, 0);
 
 export const maxIndex = (array) => array.reduce((current, value, index) => (
