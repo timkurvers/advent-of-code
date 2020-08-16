@@ -1,8 +1,6 @@
-import LinkedListNode from '../LinkedList/Node';
-
-class Entry extends LinkedListNode {
+class Entry {
   constructor(value, priority) {
-    super(value);
+    this.value = value;
     this.priority = priority;
   }
 }
