@@ -57,3 +57,9 @@ export const partOne = [
 7 XCVML => 6 RJRHP
 5 BHXH, 4 VRPVC => 5 LTCX`, 2210736),
 ];
+
+export const partTwo = [
+  example(partOne[2].input, 82892753),
+  example(partOne[3].input, 5586022),
+  example(partOne[4].input, 460664),
+];
