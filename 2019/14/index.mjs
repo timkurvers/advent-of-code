@@ -1,56 +1,78 @@
-/* eslint-disable no-param-reassign */
+/* eslint-disable no-cond-assign, no-param-reassign */
 
-import { solution, sum } from '../../utils';
+import { Cache, bisect, solution } from '../../utils';
 
 const REACTION_MATCHER = /(\d+) (\w+)/g;
 
 const parse = (input) => input.split('\n').reduce((lookup, line) => {
   const matches = Array.from(line.matchAll(REACTION_MATCHER));
-  const inputs = matches.map(([, quantity, type]) => ({
+  const reagents = matches.map(([, quantity, type]) => ({
     quantity: +quantity,
     type,
   }));
-  const output = inputs.pop();
-  lookup.set(output.type, { ...output, inputs });
+  const output = reagents.pop();
+  lookup.set(output.type, { ...output, reagents });
   return lookup;
 }, new Map());
 
-const produce = (quantity, type, reactions, reserves = new Map()) => {
+const produce = (quantity, type, reactions, stock) => {
+  const entry = stock.lookup(type);
   const reaction = reactions.get(type);
 
-  // Assuming base chemical if reaction cannot be found
+  // How much of requested chemical needs to be produced?
+  const need = quantity - entry.available;
+  if (need <= 0) {
+    return;
+  }
+
+  // Base chemical (with no reaction) does not need to be produced
   if (!reaction) {
-    return quantity;
+    return;
   }
 
-  let cost = 0;
-  while (quantity > 0) {
-    // Utilize reserves first (if any)
-    let reserve = reserves.get(type) || 0;
-    const use = Math.min(quantity, reserve);
-    quantity -= use;
-    reserve -= use;
-    reserves.set(type, reserve);
+  const times = Math.ceil(need / reaction.quantity);
 
-    if (!quantity) {
-      break;
+  for (const reagent of reaction.reagents) {
+    const ientry = stock.lookup(reagent.type);
+    const amount = reagent.quantity * times;
+    produce(amount, reagent.type, reactions, stock);
+
+    // Bail out if one of the reagents could not be produced
+    if (ientry.available < amount) {
+      return;
     }
 
-    const subcosts = reaction.inputs.map((input) => (
-      produce(input.quantity, input.type, reactions, reserves)
-    ));
-
-    const excess = reaction.quantity - quantity;
-    if (excess > 0) {
-      reserves.set(type, reserves.get(type) + excess);
-    }
-    cost += sum(subcosts);
-    quantity -= reaction.quantity;
+    ientry.available -= amount;
+    ientry.used += amount;
   }
-  return cost;
+
+  entry.available += reaction.quantity * times;
 };
 
 export const partOne = solution((input) => {
   const reactions = parse(input);
-  return produce(1, 'FUEL', reactions);
+  const stock = new Cache(() => ({ available: 0, used: 0 }));
+  stock.lookup('ORE').available = Infinity;
+  produce(1, 'FUEL', reactions, stock);
+  return stock.get('ORE').used;
+});
+
+export const partTwo = solution(async (input) => {
+  const reactions = parse(input);
+
+  const ore = 1_000_000_000_000;
+
+  // Whether requested amount of fuel can be produced with a trillion ore
+  const feasible = (fuel) => {
+    const stock = new Cache(() => ({ available: 0, used: 0 }));
+    stock.lookup('ORE').available = ore;
+    produce(fuel, 'FUEL', reactions, stock);
+    return stock.get('FUEL').available === fuel;
+  };
+
+  return await bisect({
+    lower: 1,
+    upper: ore,
+    until: (fuel) => !feasible(fuel),
+  }) - 1;
 });
