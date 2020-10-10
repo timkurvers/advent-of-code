@@ -15,5 +15,15 @@ describe('search utilities', () => {
         })).toEqual(index);
       }
     });
+
+    it('supports values larger than 32-bit', async () => {
+      const value = 2 ** 32;
+      const target = value + 2;
+      expect(await bisect({
+        lower: value,
+        upper: value + 4,
+        until: (x) => x >= target,
+      })).toEqual(target);
+    });
   });
 });

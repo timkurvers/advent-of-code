@@ -8,7 +8,7 @@ export const bisect = async ({
   until,
 }) => {
   while (lower < upper) {
-    const middle = (upper + lower) >> 1;
+    const middle = Math.floor((upper + lower) / 2);
     if (await until(middle)) {
       upper = middle;
     } else {
