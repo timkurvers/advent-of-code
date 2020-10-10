@@ -33,17 +33,17 @@ const produce = (quantity, type, reactions, stock) => {
   const times = Math.ceil(need / reaction.quantity);
 
   for (const reagent of reaction.reagents) {
-    const ientry = stock.lookup(reagent.type);
+    const rentry = stock.lookup(reagent.type);
     const amount = reagent.quantity * times;
     produce(amount, reagent.type, reactions, stock);
 
     // Bail out if one of the reagents could not be produced
-    if (ientry.available < amount) {
+    if (rentry.available < amount) {
       return;
     }
 
-    ientry.available -= amount;
-    ientry.used += amount;
+    rentry.available -= amount;
+    rentry.used += amount;
   }
 
   entry.available += reaction.quantity * times;
