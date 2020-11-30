@@ -1,2 +1,0 @@
-export default `depth: 9171
-target: 7,721`;

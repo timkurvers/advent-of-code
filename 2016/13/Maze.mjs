@@ -8,7 +8,7 @@ const Type = {
 class Maze extends Grid {
   constructor(seed) {
     super();
-    this.seed = seed;
+    this.seed = +seed;
   }
 
   getPoint(x, y) {

@@ -1,8 +1,10 @@
 /* eslint-disable no-loop-func */
 
+import fs from 'fs';
+import path from 'path';
+
 import colors from 'colors';
 import globby from 'globby';
-import path from 'path';
 
 import { time, titleize } from '..';
 
@@ -12,6 +14,10 @@ class Challenge {
 
     this.year = +id.slice(0, 4);
     this.day = +id.slice(-2);
+  }
+
+  get input() {
+    return fs.readFileSync(path.resolve(this.path, 'input/input.txt'), 'utf8');
   }
 
   get path() {
@@ -25,9 +31,7 @@ class Challenge {
   async run() {
     const parts = await this.parts();
     const examples = await import(path.resolve(this.path, 'input/examples'));
-    const {
-      default: puzzleInput,
-    } = await import(path.resolve(this.path, 'input'));
+    const puzzleInput = this.input;
 
     for (const [part, solution] of Object.entries(parts)) {
       await this.runPart({
