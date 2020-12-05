@@ -1,6 +1,9 @@
 import { range, wrap } from '../../../utils';
 
 describe('data structure utilities', () => {
+  // TODO: Add test for randomized array shuffling
+  xdescribe('shuffle()');
+
   describe('range()', () => {
     it('generates a range until given end index', () => {
       expect(range({ end: 3 })).toEqual([0, 1, 2, 3]);
