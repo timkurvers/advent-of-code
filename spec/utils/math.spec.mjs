@@ -1,5 +1,6 @@
 import {
   TAU,
+  bitsNeededFor,
   sum,
   maxIndex,
   groupBy,
@@ -17,6 +18,19 @@ describe('math utilities', () => {
   describe('TAU', () => {
     it('equals 2π', () => {
       expect(TAU).toEqual(2 * Math.PI);
+    });
+  });
+
+  describe('bitsNeededFor()', () => {
+    it('calculates bits needed to represent given number', () => {
+      expect(bitsNeededFor(0)).toEqual(0);
+      expect(bitsNeededFor(1)).toEqual(1);
+      expect(bitsNeededFor(2)).toEqual(2);
+      expect(bitsNeededFor(3)).toEqual(2);
+      expect(bitsNeededFor(4)).toEqual(3);
+      expect(bitsNeededFor(126)).toEqual(7);
+      expect(bitsNeededFor(127)).toEqual(7);
+      expect(bitsNeededFor(128)).toEqual(8);
     });
   });
 

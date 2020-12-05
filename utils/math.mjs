@@ -4,6 +4,8 @@ import { Cache } from '.';
 
 export const TAU = 2 * Math.PI;
 
+export const bitsNeededFor = (n) => Math.log2(n) + 1 | 0;
+
 export const multiply = (array) => array.reduce((total, next) => total * next, 1);
 export const sum = (array) => array.reduce((total, next) => total + next, 0);
 
