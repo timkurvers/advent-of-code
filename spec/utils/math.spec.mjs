@@ -1,6 +1,7 @@
 import {
   TAU,
   bitsNeededFor,
+  multiply,
   sum,
   maxIndex,
   groupBy,
@@ -31,6 +32,12 @@ describe('math utilities', () => {
       expect(bitsNeededFor(126)).toEqual(7);
       expect(bitsNeededFor(127)).toEqual(7);
       expect(bitsNeededFor(128)).toEqual(8);
+    });
+  });
+
+  describe('multiply()', () => {
+    it('multiplies array contents', () => {
+      expect(multiply([3, 4, 5])).toEqual(60);
     });
   });
 
