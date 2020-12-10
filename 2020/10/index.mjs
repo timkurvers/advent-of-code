@@ -1,6 +1,4 @@
-/* eslint-disable no-cond-assign, no-param-reassign */
-
-import { Graph, reduceMaxBy, solution } from '../../utils';
+import { Graph, solution } from '../../utils';
 
 const parse = (input) => input.trim().split('\n').map(Number).sort((a, b) => a - b);
 
@@ -38,6 +36,7 @@ export const partTwo = solution((input) => {
   );
 
   // Creates a graph with the outlet, adapters and device as vertices
+  // Note: Probably faster without the graph, but graphs are cool <3
   const graph = new Graph();
   const { vertices } = graph;
   for (const entry of entries) {
@@ -46,48 +45,16 @@ export const partTwo = solution((input) => {
     }
   }
 
-  // Walks between given vertices, calculating the unique number of paths
-  const walk = ({ from, to }) => {
-    let paths = 0;
-    const frontier = [from];
-    let current = null;
-    while (current = frontier.pop()) {
-      if (current === to) {
-        ++paths;
-        continue;
-      }
-      for (const edge of current.edges) {
-        frontier.push(edge.to);
-      }
-    }
-    return paths;
-  };
-
+  // Augment all vertices with the number of paths it can be reached by
   const start = vertices[0];
-  const goal = vertices[vertices.length - 1];
-
-  // Iterating over this graph to find all possible paths is not feasible, so
-  // chop the graph into segments and multiply the paths together
-  let paths = 1;
-  let current = start;
-  while (current !== goal) {
-    const { edges } = current;
-
-    // Current segment can extend as this vertex only has one path forward
-    if (edges.length === 1) {
-      current = edges[0].to;
-      continue;
+  start.paths = 1;
+  for (const vertex of vertices) {
+    const { edges, paths } = vertex;
+    for (const edge of edges) {
+      edge.to.paths = (edge.to.paths || 0) + paths;
     }
-
-    // Encountered a split in the path, find all jump targets and the vertex
-    // where all these variations rejoin the main path
-    const targets = edges.flatMap((e) => e.to.edges.map((n) => n.to));
-    const rejoin = reduceMaxBy(targets, 'value');
-
-    // Multiply current paths by those for the newly discovered segment
-    paths *= walk({ from: current, to: rejoin });
-    current = rejoin;
   }
 
-  return paths;
+  const goal = vertices[vertices.length - 1];
+  return goal.paths;
 });
