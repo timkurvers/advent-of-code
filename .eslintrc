@@ -1,5 +1,11 @@
 {
   "extends": "@timkurvers",
+  "env": {
+    "es2020": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 2020
+  },
   "rules": {
     "import/no-cycle": "off",
     "max-classes-per-file": "off",
