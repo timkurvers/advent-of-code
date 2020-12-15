@@ -9,6 +9,7 @@ import {
   reduceMaxBy,
   combine,
   permute,
+  mulInv,
   gcd2,
   lcm2,
   gcd,
@@ -149,6 +150,14 @@ describe('math utilities', () => {
     it('returns a generator, postponing actual permutation until used', () => {
       const generator = permute(new Array(2 ** 32 - 1));
       expect(generator.next).toBeDefined();
+    });
+  });
+
+  describe('mulInv()', () => {
+    it('finds modular multiplicative inverse of a under modulo m', () => {
+      expect(mulInv(3, 11)).toEqual(4);
+      expect(mulInv(10, 17)).toEqual(12);
+      expect(mulInv(1, 1)).toEqual(1);
     });
   });
 

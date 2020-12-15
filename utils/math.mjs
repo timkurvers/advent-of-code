@@ -84,20 +84,20 @@ export function* permute(array) {
 }
 
 // See: https://rosettacode.org/wiki/Chinese_remainder_theorem#JavaScript
-export const mulInv = (a, b) => {
-  const b0 = b;
+export const mulInv = (a, m) => {
+  const m0 = m;
   let [x0, x1] = [0, 1];
 
-  if (b === 1) {
+  if (m === 1) {
     return 1;
   }
   while (a > 1) {
-    const q = Math.floor(a / b);
-    [a, b] = [b, a % b];
+    const q = Math.floor(a / m);
+    [a, m] = [m, a % m];
     [x0, x1] = [x1 - q * x0, x0];
   }
   if (x1 < 0) {
-    x1 += b0;
+    x1 += m0;
   }
   return x1;
 };

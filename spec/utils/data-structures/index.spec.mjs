@@ -1,8 +1,17 @@
-import { range, wrap } from '../../../utils';
+import {
+  range, shuffle, wrap, zip,
+} from '../../../utils';
 
 describe('data structure utilities', () => {
-  // TODO: Add test for randomized array shuffling
-  xdescribe('shuffle()');
+  describe('shuffle()', () => {
+    it('shuffles given array in-place', () => {
+      const mock = jest.spyOn(global.Math, 'random').mockReturnValue(0.5);
+      const array = [1, 2, 3, 4];
+      shuffle(array);
+      expect(array).toEqual([1, 4, 2, 3]);
+      mock.mockRestore();
+    });
+  });
 
   describe('range()', () => {
     it('generates a range until given end index', () => {
@@ -40,6 +49,19 @@ describe('data structure utilities', () => {
       expect(wrap(-3, length)).toEqual(1);
       expect(wrap(-4, length)).toEqual(0);
       expect(wrap(-5, length)).toEqual(3);
+    });
+  });
+
+  describe('zip()', () => {
+    it('zips given arrays together', () => {
+      const names = ['Bob', 'Pete', 'Jacky'];
+      const ages = [21, 44, 75];
+      const hasJob = [true, true, false];
+      expect(zip(names, ages, hasJob)).toEqual([
+        ['Bob', 21, true],
+        ['Pete', 44, true],
+        ['Jacky', 75, false],
+      ]);
     });
   });
 });
