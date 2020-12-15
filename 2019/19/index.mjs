@@ -66,7 +66,7 @@ export const partTwo = solution.inefficient(async (input, { size = 100 }) => {
     return false;
   };
 
-  // Find row of first occurence of a square of given size by bisecting
+  // Find row of first occurrence of a square of given size by bisecting
   const y = await bisect({
     lower: 0,
     upper: bound,

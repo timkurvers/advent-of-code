@@ -14,10 +14,10 @@ const parse = (input) => input.trim().split('\n').map((line) => {
   };
 });
 
-const isValidUsingOccurences = ({ policy, pw }) => {
+const isValidUsingOccurrences = ({ policy, pw }) => {
   const { char, min, max } = policy;
-  const occurences = Array.from(pw.matchAll(char)).length;
-  return min <= occurences && occurences <= max;
+  const occurrences = Array.from(pw.matchAll(char)).length;
+  return min <= occurrences && occurrences <= max;
 };
 
 const isValidUsingPositions = ({ policy, pw }) => {
@@ -27,7 +27,7 @@ const isValidUsingPositions = ({ policy, pw }) => {
 
 export const partOne = solution((input) => {
   const pwdb = parse(input);
-  return pwdb.filter(isValidUsingOccurences).length;
+  return pwdb.filter(isValidUsingOccurrences).length;
 });
 
 export const partTwo = solution((input) => {
