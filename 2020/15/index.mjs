@@ -2,27 +2,37 @@ import { solution } from '../../utils';
 
 const parse = (input) => input.trim().split(',').map(Number);
 
-export const partOne = solution((input, { turn: target = 2020 } = {}) => {
-  const starting = parse(input);
+const play = (starting, { until }) => {
+  // Darn you Map, y u so slow! (╯°□°)╯︵ ┻━┻
+  const last = new Map();
+  const prelast = new Map();
 
-  const spoken = new Map();
-  let last = null;
-  for (let turn = 1; turn <= target; ++turn) {
-    if (starting.length) {
-      last = starting.shift();
-    } else {
-      const occurrences = spoken.get(last);
-      if (occurrences.length <= 1) {
-        last = 0;
-      } else {
-        last = occurrences[0] - occurrences[1];
-      }
-    }
-    if (!spoken.has(last)) {
-      spoken.set(last, [turn]);
-    } else {
-      spoken.get(last).unshift(turn);
-    }
+  for (const [turn, number] of starting.entries()) {
+    last.set(number, turn + 1);
   }
-  return last;
+
+  let current = null;
+  let isNew = true;
+  for (let turn = starting.length + 1; turn <= until; ++turn) {
+    if (!isNew) {
+      current = last.get(current) - prelast.get(current);
+    } else {
+      current = 0;
+    }
+    const seen = last.get(current);
+    isNew = seen === undefined;
+    prelast.set(current, seen);
+    last.set(current, turn);
+  }
+  return current;
+};
+
+export const partOne = solution((input, { turn = 2020 } = {}) => {
+  const starting = parse(input);
+  return play(starting, { until: turn });
+});
+
+export const partTwo = solution.inefficient((input, { turn = 30000000 } = {}) => {
+  const starting = parse(input);
+  return play(starting, { until: turn });
 });

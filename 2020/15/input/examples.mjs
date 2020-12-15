@@ -12,11 +12,11 @@ export const partOne = [
 ];
 
 export const partTwo = [
-  example('0,3,6', 175594),
-  example('1,3,2', 2578),
-  example('2,1,3', 3544142),
-  example('1,2,3', 261214),
-  example('2,3,1', 6895259),
-  example('3,2,1', 18),
-  example('3,1,2', 362),
+  example.inefficient('0,3,6', 175594),
+  example.inefficient('1,3,2', 2578),
+  example.inefficient('2,1,3', 3544142),
+  example.inefficient('1,2,3', 261214),
+  example.inefficient('2,3,1', 6895259),
+  example.inefficient('3,2,1', 18),
+  example.inefficient('3,1,2', 362),
 ];
