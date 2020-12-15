@@ -30,3 +30,9 @@ export const wrap = (index, length) => {
   }
   return index % length;
 };
+
+export const zip = (first, ...arrays) => (
+  first.map((value, i) => (
+    arrays.reduce((zipped, current) => [...zipped, current[i]], [value])
+  ))
+);

@@ -1,6 +1,8 @@
 /* eslint-disable no-loop-func */
 
-import { cast, solution } from '../../utils';
+import {
+  cast, multiply, mulInv, solution, zip,
+} from '../../utils';
 
 const parse = (input) => {
   const lines = input.trim().split('\n');
@@ -22,29 +24,34 @@ export const partOne = solution((input) => {
   }
 });
 
-export const partTwo = solution((input, { isFeasible = false }) => {
+// See: https://rosettacode.org/wiki/Chinese_remainder_theorem#JavaScript
+const crt = (...congruences) => {
+  const [rem, mod] = zip(...congruences);
+  let sum = 0;
+  const product = multiply(mod);
+  for (let i = 0; i < mod.length; ++i) {
+    const [ni, ri] = [mod[i], rem[i]];
+    const p = Math.floor(product / ni);
+    sum += ri * p * mulInv(p, ni);
+  }
+  return sum % product;
+};
+
+export const partTwo = solution((input) => {
   const { busIDs } = parse(input);
 
-  if (!isFeasible) {
-    // Found by plotting the following formula straight into Wolfram Alpha:
-    //
-    //   (t + 0) mod 17 = 0,   (t + 11) mod 37 = 0, (t + 17) mod 907 = 0,
-    //   (t + 29) mod 19 = 0,  (t + 40) mod 23 = 0, (t + 46) mod 29 = 0,
-    //   (t + 48) mod 653 = 0, (t + 58) mod 41 = 0, (t + 61) mod 13 = 0
-    //
-    // TODO: Compute this properly
-    return 842186186521918;
-  }
-
-  let t = 0;
-  while (true) {
-    const found = busIDs.every((busID, diff) => {
-      if (busID === 'x') return true;
-      return (t + diff) % busID === 0;
-    });
-    if (found) {
-      return t;
+  // Builds a list of congruences, adjusting the remainder such that each bus
+  // departs at the required offset time.
+  //
+  // Given example '7,13,x,x,59,x,31,19': bus route 13 should depart one minute
+  // after bus 7, so t % 13 == 12. This list of congruences [[12, 13], ..] is
+  // passed into Chinese Remainder Theorem above, to find the correct time.
+  //
+  const congruences = busIDs.reduce((result, busID, offset) => {
+    if (busID !== 'x') {
+      result.push([busID - offset, busID]);
     }
-    t += 1;
-  }
+    return result;
+  }, []);
+  return crt(...congruences);
 });

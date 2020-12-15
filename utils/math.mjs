@@ -83,6 +83,25 @@ export function* permute(array) {
   }
 }
 
+// See: https://rosettacode.org/wiki/Chinese_remainder_theorem#JavaScript
+export const mulInv = (a, b) => {
+  const b0 = b;
+  let [x0, x1] = [0, 1];
+
+  if (b === 1) {
+    return 1;
+  }
+  while (a > 1) {
+    const q = Math.floor(a / b);
+    [a, b] = [b, a % b];
+    [x0, x1] = [x1 - q * x0, x0];
+  }
+  if (x1 < 0) {
+    x1 += b0;
+  }
+  return x1;
+};
+
 // Greatest common divisor / least common multiple of two or more integers
 // See: https://stackoverflow.com/a/34955386
 export const gcd2 = (a, b) => {
