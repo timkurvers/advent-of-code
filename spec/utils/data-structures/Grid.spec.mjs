@@ -76,6 +76,17 @@ describe('Grid', () => {
       });
     });
 
+    describe('distanceToPoint()', () => {
+      it('calculates manhattan distance to given point', () => {
+        const grid = new Grid();
+        const start = new GridPoint(grid, 0, 0);
+        const point = new GridPoint(grid, 1, 1);
+        const target = new GridPoint(grid, 2, 2);
+        expect(point.distanceToPoint(target)).toEqual(2);
+        expect(point.distanceToPoint(start)).toEqual(2);
+      });
+    });
+
     describe('get adjacentNeighbors', () => {
       it('returns horizontally and vertically neighboring points (if any)', () => {
         const grid = Grid.from('ab\ncd');

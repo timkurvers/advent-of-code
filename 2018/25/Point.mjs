@@ -1,3 +1,5 @@
+import { distance3D } from '../../utils/navigation';
+
 import Constellation from './Constellation';
 
 class Point {
@@ -24,12 +26,10 @@ class Point {
     return `(${this.t},${this.x},${this.y},${this.z})`;
   }
 
-  // TODO: Refactor into navigation utility
   distanceTo(other) {
-    return Math.abs(other.t - this.t)
-           + Math.abs(other.x - this.x)
-           + Math.abs(other.y - this.y)
-           + Math.abs(other.z - this.z);
+    return distance3D(
+      this.x, this.y, this.z, other.x, other.y, other.z,
+    ) + Math.abs(this.t - other.t);
   }
 }
 

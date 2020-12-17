@@ -28,7 +28,7 @@ export const partOne = solution((passcode) => {
   const { path: route } = astar(start.withPath(), null, {
     neighborsFor: (current) => current.options(passcode),
     done: (current) => current.point === goal,
-    heuristic: (next) => next.point.distanceTo(goal.x, goal.y),
+    heuristic: (next) => next.point.distanceToPoint(goal),
   });
   const last = route[route.length - 1];
   return last.path;

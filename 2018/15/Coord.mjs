@@ -1,3 +1,5 @@
+import { distance2D } from '../../utils/navigation';
+
 class Coord {
   constructor(map, x, y) {
     this.map = map;
@@ -24,9 +26,8 @@ class Coord {
     return this.neighbors.filter((coord) => !coord.entity);
   }
 
-  // TODO: Refactor into navigation utility
   distanceTo(other) {
-    return Math.abs(other.x - this.x) + Math.abs(other.y - this.y);
+    return distance2D(this.x, this.y, other.x, other.y);
   }
 }
 

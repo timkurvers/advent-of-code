@@ -1,3 +1,5 @@
+import { distance3D } from '../../utils/navigation';
+
 class Nanobot {
   constructor(x, y, z, radius) {
     this.x = x;
@@ -10,11 +12,8 @@ class Nanobot {
     return `(${this.x},${this.y},${this.z})`;
   }
 
-  // TODO: Refactor into navigation utility
   distanceTo(other) {
-    return Math.abs(other.x - this.x)
-           + Math.abs(other.y - this.y)
-           + Math.abs(other.z - this.z);
+    return distance3D(this.x, this.y, this.z, other.x, other.y, other.z);
   }
 
   inRange(other) {

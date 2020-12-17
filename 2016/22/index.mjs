@@ -77,7 +77,7 @@ export const partTwo = solution((input) => {
     neighborsFor: (current) => (
       current.adjacentNeighbors.filter((point) => point.value !== Type.FULL)
     ),
-    heuristic: (next) => next.distanceTo(goal.x, goal.y),
+    heuristic: (next) => next.distanceToPoint(goal),
   });
 
   // To shift the goal data towards the target when there is an empty node to

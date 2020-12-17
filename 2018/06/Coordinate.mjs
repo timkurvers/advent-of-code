@@ -1,3 +1,5 @@
+import { distance2D } from '../../utils/navigation';
+
 let ord = 65;
 
 class Coordinate {
@@ -13,9 +15,8 @@ class Coordinate {
     return `(${this.x},${this.y})`;
   }
 
-  // TODO: Refactor into navigation utility
   distanceTo(x, y) {
-    return Math.abs(x - this.x) + Math.abs(y - this.y);
+    return distance2D(this.x, this.y, x, y);
   }
 }
 

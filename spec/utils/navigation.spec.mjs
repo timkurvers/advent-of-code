@@ -5,6 +5,8 @@ import {
   dy,
   isHorizontalOrientation,
   isVerticalOrientation,
+  distance2D,
+  distance3D,
 } from '../../utils';
 
 describe('navigation utilities', () => {
@@ -74,6 +76,20 @@ describe('navigation utilities', () => {
       expect(isVerticalOrientation(Orientation.DOWN)).toBe(true);
       expect(isVerticalOrientation(Orientation.LEFT)).toBe(false);
       expect(isVerticalOrientation(Orientation.RIGHT)).toBe(false);
+    });
+  });
+
+  describe('distance2D()', () => {
+    it('returns manhattan distance between (x1, y1) and (x2, y2)', () => {
+      expect(distance2D(0, 0, 1, 1)).toEqual(2);
+      expect(distance2D(0, -5, 1, 1)).toEqual(7);
+    });
+  });
+
+  describe('distance3D()', () => {
+    it('returns manhattan distance between (x1, y1, z1) and (x2, y2, z2)', () => {
+      expect(distance3D(0, 0, 0, 1, 1, 1)).toEqual(3);
+      expect(distance3D(0, -5, 1, 1, 1, 1)).toEqual(7);
     });
   });
 });

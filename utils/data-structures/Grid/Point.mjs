@@ -1,3 +1,5 @@
+import { distance2D } from '../../navigation';
+
 class Point {
   constructor(grid, x = 0, y = 0, value = undefined) {
     this.x = x;
@@ -19,9 +21,12 @@ class Point {
     );
   }
 
-  // TODO: Refactor into navigation utility
   distanceTo(x, y) {
-    return Math.abs(x - this.x) + Math.abs(y - this.y);
+    return distance2D(this.x, this.y, x, y);
+  }
+
+  distanceToPoint(other) {
+    return distance2D(this.x, this.y, other.x, other.y);
   }
 
   get adjacentNeighbors() {

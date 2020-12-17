@@ -1,4 +1,4 @@
-import { Orientation, TAU } from '../../utils';
+import { Orientation, TAU, distance2D } from '../../utils';
 
 class Asteroid {
   constructor(field, x, y) {
@@ -18,9 +18,8 @@ class Asteroid {
     return ((Math.atan2(dy, dx) + TAU + Orientation.UP) % TAU);
   }
 
-  // TODO: Refactor into navigation utility
   distanceTo(other) {
-    return Math.abs(other.x - this.x) + Math.abs(other.y - this.y);
+    return distance2D(this.x, this.y, other.x, other.y);
   }
 
   // Asteroids that can be directly observed
