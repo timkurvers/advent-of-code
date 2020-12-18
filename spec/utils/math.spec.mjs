@@ -9,6 +9,7 @@ import {
   reduceMaxBy,
   combine,
   permute,
+  dfor,
   mulInv,
   gcd2,
   lcm2,
@@ -150,6 +151,33 @@ describe('math utilities', () => {
     it('returns a generator, postponing actual permutation until used', () => {
       const generator = permute(new Array(2 ** 32 - 1));
       expect(generator.next).toBeDefined();
+    });
+  });
+
+  describe('dfor()', () => {
+    it('generates all dynamic for-loop iterations for given boundaries', () => {
+      const iterations3d = Array.from(dfor([
+        { min: 0, max: 1 },
+        { min: 1, max: 3 },
+        { min: 0, max: 1 },
+      ]));
+      expect(iterations3d).toEqual([
+        [0, 1, 0], [0, 1, 1], [0, 2, 0], [0, 2, 1],
+        [0, 3, 0], [0, 3, 1], [1, 1, 0], [1, 1, 1],
+        [1, 2, 0], [1, 2, 1], [1, 3, 0], [1, 3, 1],
+      ]);
+
+      const iterations4d = Array.from(dfor([
+        { min: 0, max: 1 },
+        { min: 1, max: 3 },
+        { min: 1, max: 1 },
+        { min: 0, max: 1 },
+      ]));
+      expect(iterations4d).toEqual([
+        [0, 1, 1, 0], [0, 1, 1, 1], [0, 2, 1, 0], [0, 2, 1, 1],
+        [0, 3, 1, 0], [0, 3, 1, 1], [1, 1, 1, 0], [1, 1, 1, 1],
+        [1, 2, 1, 0], [1, 2, 1, 1], [1, 3, 1, 0], [1, 3, 1, 1],
+      ]);
     });
   });
 

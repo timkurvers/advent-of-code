@@ -83,6 +83,41 @@ export function* permute(array) {
   }
 }
 
+// Executes dynamic nested for-loops for given boundaries
+// See: https://stackoverflow.com/questions/52456836/dynamically-generating-a-flexible-number-of-nested-for-loops
+export function* dfor(boundaries) {
+  const mins = boundaries.map((b) => b.min);
+  const maxs = boundaries.map((b) => b.max);
+  const total = boundaries.reduce((accu, b) => accu * (b.max - b.min + 1), 1);
+
+  // Emit the initial iteration of all minimum values
+  const vars = [...mins];
+  yield vars.slice();
+
+  let i = 1;
+  while (i < total) {
+    // Current loop index
+    let index = boundaries.length - 1;
+
+    let looping = true;
+    while (looping && index >= 0) {
+      vars[index]++;
+
+      // If this iteration level spills over its max, change upper levels
+      if (vars[index] > maxs[index]) {
+        vars[index] = mins[index];
+      } else {
+        looping = false;
+        yield vars.slice();
+        ++i;
+      }
+
+      // Set focus to one iteration level up
+      --index;
+    }
+  }
+}
+
 // See: https://rosettacode.org/wiki/Chinese_remainder_theorem#JavaScript
 export const mulInv = (a, m) => {
   const m0 = m;
