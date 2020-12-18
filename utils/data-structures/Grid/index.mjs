@@ -6,6 +6,7 @@ class Grid {
     this.pointClass = pointClass;
   }
 
+  // TODO: This is incorrect for grids not starting on (0, 0)
   get center() {
     const x = Math.floor(this.maxX / 2);
     const y = Math.floor(this.maxY / 2);

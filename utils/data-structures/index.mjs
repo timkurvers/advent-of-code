@@ -6,6 +6,7 @@ export { default as CircularLinkedList, CircularLinkedListNode } from './Circula
 export { default as LinkedList, LinkedListNode } from './LinkedList';
 export { default as Graph, GraphEdge, GraphVertex } from './Graph';
 export { default as Grid, GridPoint } from './Grid';
+export { default as GridND, GridNDPoint } from './GridND';
 export { default as PriorityQueue } from './PriorityQueue';
 export { default as Queue } from './Queue';
 
