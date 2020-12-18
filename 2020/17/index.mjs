@@ -37,12 +37,12 @@ const execute = (start, cycles) => {
 
 export const partOne = solution((input, { cycles = 6 }) => {
   const dimensions = ['x', 'y', 'z'];
-  const grid = GridND.from(dimensions, input);
+  const grid = GridND.from(input, dimensions);
   return execute(grid, cycles).filter(isActive).length;
 });
 
 export const partTwo = solution.inefficient((input, { cycles = 6 }) => {
   const dimensions = ['x', 'y', 'z', 'w'];
-  const grid = GridND.from(dimensions, input);
+  const grid = GridND.from(input, dimensions);
   return execute(grid, cycles).filter(isActive).length;
 });

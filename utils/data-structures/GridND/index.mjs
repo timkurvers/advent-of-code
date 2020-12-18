@@ -158,7 +158,7 @@ class GridND {
   }
 
   // Note: Assumes gfx given represents first two dimensions in given list (for now)
-  static from(dimensions, gfx, { ignoreBlanks = true, pointClass } = {}) {
+  static from(gfx, dimensions, { ignoreBlanks = true, pointClass } = {}) {
     const grid = new this(dimensions, pointClass);
     const lines = gfx.split('\n');
     lines.forEach((line, d1) => {
