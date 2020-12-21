@@ -1,54 +1,52 @@
-/* eslint-disable no-cond-assign */
+/* eslint-disable no-cond-assign, no-param-reassign */
 
-import { cast, solution } from '../../utils';
+import { cast, patterns, solution } from '../../utils';
 
-// Turns given raw rules into proper executable rules
-const rulify = (frontier, rules = new Map()) => {
-  // Whether argument is ready to be processed: for numbers, the corresponding
-  // rule must be previously processed and available in the rules
-  const isReady = (arg) => typeof arg !== 'number' || rules.has(arg);
+// Creates a rule for given raw rule arguments
+const create = (raw, rules) => {
+  const recurse = (arg) => create(arg, rules);
 
-  let current = null;
-  while (current = frontier.shift()) {
-    // If this rule's arguments are not ready yet, reschedule it
-    const ready = current.args.every(isReady);
-    if (!ready) {
-      frontier.push(current);
-      continue;
-    }
-
-    // Generate a rule based on the arguments
-    const rule = current.args.reduce((str, arg) => {
-      if (typeof arg === 'number') {
-        // Wrap nested rules to prevent potential grouping issues
-        return str + rules.get(arg);
-      }
-      return str + arg;
-    }, '');
-    rules.set(current.id, `(${rule})`);
+  if (raw.includes('|')) {
+    return patterns.oneOf(...raw.split(' | ').map(recurse));
   }
-  return rules;
+  if (raw.includes(' ')) {
+    return patterns.sequence(...raw.split(' ').map(recurse));
+  }
+  const value = cast(raw);
+  if (typeof value === 'number') {
+    return (defer) => rules.get(value)(defer);
+  }
+  return patterns.literal(value);
 };
 
 const parse = (input) => {
   const parts = input.trim().split('\n\n');
 
-  const frontier = parts[0].split('\n').map((line) => {
-    const [id, ...args] = line.replace(/"/g, '').split(' ').map(cast);
-    return { id, args };
-  });
+  const rules = new Map();
+  const parsed = [];
+  for (const line of parts[0].split('\n')) {
+    const [id, raw] = line.replace(/"/g, '').split(': ');
+    rules.set(+id, create(raw, rules));
+  }
 
   const messages = parts[1].split('\n');
-  const rules = rulify(frontier);
-  return { messages, rules };
+  return { messages, parsed, rules };
 };
 
-// Whether given message matches rule completely (start to end)
-const isValid = (message, rule) => (
-  message.match(new RegExp(`^${rule}$`))
-);
+// Whether given message matches rule in its entirety
+const isValid = (message, rule) => patterns.entirely(rule)(message);
 
 export const partOne = solution((input) => {
+  const { messages, rules } = parse(input);
+  const rule0 = rules.get(0);
+  return messages.filter((message) => isValid(message, rule0)).length;
+});
+
+export const partTwo = solution((input) => {
+  // Override rule 8 and 11
+  input = input.replace(/^8:.+$/m, '8: 42 | 42 8');
+  input = input.replace(/^11:.+$/m, '11: 42 31 | 42 11 31');
+
   const { messages, rules } = parse(input);
   const rule0 = rules.get(0);
   return messages.filter((message) => isValid(message, rule0)).length;

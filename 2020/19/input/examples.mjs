@@ -19,6 +19,16 @@ export const partOne = [
 
 export const partTwo = [
   example(stripIndent`
+    0: 1 2
+    1: 3 | 3 1
+    2: 3 4
+    3: "a"
+    4: "b"
+
+    aaaab
+  `, 1),
+
+  example(stripIndent`
     42: 9 14 | 10 1
     9: 14 27 | 1 26
     10: 23 14 | 28 1
