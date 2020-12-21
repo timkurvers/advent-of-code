@@ -22,23 +22,24 @@ class GridND {
 
   min(dimension) {
     const positions = this.positions(dimension);
-    return Math.min(...positions);
+    return positions.length ? Math.min(...positions) : undefined;
   }
 
   max(dimension) {
     const positions = this.positions(dimension);
-    return Math.max(...positions);
+    return positions.length ? Math.max(...positions) : undefined;
   }
 
   positions(dimension) {
     const index = this.dimensionIndexFor(dimension);
-    return this.map((point) => point.position[index]);
+    const positions = this.map((point) => point.position[index]);
+    return [...new Set(positions)];
   }
 
   size(dimension) {
     const min = this.min(dimension);
     const max = this.max(dimension);
-    return max - min + 1;
+    return min !== undefined ? max - min + 1 : 0;
   }
 
   get points() {

@@ -162,6 +162,7 @@ describe('Grid', () => {
     });
   });
 
+  // TODO: Getters for xs and ys may return duplicate entries
   describe('get xs', () => {
     it('returns x indices', () => {
       const grid = new Grid();
