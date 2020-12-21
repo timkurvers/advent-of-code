@@ -6,6 +6,7 @@ export * from './esm';
 export * from './math';
 export * from './navigation';
 export * from './pathfinding';
+export { default as patterns } from './patterns';
 export * from './search';
 export * from './strings';
 export * from './types';
