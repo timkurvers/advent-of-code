@@ -23,13 +23,11 @@ const parse = (input) => input.split('\n\n').map((raw) => {
 // and edges represent a connection between two tiles
 const create = (tiles) => {
   const graph = new Graph({ edgeClass: TileEdge });
-  for (const atile of tiles) {
-    const a = graph.lookup(atile);
-    for (const btile of tiles) {
-      if (atile === btile) continue;
-      const b = graph.lookup(btile);
-      for (const aside of atile.sides) {
-        for (const bside of btile.sides) {
+  for (const a of tiles) {
+    for (const b of tiles) {
+      if (a === b) continue;
+      for (const aside of a.sides) {
+        for (const bside of b.sides) {
           if (aside === bside || reverse(aside) === bside) {
             graph.link(a, b, { side: aside });
           }
