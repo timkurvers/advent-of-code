@@ -10,6 +10,10 @@ export { default as GridND, GridNDPoint } from './GridND';
 export { default as PriorityQueue } from './PriorityQueue';
 export { default as Queue } from './Queue';
 
+export const range = ({ start = 0, end, length = end + 1 - start }) => (
+  new Array(length).fill(0).map((_, index) => start + index)
+);
+
 // Shuffles given array in-place
 // See: https://stackoverflow.com/questions/6274339/how-can-i-shuffle-an-array
 export const shuffle = (array) => {
@@ -19,10 +23,6 @@ export const shuffle = (array) => {
   }
   return array;
 };
-
-export const range = ({ start = 0, end, length = end + 1 - start }) => (
-  new Array(length).fill(0).map((_, index) => start + index)
-);
 
 export const wrap = (index, length) => {
   const maxIndex = length - 1;

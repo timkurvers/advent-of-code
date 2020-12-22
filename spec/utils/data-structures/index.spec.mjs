@@ -3,16 +3,6 @@ import {
 } from '../../../utils';
 
 describe('data structure utilities', () => {
-  describe('shuffle()', () => {
-    it('shuffles given array in-place', () => {
-      const mock = jest.spyOn(global.Math, 'random').mockReturnValue(0.5);
-      const array = [1, 2, 3, 4];
-      shuffle(array);
-      expect(array).toEqual([1, 4, 2, 3]);
-      mock.mockRestore();
-    });
-  });
-
   describe('range()', () => {
     it('generates a range until given end index', () => {
       expect(range({ end: 3 })).toEqual([0, 1, 2, 3]);
@@ -28,6 +18,16 @@ describe('data structure utilities', () => {
 
     it('generates a range from given start index of given length', () => {
       expect(range({ start: 2, length: 2 })).toEqual([2, 3]);
+    });
+  });
+
+  describe('shuffle()', () => {
+    it('shuffles given array in-place', () => {
+      const mock = jest.spyOn(global.Math, 'random').mockReturnValue(0.5);
+      const array = [1, 2, 3, 4];
+      shuffle(array);
+      expect(array).toEqual([1, 4, 2, 3]);
+      mock.mockRestore();
     });
   });
 
