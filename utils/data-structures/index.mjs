@@ -10,6 +10,15 @@ export { default as GridND, GridNDPoint } from './GridND';
 export { default as PriorityQueue } from './PriorityQueue';
 export { default as Queue } from './Queue';
 
+export const intersection = (first, ...arrays) => (
+  first.reduce((list, entry) => {
+    if (arrays.every((array) => array.includes(entry))) {
+      list.push(entry);
+    }
+    return list;
+  }, [])
+);
+
 export const range = ({ start = 0, end, length = end + 1 - start }) => (
   new Array(length).fill(0).map((_, index) => start + index)
 );

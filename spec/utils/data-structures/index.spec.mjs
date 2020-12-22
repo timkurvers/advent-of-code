@@ -1,8 +1,20 @@
 import {
-  range, shuffle, wrap, zip,
+  intersection, range, shuffle, wrap, zip,
 } from '../../../utils';
 
 describe('data structure utilities', () => {
+  describe('intersection()', () => {
+    it('returns intersection of given arrays', () => {
+      const a = [1, 2, 3, 4];
+      const b = [2, 4, 5];
+      const c = [2, 3, 4, 5];
+      expect(intersection(a, b, c)).toEqual([2, 4]);
+      expect(intersection(a, b)).toEqual([2, 4]);
+      expect(intersection(a, c)).toEqual([2, 3, 4]);
+      expect(intersection(b, c)).toEqual([2, 4, 5]);
+    });
+  });
+
   describe('range()', () => {
     it('generates a range until given end index', () => {
       expect(range({ end: 3 })).toEqual([0, 1, 2, 3]);
