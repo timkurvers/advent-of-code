@@ -6,7 +6,7 @@ class Vertex {
     this.edges = [];
   }
 
-  edge(to, { edgeClass: EdgeClass = Edge, ...options } = {}) {
+  edge(to, { class: EdgeClass = Edge, ...options } = {}) {
     let edge = this.edges.find((other) => other.to === to);
     if (!edge) {
       edge = new EdgeClass(this, to, options);

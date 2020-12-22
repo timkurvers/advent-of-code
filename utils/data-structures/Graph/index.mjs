@@ -38,7 +38,7 @@ class Graph {
   edge(a, b, options) {
     const from = this.lookup(a);
     const to = this.lookup(b);
-    return from.edge(to, { edgeClass: this.edgeClass, ...options });
+    return from.edge(to, { class: this.edgeClass, ...options });
   }
 
   link(a, b, options) {
