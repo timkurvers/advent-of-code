@@ -3,6 +3,7 @@ import {
   fromASCII,
   stripIndent,
   humanize,
+  reverse,
   titleize,
 } from '../../utils';
 
@@ -20,6 +21,14 @@ describe('string utilities', () => {
 
     it('converts given ASCII character codes to a string', () => {
       expect(fromASCII([65, 111, 67])).toEqual('AoC');
+    });
+  });
+
+  describe('reverse()', () => {
+    it('reverses given string', () => {
+      expect(reverse('')).toEqual('');
+      expect(reverse('abc')).toEqual('cba');
+      expect(reverse('abcd')).toEqual('dcba');
     });
   });
 

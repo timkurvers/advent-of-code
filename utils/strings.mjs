@@ -14,6 +14,8 @@ export const fromASCII = (codes) => {
   return String.fromCharCode(codes);
 };
 
+export const reverse = (string) => string.split('').reverse().join('');
+
 export const stripIndent = (strings, ...params) => {
   let source = strings.map((string, i) => (
     `${string}${params[i] || ''}`
