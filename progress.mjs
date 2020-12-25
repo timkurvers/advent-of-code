@@ -1,16 +1,20 @@
 /* eslint-disable array-callback-return, consistent-return */
 
 import colors from 'colors';
+import minimist from 'minimist';
 import table from 'table';
 
 import { Challenge, groupBy, range } from './utils';
+
+const args = minimist(process.argv.slice(2));
+const markInefficient = args['mark-inefficient'];
 
 const DAYS = range({ start: 1, end: 25 });
 const EMPTY_CELL = '';
 const STAR = '★';
 
 const progressFor = (solution) => (
-  solution.inefficient ? colors.yellow(STAR) : colors.yellow.bold(STAR)
+  markInefficient && solution.inefficient ? colors.red.bold(STAR) : colors.yellow.bold(STAR)
 );
 
 (async () => {
