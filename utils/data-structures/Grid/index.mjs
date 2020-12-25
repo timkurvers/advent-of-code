@@ -1,7 +1,7 @@
 import Point from './Point';
 
 class Grid {
-  constructor(pointClass = Point) {
+  constructor({ pointClass = Point } = {}) {
     this.rows = new Map();
     this.pointClass = pointClass;
   }
@@ -179,7 +179,7 @@ class Grid {
   }
 
   static from(gfx, { ignoreBlanks = true, pointClass } = {}) {
-    const grid = new this(pointClass);
+    const grid = new this({ pointClass });
     const lines = gfx.split('\n');
     lines.forEach((line, y) => {
       line.split('').forEach((value, x) => {

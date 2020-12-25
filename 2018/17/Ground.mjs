@@ -26,7 +26,7 @@ class Ground {
     this.maxY = Math.max(...this.areas.map((area) => area.y2));
 
     this.tiles = [];
-    this.grid = new Grid(Tile);
+    this.grid = new Grid({ pointClass: Tile });
     for (let y = 0; y <= this.maxY; ++y) {
       for (let x = this.minX; x <= this.maxX; ++x) {
         const tile = this.grid.set(x, y, null);

@@ -19,7 +19,7 @@ describe('Grid', () => {
         }
       }
 
-      const grid = new Grid(CustomPoint);
+      const grid = new Grid({ pointClass: CustomPoint });
       const value = Symbol();
       const point = grid.set(0, 0, value);
       expect(point).toEqual({
