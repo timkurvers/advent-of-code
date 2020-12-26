@@ -1,10 +1,14 @@
 import {
   Orientation,
   Rotation,
+  TAU,
   dx,
   dy,
+  nameForOrientation,
+  normalizeOrientation,
   isHorizontalOrientation,
   isVerticalOrientation,
+  isSameOrientation,
   distance2D,
   distance3D,
 } from '../../utils';
@@ -61,6 +65,48 @@ describe('navigation utilities', () => {
     });
   });
 
+  describe('nameForOrientation()', () => {
+    it('returns string name for given orientation (if any)', () => {
+      expect(nameForOrientation(Orientation.UP)).toBe('UP / SOUTH');
+      expect(nameForOrientation(Orientation.SOUTH)).toBe('UP / SOUTH');
+      expect(nameForOrientation(Orientation.DOWN)).toBe('DOWN / NORTH');
+      expect(nameForOrientation(Orientation.NORTH)).toBe('DOWN / NORTH');
+      expect(nameForOrientation(Orientation.LEFT)).toBe('LEFT / WEST');
+      expect(nameForOrientation(Orientation.WEST)).toBe('LEFT / WEST');
+      expect(nameForOrientation(Orientation.RIGHT)).toBe('RIGHT / EAST');
+      expect(nameForOrientation(Orientation.EAST)).toBe('RIGHT / EAST');
+
+      expect(nameForOrientation(Orientation.UP + Rotation.TURN_LEFT)).toBe('LEFT / WEST');
+      expect(nameForOrientation(Orientation.UP + Rotation.TURN_RIGHT)).toBe('RIGHT / EAST');
+      expect(nameForOrientation(Orientation.UP + Rotation.TURN_AROUND)).toBe('DOWN / NORTH');
+
+      expect(nameForOrientation(Orientation.LEFT + Rotation.TURN_LEFT)).toBe('DOWN / NORTH');
+      expect(nameForOrientation(Orientation.LEFT + Rotation.TURN_RIGHT)).toBe('UP / SOUTH');
+      expect(nameForOrientation(Orientation.LEFT + Rotation.TURN_AROUND)).toBe('RIGHT / EAST');
+
+      expect(nameForOrientation(Orientation.RIGHT + Rotation.TURN_LEFT)).toBe('UP / SOUTH');
+      expect(nameForOrientation(Orientation.RIGHT + Rotation.TURN_RIGHT)).toBe('DOWN / NORTH');
+      expect(nameForOrientation(Orientation.RIGHT + Rotation.TURN_AROUND)).toBe('LEFT / WEST');
+
+      expect(nameForOrientation(Orientation.DOWN + Rotation.TURN_LEFT)).toBe('RIGHT / EAST');
+      expect(nameForOrientation(Orientation.DOWN + Rotation.TURN_RIGHT)).toBe('LEFT / WEST');
+      expect(nameForOrientation(Orientation.DOWN + Rotation.TURN_AROUND)).toBe('UP / SOUTH');
+
+      expect(nameForOrientation(1)).toBe(null);
+    });
+  });
+
+  describe('normalizeOrientation()', () => {
+    it('normalizes given orientation to be between 0 and TAU', () => {
+      expect(normalizeOrientation(Orientation.UP)).toBe(Orientation.UP);
+      expect(normalizeOrientation(Orientation.DOWN)).toBe(Orientation.DOWN);
+      expect(normalizeOrientation(Orientation.LEFT)).toBe(Orientation.LEFT);
+      expect(normalizeOrientation(Orientation.RIGHT)).toBe(Orientation.RIGHT);
+      expect(normalizeOrientation(Rotation.TURN_LEFT)).toBe(TAU + Rotation.TURN_LEFT);
+      expect(normalizeOrientation(Orientation.RIGHT + TAU)).toBe(Orientation.RIGHT);
+    });
+  });
+
   describe('isHorizontalOrientation()', () => {
     it('returns whether given orientation is horizontal', () => {
       expect(isHorizontalOrientation(Orientation.UP)).toBe(false);
@@ -76,6 +122,14 @@ describe('navigation utilities', () => {
       expect(isVerticalOrientation(Orientation.DOWN)).toBe(true);
       expect(isVerticalOrientation(Orientation.LEFT)).toBe(false);
       expect(isVerticalOrientation(Orientation.RIGHT)).toBe(false);
+    });
+  });
+
+  describe('isSameOrientation()', () => {
+    it('returns whether given orientations are the same', () => {
+      expect(isSameOrientation(Orientation.UP + TAU, Orientation.UP)).toBe(true);
+      expect(isSameOrientation(Orientation.UP - TAU, Orientation.UP + TAU)).toBe(true);
+      expect(isSameOrientation(Orientation.DOWN, Orientation.UP)).toBe(false);
     });
   });
 

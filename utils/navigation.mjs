@@ -1,14 +1,18 @@
-export const Orientation = {
-  EAST: Math.PI * 0,
-  NORTH: Math.PI * 0.5,
-  WEST: Math.PI * 1,
-  SOUTH: Math.PI * 1.5,
+/* eslint-disable no-param-reassign */
 
+import { TAU } from './math';
+
+export const Orientation = {
   // UP / DOWN are flipped to ensure proper vertical movements in grids
   UP: Math.PI * 1.5,
   DOWN: Math.PI * 0.5,
   LEFT: Math.PI * 1,
   RIGHT: Math.PI * 0,
+
+  EAST: Math.PI * 0,
+  NORTH: Math.PI * 0.5,
+  WEST: Math.PI * 1,
+  SOUTH: Math.PI * 1.5,
 };
 
 export const Rotation = {
@@ -22,8 +26,33 @@ export const Rotation = {
 export const dx = (orientation) => Math.round(Math.cos(orientation));
 export const dy = (orientation) => Math.round(Math.sin(orientation));
 
+export const normalizeOrientation = (orientation) => {
+  orientation %= TAU;
+  if (orientation < 0) {
+    orientation += TAU;
+  }
+  return orientation;
+};
+
+export const nameForOrientation = (orientation) => {
+  const matches = [];
+  const normalized = normalizeOrientation(orientation);
+  for (const [name, value] of Object.entries(Orientation)) {
+    if (value === normalized) {
+      matches.push(name);
+    }
+  }
+  if (!matches.length) {
+    return null;
+  }
+  return matches.join(' / ');
+};
+
 export const isHorizontalOrientation = (orientation) => dx(orientation) !== 0;
 export const isVerticalOrientation = (orientation) => dy(orientation) !== 0;
+export const isSameOrientation = (a, b) => (
+  normalizeOrientation(a) === normalizeOrientation(b)
+);
 
 export const distance2D = (x1, y1, x2, y2) => (
   Math.abs(x1 - x2) + Math.abs(y1 - y2)
