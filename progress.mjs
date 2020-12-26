@@ -1,4 +1,4 @@
-/* eslint-disable array-callback-return, consistent-return */
+/* eslint-disable array-callback-return, consistent-return, no-loop-func */
 
 import colors from 'colors';
 import minimist from 'minimist';
@@ -24,6 +24,10 @@ const progressFor = (solution) => (
 
     const data = [];
 
+    // Counting stars
+    let acquired = 0;
+    const total = years.length * 25 * 2;
+
     // Year headings
     data.push([EMPTY_CELL, ...years]);
 
@@ -33,8 +37,13 @@ const progressFor = (solution) => (
       const entries = await Promise.all(years.map(async (year) => {
         const entry = challenges.find((c) => c.year === year && c.day === day);
         if (entry) {
-          const parts = await entry.parts();
-          const stars = Object.values(parts).map(progressFor).join('');
+          const parts = Object.values(await entry.parts());
+          // Hand out second star for day 25 automatically
+          if (day === 25 && parts.length === 1) {
+            parts.push(true);
+          }
+          const stars = parts.map(progressFor).join('');
+          acquired += parts.length;
           return ` ${stars} `;
         }
         return EMPTY_CELL;
@@ -56,6 +65,8 @@ const progressFor = (solution) => (
     });
     console.log();
     console.log(progress);
+    console.log(`Stars acquired: ${colors.yellow.bold(`${acquired}`)}`, colors.gray(`(out of ${total} total)`));
+    console.log();
   } catch (e) {
     console.error(e);
     process.exit();
