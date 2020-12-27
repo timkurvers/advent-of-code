@@ -42,6 +42,9 @@ export const isSameOrientation = (a, b) => (
   Math.abs(normalizeOrientation(a) - normalizeOrientation(b)) < EPSILON
 );
 
+export const isHorizontalRotation = (rotation) => !isHorizontalOrientation(rotation);
+export const isVerticalRotation = (rotation) => !isVerticalOrientation(rotation);
+
 export const nameForOrientation = (orientation) => {
   const matches = [];
   for (const [name, value] of Object.entries(Orientation)) {

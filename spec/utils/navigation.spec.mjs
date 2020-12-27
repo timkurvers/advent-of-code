@@ -9,6 +9,8 @@ import {
   isHorizontalOrientation,
   isVerticalOrientation,
   isSameOrientation,
+  isHorizontalRotation,
+  isVerticalRotation,
   distance2D,
   distance3D,
 } from '../../utils';
@@ -138,6 +140,24 @@ describe('navigation utilities', () => {
         orientation += Rotation.TURN_AROUND;
       }
       expect(isSameOrientation(orientation, Orientation.UP)).toBe(true);
+    });
+  });
+
+  describe('isHorizontalRotation()', () => {
+    it('returns whether given rotation is horizontal', () => {
+      expect(isHorizontalRotation(Rotation.NONE)).toBe(false);
+      expect(isHorizontalRotation(Rotation.TURN_LEFT)).toBe(true);
+      expect(isHorizontalRotation(Rotation.TURN_RIGHT)).toBe(true);
+      expect(isHorizontalRotation(Rotation.TURN_AROUND)).toBe(false);
+    });
+  });
+
+  describe('isVerticalRotation()', () => {
+    it('returns whether given rotation is horizontal', () => {
+      expect(isVerticalRotation(Rotation.NONE)).toBe(true);
+      expect(isVerticalRotation(Rotation.TURN_LEFT)).toBe(false);
+      expect(isVerticalRotation(Rotation.TURN_RIGHT)).toBe(false);
+      expect(isVerticalRotation(Rotation.TURN_AROUND)).toBe(true);
     });
   });
 
