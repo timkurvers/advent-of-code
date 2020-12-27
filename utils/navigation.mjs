@@ -2,6 +2,8 @@
 
 import { TAU } from './math';
 
+const EPSILON = 0.000000001;
+
 export const Orientation = {
   // UP / DOWN are flipped to ensure proper vertical movements in grids
   UP: Math.PI * 1.5,
@@ -34,11 +36,16 @@ export const normalizeOrientation = (orientation) => {
   return orientation;
 };
 
+export const isHorizontalOrientation = (orientation) => dx(orientation) !== 0;
+export const isVerticalOrientation = (orientation) => dy(orientation) !== 0;
+export const isSameOrientation = (a, b) => (
+  Math.abs(normalizeOrientation(a) - normalizeOrientation(b)) < EPSILON
+);
+
 export const nameForOrientation = (orientation) => {
   const matches = [];
-  const normalized = normalizeOrientation(orientation);
   for (const [name, value] of Object.entries(Orientation)) {
-    if (value === normalized) {
+    if (isSameOrientation(orientation, value)) {
       matches.push(name);
     }
   }
@@ -47,12 +54,6 @@ export const nameForOrientation = (orientation) => {
   }
   return matches.join(' / ');
 };
-
-export const isHorizontalOrientation = (orientation) => dx(orientation) !== 0;
-export const isVerticalOrientation = (orientation) => dy(orientation) !== 0;
-export const isSameOrientation = (a, b) => (
-  normalizeOrientation(a) === normalizeOrientation(b)
-);
 
 export const distance2D = (x1, y1, x2, y2) => (
   Math.abs(x1 - x2) + Math.abs(y1 - y2)

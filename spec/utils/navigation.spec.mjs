@@ -131,6 +131,14 @@ describe('navigation utilities', () => {
       expect(isSameOrientation(Orientation.UP - TAU, Orientation.UP + TAU)).toBe(true);
       expect(isSameOrientation(Orientation.DOWN, Orientation.UP)).toBe(false);
     });
+
+    it('supports matching orientations that are nearly equal', () => {
+      let orientation = Orientation.UP;
+      for (let i = 0; i < 10; ++i) {
+        orientation += Rotation.TURN_AROUND;
+      }
+      expect(isSameOrientation(orientation, Orientation.UP)).toBe(true);
+    });
   });
 
   describe('distance2D()', () => {
