@@ -428,6 +428,10 @@ describe('GridND', () => {
         ??d
       `);
     });
+
+    it('allows omitting descriptor, defaulting to 0 for other axes', () => {
+      expect(grid.toString()).toEqual(source);
+    });
   });
 
   describe('static from()', () => {
