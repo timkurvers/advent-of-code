@@ -406,6 +406,20 @@ describe('Grid', () => {
     });
   });
 
+  describe('remove()', () => {
+    it('removes and returns point at given location', () => {
+      const grid = new Grid();
+      const point = grid.set(0, 0);
+      expect(grid.remove(0, 0)).toBe(point);
+      expect(grid.getPoint(0, 0)).toBeUndefined();
+    });
+
+    it('returns undefined if point does not exist', () => {
+      const grid = new Grid();
+      expect(grid.remove(0, 0)).toBeUndefined();
+    });
+  });
+
   describe('set()', () => {
     it('creates and returns a point at given location with given value', () => {
       const grid = new Grid();
@@ -434,6 +448,16 @@ describe('Grid', () => {
     });
   });
 
+  describe('setPoint()', () => {
+    it('sets point at given location and returns point itself', () => {
+      const grid = new Grid();
+      const point = new GridPoint(0, 0);
+      const returned = grid.setPoint(0, 0, point);
+      expect(returned).toBe(point);
+      expect(grid.getPoint(0, 0)).toBe(point);
+    });
+  });
+
   describe('column()', () => {
     it('returns all values in olumn by given index', () => {
       const grid = Grid.from(stripIndent`
@@ -451,6 +475,105 @@ describe('Grid', () => {
         cd
       `);
       expect(grid.row(0)).toEqual(['a', 'b']);
+    });
+  });
+
+  describe('flipX()', () => {
+    it('flips this grid horizontally in place (across the vertical axis)', () => {
+      const grid = Grid.from(stripIndent`
+        abc
+        def
+        ghi
+      `);
+      grid.getPoint(2, 0).custom = true;
+      grid.flipX();
+      expect(grid.toString()).toEqual(stripIndent`
+        cba
+        fed
+        ihg
+      `);
+      expect(grid.getPoint(0, 0)).toEqual({
+        x: 0,
+        y: 0,
+        value: 'c',
+        custom: true,
+      });
+      expect(grid.getPoint(2, 2)).toEqual({
+        x: 2,
+        y: 2,
+        value: 'g',
+      });
+    });
+
+    it('does not rely on point insertion order', () => {
+      const grid = Grid.from('abc');
+      grid.set(-1, 0, 'd');
+      expect(grid.toString()).toEqual('dabc\n');
+      grid.flipX();
+      expect(grid.toString()).toEqual('cbad\n');
+    });
+  });
+
+  describe('rotate()', () => {
+    it('rotates this grid 90 degrees clock-wise in place', () => {
+      const grid = Grid.from(stripIndent`
+        abc
+        def
+        ghi
+      `);
+      grid.getPoint(2, 0).custom = true;
+      grid.rotate();
+      expect(grid.toString()).toEqual(stripIndent`
+        gda
+        heb
+        ifc
+      `);
+      expect(grid.getPoint(0, 0)).toEqual({
+        x: 0,
+        y: 0,
+        value: 'g',
+      });
+      expect(grid.getPoint(2, 2)).toEqual({
+        x: 2,
+        y: 2,
+        value: 'c',
+        custom: true,
+      });
+    });
+  });
+
+  describe('transpose()', () => {
+    it('transposes this grid swapping rows and columns in place', () => {
+      const grid = Grid.from(stripIndent`
+        135
+        246
+      `);
+      grid.getPoint(2, 1).custom = true;
+      grid.transpose();
+      expect(grid.toString()).toEqual(stripIndent`
+        12
+        34
+        56
+      `);
+      expect(grid.getPoint(0, 0)).toEqual({
+        x: 0,
+        y: 0,
+        value: '1',
+      });
+      expect(grid.getPoint(1, 2)).toEqual({
+        x: 1,
+        y: 2,
+        value: '6',
+        custom: true,
+      });
+    });
+
+    it('does not rely on point insertion order', () => {
+      const grid = Grid.from('abc');
+      grid.set(-1, 0, 'd');
+      expect(grid.toString()).toEqual('dabc\n');
+      grid.transpose();
+      expect(grid.toString()).toEqual('d\na\nb\nc\n');
     });
   });
 

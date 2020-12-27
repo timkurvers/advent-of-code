@@ -132,6 +132,18 @@ class Grid {
     return row && row.get(x);
   }
 
+  remove(x, y) {
+    const point = this.getPoint(x, y);
+    if (point) {
+      const row = this.rows.get(y);
+      row.delete(x);
+      if (!row.size) {
+        this.rows.delete(y);
+      }
+    }
+    return point;
+  }
+
   set(x, y, value = true) {
     const { rows, pointClass: PointClass } = this;
     let row = rows.get(y);
@@ -145,6 +157,17 @@ class Grid {
       row.set(x, point);
     }
     point.value = value;
+    return point;
+  }
+
+  setPoint(x, y, point) {
+    const { rows } = this;
+    let row = rows.get(y);
+    if (!row) {
+      row = new Map();
+      rows.set(y, row);
+    }
+    row.set(x, point);
     return point;
   }
 
@@ -164,6 +187,41 @@ class Grid {
       row.push(this.get(x, y));
     }
     return row;
+  }
+
+  // Flips this grid horizontally keeping point instances intact
+  // Note: Undefined behaviour for sparse grids
+  flipX() {
+    const { minX, maxX } = this;
+    for (const point of this.points) {
+      const { x: current, y } = point;
+      const offset = Math.abs(minX - current);
+      const x = maxX - offset;
+      point.x = x;
+      this.setPoint(x, y, point);
+    }
+  }
+
+  // Rotates this grid 90 degrees clock-wise keeping point instances intact
+  // Note: Undefined behaviour for sparse grids
+  rotate() {
+    this.transpose();
+    this.flipX();
+  }
+
+  // Tranposes this grid swapping rows and columns keeping point instances intact
+  // Note: Undefined behaviour for sparse grids
+  transpose() {
+    for (const point of this.points) {
+      const { x, y } = point;
+      if (x === y) continue;
+      if (this.getPoint(x, y) === point) {
+        this.remove(x, y);
+      }
+      point.x = y;
+      point.y = x;
+      this.setPoint(y, x, point);
+    }
   }
 
   toString(renderer = (point) => (point ? point.value : ' ')) {
