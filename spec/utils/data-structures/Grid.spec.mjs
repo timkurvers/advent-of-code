@@ -151,14 +151,35 @@ describe('Grid', () => {
   describe('get center', () => {
     it('returns center point of grid', () => {
       const grid = new Grid();
-      grid.set(0, 0);
+      const a = grid.set(0, 0);
+      expect(grid.center).toBe(a);
       const b = grid.set(1, 1);
+      expect(grid.center).toBe(a);
       const c = grid.set(2, 2);
       expect(grid.center).toBe(b);
       grid.set(3, 3);
       expect(grid.center).toBe(b);
       grid.set(4, 4);
       expect(grid.center).toBe(c);
+    });
+
+    it('returns center point for grid with negatively positioned points', () => {
+      const grid = new Grid();
+      const a = grid.set(0, 0);
+      expect(grid.center).toBe(a);
+      const b = grid.set(1, 1);
+      expect(grid.center).toBe(a);
+      grid.set(2, 2);
+      expect(grid.center).toBe(b);
+      grid.set(-1, -1);
+      expect(grid.center).toBe(a);
+      grid.set(-2, -2);
+      expect(grid.center).toBe(a);
+    });
+
+    it('returns undefined when grid is empty', () => {
+      const grid = new Grid();
+      expect(grid.center).toBeUndefined();
     });
   });
 
