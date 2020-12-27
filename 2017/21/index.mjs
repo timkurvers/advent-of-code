@@ -15,7 +15,7 @@ const serialize = (mat) => mat.map((row) => row.join('')).join('\n');
 const deserialize = (str) => str.split(/\n|\//).map((line) => line.split(''));
 
 // Flips given matrix horizontally
-const flip = (mat) => mat.map((row) => [...row].reverse());
+const flipX = (mat) => mat.map((row) => [...row].reverse());
 
 // Tranposes given matrix swapping rows and columns (leaves original intact)
 const transpose = (mat) => mat[0].map((_, i) => mat.map((row) => row[i]));
@@ -68,7 +68,7 @@ const parse = (input) => {
     const replacement = serialize(deserialize(output));
 
     let normal = deserialize(rule);
-    let flipped = flip(normal);
+    let flipped = flipX(normal);
     // Rotate in 90 degree steps and add both normal/flipped variation to ruleset
     for (let i = 1; i <= 4; ++i) {
       rules.set(serialize(normal), replacement);

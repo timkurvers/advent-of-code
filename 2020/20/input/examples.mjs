@@ -111,3 +111,7 @@ export const partOne = [
     ..#.###...
   `, 20899048083289),
 ];
+
+export const partTwo = [
+  example(partOne[0].input, 273),
+];
