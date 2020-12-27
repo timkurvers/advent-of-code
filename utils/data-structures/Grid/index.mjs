@@ -16,9 +16,13 @@ class Grid {
   }
 
   get xs() {
-    return Array.from(this.rows.values()).flatMap((row) => (
-      Array.from(row.keys())
-    ));
+    const xs = new Set();
+    for (const [, row] of this.rows) {
+      for (const x of row.keys()) {
+        xs.add(x);
+      }
+    }
+    return Array.from(xs);
   }
 
   get ys() {

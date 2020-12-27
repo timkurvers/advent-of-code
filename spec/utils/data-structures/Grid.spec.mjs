@@ -183,13 +183,14 @@ describe('Grid', () => {
     });
   });
 
-  // TODO: Getters for xs and ys may return duplicate entries
   describe('get xs', () => {
     it('returns x indices', () => {
       const grid = new Grid();
       grid.set(0, 3);
+      grid.set(4, 3);
+      grid.set(3, 2);
       grid.set(4, 2);
-      expect(grid.xs).toEqual([0, 4]);
+      expect(grid.xs).toEqual([0, 4, 3]);
     });
   });
 
@@ -197,6 +198,8 @@ describe('Grid', () => {
     it('returns y indices', () => {
       const grid = new Grid();
       grid.set(0, 3);
+      grid.set(4, 3);
+      grid.set(3, 2);
       grid.set(4, 2);
       expect(grid.ys).toEqual([3, 2]);
     });
