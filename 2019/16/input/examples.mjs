@@ -8,6 +8,12 @@ export const partOne = [
 ];
 
 export const partTwo = [
+  example('12345678', '102', {
+    messageLength: 3, offsetLength: 1, phases: 4, repeat: 1,
+  }),
+  example('19617804207202209144916044189917', '94665996', {
+    offsetLength: 2, repeat: 1,
+  }),
   example('03036732577212944063491565474664', '84462026'),
   example('02935109699940807407585447034323', '78725270'),
   example('03081770884921959731165446850517', '53553731'),
