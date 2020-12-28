@@ -9,3 +9,7 @@ export const partOne = [
     #....
   `, 2129920),
 ];
+
+export const partTwo = [
+  example(partOne[0].input, 99, { minutes: 10 }),
+];
