@@ -50,6 +50,18 @@ class Point {
   get label() {
     return `(${this.position.join(',')})`;
   }
+
+  static for(dimensions) {
+    const PointClass = class extends this {};
+    for (const [index, prop] of dimensions.entries()) {
+      Object.defineProperty(PointClass.prototype, prop, {
+        get() {
+          return this.position[index];
+        },
+      });
+    }
+    return PointClass;
+  }
 }
 
 export default Point;

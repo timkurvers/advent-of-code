@@ -3,7 +3,7 @@ import { dfor } from '../../math';
 import Point from './Point';
 
 class GridND {
-  constructor(dimensions, pointClass = Point) {
+  constructor(dimensions, { pointClass = Point.for(dimensions) } = {}) {
     this.dimensions = dimensions;
     this.data = new Map();
     this.pointClass = pointClass;
@@ -160,7 +160,7 @@ class GridND {
 
   // Note: Assumes gfx given represents first two dimensions in given list (for now)
   static from(gfx, dimensions, { ignoreBlanks = true, pointClass } = {}) {
-    const grid = new this(dimensions, pointClass);
+    const grid = new this(dimensions, { pointClass });
     const lines = gfx.split('\n');
     lines.forEach((line, d1) => {
       line.split('').forEach((value, d0) => {

@@ -1,6 +1,6 @@
 /* eslint-disable object-curly-newline */
 
-import { GridND, GridNDPoint, stripIndent } from '../../../utils';
+import { GridND, GridNDPoint, range, stripIndent } from '../../../utils';
 
 describe('GridND', () => {
   const dimensions = ['x', 'y', 'z', 'w'];
@@ -10,6 +10,11 @@ describe('GridND', () => {
       const grid = new GridND(dimensions);
       expect(grid.dimensions).toEqual(dimensions);
       expect(grid.pointClass).toBeInstanceOf(Function);
+      const point = grid.set([1, 2, 3, 4]);
+      expect(point.x).toEqual(1);
+      expect(point.y).toEqual(2);
+      expect(point.z).toEqual(3);
+      expect(point.w).toEqual(4);
     });
 
     it('supports a custom point class', () => {
@@ -20,7 +25,7 @@ describe('GridND', () => {
         }
       }
 
-      const grid = new GridND(dimensions, CustomPoint);
+      const grid = new GridND(dimensions, { pointClass: CustomPoint });
       const value = Symbol();
       const point = grid.set([1, 1, 1, 1], value);
       expect(point).toEqual({
@@ -85,6 +90,21 @@ describe('GridND', () => {
         const grid = new GridND(dimensions);
         const point = new GridNDPoint(grid, [1, 2, 3, 4]);
         expect(point.label).toEqual('(1,2,3,4)');
+      });
+    });
+
+    describe('static for()', () => {
+      it('generates a class with getter for given dimensions', () => {
+        const CustomPoint = GridNDPoint.for(dimensions);
+        const grid = new GridND(dimensions, { pointClass: CustomPoint });
+        const point = grid.set([1, 2, 3, 4]);
+        expect(point.x).toEqual(1);
+        expect(point.y).toEqual(2);
+        expect(point.z).toEqual(3);
+        expect(point.w).toEqual(4);
+        expect(() => {
+          point.x = 1;
+        }).toThrow();
       });
     });
   });
@@ -350,7 +370,7 @@ describe('GridND', () => {
     it('pads grid in all dimensions with given padding', () => {
       const numDimensions = [1, 2, 3, 4, 5];
       for (const num of numDimensions) {
-        const grid = new GridND(new Array(num).fill(''));
+        const grid = new GridND(range({ length: num }).map((n) => `dim${n}`));
 
         // Start off with one point
         grid.set(new Array(num).fill(0));
