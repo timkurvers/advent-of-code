@@ -366,6 +366,20 @@ describe('GridND', () => {
     });
   });
 
+  describe('remove()', () => {
+    it('removes and returns point at given location', () => {
+      const grid = new GridND(dimensions);
+      const point = grid.set([0, 0, 0, 0]);
+      expect(grid.remove([0, 0, 0, 0])).toBe(point);
+      expect(grid.getPoint([0, 0, 0, 0])).toBeUndefined();
+    });
+
+    it('returns undefined if point does not exist', () => {
+      const grid = new GridND(dimensions);
+      expect(grid.remove([0, 0, 0, 0])).toBeUndefined();
+    });
+  });
+
   describe('pad()', () => {
     it('pads grid in all dimensions with given padding', () => {
       const numDimensions = [1, 2, 3, 4, 5];

@@ -110,6 +110,15 @@ class GridND {
     return point;
   }
 
+  remove(position) {
+    const point = this.getPoint(position);
+    if (point) {
+      const key = position.toString();
+      this.data.delete(key);
+    }
+    return point;
+  }
+
   pad(padding, value) {
     const boundaries = this.dimensions.reduce((list, dimension) => {
       const min = this.min(dimension);
