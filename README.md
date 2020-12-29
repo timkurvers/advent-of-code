@@ -1,7 +1,7 @@
 # Advent of Code
 
 ![Node Version](https://badgen.net/badge/node/12+/green)
-[![MIT License](https://badgen.net/github/license/timkurvers/advent-of-code)](LICENSE.md)
+[![MIT License](https://badgen.net/badge/license/custom%20MIT/)](LICENSE.md)
 [![CI](https://github.com/timkurvers/advent-of-code/workflows/ci/badge.svg)](https://github.com/timkurvers/advent-of-code/actions?query=workflow%3Aci)
 
 JavaScript / ES6+ solutions for https://adventofcode.com.

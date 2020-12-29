@@ -1,5 +1,5 @@
 Note: Puzzles, examples and inputs are intellectual property of Advent of Code
-and as such not covered by this license.
+and thus not covered by this license.
 
 MIT License
 
