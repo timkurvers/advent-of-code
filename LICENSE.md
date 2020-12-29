@@ -1,3 +1,6 @@
+Note: Puzzles, examples and inputs are intellectual property of Advent of Code
+and as such not covered by this license.
+
 MIT License
 
 Copyright (c) 2018-2020 Tim Kurvers
