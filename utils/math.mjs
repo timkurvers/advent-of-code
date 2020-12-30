@@ -2,6 +2,17 @@
 
 import { Cache } from '.';
 
+// Allows for implementations to be Number / BigInt agnostic
+const variations = {
+  [BigInt]: {
+    ZERO: 0n, ONE: 1n, TWO: 2n, type: BigInt,
+  },
+  [Number]: {
+    ZERO: 0, ONE: 1, TWO: 2, type: Number,
+  },
+};
+const variance = (value) => variations[value.constructor];
+
 export const TAU = 2 * Math.PI;
 
 export const bitsNeededFor = (n) => Math.log2(n) + 1 | 0;
@@ -118,23 +129,67 @@ export function* dfor(boundaries) {
   }
 }
 
-// See: https://rosettacode.org/wiki/Chinese_remainder_theorem#JavaScript
-export const mulInv = (a, m) => {
-  const m0 = m;
-  let [x0, x1] = [0, 1];
+// Mathematical modulo (as opposed to JavaScript's remainder operator)
+// See: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Remainder
+export const mod = (a, m) => ((a % m) + m) % m;
 
-  if (m === 1) {
-    return 1;
+// Modular multiplicative inverse
+// See: https://rosettacode.org/wiki/Chinese_remainder_theorem#JavaScript
+export const modMulInv = (a, m) => {
+  const { ZERO, ONE, type } = variance(a);
+
+  const m0 = m;
+  let [x0, x1] = [ZERO, ONE];
+
+  if (m === ONE) {
+    return ONE;
   }
-  while (a > 1) {
-    const q = Math.floor(a / m);
+  while (a > ONE) {
+    let q = a / m;
+    if (type === Number) {
+      q = Math.floor(q);
+    }
     [a, m] = [m, a % m];
     [x0, x1] = [x1 - q * x0, x0];
   }
-  if (x1 < 0) {
+  if (x1 < ZERO) {
     x1 += m0;
   }
   return x1;
+};
+
+// Calculates base to power of given exponent over given modulo
+// See: https://github.com/juanelas/bigint-crypto-utils
+export const modPow = (b, e, m) => {
+  const {
+    ZERO, ONE, TWO, type,
+  } = variance(b);
+
+  if (m === ZERO) {
+    throw new RangeError('modulus cannot be 0');
+  } else if (m === ONE) {
+    return ZERO;
+  }
+
+  b %= m;
+  b = (b < 0) ? b + m : b;
+
+  if (e < ZERO) {
+    return modMulInv(modPow(b, -e, m), m);
+  }
+
+  let r = ONE;
+  while (e > ZERO) {
+    if ((e % TWO) === ONE) {
+      r = (r * b) % m;
+    }
+    e /= TWO;
+    if (type === Number) {
+      e = Math.floor(e);
+    }
+    b = (b ** TWO) % m;
+  }
+  return r;
 };
 
 // Greatest common divisor / least common multiple of two or more integers

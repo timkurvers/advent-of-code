@@ -10,7 +10,9 @@ import {
   combine,
   permute,
   dfor,
-  mulInv,
+  mod,
+  modMulInv,
+  modPow,
   gcd2,
   lcm2,
   gcd,
@@ -181,11 +183,56 @@ describe('math utilities', () => {
     });
   });
 
-  describe('mulInv()', () => {
+  describe('mod()', () => {
+    it('mathematical modulo operator (as opposed to remainder)', () => {
+      expect(mod(19, 12)).toEqual(7);
+      expect(mod(19, -12)).toEqual(-5);
+      expect(mod(-19, 12)).toEqual(5);
+      expect(mod(-19, -12)).toEqual(-7);
+    });
+
+    it('supports BigInt', () => {
+      expect(mod(19n, 12n)).toEqual(7n);
+      expect(mod(19n, -12n)).toEqual(-5n);
+      expect(mod(-19n, 12n)).toEqual(5n);
+      expect(mod(-19n, -12n)).toEqual(-7n);
+    });
+  });
+
+  describe('modMulInv()', () => {
     it('finds modular multiplicative inverse of a under modulo m', () => {
-      expect(mulInv(3, 11)).toEqual(4);
-      expect(mulInv(10, 17)).toEqual(12);
-      expect(mulInv(1, 1)).toEqual(1);
+      expect(modMulInv(3, 11)).toEqual(4);
+      expect(modMulInv(10, 17)).toEqual(12);
+      expect(modMulInv(1, 1)).toEqual(1);
+    });
+
+    it('supports BigInt', () => {
+      expect(modMulInv(3n, 11n)).toEqual(4n);
+      expect(modMulInv(10n, 17n)).toEqual(12n);
+      expect(modMulInv(1n, 1n)).toEqual(1n);
+    });
+  });
+
+  describe('modPow()', () => {
+    it('calculates base to the given power over given modulo m', () => {
+      expect(modPow(-5, 2, 7)).toEqual(4);
+      expect(modPow(2, 255, 64)).toEqual(0);
+      expect(modPow(3, 3, 25)).toEqual(2);
+      expect(modPow(38, 5, 97)).toEqual(39);
+    });
+
+    it('supports negative exponent', () => {
+      expect(modPow(4, -1, 1)).toEqual(0);
+      expect(modPow(4, -1, 19)).toEqual(5);
+    });
+
+    it('supports BigInt', () => {
+      expect(modPow(2n, 255n, 64n)).toEqual(0n);
+      expect(modPow(4n, -1n, 1n)).toEqual(0n);
+      expect(modPow(4n, -1n, 19n)).toEqual(5n);
+      expect(modPow(
+        48116552563827n, 12139369866491111222698357067n, 119315717514047n,
+      )).toEqual(21286856575014n);
     });
   });
 

@@ -1,7 +1,7 @@
 /* eslint-disable no-loop-func */
 
 import {
-  cast, multiply, mulInv, solution, zip,
+  cast, multiply, modMulInv, solution, zip,
 } from '../../utils';
 
 const parse = (input) => {
@@ -32,7 +32,7 @@ const crt = (...congruences) => {
   for (let i = 0; i < mod.length; ++i) {
     const [ni, ri] = [mod[i], rem[i]];
     const p = Math.floor(product / ni);
-    sum += ri * p * mulInv(p, ni);
+    sum += ri * p * modMulInv(p, ni);
   }
   return sum % product;
 };
