@@ -1,6 +1,6 @@
 export const dealIntoNewStack = (deck) => deck.reverse();
 
-export const dealWithIncrement = (increment, deck) => {
+export const dealWithIncrement = (deck, increment) => {
   const { length } = deck;
   const stack = new Array(length);
 
@@ -9,11 +9,10 @@ export const dealWithIncrement = (increment, deck) => {
     stack[pos] = deck[card];
     pos = (pos + increment) % length;
   }
-
   return stack;
 };
 
-export const cut = (amount, deck) => {
+export const cut = (deck, amount) => {
   if (amount > 0) {
     const sliced = deck.splice(0, amount);
     deck.push(...sliced);
