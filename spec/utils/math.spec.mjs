@@ -226,6 +226,10 @@ describe('math utilities', () => {
       expect(modPow(4, -1, 19)).toEqual(5);
     });
 
+    it('throws when modulus is zero', () => {
+      expect(() => modPow(1, 1, 0)).toThrow(RangeError);
+    });
+
     it('supports BigInt', () => {
       expect(modPow(2n, 255n, 64n)).toEqual(0n);
       expect(modPow(4n, -1n, 1n)).toEqual(0n);
