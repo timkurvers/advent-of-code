@@ -104,7 +104,6 @@ describe('BinaryHeap', () => {
     });
   });
 
-
   describe('insert()', () => {
     it('inserts given value into the heap', () => {
       const heap = new BinaryMaxHeap();
