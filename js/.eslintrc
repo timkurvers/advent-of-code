@@ -1,0 +1,29 @@
+{
+  "extends": "@timkurvers",
+  "env": {
+    "es2020": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 2021
+  },
+  "rules": {
+    "import/no-cycle": "off",
+    "max-classes-per-file": "off",
+    "no-await-in-loop": "off",
+    "no-bitwise": "off",
+    "no-console": "off",
+    "no-constant-condition": "off",
+    "no-continue": "off",
+    "no-plusplus": "off",
+    "no-restricted-syntax": "off",
+    "no-underscore-dangle": "off"
+  },
+  "overrides": [
+    {
+      "files": ["src/[0-9][0-9][0-9][0-9]/[0-9][0-9]/index.mjs", "examples.mjs"],
+      "rules": {
+        "import/prefer-default-export": "off"
+      }
+    }
+  ]
+}
