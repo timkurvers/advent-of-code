@@ -9,7 +9,7 @@
 
 This repository contains my Advent of Code solutions in:
 
-- [JavaScript](js/README.md) - all available editions
+- [JavaScript](js/) - all available editions
 
 All puzzle, example and input data is normalized in the `puzzles`-folder so that
 it can be used regardless of target language. This puzzle data is intellectual

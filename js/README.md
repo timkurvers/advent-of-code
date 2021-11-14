@@ -1,10 +1,12 @@
-# Advent of Code
+# Advent of Code - JavaScript
 
 ![Node Version](https://badgen.net/badge/node/12+/green)
 [![MIT License](https://badgen.net/badge/license/MIT/)](LICENSE.md)
 [![CI](https://github.com/timkurvers/advent-of-code/workflows/ci/badge.svg)](https://github.com/timkurvers/advent-of-code/actions?query=workflow%3Aci)
 
-JavaScript / ES6+ solutions for https://adventofcode.com.
+My JavaScript / ES2021+ solutions for [Advent of Code](https://adventofcode.com).
+
+**Note:** Make sure to run all commands in this README from this `js`-folder.
 
 ![Advent of Code](https://user-images.githubusercontent.com/378235/70389655-bb99f380-19c2-11ea-86e1-3946c1884b0a.png)
 
