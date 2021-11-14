@@ -4,6 +4,9 @@ jobs:
   lint-and-run:
     name: lint and run solutions for current edition
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./js
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
