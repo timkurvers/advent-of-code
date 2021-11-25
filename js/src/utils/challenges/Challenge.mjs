@@ -83,7 +83,7 @@ class Challenge {
       const { input, answer: expected, inefficient } = example;
       const excerpt = String(input).replace(/\s+/g, ' ').trim().slice(0, 25);
       if (inefficient) {
-        line(`Example ${colors.yellow(excerpt)}`, '<inefficient; skipping>');
+        line(`Example ${colors.yellow(excerpt)}`, '[inefficient; skipping]');
         continue;
       }
 
@@ -91,7 +91,7 @@ class Challenge {
         input, example.args ? camelcaseKeysFor(example.args) : {},
       );
       if (answer == null) {
-        line(`Example ${colors.yellow(excerpt)}`, '<not yet solved>');
+        line(`Example ${colors.yellow(excerpt)}`, '[not yet solved]');
         continue;
       }
 
@@ -101,20 +101,20 @@ class Challenge {
     }
 
     if (solution.inefficient) {
-      line('Answer', '<inefficient; skipping>');
+      line('Answer', '[inefficient; skipping]');
       console.log();
       return;
     }
 
     if (!puzzleInput) {
-      line('Answer', '<no puzzle input provided>');
+      line('Answer', '[no puzzle input provided]');
       console.log();
       return;
     }
 
     const { answer, duration } = await execute(puzzleInput);
     if (answer == null) {
-      line('Answer', '<not yet solved>');
+      line('Answer', '[not yet solved]');
       console.log();
       return;
     }
