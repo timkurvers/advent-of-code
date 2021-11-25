@@ -1,9 +1,10 @@
 import {
   toASCII,
   fromASCII,
+  reverse,
   stripIndent,
   humanize,
-  reverse,
+  camelcase,
   titleize,
 } from '../../src/utils';
 
@@ -47,11 +48,31 @@ describe('string utilities', () => {
     });
   });
 
+  describe('camelcase()', () => {
+    it('transforms given hyphenated string into a camel-cased one', () => {
+      expect(camelcase('part-one')).toEqual('partOne');
+      expect(camelcase('å-kjøre')).toEqual('åKjøre');
+      expect(camelcase('utf-converter')).toEqual('utfConverter');
+    });
+
+    it('transforms given humanized string into a camel-cased one', () => {
+      expect(camelcase('Part One')).toEqual('partOne');
+      expect(camelcase('Å Kjøre')).toEqual('åKjøre');
+      expect(camelcase('UTF Converter')).toEqual('utfConverter');
+    });
+  });
+
   describe('humanize()', () => {
-    it('transforms given string into a human-readable one', () => {
+    it('transforms given camel-cased string into a human-readable one', () => {
       expect(humanize('partOne')).toEqual('Part one');
       expect(humanize('åKjøre')).toEqual('Å kjøre');
       expect(humanize('UTFConverter')).toEqual('Utf converter');
+    });
+
+    it('transforms given hyphenated string into a human-readable one', () => {
+      expect(humanize('part-one')).toEqual('Part one');
+      expect(humanize('å-kjøre')).toEqual('Å kjøre');
+      expect(humanize('utf-converter')).toEqual('Utf converter');
     });
 
     it('supports not capitalizing the result', () => {
@@ -65,7 +86,7 @@ describe('string utilities', () => {
   });
 
   describe('titleize()', () => {
-    it('transforms given string into a capitalized human-readable one', () => {
+    it('transforms given camel-cased string into a capitalized human-readable one', () => {
       expect(titleize('partOne')).toEqual('Part One');
       expect(titleize('åKjøre')).toEqual('Å Kjøre');
       expect(titleize('UTFConverter')).toEqual('Utf Converter');

@@ -38,6 +38,14 @@ export const stripIndent = (strings, ...params) => {
 // Loosely based on Ruby on Rails' Inflector
 // See: https://api.rubyonrails.org/classes/ActiveSupport/Inflector.html
 
+export const camelcase = (str) => {
+  str = str.toLowerCase();
+  str = str.replace(/(?:_|-| )([\p{Lower}\d]+)/gu, (_, part) => (
+    `${part[0].toUpperCase()}${part.slice(1)}`
+  ));
+  return str;
+};
+
 export const humanize = (str, { capitalize = true } = {}) => {
   str = str.replace(/(\p{Upper}+)(\p{Upper}\p{Lower})/gu, '$1 $2');
   str = str.replace(/([\p{Lower}\d])(\p{Upper})/gu, '$1 $2');
