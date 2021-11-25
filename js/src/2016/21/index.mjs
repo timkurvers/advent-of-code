@@ -8,7 +8,7 @@ const INSTRUCTION_MATCHER = /^(\w+)/;
 const ARGUMENT_MATCHER = /(?<=\s)(left|right|\w)(?=\s|$)/g;
 
 const parse = (input) => (
-  input.split('\n').map((line) => {
+  input.trim().split('\n').map((line) => {
     const [opcode] = line.match(INSTRUCTION_MATCHER);
     const args = line.match(ARGUMENT_MATCHER);
     return { opcode, args };

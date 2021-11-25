@@ -51,7 +51,7 @@ class Step {
       return step;
     };
 
-    input.split('\n').forEach((instruction) => {
+    input.trim().split('\n').forEach((instruction) => {
       const [, prequisite, id] = instruction.match(INSTRUCTION_MATCHER);
       lookup(id).prerequisites.push(lookup(prequisite));
     });

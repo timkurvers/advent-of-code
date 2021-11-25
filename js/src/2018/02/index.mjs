@@ -2,7 +2,7 @@ import { solution } from '../../utils';
 
 import Box from './Box';
 
-const parse = (input) => input.split('\n').map((id) => new Box(id));
+const parse = (input) => input.trim().split('\n').map((id) => new Box(id));
 
 export const partOne = solution((input) => {
   const boxes = parse(input);

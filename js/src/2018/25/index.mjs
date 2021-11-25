@@ -2,8 +2,8 @@ import { solution } from '../../utils';
 
 import Point from './Point';
 
-export default solution((input) => {
-  const points = input.split('\n').map((line) => new Point(line));
+export const finalPart = solution((input) => {
+  const points = input.trim().split('\n').map((line) => new Point(line));
   for (const point of points) {
     for (const candidate of points) {
       if (point === candidate) continue;

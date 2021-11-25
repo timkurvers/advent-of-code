@@ -66,7 +66,7 @@ class Program {
       return program;
     };
 
-    const reports = input.split('\n');
+    const reports = input.trim().split('\n');
     for (const report of reports) {
       const [, id, weight, children] = report.match(REPORT_MATCHER);
       const current = lookup(id);

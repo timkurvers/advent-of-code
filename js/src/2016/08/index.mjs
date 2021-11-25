@@ -2,7 +2,7 @@ import { Grid, solution, wrap } from '../../utils';
 
 const INSTRUCTION_MATCHER = /(rect|row|column).+?(\d+).+?(\d+)/;
 
-const parse = (input) => input.split('\n').map((line) => {
+const parse = (input) => input.trim().split('\n').map((line) => {
   const [, opcode, a, b] = line.match(INSTRUCTION_MATCHER);
   return { opcode, a: +a, b: +b };
 });

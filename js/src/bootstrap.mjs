@@ -1,12 +1,16 @@
 import fs from 'fs-extra';
 import path from 'path';
 
-import { SRC_ROOT } from './utils/challenges/Challenge';
+import { PUZZLE_ROOT, SRC_ROOT } from './utils';
 
 const [,, ...target] = process.argv;
 
 (async () => {
   try {
+    await fs.copy('../puzzles/.skeleton', path.join(PUZZLE_ROOT, ...target), {
+      overwrite: false,
+      errorOnExist: true,
+    });
     await fs.copy('.skeleton', path.join(SRC_ROOT, ...target), {
       overwrite: false,
       errorOnExist: true,

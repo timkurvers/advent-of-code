@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 
-export { default as Challenge, SRC_ROOT } from './Challenge';
+export { default as Challenge, PUZZLE_ROOT, SRC_ROOT } from './Challenge';
 
 const augment = (prop) => (fn) => {
   fn[prop] = (...args) => {
@@ -12,9 +12,5 @@ const augment = (prop) => (fn) => {
 };
 
 const inefficient = augment('inefficient');
-
-export const example = inefficient((input, expected, args = {}) => ({
-  input, expected, args,
-}));
 
 export const solution = inefficient((fn = () => {}) => fn);

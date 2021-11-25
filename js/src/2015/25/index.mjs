@@ -1,6 +1,6 @@
 import { solution } from '../../utils';
 
-export default solution((input) => {
+export const finalPart = solution((input) => {
   const [row, column] = input.match(/\d+/g).map(Number);
 
   const start = 20151125;

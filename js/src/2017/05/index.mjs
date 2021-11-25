@@ -1,7 +1,7 @@
 import { solution } from '../../utils';
 
 const process = (input, strangerThings = false) => {
-  const registry = input.split('\n').map(Number);
+  const registry = input.trim().split('\n').map(Number);
 
   let pointer = 0;
   let step = 0;

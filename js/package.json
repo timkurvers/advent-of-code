@@ -5,11 +5,11 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "bootstrap": "node --experimental-modules src/bootstrap.mjs",
+    "bootstrap": "node --experimental-modules --experimental-specifier-resolution=node src/bootstrap.mjs",
     "lint": "eslint . --ext js,mjs",
     "progress": "node --experimental-modules --experimental-specifier-resolution=node src/progress.mjs",
     "start": "node --experimental-modules --experimental-specifier-resolution=node src/runner.mjs",
-    "start:dev": "nodemon --exec npm run start",
+    "start:dev": "nodemon --ext js,mjs,yaml,txt --watch . --watch ../puzzles --exec npm run start",
     "test": "jest",
     "test:coverage": "jest --coverage",
     "test:watch": "jest --watch"
@@ -19,7 +19,8 @@
     "fs-extra": "^9.0.0",
     "globby": "^10.0.1",
     "minimist": "^1.2.5",
-    "table": "^5.4.6"
+    "table": "^5.4.6",
+    "yaml": "^1.10.2"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.9.5",

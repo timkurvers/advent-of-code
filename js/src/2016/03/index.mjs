@@ -1,7 +1,7 @@
 import { solution } from '../../utils';
 
 const parse = (input) => (
-  input.split('\n').map((row) => (
+  input.trim().split('\n').map((row) => (
     row.trim().split(/\s+/).map(Number)
   ))
 );

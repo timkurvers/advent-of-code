@@ -5,7 +5,7 @@ import Guard from './Guard';
 import Shift from './Shift';
 
 const schedule = (input) => {
-  const events = input.split('\n').sort().map((definition) => (
+  const events = input.trim().split('\n').sort().map((definition) => (
     new Event(definition)
   ));
 

@@ -4,7 +4,7 @@ import { Grid, solution, sum } from '../../utils';
 
 const INSTRUCTION_MATCHER = /(on|off|toggle) (\d+),(\d+) through (\d+),(\d+)/;
 
-const parse = (input) => input.split('\n').map((line) => {
+const parse = (input) => input.trim().split('\n').map((line) => {
   const [, op, fromX, fromY, toX, toY] = line.match(INSTRUCTION_MATCHER);
   return { op, fromX: +fromX, fromY: +fromY, toX: +toX, toY: +toY };
 });

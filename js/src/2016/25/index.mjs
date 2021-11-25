@@ -6,7 +6,7 @@ const isClockSignal = (signal) => signal.every((value, index) => (
   value === index % 2
 ));
 
-export default solution((input) => {
+export const finalPart = solution((input) => {
   let a = 0;
   for (; ; ++a) {
     const program = AssembunnyProgram.from(input);

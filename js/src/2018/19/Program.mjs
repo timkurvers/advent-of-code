@@ -9,7 +9,7 @@ const Interceptor = {
 
 class Program {
   constructor(source) {
-    const lines = source.split('\n');
+    const lines = source.trim().split('\n');
     this.ipbinding = +lines.shift().match(/\d/)[0];
     this.instructions = lines.map((line) => {
       const opname = line.slice(0, 4);

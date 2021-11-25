@@ -36,7 +36,7 @@ class Program {
       return program;
     };
 
-    input.split('\n').forEach((line) => {
+    input.trim().split('\n').forEach((line) => {
       const [id, rest] = line.split(' <-> ');
       const connections = rest.split(', ').map(Number).map(lookup);
       const program = lookup(+id);

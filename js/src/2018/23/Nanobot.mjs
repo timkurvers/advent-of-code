@@ -21,7 +21,7 @@ class Nanobot {
   }
 
   static from(input) {
-    return input.split('\n').map((definition) => {
+    return input.trim().split('\n').map((definition) => {
       const match = definition.match(/-?\d+/g);
       const x = +match[0];
       const y = +match[1];

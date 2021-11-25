@@ -50,7 +50,7 @@ class Program {
   }
 
   static parse(input) {
-    const instructions = input.split('\n').map((line) => {
+    const instructions = input.trim().split('\n').map((line) => {
       const match = line.match(INSTRUCTION_MATCHER);
       const adjustment = +match[3] * (match[2] === 'inc' ? 1 : -1);
       return {

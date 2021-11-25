@@ -9,7 +9,7 @@ const AREA_MATCHER = /(x|y)=(\d+)(?:\.\.(\d+))?, (x|y)=(\d+)(?:\.\.(\d+))?/;
 
 class Ground {
   constructor(definition) {
-    const lines = definition.split('\n');
+    const lines = definition.trim().split('\n');
     this.areas = lines.map((line) => {
       let [, axis1, x1, x2 = x1,, y1, y2 = y1] = line.match(AREA_MATCHER);
       if (axis1 === 'y') {

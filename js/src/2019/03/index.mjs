@@ -18,7 +18,7 @@ const orientations = {
 const INSTRUCTIONS_MATCHER = /(\w)(\d+),?/g;
 
 const parse = (input) => {
-  const wires = input.split('\n');
+  const wires = input.trim().split('\n');
   return wires.map((line) => {
     const instructions = [];
     for (const [, direction, distance] of line.matchAll(INSTRUCTIONS_MATCHER)) {

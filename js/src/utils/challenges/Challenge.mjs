@@ -1,14 +1,23 @@
-/* eslint-disable no-loop-func */
+/* eslint-disable no-loop-func, no-param-reassign */
 
 import fs from 'fs';
 import path from 'path';
+import YAML from 'yaml';
 
 import colors from 'colors';
 import globby from 'globby';
 
-import { time, titleize } from '..';
+import { camelcase, time, titleize } from '..';
 
 const SRC_ROOT = 'src';
+const PUZZLE_ROOT = '../puzzles';
+
+const camelcaseKeysFor = (original) => (
+  Object.entries(original).reduce((obj, [key, value]) => {
+    obj[camelcase(key)] = value;
+    return obj;
+  }, {})
+);
 
 class Challenge {
   constructor(pathWithRoot) {
@@ -18,8 +27,14 @@ class Challenge {
     this.day = +this.id.slice(-2);
   }
 
+  get examples() {
+    const src = fs.readFileSync(path.resolve(PUZZLE_ROOT, this.id, 'examples.yaml'), 'utf8');
+    const yaml = YAML.parse(src);
+    return yaml ? camelcaseKeysFor(yaml) : {};
+  }
+
   get input() {
-    return fs.readFileSync(path.resolve(SRC_ROOT, this.id, 'input/input.txt'), 'utf8');
+    return fs.readFileSync(path.resolve(PUZZLE_ROOT, this.id, 'input.txt'), 'utf8');
   }
 
   get path() {
@@ -32,8 +47,7 @@ class Challenge {
 
   async run() {
     const parts = await this.parts();
-    const examples = await import(path.resolve(this.path, 'input/examples'));
-    const puzzleInput = this.input;
+    const { input: puzzleInput, examples } = this;
 
     for (const [part, solution] of Object.entries(parts)) {
       await this.runPart({
@@ -48,10 +62,7 @@ class Challenge {
   async runPart({
     part, solution, puzzleInput, examples = [],
   } = {}) {
-    let heading = `${this.year} · Day ${this.day}`;
-    if (part !== 'default') {
-      heading += ` · ${titleize(part)}`;
-    }
+    const heading = `${this.year} · Day ${this.day} · ${titleize(part)}`;
     console.log(colors.cyan(heading));
 
     // Executes and times the solution (used for both puzzle input and examples)
@@ -69,14 +80,16 @@ class Challenge {
 
     // Run examples (if any) through this part's solution
     for (const example of examples) {
-      const { input, expected, inefficient } = example;
+      const { input, answer: expected, inefficient } = example;
       const excerpt = String(input).replace(/\s+/g, ' ').trim().slice(0, 25);
       if (inefficient) {
         line(`Example ${colors.yellow(excerpt)}`, '<inefficient; skipping>');
         continue;
       }
 
-      const { answer, duration } = await execute(input, example.args);
+      const { answer, duration } = await execute(
+        input, example.args ? camelcaseKeysFor(example.args) : {},
+      );
       if (answer == null) {
         line(`Example ${colors.yellow(excerpt)}`, '<not yet solved>');
         continue;
@@ -119,4 +132,4 @@ class Challenge {
 }
 
 export default Challenge;
-export { SRC_ROOT };
+export { PUZZLE_ROOT, SRC_ROOT };

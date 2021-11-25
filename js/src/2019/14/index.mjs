@@ -4,7 +4,7 @@ import { Cache, bisect, solution } from '../../utils';
 
 const REACTION_MATCHER = /(\d+) (\w+)/g;
 
-const parse = (input) => input.split('\n').reduce((lookup, line) => {
+const parse = (input) => input.trim().split('\n').reduce((lookup, line) => {
   const matches = Array.from(line.matchAll(REACTION_MATCHER));
   const reagents = matches.map(([, quantity, type]) => ({
     quantity: +quantity,

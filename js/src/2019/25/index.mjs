@@ -6,7 +6,7 @@ import {
   stripIndent,
 } from '../../utils';
 
-export default solution.inefficient(async (input) => {
+export const finalPart = solution.inefficient(async (input) => {
   const program = IntcodeProgram.from(input);
 
   const instructions = stripIndent`

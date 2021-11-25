@@ -32,7 +32,7 @@ const bruteforce = (pub) => {
   }
 };
 
-export default solution((input) => {
+export const finalPart = solution((input) => {
   const { cardpub, doorpub } = parse(input);
   const cardsecret = bruteforce(cardpub);
   const enckey = transform(doorpub, cardsecret);

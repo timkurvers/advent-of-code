@@ -4,7 +4,7 @@ import * as operations from './operations';
 
 const INSTRUCTION_MATCHER = /(?:(NOT) )?(.+?)(?: (.+?) (.+?))? -> (.+)/;
 
-const parse = (input) => input.split('\n').map((line) => {
+const parse = (input) => input.trim().split('\n').map((line) => {
   const [, not, a, opcode, b, wire] = line.match(INSTRUCTION_MATCHER);
   return {
     a: cast(a),

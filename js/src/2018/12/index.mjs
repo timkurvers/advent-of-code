@@ -5,7 +5,7 @@ import { solution } from '../../utils';
 const NOTE_MATCHER = /((?:\.|#){2})(\.|#)((?:\.|#){2}) => (#|\.)/;
 
 const parse = (input) => {
-  const lines = input.split('\n');
+  const lines = input.trim().split('\n');
   const [, start] = lines.shift().split('initial state: ');
   lines.shift();
   const notes = lines.map((note) => {

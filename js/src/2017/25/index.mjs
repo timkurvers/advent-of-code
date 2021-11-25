@@ -2,7 +2,7 @@ import { solution } from '../../utils';
 
 import TuringMachine from './TuringMachine';
 
-export default solution((input) => {
+export const finalPart = solution((input) => {
   const machine = TuringMachine.from(input);
   machine.run();
   return machine.checksum;

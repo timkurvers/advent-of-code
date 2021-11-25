@@ -1,3 +1,5 @@
+/* eslint-disable no-param-reassign */
+
 import {
   mod, modPow, range, solution,
 } from '../../utils';
@@ -33,6 +35,10 @@ export const partTwo = solution((input, {
   position = 2020n,
   repetitions = 101741582076661n,
 }) => {
+  numCards = BigInt(numCards);
+  position = BigInt(position);
+  repetitions = BigInt(repetitions);
+
   // Due to the insanely large deck size and repetition count involved, need to
   // resort to modular arithmetic to calculate the answer feasibly:
   //

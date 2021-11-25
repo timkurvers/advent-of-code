@@ -2,7 +2,7 @@
 
 import { solution, sum } from '../../utils';
 
-const parse = (input) => input.split('\n').map((code) => ({
+const parse = (input) => input.trim().split('\n').map((code) => ({
   code,
   string: eval(code),
 }));

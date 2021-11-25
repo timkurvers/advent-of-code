@@ -4,7 +4,7 @@ const ALPHABET_START = 'a'.charCodeAt(0);
 const ROOM_MATCHER = /([a-z-]+)-(\d+)\[([a-z]+)\]/;
 
 const parse = (input) => (
-  input.split('\n').map((row) => {
+  input.trim().split('\n').map((row) => {
     const [, name, id, checksum] = row.match(ROOM_MATCHER);
     return { name, id: +id, checksum };
   })

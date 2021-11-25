@@ -4,7 +4,7 @@ import Coordinate from './Coordinate';
 import Location from './Location';
 
 const build = (input) => {
-  const coords = input.split('\n').map((definition) => (
+  const coords = input.trim().split('\n').map((definition) => (
     new Coordinate(...definition.split(', '))
   ));
 
