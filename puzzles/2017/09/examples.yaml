@@ -1,0 +1,33 @@
+part-one:
+  - input: '{}'
+    answer: 1
+  - input: '{{{}}}'
+    answer: 6
+  - input: '{{},{}}'
+    answer: 5
+  - input: '{{{},{},{{}}}}'
+    answer: 16
+  - input: '{<a>,<a>,<a>,<a>}'
+    answer: 1
+  - input: '{{<ab>},{<ab>},{<ab>},{<ab>}}'
+    answer: 9
+  - input: '{{<!!>},{<!!>},{<!!>},{<!!>}}'
+    answer: 9
+  - input: '{{<a!>},{<a!>},{<a!>},{<ab>}}'
+    answer: 3
+
+part-two:
+  - input: '{<>}'
+    answer: 0
+  - input: '{<random characters>}'
+    answer: 17
+  - input: '{<<<<>}'
+    answer: 3
+  - input: '{<{!>}>}'
+    answer: 2
+  - input: '{<!!>}'
+    answer: 0
+  - input: '{<!!!>>}'
+    answer: 0
+  - input: '{<{o"i!a,<{i<a>}'
+    answer: 10

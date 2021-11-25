@@ -1,0 +1,9 @@
+part-one:
+  - input: &example1 |
+      939
+      7,13,x,x,59,x,31,19
+    answer: 295
+
+part-two:
+  - input: *example1
+    answer: 1068781

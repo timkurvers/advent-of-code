@@ -1,0 +1,16 @@
+part-one:
+  - input: 'ihgpwlah'
+    answer: 'DDRRRD'
+  - input: 'kglvqrro'
+    answer: 'DDUDRLRRUDRD'
+  - input: 'ulqzkmiv'
+    answer: 'DRURDRUDDLLDLUURRDULRLDUUDDDRR'
+
+part-two:
+  - input: 'ihgpwlah'
+    answer: 370
+  - input: 'kglvqrro'
+    answer: 492
+  - input: 'ulqzkmiv'
+    answer: 830
+    inefficient: true

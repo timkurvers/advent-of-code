@@ -1,0 +1,11 @@
+part-one:
+  - input: &example1 |
+      mxmxvkd kfcds sqjhc nhms (contains dairy, fish)
+      trh fvjkl sbzzf mxmxvkd (contains dairy)
+      sqjhc fvjkl (contains soy)
+      sqjhc mxmxvkd sbzzf (contains fish)
+    answer: 5
+
+part-two:
+  - input: *example1
+    answer: 'mxmxvkd,sqjhc,fvjkl'

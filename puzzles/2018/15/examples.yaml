@@ -1,0 +1,74 @@
+part-one:
+  - input: |
+      #######
+      #G..#E#
+      #E#E.E#
+      #G.##.#
+      #...#E#
+      #...E.#
+      #######
+    answer: 36334
+
+  - input: &example2 |
+      #######
+      #.G...#
+      #...EG#
+      #.#.#G#
+      #..G#E#
+      #.....#
+      #######
+    answer: 27730
+
+  - input: &example3 |
+      #######
+      #E..EG#
+      #.#G.E#
+      #E.##E#
+      #G..#.#
+      #..E#.#
+      #######
+    answer: 39514
+
+  - input: &example4 |
+      #######
+      #E.G#.#
+      #.#G..#
+      #G.#.G#
+      #G..#.#
+      #...E.#
+      #######
+    answer: 27755
+
+  - input: &example5 |
+      #######
+      #.E...#
+      #.#..G#
+      #.###.#
+      #E#G#G#
+      #...#G#
+      #######
+    answer: 28944
+
+  - input: &example6 |
+      #########
+      #G......#
+      #.E.#...#
+      #..##..G#
+      #...##..#
+      #...#...#
+      #.G...G.#
+      #.....G.#
+      #########
+    answer: 18740
+
+part-two:
+  - input: *example2
+    answer: 4988
+  - input: *example3
+    answer: 31284 # TODO: Fails
+  - input: *example4
+    answer: 3478
+  - input: *example5
+    answer: 6474
+  - input: *example6
+    answer: 1140

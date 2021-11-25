@@ -1,0 +1,53 @@
+part-one:
+  - input: &example1 |
+      16
+      10
+      15
+      5
+      1
+      11
+      7
+      19
+      6
+      12
+      4
+    answer: 35
+  - input: &example2 |
+      28
+      33
+      18
+      42
+      31
+      14
+      46
+      20
+      48
+      47
+      24
+      23
+      49
+      45
+      19
+      38
+      39
+      11
+      1
+      32
+      25
+      35
+      8
+      17
+      7
+      9
+      4
+      2
+      34
+      10
+      3
+    answer: 220
+
+part-two:
+  - input: *example1
+    answer: 8
+  - input: *example2
+    answer: 19208

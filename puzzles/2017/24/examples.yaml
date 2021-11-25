@@ -1,0 +1,24 @@
+part-one:
+  - input: &example1 |
+      0/2
+      2/2
+      2/3
+      3/4
+      3/5
+      0/1
+      10/1
+      9/10
+    answer: 31
+
+  # Edge-case example for non-start zeroes (found on Reddit)
+  - input: |
+      0/1
+      1/2
+      0/2
+      0/3
+      3/4
+    answer: 16
+
+part-two:
+  - input: *example1
+    answer: 19

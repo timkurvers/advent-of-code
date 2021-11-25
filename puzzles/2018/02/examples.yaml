@@ -1,0 +1,21 @@
+part-one:
+  - input: |
+      abcdef
+      bababc
+      abbcde
+      abcccd
+      aabcdd
+      abcdee
+      ababab
+    answer: 12
+
+part-two:
+  - input: |
+      abcde
+      fghij
+      klmno
+      pqrst
+      fguij
+      axcye
+      wvxyz
+    answer: 'fgij'

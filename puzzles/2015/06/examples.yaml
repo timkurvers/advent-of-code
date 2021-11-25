@@ -1,0 +1,16 @@
+part-one:
+  - input: turn on 0,0 through 4,4
+    answer: 25
+  - input: toggle 2,2 through 3,3
+    answer: 4
+  - input: |
+      turn on 0,0 through 4,4
+      turn off 1,1 through 3,3
+    answer: 16
+
+part-two:
+  - input: |
+      turn on 0,0 through 4,4
+      turn on 1,1 through 3,3
+      toggle 2,2 through 2,2
+    answer: 36

@@ -1,0 +1,14 @@
+part-one:
+  - input: &example1 |
+      ....#
+      #..#.
+      #..##
+      ..#..
+      #....
+    answer: 2129920
+
+part-two:
+  - input: *example1
+    answer: 99
+    args:
+      minutes: 10

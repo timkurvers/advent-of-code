@@ -1,0 +1,15 @@
+part-one:
+  - input: |
+      abba[mnop]qrst
+      abcd[bddb]xyyx
+      aaaa[qwer]tyui
+      ioxxoj[asdfgh]zxcvbn
+    answer: 2
+
+part-two:
+  - input: |
+      aba[bab]xyz
+      xyx[xyx]xyx
+      aaa[kek]eke
+      zazbz[bzb]cdb
+    answer: 3

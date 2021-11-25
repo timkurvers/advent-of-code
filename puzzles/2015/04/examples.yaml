@@ -1,0 +1,7 @@
+part-one:
+  - input: 'abcdef'
+    answer: 609043
+    inefficient: true
+  - input: 'pqrstuv'
+    answer: 1048970
+    inefficient: true

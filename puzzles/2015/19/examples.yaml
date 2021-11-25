@@ -1,0 +1,37 @@
+part-one:
+  - input: |
+      H => HO
+      H => OH
+      O => HH
+
+      HOH
+    answer: 4
+
+  - input: |
+      H => HO
+      H => OH
+      O => HH
+
+      HOHOHO
+    answer: 7
+
+part-two:
+  - input: |
+      e => H
+      e => O
+      H => HO
+      H => OH
+      O => HH
+
+      HOH
+    answer: 3
+
+  - input: |
+      e => H
+      e => O
+      H => HO
+      H => OH
+      O => HH
+
+      HOHOHO
+    answer: 6

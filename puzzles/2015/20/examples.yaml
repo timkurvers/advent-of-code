@@ -1,0 +1,9 @@
+part-one:
+  - input: '150'
+    answer: 8
+
+part-two:
+  - input: '165'
+    answer: 10
+    args:
+      max-deliveries: 2

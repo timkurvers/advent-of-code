@@ -1,0 +1,19 @@
+part-one:
+  - input: aa bb cc dd ee
+    answer: 1
+  - input: aa bb cc dd aa
+    answer: 0
+  - input: aa bb cc dd aaa
+    answer: 1
+
+part-two:
+  - input: abcde fghij
+    answer: 1
+  - input: abcde xyz ecdab
+    answer: 0
+  - input: a ab abc abd abf abj
+    answer: 1
+  - input: iiii oiii ooii oooi oooo
+    answer: 1
+  - input: oiii ioii iioi iiio
+    answer: 0

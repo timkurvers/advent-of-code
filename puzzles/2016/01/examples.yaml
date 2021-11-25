@@ -1,0 +1,11 @@
+part-one:
+  - input: R2, L3
+    answer: 5
+  - input: R2, R2, R2
+    answer: 2
+  - input: R5, L5, R5, R3
+    answer: 12
+
+part-two:
+  - input: R8, R4, R4, R8
+    answer: 4

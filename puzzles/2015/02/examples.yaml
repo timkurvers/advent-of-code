@@ -1,0 +1,11 @@
+part-one:
+  - input: &example1 2x3x4
+    answer: 58
+  - input: &example2 1x1x10
+    answer: 43
+
+part-two:
+  - input: *example1
+    answer: 34
+  - input: *example2
+    answer: 14

@@ -1,0 +1,28 @@
+part-one:
+  - input: &example1 |
+      sesenwnenenewseeswwswswwnenewsewsw
+      neeenesenwnwwswnenewnwwsewnenwseswesw
+      seswneswswsenwwnwse
+      nwnwneseeswswnenewneswwnewseswneseene
+      swweswneswnenwsewnwneneseenw
+      eesenwseswswnenwswnwnwsewwnwsene
+      sewnenenenesenwsewnenwwwse
+      wenwwweseeeweswwwnwwe
+      wsweesenenewnwwnwsenewsenwwsesesenwne
+      neeswseenwwswnwswswnw
+      nenwswwsewswnenenewsenwsenwnesesenew
+      enewnwewneswsewnwswenweswnenwsenwsw
+      sweneswneswneneenwnewenewwneswswnese
+      swwesenesewenwneswnwwneseswwne
+      enesenwswwswneneswsenwnewswseenwsese
+      wnwnesenesenenwwnenwsewesewsesesew
+      nenewswnwewswnenesenwnesewesw
+      eneswnwswnwsenenwnwnwwseeswneewsenese
+      neswnwewnwnwseenwseesewsenwsweewe
+      wseweeenwnesenwwwswnew
+    answer: 10
+
+part-two:
+  - input: *example1
+    answer: 2208
+    inefficient: true

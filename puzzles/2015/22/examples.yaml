@@ -1,0 +1,16 @@
+part-one:
+  - input: |
+      Hit Points: 13
+      Damage: 8
+    answer: 226
+    args:
+      hp: 10
+      mp: 250
+
+  - input: |
+      Hit Points: 14
+      Damage: 8
+    answer: 641
+    args:
+      hp: 10
+      mp: 250

@@ -1,0 +1,11 @@
+part-one:
+  - input: &example1 |
+      ULL
+      RRDDD
+      LURDL
+      UUUUD
+    answer: '1985'
+
+part-two:
+  - input: *example1
+    answer: '5DB3'

@@ -1,0 +1,9 @@
+part-one:
+  - input: &example1 |
+      depth: 510
+      target: 10
+    answer: 114
+
+part-two:
+  - input: *example1
+    answer: 45

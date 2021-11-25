@@ -1,0 +1,9 @@
+part-one:
+  - input: '1'
+    answer: 0
+  - input: '12'
+    answer: 3
+  - input: '23'
+    answer: 2
+  - input: '1024'
+    answer: 31

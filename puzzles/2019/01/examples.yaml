@@ -1,0 +1,17 @@
+part-one:
+  - input: '12'
+    answer: 2
+  - input: '14'
+    answer: 2
+  - input: '1969'
+    answer: 654
+  - input: '100756'
+    answer: 33583
+
+part-two:
+  - input: '14'
+    answer: 2
+  - input: '1969'
+    answer: 966
+  - input: '100756'
+    answer: 50346

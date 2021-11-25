@@ -1,0 +1,12 @@
+part-one:
+  - input: &example1 |
+      F10
+      N3
+      F7
+      R90
+      F11
+    answer: 25
+
+part-two:
+  - input: *example1
+    answer: 286

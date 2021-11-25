@@ -1,0 +1,17 @@
+part-one:
+  - input: &example1 |
+      .#.#.#
+      ...##.
+      #....#
+      ..#...
+      #.#..#
+      ####..
+    answer: 4
+    args:
+      steps: 4
+
+part-two:
+  - input: *example1
+    answer: 17
+    args:
+      steps: 5

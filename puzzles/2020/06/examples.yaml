@@ -1,0 +1,28 @@
+part-one:
+  - input: |
+      abcx
+      abcy
+      abcz
+    answer: 6
+
+  - input: &example2 |
+      abc
+
+      a
+      b
+      c
+
+      ab
+      ac
+
+      a
+      a
+      a
+      a
+
+      b
+    answer: 11
+
+part-two:
+  - input: *example2
+    answer: 6

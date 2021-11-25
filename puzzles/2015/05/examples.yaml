@@ -1,0 +1,23 @@
+part-one:
+  - input: 'ugknbfddgicrmopn'
+    answer: 1
+  - input: 'aaa'
+    answer: 1
+  - input: 'jchzalrnumimnmhp'
+    answer: 0
+  - input: 'haegwjzuvuyypxyu'
+    answer: 0
+  - input: 'dvszwmarrgswjxmb'
+    answer: 0
+  - input: 'nvwls'
+    answer: 0
+
+part-two:
+  - input: 'qjhvhtzxzqqjkmpb'
+    answer: 1
+  - input: 'xxyxx'
+    answer: 1
+  - input: 'uurcxstgmygtbstg'
+    answer: 0
+  - input: 'ieodomkazucvgmuy'
+    answer: 0

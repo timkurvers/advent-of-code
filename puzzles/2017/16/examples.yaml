@@ -1,0 +1,5 @@
+part-one:
+  - input: 's1,x3/4,pe/b'
+    answer: 'baedc'
+    args:
+      lineup: 'abcde'

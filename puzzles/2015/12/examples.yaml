@@ -1,0 +1,27 @@
+part-one:
+  - input: '[1,2,3]'
+    answer: 6
+  - input: '{"a":2,"b":4}'
+    answer: 6
+  - input: '[[[3]]]'
+    answer: 3
+  - input: '{"a":{"b":4},"c":-1}'
+    answer: 3
+  - input: '{"a":[-1,1]}'
+    answer: 0
+  - input: '[-1,{"a":1}]'
+    answer: 0
+  - input: '[]'
+    answer: 0
+  - input: '{}'
+    answer: 0
+
+part-two:
+  - input: '[1,2,3]'
+    answer: 6
+  - input: '[1,{"c":"red","b":2},3]'
+    answer: 4
+  - input: '{"d":"red","e":[1,2,3,4],"f":5}'
+    answer: 0
+  - input: '[1,"red",5]'
+    answer: 6

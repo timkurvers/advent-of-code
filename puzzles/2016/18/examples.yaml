@@ -1,0 +1,9 @@
+part-one:
+  - input: &example1 '.^^.^.^^^^'
+    answer: 38
+    args:
+      num-rows: 10
+
+part-two:
+  - input: *example1
+    answer: 1935478

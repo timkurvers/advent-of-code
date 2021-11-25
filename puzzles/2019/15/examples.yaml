@@ -1,0 +1,10 @@
+part-two:
+  - input: |2
+       ##
+      #..##
+      #.#..#
+      #.O.#
+       ###
+    answer: 4
+    args:
+      grid-from-input: true

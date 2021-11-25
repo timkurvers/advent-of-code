@@ -1,0 +1,6 @@
+part-one:
+  - input: '10'
+    answer: 11
+    args:
+      goal-x: 7
+      goal-y: 4

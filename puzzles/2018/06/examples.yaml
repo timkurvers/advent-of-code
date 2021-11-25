@@ -1,0 +1,15 @@
+part-one:
+  - input: &example1 |
+      1, 1
+      1, 6
+      8, 3
+      3, 4
+      5, 5
+      8, 9
+    answer: 17
+
+part-two:
+  - input: *example1
+    answer: 16
+    args:
+      target: 32

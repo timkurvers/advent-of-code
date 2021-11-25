@@ -1,0 +1,21 @@
+part-one:
+  - input: '1122'
+    answer: 3
+  - input: '1111'
+    answer: 4
+  - input: '1234'
+    answer: 0
+  - input: '91212129'
+    answer: 9
+
+part-two:
+  - input: '1212'
+    answer: 6
+  - input: '1221'
+    answer: 0
+  - input: '123425'
+    answer: 4
+  - input: '123123'
+    answer: 12
+  - input: '12131415'
+    answer: 4

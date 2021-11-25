@@ -1,0 +1,5 @@
+part-one:
+  - input: '10000'
+    answer: '01100'
+    args:
+      length: 20

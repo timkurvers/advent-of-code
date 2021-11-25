@@ -1,0 +1,8 @@
+part-one:
+  - input: &example1 'abc'
+    answer: 22728
+
+part-two:
+  - input: *example1
+    answer: 22551
+    inefficient: true

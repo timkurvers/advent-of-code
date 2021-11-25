@@ -1,0 +1,13 @@
+part-one:
+  - input: &example1 |2
+          |
+          |  +--+
+          A  |  C
+      F---|----E|--+
+          |  |  |  D
+          +B-+  +--+
+    answer: ABCDEF
+
+part-two:
+  - input: *example1
+    answer: 38

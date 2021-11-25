@@ -1,0 +1,17 @@
+part-one:
+  - input: '>'
+    answer: 2
+  - input: '^>v<'
+    answer: 4
+  - input: '^v^v^v^v^v'
+    answer: 2
+
+part-two:
+  - input: '>'
+    answer: 2
+  - input: '^>v<'
+    answer: 3
+  - input: '^v^v^v^v^v'
+    answer: 11
+  - input: '^v'
+    answer: 3

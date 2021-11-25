@@ -1,0 +1,14 @@
+part-one:
+  - input: '389125467'
+    answer: '92658374'
+    args:
+      moves: 10
+  - input: '389125467'
+    answer: '67384529'
+    args:
+      moves: 100
+
+part-two:
+  - input: '389125467'
+    answer: 149245887792
+    inefficient: true

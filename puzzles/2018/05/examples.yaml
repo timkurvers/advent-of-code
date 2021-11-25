@@ -1,0 +1,7 @@
+part-one:
+  - input: &example1 dabAcCaCBAcCcaDA
+    answer: 10
+
+part-two:
+  - input: *example1
+    answer: 4

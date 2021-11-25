@@ -1,0 +1,14 @@
+part-one:
+  - input: |
+      5-8
+      0-2
+      4-7
+    answer: 3
+
+part-two:
+  - input: |
+      5-8
+      0-2
+      4-7
+      6-7
+    answer: 4294967288

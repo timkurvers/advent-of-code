@@ -1,0 +1,9 @@
+part-one:
+  - input: |
+      inc a
+      jio a, +2
+      tpl a
+      inc a
+    answer: 2
+    args:
+      register: 'a'

@@ -1,0 +1,11 @@
+part-one:
+  - input: &example1 |
+      Generator A starts with 65
+      Generator B starts with 8921
+    answer: 588
+    inefficient: true
+
+part-two:
+  - input: *example1
+    answer: 309
+    inefficient: true

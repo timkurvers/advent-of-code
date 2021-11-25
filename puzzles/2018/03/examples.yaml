@@ -1,0 +1,10 @@
+part-one:
+  - input: &example1 |
+      #1 @ 1,3: 4x4
+      #2 @ 3,1: 4x4
+      #3 @ 5,5: 2x2
+    answer: 4
+
+part-two:
+  - input: *example1
+    answer: 3

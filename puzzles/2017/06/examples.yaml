@@ -1,0 +1,7 @@
+part-one:
+  - input: &example1 0 2 7 0
+    answer: 5
+
+part-two:
+  - input: *example1
+    answer: 4

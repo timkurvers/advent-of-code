@@ -1,0 +1,11 @@
+part-one:
+  - input: &example1 |
+      ""
+      "abc"
+      "aaa\"aaa"
+      "\x27"
+    answer: 12
+
+part-two:
+  - input: *example1
+    answer: 19

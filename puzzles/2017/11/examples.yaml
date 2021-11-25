@@ -1,0 +1,19 @@
+part-one:
+  - input: &example1 ne,ne,ne
+    answer: 3
+  - input: &example2 ne,ne,sw,sw
+    answer: 0
+  - input: &example3 ne,ne,s,s
+    answer: 2
+  - input: &example4 se,sw,se,sw,sw
+    answer: 3
+
+part-two:
+  - input: *example1
+    answer: 3
+  - input: *example2
+    answer: 2
+  - input: *example3
+    answer: 2
+  - input: *example4
+    answer: 3

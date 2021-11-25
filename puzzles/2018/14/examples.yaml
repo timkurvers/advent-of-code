@@ -1,0 +1,9 @@
+part-one:
+  - input: '9'
+    answer: '5158916779'
+  - input: '5'
+    answer: '0124515891'
+  - input: '18'
+    answer: '9251071085'
+  - input: '2018'
+    answer: '5941429882'

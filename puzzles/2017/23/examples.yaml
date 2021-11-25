@@ -1,0 +1,5 @@
+part-one:
+  - input: |
+      set a 1
+      mul a a
+    answer: 1

@@ -1,0 +1,11 @@
+part-one:
+  - input: &example1 |
+      0: 3
+      1: 2
+      4: 4
+      6: 4
+    answer: 24
+
+part-two:
+  - input: *example1
+    answer: 10

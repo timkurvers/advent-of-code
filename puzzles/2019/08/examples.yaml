@@ -1,0 +1,6 @@
+part-one:
+  - input: '123456789012'
+    answer: 1
+    args:
+      width: 3
+      height: 2

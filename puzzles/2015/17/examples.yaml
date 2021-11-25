@@ -1,0 +1,16 @@
+part-one:
+  - input: &example1 |
+      20
+      15
+      10
+      5
+      5
+    answer: 4
+    args:
+      total: 25
+
+part-two:
+  - input: *example1
+    answer: 3
+    args:
+      total: 25

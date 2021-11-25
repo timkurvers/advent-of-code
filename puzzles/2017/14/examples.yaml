@@ -1,0 +1,9 @@
+part-one:
+  - input: &example1 flqrgnkx
+    answer: 8108
+    inefficient: true
+
+part-two:
+  - input: *example1
+    answer: 1242
+    inefficient: true

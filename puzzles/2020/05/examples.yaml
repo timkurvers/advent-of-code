@@ -1,0 +1,7 @@
+part-one:
+  - input: |
+      FBFBBFFRLR
+      BFFFBBFRRR
+      FFFBBBFRRR
+      BBFFBBFRLL
+    answer: 820

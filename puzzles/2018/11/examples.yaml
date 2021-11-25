@@ -1,0 +1,11 @@
+part-one:
+  - input: &example1 '18'
+    answer: 33,45
+  - input: &example2 '42'
+    answer: 21,61
+
+part-two:
+  - input: *example1
+    answer: 90,269,16
+  - input: *example2
+    answer: 232,251,12

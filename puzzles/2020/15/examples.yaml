@@ -1,0 +1,42 @@
+part-one:
+  - input: 0,3,6
+    answer: 0
+    args:
+      turn: 10
+  - input: 0,3,6
+    answer: 436
+  - input: 1,3,2
+    answer: 1
+  - input: 2,1,3
+    answer: 10
+  - input: 1,2,3
+    answer: 27
+  - input: 2,3,1
+    answer: 78
+  - input: 3,2,1
+    answer: 438
+  - input: 3,1,2
+    answer: 1836
+
+part-two:
+  - input: 0,3,6
+    answer: 175594
+    inefficient: true
+  - input: 1,3,2
+    answer: 2578
+    inefficient: true
+  - input: 2,1,3
+    answer: 3544142
+    inefficient: true
+  - input: 1,2,3
+    answer: 261214
+    inefficient: true
+  - input: 2,3,1
+    answer: 6895259
+    inefficient: true
+  - input: 3,2,1
+    answer: 18
+    inefficient: true
+  - input: 3,1,2
+    answer: 3
+    inefficient: true
