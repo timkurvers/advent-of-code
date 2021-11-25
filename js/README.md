@@ -8,7 +8,7 @@ My JavaScript / ES2021+ solutions for [Advent of Code](https://adventofcode.com)
 
 **Note:** Make sure to run all commands in this README from this `js`-folder.
 
-![Advent of Code](https://user-images.githubusercontent.com/378235/70389655-bb99f380-19c2-11ea-86e1-3946c1884b0a.png)
+![Advent of Code](https://user-images.githubusercontent.com/378235/143501953-bdab61e8-67c8-435e-ab4b-01c9895be220.png)
 
 ## Setup
 
