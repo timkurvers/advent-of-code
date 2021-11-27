@@ -1,8 +1,8 @@
 use crate::utils::challenges::prelude::*;
 
-fn part_two(input: &str) -> Solution {
-    println!("2019 01 part one; input: {}", input);
-    Solution::Unsolved
+fn part_one(_input: &PuzzleInput) -> Solution {
+    // println!("2019 01 part one; input: {}", &input[0..15]);
+    Unsolved
 }
 
-solve!(part_two);
+solve!(part_one);

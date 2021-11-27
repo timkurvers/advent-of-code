@@ -12,7 +12,6 @@ fn main() {
     }
 
     for challenge in &*CHALLENGES {
-        println!("{}", challenge.year);
         challenge.run();
     }
 }

@@ -62,9 +62,9 @@ macro_rules! create_challenges {
 macro_rules! solve {
     ($($func:ident),+) => {
         lazy_static! {
-            pub static ref PARTS: Vec<Part> = vec![
+            pub static ref PARTS: Vec<SolutionPart> = vec![
                 $(
-                    Part::new(stringify!($func), $func),
+                    SolutionPart::new(stringify!($func), $func),
                 )+
             ];
         }
