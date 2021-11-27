@@ -74,7 +74,12 @@ class Challenge {
     // Generic line rendering utility
     const line = (label, text, correct, duration = null) => {
       const colored = correct ? colors.green(text) : colors.red(text);
-      const suffix = duration ? ` ${colors.gray(`${duration}ms`)}` : '';
+      let suffix = '';
+      if (duration && duration < 1) {
+        suffix = ` ${colors.gray(`${Math.ceil(duration * 1000)}μs`)}`;
+      } else if (duration) {
+        suffix = ` ${colors.gray(`${Math.ceil(duration)}ms`)}`;
+      }
       console.log(` => ${label}: ${colored}${suffix}`);
     };
 

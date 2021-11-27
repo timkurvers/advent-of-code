@@ -4,7 +4,7 @@ export const time = async (procedure) => {
   const start = performance.now();
   const result = await procedure();
   const end = performance.now();
-  const duration = Math.ceil(end - start);
+  const duration = end - start;
   return [duration, result];
 };
 
