@@ -15,6 +15,7 @@ lazy_static! {
 pub trait StringExt<T> {
     fn humanize(self) -> String;
     fn titleize(self) -> String;
+    fn underscore(self) -> String;
 }
 
 impl StringExt<&str> for &str {
@@ -24,6 +25,10 @@ impl StringExt<&str> for &str {
 
     fn titleize(self) -> String {
         self.to_owned().titleize()
+    }
+
+    fn underscore(self) -> String {
+        self.to_owned().underscore()
     }
 }
 
@@ -41,6 +46,12 @@ impl StringExt<String> for String {
         string = LOWER_STARTS.replace_all(&string, |caps: &Captures| {
             caps[0].to_uppercase()
         }).to_string();
+        string
+    }
+
+    fn underscore(self) -> String {
+        let mut string = self.humanize();
+        string = string.replace(" ", "_");
         string
     }
 }
@@ -94,6 +105,30 @@ mod tests {
             assert_eq!(String::from("part-one").titleize(), "Part One");
             assert_eq!(String::from("å-kjøre").titleize(), "Å Kjøre");
             assert_eq!(String::from("utf-converter").titleize(), "Utf Converter");
+        }
+    }
+
+    mod underscore {
+        use super::StringExt;
+
+        #[test]
+        pub fn test_underscore_string_slices() {
+            assert_eq!("partOne".underscore(), "part_one");
+            assert_eq!("åKjøre".underscore(), "å_kjøre");
+            assert_eq!("UTFConverter".underscore(), "utf_converter");
+            assert_eq!("part-one".underscore(), "part_one");
+            assert_eq!("å-kjøre".underscore(), "å_kjøre");
+            assert_eq!("utf-converter".underscore(), "utf_converter");
+        }
+
+        #[test]
+        pub fn test_underscore_strings() {
+            assert_eq!(String::from("partOne").underscore(), "part_one");
+            assert_eq!(String::from("åKjøre").underscore(), "å_kjøre");
+            assert_eq!(String::from("UTFConverter").underscore(), "utf_converter");
+            assert_eq!(String::from("part-one").underscore(), "part_one");
+            assert_eq!(String::from("å-kjøre").underscore(), "å_kjøre");
+            assert_eq!(String::from("utf-converter").underscore(), "utf_converter");
         }
     }
 }
