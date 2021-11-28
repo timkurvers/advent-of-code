@@ -2,7 +2,7 @@ use crate::utils::challenges::prelude::*;
 
 fn part_one(_input: &PuzzleInput) -> Solution {
     // println!("2020 01 part one; input: {}", &input[0..10]);
-    Answer("hello")
+    Answer("hello".to_string())
 }
 
 fn part_two(_input: &PuzzleInput) -> Solution {

@@ -2,7 +2,7 @@ use colored::*;
 use core::fmt::Debug;
 use lazy_static::lazy_static;
 use regex::Regex;
-use serde::{Deserialize};
+use serde::Deserialize;
 use std::collections::BTreeMap;
 use std::fmt;
 use std::fs;
@@ -22,8 +22,8 @@ pub type PuzzleInput = String;
 type PartIdentifier = String;
 
 #[derive(Debug, PartialEq)]
-pub enum Solution<'a> {
-    Answer(&'a str),
+pub enum Solution {
+    Answer(String),
     Unsolved,
 }
 
@@ -108,7 +108,7 @@ impl Challenge {
         path
     }
 
-    fn execute<'a>(&self, part: &SolutionPart, input: &'a PuzzleInput) -> (Solution<'a>, Duration) {
+    fn execute<'a>(&self, part: &SolutionPart, input: &'a PuzzleInput) -> (Solution, Duration) {
         let start = Instant::now();
         let result = (part.solution_fn)(input);
         let duration = start.elapsed();

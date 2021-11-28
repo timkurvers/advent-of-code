@@ -1,8 +1,33 @@
+use std::cmp;
+
 use crate::utils::challenges::prelude::*;
 
-fn part_one(_input: &PuzzleInput) -> Solution {
-    // println!("2019 01 part one; input: {}", &input[0..15]);
-    Unsolved
+fn parse(input: &PuzzleInput) -> Vec<i32> {
+    input.trim().split("\n").map(|s| s.parse().unwrap()).collect()
 }
 
-solve!(part_one);
+fn calculate_fuel(mass: &i32) -> i32 {
+    cmp::max(0, mass / 3 - 2)
+}
+
+fn calculate_fuel_recursively(mass: &i32) -> i32 {
+    let fuel = calculate_fuel(mass);
+    if fuel > 0 {
+        return fuel + calculate_fuel_recursively(&fuel)
+    }
+    fuel
+}
+
+fn part_one(input: &PuzzleInput) -> Solution {
+    let modules = parse(&input);
+    let sum: i32 = modules.iter().map(calculate_fuel).sum();
+    Answer(sum.to_string())
+}
+
+fn part_two(input: &PuzzleInput) -> Solution {
+    let modules = parse(&input);
+    let sum: i32 = modules.iter().map(calculate_fuel_recursively).sum();
+    Answer(sum.to_string())
+}
+
+solve!(part_one, part_two);
