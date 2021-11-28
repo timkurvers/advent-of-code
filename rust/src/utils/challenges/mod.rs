@@ -7,6 +7,8 @@ use std::fs;
 use std::path::PathBuf;
 use std::time::{Duration, Instant};
 
+use super::strings::StringExt;
+
 pub mod macros;
 pub mod prelude;
 
@@ -40,8 +42,8 @@ impl fmt::Debug for SolutionPart {
 }
 
 impl SolutionPart {
-    pub fn title(&self) -> &str {
-        &self.ident
+    pub fn title(&self) -> String {
+        self.ident.to_owned().titleize()
     }
 
     pub fn new(ident: &'static str, solution_fn: SolutionFn) -> SolutionPart {
@@ -109,8 +111,6 @@ impl Challenge {
 
     pub fn run(&self) {
         let examples_by_part = self.examples();
-
-        // let output! =
 
         for part in self.parts {
             let header = format!(
