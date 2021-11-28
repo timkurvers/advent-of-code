@@ -1,6 +1,8 @@
 use colored::*;
 use core::fmt::Debug;
-use serde::{Deserialize,Serialize};
+use lazy_static::lazy_static;
+use regex::Regex;
+use serde::{Deserialize};
 use std::collections::BTreeMap;
 use std::fmt;
 use std::fs;
@@ -19,9 +21,9 @@ type Year = u32;
 pub type PuzzleInput = String;
 type PartIdentifier = String;
 
-#[derive(Debug)]
-pub enum Solution {
-    Answer(&'static str),
+#[derive(Debug, PartialEq)]
+pub enum Solution<'a> {
+    Answer(&'a str),
     Unsolved,
 }
 
@@ -38,27 +40,27 @@ impl fmt::Debug for SolutionPart {
             .field("ident", &self.ident)
             .field("solution_fn", &format_args!("{:p}", &self.solution_fn))
             .finish()
-        }
+    }
 }
 
 impl SolutionPart {
     pub fn title(&self) -> String {
-        self.ident.to_owned().titleize()
+        self.ident.to_string().titleize()
     }
 
     pub fn new(ident: &'static str, solution_fn: SolutionFn) -> SolutionPart {
-        SolutionPart { ident: ident.to_string(), solution_fn }
+        SolutionPart { ident: PartIdentifier::from(ident.to_string()), solution_fn }
     }
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(untagged)]
 enum PuzzleArgument {
     String(String),
     Integer(u64),
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Deserialize)]
 struct Example {
     pub input: PuzzleInput,
     pub answer: String,
@@ -89,7 +91,11 @@ impl Challenge {
         path.push("examples.yaml");
 
         let contents = fs::read_to_string(&path)
-            .expect(&format!("No examples in {:?}", path));
+            .expect(&format!("No examples in {:?}", path))
+
+            // TODO: Do these replacements properly via Serde somehow
+            .replace("part-one", "part_one")
+            .replace("part-two", "part_two");
 
         serde_yaml::from_str(&contents)
             .expect(&format!("Malformed YAML in {:?}", path))
@@ -102,7 +108,7 @@ impl Challenge {
         path
     }
 
-    fn execute(&self, part: &SolutionPart, input: &PuzzleInput) -> (Solution, Duration) {
+    fn execute<'a>(&self, part: &SolutionPart, input: &'a PuzzleInput) -> (Solution<'a>, Duration) {
         let start = Instant::now();
         let result = (part.solution_fn)(input);
         let duration = start.elapsed();
@@ -111,12 +117,17 @@ impl Challenge {
 
     pub fn run(&self) {
         let examples_by_part = self.examples();
+        let input = self.input();
+
+        lazy_static! {
+            static ref WHITESPACE: Regex = Regex::new(r"\s+").unwrap();
+        }
 
         for part in self.parts {
-            let header = format!(
+            let fmt_header = format!(
                 "{} · Day {} · {}", self.year, self.day, part.title(),
             ).cyan();
-            println!("{}", header);
+            println!("{}", fmt_header);
 
             if let Some(examples) = examples_by_part.get(&part.ident) {
                 for Example {
@@ -124,19 +135,50 @@ impl Challenge {
                     answer: expected,
                     ..
                 } in examples {
-                    let (result, duration) = self.execute(part, input);
-                    self.output("Example", &result, Some(expected), &duration);
+                    let excerpt: String = WHITESPACE.replace_all(input, " ")
+                        .chars().take(25).collect();
+                    let (result, duration) = self.execute(part, &input);
+                    self.output(&result, &duration, Some(expected), Some(&excerpt));
                 }
             }
 
-            let (result, duration) = self.execute(part, &self.input());
-            self.output("Answer", &result, None, &duration);
+            let (result, duration) = self.execute(part, &input);
+            self.output(&result, &duration, None, None);
             println!();
         }
     }
 
-    fn output(&self, prefix: &str, result: &Solution, _expected: Option<&String>, duration: &Duration) {
-        println!("=> {}: {:?} duration: {:?}", prefix, result, duration);
+    fn output(
+        &self, result: &Solution, duration: &Duration,
+        expected: Option<&str>, excerpt: Option<&str>
+    ) {
+        let is_example = expected.is_some();
+
+        let fmt_label = if is_example {
+            format!("Example {}", excerpt.unwrap().yellow()).normal()
+        } else {
+            "Answer".normal()
+        };
+
+        let fmt_text = match result {
+            Solution::Answer(answer) => {
+                if is_example && *answer != expected.unwrap() {
+                    format!("{} (expected: {})", answer, expected.unwrap()).red()
+                } else {
+                    answer.green()
+                }
+            },
+            Solution::Unsolved => "[not yet solved]".red(),
+        };
+
+        let fmt_suffix = if matches!(result, Solution::Answer(_)) {
+            let fmt_duration = format!("{:?}", duration).bright_black();
+            format!(" {}", fmt_duration)
+        } else {
+            "".to_string()
+        };
+
+        println!("=> {}: {}{}", fmt_label, fmt_text, fmt_suffix);
     }
 
     pub fn new(year: u32, day: u32, parts: &'static Vec<SolutionPart>) -> Challenge {
