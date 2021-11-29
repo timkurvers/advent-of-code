@@ -136,7 +136,7 @@ impl Challenge {
             static ref WHITESPACE: Regex = Regex::new(r"\s+").unwrap();
         }
 
-        for part in self.parts {
+        'next_part: for part in self.parts {
             let fmt_header = format!(
                 "{} · Day {} · {}", self.year, self.day, part.title(),
             ).cyan();
@@ -152,6 +152,9 @@ impl Challenge {
                         .chars().take(25).collect();
                     let (result, duration) = self.execute(part, &input);
                     self.output(&result, &duration, Some(expected), Some(&excerpt));
+                    if result != *expected {
+                        continue 'next_part;
+                    }
                 }
             }
 
