@@ -16,15 +16,27 @@ pub mod prelude;
 
 pub const PUZZLE_ROOT: &str = "../puzzles";
 
-type Day = u32;
-type Year = u32;
+type Day = u8;
+type Year = u16;
 pub type PuzzleInput = String;
 type PartIdentifier = String;
 
-#[derive(Debug, PartialEq)]
+#[derive(Debug, Deserialize, PartialEq)]
+#[serde(untagged)]
 pub enum Solution {
-    Answer(String),
+    Answer(u64),
+    StringAnswer(String),
     Unsolved,
+}
+
+impl fmt::Display for Solution {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "{}", match self {
+            Solution::Answer(nr) => nr.to_string(),
+            Solution::StringAnswer(str) => str.to_string(),
+            Solution::Unsolved => "Unsolved".to_string(),
+        })
+    }
 }
 
 type SolutionFn = fn(&PuzzleInput) -> Solution;
@@ -56,14 +68,15 @@ impl SolutionPart {
 #[derive(Debug, Deserialize)]
 #[serde(untagged)]
 enum PuzzleArgument {
-    String(String),
+    Boolean(bool),
     Integer(u64),
+    String(String),
 }
 
 #[derive(Debug, Deserialize)]
 struct Example {
     pub input: PuzzleInput,
-    pub answer: String,
+    pub answer: Solution,
     #[serde(default)]
     pub args: BTreeMap<String, PuzzleArgument>,
 }
@@ -150,7 +163,7 @@ impl Challenge {
 
     fn output(
         &self, result: &Solution, duration: &Duration,
-        expected: Option<&str>, excerpt: Option<&str>
+        expected: Option<&Solution>, excerpt: Option<&str>
     ) {
         let is_example = expected.is_some();
 
@@ -161,11 +174,18 @@ impl Challenge {
         };
 
         let fmt_text = match result {
-            Solution::Answer(answer) => {
-                if is_example && *answer != expected.unwrap() {
-                    format!("{} (expected: {})", answer, expected.unwrap()).red()
+            Solution::Answer(nr) => {
+                if is_example && result != expected.unwrap() {
+                    format!("{} (expected nr: {})", nr, expected.unwrap()).red()
                 } else {
-                    answer.green()
+                    nr.to_string().green()
+                }
+            },
+            Solution::StringAnswer(str) => {
+                if is_example && result != expected.unwrap() {
+                    format!("{} (expected str: {})", str, expected.unwrap()).red()
+                } else {
+                    str.green()
                 }
             },
             Solution::Unsolved => "[not yet solved]".red(),
@@ -181,7 +201,7 @@ impl Challenge {
         println!("=> {}: {}{}", fmt_label, fmt_text, fmt_suffix);
     }
 
-    pub fn new(year: u32, day: u32, parts: &'static Vec<SolutionPart>) -> Challenge {
+    pub fn new(year: Year, day: Day, parts: &'static Vec<SolutionPart>) -> Challenge {
         Challenge { year, day, parts }
     }
 }

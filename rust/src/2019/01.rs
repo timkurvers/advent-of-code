@@ -21,13 +21,13 @@ fn calculate_fuel_recursively(mass: &i32) -> i32 {
 fn part_one(input: &PuzzleInput) -> Solution {
     let modules = parse(&input);
     let sum: i32 = modules.iter().map(calculate_fuel).sum();
-    Answer(sum.to_string())
+    Answer(sum as u64)
 }
 
 fn part_two(input: &PuzzleInput) -> Solution {
     let modules = parse(&input);
     let sum: i32 = modules.iter().map(calculate_fuel_recursively).sum();
-    Answer(sum.to_string())
+    Answer(sum as u64)
 }
 
 solve!(part_one, part_two);
