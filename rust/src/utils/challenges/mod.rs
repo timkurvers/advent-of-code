@@ -33,7 +33,7 @@ impl fmt::Display for Solution {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", match self {
             Solution::Answer(nr) => nr.to_string(),
-            Solution::StringAnswer(str) => str.to_string(),
+            Solution::StringAnswer(str) => format!("'{}'", str),
             Solution::Unsolved => "Unsolved".to_string(),
         })
     }
@@ -179,14 +179,14 @@ impl Challenge {
         let fmt_text = match result {
             Solution::Answer(nr) => {
                 if is_example && result != expected.unwrap() {
-                    format!("{} (expected nr: {})", nr, expected.unwrap()).red()
+                    format!("{} (expected: {})", nr, expected.unwrap()).red()
                 } else {
                     nr.to_string().green()
                 }
             },
             Solution::StringAnswer(str) => {
                 if is_example && result != expected.unwrap() {
-                    format!("{} (expected str: {})", str, expected.unwrap()).red()
+                    format!("{} (expected: {})", str, expected.unwrap()).red()
                 } else {
                     str.green()
                 }
