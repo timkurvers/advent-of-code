@@ -4,9 +4,9 @@ import { range, solution } from '../../utils';
 
 import IntcodeProgram from './IntcodeProgram';
 
-export const partOne = solution(async (input, { override = true }) => {
+export const partOne = solution(async (input, { overrideMemory = true }) => {
   const program = IntcodeProgram.from(input);
-  if (override) {
+  if (overrideMemory) {
     program.override({ noun: 12, verb: 2 });
   }
   await program.run();

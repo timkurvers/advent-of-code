@@ -110,7 +110,8 @@ impl Challenge {
 
             // TODO: Do these replacements properly via Serde somehow
             .replace("part-one", "part_one")
-            .replace("part-two", "part_two");
+            .replace("part-two", "part_two")
+            .replace("override-memory", "override_memory");
 
         serde_yaml::from_str(&contents)
             .expect(&format!("Malformed YAML in {:?}", path))
