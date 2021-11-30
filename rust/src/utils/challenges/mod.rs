@@ -155,6 +155,7 @@ impl Challenge {
                     let (result, duration) = self.execute(part, &input, &args);
                     self.output(&result, &duration, Some(expected), Some(&excerpt));
                     if result != *expected {
+                        println!();
                         continue 'next_part;
                     }
                 }
