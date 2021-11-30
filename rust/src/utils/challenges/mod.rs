@@ -39,7 +39,7 @@ impl fmt::Display for Solution {
     }
 }
 
-type SolutionFn = fn(&PuzzleInput) -> Solution;
+type SolutionFn = fn(&PuzzleInput, &RawPuzzleArgs) -> Solution;
 
 pub struct SolutionPart {
     pub ident: PartIdentifier,
@@ -67,18 +67,20 @@ impl SolutionPart {
 
 #[derive(Debug, Deserialize)]
 #[serde(untagged)]
-enum PuzzleArgument {
+pub enum PuzzleArg {
     Boolean(bool),
-    Integer(u64),
+    Number(u64),
     String(String),
 }
+
+pub type RawPuzzleArgs = BTreeMap<String, PuzzleArg>;
 
 #[derive(Debug, Deserialize)]
 struct Example {
     pub input: PuzzleInput,
     pub answer: Solution,
     #[serde(default)]
-    pub args: BTreeMap<String, PuzzleArgument>,
+    pub args: RawPuzzleArgs,
 }
 
 type ExamplesByPart = BTreeMap<PartIdentifier, Vec<Example>>;
@@ -121,9 +123,9 @@ impl Challenge {
         path
     }
 
-    fn execute<'a>(&self, part: &SolutionPart, input: &'a PuzzleInput) -> (Solution, Duration) {
+    fn execute<'a>(&self, part: &SolutionPart, input: &'a PuzzleInput, args: &RawPuzzleArgs) -> (Solution, Duration) {
         let start = Instant::now();
-        let result = (part.solution_fn)(input);
+        let result = (part.solution_fn)(input, args);
         let duration = start.elapsed();
         (result, duration)
     }
@@ -131,6 +133,7 @@ impl Challenge {
     pub fn run(&self) {
         let examples_by_part = self.examples();
         let input = self.input();
+        let args = RawPuzzleArgs::new();
 
         lazy_static! {
             static ref WHITESPACE: Regex = Regex::new(r"\s+").unwrap();
@@ -144,13 +147,11 @@ impl Challenge {
 
             if let Some(examples) = examples_by_part.get(&part.ident) {
                 for Example {
-                    input,
-                    answer: expected,
-                    ..
+                    input, answer: expected, args,
                 } in examples {
                     let excerpt: String = WHITESPACE.replace_all(input, " ")
                         .chars().take(25).collect();
-                    let (result, duration) = self.execute(part, &input);
+                    let (result, duration) = self.execute(part, &input, &args);
                     self.output(&result, &duration, Some(expected), Some(&excerpt));
                     if result != *expected {
                         continue 'next_part;
@@ -158,7 +159,7 @@ impl Challenge {
                 }
             }
 
-            let (result, duration) = self.execute(part, &input);
+            let (result, duration) = self.execute(part, &input, &args);
             self.output(&result, &duration, None, None);
             println!();
         }
@@ -201,7 +202,7 @@ impl Challenge {
             "".to_string()
         };
 
-        println!("=> {}: {}{}", fmt_label, fmt_text, fmt_suffix);
+        println!(" => {}: {}{}", fmt_label, fmt_text, fmt_suffix);
     }
 
     pub fn new(year: Year, day: Day, parts: &'static Vec<SolutionPart>) -> Challenge {

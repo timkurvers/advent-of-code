@@ -59,6 +59,64 @@ macro_rules! create_challenges {
 }
 
 #[macro_export]
+macro_rules! puzzle_args {
+    ($($field:ident: $type:ty = $default:expr),+) => {
+        #[derive(Debug)]
+        struct PuzzleArgs {
+            $(
+                $field: $type,
+            )+
+        }
+
+        impl PuzzleArgs {
+            // Apologies in advance for this monstrosity >.>
+            fn from(raw_args: &RawPuzzleArgs) -> PuzzleArgs {
+                let mut instance = PuzzleArgs {
+                    $(
+                        $field: $default,
+                    )+
+                };
+                $(
+                    if let Some(entry) = raw_args.get(stringify!($field)) {
+                        paste! {
+                            instance.$field = puzzle_args_extract_value!(
+                                entry as $type
+                            );
+                        }
+                    }
+                )+
+                instance
+            }
+        }
+    }
+}
+
+
+#[macro_export]
+macro_rules! puzzle_args_extract_value {
+    ($entry:ident as String) => {
+        match $entry {
+            PuzzleArg::String(str) => str.to_string(),
+            _ => panic!(),
+        }
+    };
+
+    ($entry:ident as u64) => {
+        match $entry {
+            PuzzleArg::Number(nr) => *nr,
+            _ => panic!(),
+        }
+    };
+
+    ($entry:ident as bool) => {
+        match $entry {
+            PuzzleArg::Boolean(bool) => *bool,
+            _ => panic!(),
+        }
+    };
+}
+
+#[macro_export]
 macro_rules! solve {
     ($($func:ident),+) => {
         lazy_static! {

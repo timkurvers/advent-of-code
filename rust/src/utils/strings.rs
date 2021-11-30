@@ -1,5 +1,5 @@
 use lazy_static::lazy_static;
-use regex::{Captures,Regex};
+use regex::{Captures, Regex};
 
 lazy_static! {
     static ref SPLIT_UPPER_LOWER: Regex = Regex::new(r"(?x)
