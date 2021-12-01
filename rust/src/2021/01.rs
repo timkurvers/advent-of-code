@@ -9,14 +9,10 @@ fn part_one(input: &PuzzleInput, _args: &RawPuzzleArgs) -> Solution {
 
     let count = measurements
         .windows(2)
-        .fold(0u32, |acc, window| {
-            if window[0] < window[1] {
-                return acc + 1
-            }
-            acc
-        });
+        .filter(|window| window[0] < window[1])
+        .count();
 
-    Answer(count.into())
+    Answer(count as u64)
 }
 
 fn part_two(input: &PuzzleInput, _args: &RawPuzzleArgs) -> Solution {
@@ -29,14 +25,10 @@ fn part_two(input: &PuzzleInput, _args: &RawPuzzleArgs) -> Solution {
 
     let count = window_sums
         .windows(2)
-        .fold(0u32, |acc, window| {
-            if window[0] < window[1] {
-                return acc + 1
-            }
-            acc
-        });
+        .filter(|window| window[0] < window[1])
+        .count();
 
-    Answer(count.into())
+    Answer(count as u64)
 }
 
 solve!(part_one, part_two);
