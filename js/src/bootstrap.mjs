@@ -9,7 +9,7 @@ const [,, ...target] = process.argv;
   try {
     await fs.copy('../puzzles/.skeleton', path.join(PUZZLE_ROOT, ...target), {
       overwrite: false,
-      errorOnExist: true,
+      errorOnExist: false,
     });
     await fs.copy('.skeleton', path.join(SRC_ROOT, ...target), {
       overwrite: false,
