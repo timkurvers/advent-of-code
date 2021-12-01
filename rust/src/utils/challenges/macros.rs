@@ -6,9 +6,9 @@ macro_rules! preload_challenges {
             2019 (
                 01, 02
             )
-            // 2020 (
-            //     01, 02
-            // )
+            2021 (
+                01
+            )
         }
     };
 

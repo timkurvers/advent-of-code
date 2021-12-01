@@ -1,0 +1,17 @@
+part-one:
+  - input: &example1 |
+      199
+      200
+      208
+      210
+      200
+      207
+      240
+      269
+      260
+      263
+    answer: 7
+
+part-two:
+  - input: *example1
+    answer: 5
