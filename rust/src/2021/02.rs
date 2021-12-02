@@ -14,7 +14,7 @@ impl std::str::FromStr for Command {
 
     fn from_str(s: &str) -> Result<Self, Self::Err> {
         let parts: Vec<_> = s.split(" ").collect();
-        let value: i64 = parts[1].parse().unwrap();
+        let value: i64 = parts[1].parse()?;
         match parts[0] {
             "forward" => Ok(Self::Forward(value)),
             "down" => Ok(Self::Down(value)),
