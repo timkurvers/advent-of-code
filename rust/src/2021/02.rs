@@ -24,47 +24,31 @@ impl std::str::FromStr for Command {
     }
 }
 
-#[derive(Debug, Default)]
-struct Submarine {
-    position: i64,
-    depth: i64,
-    aim: i64,
-}
-
 fn parse(input: &PuzzleInput) -> Vec<Command> {
     input.trim().split("\n").map(|s| s.parse().unwrap()).collect()
 }
 
 fn navigate(commands: Vec<Command>, rtfm: bool) -> u64 {
-    let mut submarine = Submarine { ..Default::default() };
+    let mut position = 0;
+    let mut depth = 0;
+    let mut aim = 0;
+
     for command in commands {
         match command {
-            Command::Forward(value) if !rtfm => {
-                submarine.position += value
-            },
-            Command::Down(value) if !rtfm => {
-                submarine.depth += value
-            },
-            Command::Up(value) if !rtfm => {
-                submarine.depth -= value
-            },
+            Command::Forward(value) if !rtfm => { position += value }
+            Command::Down(value) if !rtfm => { depth += value }
+            Command::Up(value) if !rtfm => { depth -= value }
 
             // After reading the manual
             Command::Forward(value) => {
-                submarine.position += value;
-                submarine.depth += submarine.aim * value;
+                position += value;
+                depth += aim * value;
             },
-            Command::Down(value) => {
-                submarine.aim += value
-            },
-            Command::Up(value) => {
-                submarine.aim -= value
-            },
-
-            _ => panic!("could not execute: {:?}", command)
+            Command::Down(value) => { aim += value },
+            Command::Up(value) => { aim -= value },
         }
     }
-    (submarine.position * submarine.depth).try_into().unwrap()
+    (position * depth).try_into().unwrap()
 }
 
 fn part_one(input: &PuzzleInput, _args: &RawPuzzleArgs) -> Solution {
