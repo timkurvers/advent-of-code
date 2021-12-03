@@ -1,0 +1,13 @@
+name: rust
+on: [push, pull_request]
+jobs:
+  lint-and-run:
+    name: Rust (lint and run solutions for current edition)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./rust
+    steps:
+      - uses: actions/checkout@v2
+      - run: cargo run
+      - run: cargo test
