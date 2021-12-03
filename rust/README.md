@@ -1,5 +1,8 @@
 # Advent of Code - Rust
 
+[![MIT License](https://badgen.net/badge/license/MIT/)](LICENSE.md)
+[![CI](https://github.com/timkurvers/advent-of-code/workflows/rust/badge.svg)](https://github.com/timkurvers/advent-of-code/actions?query=workflow%3Arust)
+
 My Rust solutions for [Advent of Code](https://adventofcode.com).
 
 **Note:** Make sure to run all commands in this README from this `rust`-folder.
