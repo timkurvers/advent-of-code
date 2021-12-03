@@ -1,7 +1,7 @@
 # Advent of Code
 
 [![MIT License](https://badgen.net/badge/license/MIT/)](LICENSE.md)
-[![CI](https://github.com/timkurvers/advent-of-code/workflows/ci/badge.svg)](https://github.com/timkurvers/advent-of-code/actions?query=workflow%3Aci)
+[![JavaScript](https://github.com/timkurvers/advent-of-code/workflows/js/badge.svg)](https://github.com/timkurvers/advent-of-code/actions?query=workflow%3Ajs)
 
 > [Advent of Code](https://adventofcode.com) is an Advent calendar of small
 > programming puzzles for a variety of skill sets and skill levels that can be

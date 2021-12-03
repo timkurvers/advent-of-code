@@ -2,7 +2,7 @@
 
 ![Node Version](https://badgen.net/badge/node/12+/green)
 [![MIT License](https://badgen.net/badge/license/MIT/)](LICENSE.md)
-[![CI](https://github.com/timkurvers/advent-of-code/workflows/ci/badge.svg)](https://github.com/timkurvers/advent-of-code/actions?query=workflow%3Aci)
+[![CI](https://github.com/timkurvers/advent-of-code/workflows/js/badge.svg)](https://github.com/timkurvers/advent-of-code/actions?query=workflow%3Ajs)
 
 My JavaScript / ES2021+ solutions for [Advent of Code](https://adventofcode.com).
 

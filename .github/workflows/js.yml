@@ -1,8 +1,8 @@
-name: ci
+name: js
 on: [push, pull_request]
 jobs:
   lint-and-run:
-    name: lint and run solutions for current edition
+    name: JavaScript (lint and run solutions for current edition)
     runs-on: ubuntu-latest
     defaults:
       run:
