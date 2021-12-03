@@ -25,7 +25,7 @@ impl std::str::FromStr for Command {
 }
 
 fn parse(input: &PuzzleInput) -> Vec<Command> {
-    input.trim().split("\n").map(|s| s.parse().unwrap()).collect()
+    input.trim().lines().map(|s| s.parse().unwrap()).collect()
 }
 
 fn navigate(commands: Vec<Command>, rtfm: bool) -> u64 {

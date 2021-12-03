@@ -3,7 +3,7 @@ use std::cmp;
 use crate::utils::challenges::prelude::*;
 
 fn parse(input: &PuzzleInput) -> Vec<i32> {
-    input.trim().split("\n").map(|s| s.parse().unwrap()).collect()
+    input.trim().lines().map(|s| s.parse().unwrap()).collect()
 }
 
 fn calculate_fuel(mass: &i32) -> i32 {

@@ -1,7 +1,7 @@
 use crate::utils::challenges::prelude::*;
 
 fn parse(input: &PuzzleInput) -> Vec<u32> {
-    input.trim().split("\n").map(|s| s.parse().unwrap()).collect()
+    input.trim().lines().map(|s| s.parse().unwrap()).collect()
 }
 
 fn part_one(input: &PuzzleInput, _args: &RawPuzzleArgs) -> Solution {
