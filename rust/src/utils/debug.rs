@@ -7,7 +7,7 @@ macro_rules! p {
     };
 
     ($val:literal $(,)?) => {
-        print!("{}{} ", stringify!($val).bright_yellow(), ",".bright_black())
+        print!("{} ", $val)
     };
 
     ($val:expr $(,)?) => {
