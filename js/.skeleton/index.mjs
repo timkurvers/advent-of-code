@@ -1,7 +1,7 @@
 import { solution } from '../../utils';
 
 const parse = (input) => (
-  input.trim().split('\n');
+  input.trim().split('\n')
 );
 
 export const partOne = solution((input) => {
