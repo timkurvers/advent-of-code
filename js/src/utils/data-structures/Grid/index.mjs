@@ -242,15 +242,20 @@ class Grid {
     return string;
   }
 
-  static from(gfx, { ignoreBlanks = true, pointClass } = {}) {
+  static from(gfx, {
+    ignoreBlanks = true,
+    pointClass,
+    splitter = '',
+    cast,
+  } = {}) {
     const grid = new this({ pointClass });
     const lines = gfx.split('\n');
     lines.forEach((line, y) => {
-      line.split('').forEach((value, x) => {
-        if (value === ' ' && ignoreBlanks) {
+      line.split(splitter).forEach((value, x) => {
+        if (ignoreBlanks && value === ' ') {
           return;
         }
-        grid.set(x, y, value);
+        grid.set(x, y, cast ? cast(value) : value);
       });
     });
     return grid;
