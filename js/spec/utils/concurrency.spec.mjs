@@ -15,7 +15,7 @@ describe('concurrency utilities', () => {
         return 322;
       };
       const [duration, result] = await time(async);
-      expect(duration).toBeGreaterThan(1000);
+      expect(duration).toBeGreaterThan(995);
       expect(duration).toBeLessThan(1250);
       expect(result).toEqual(322);
     });
