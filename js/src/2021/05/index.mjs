@@ -4,7 +4,7 @@ import { Grid, cast, solution } from '../../utils';
 
 const LINE_MATCHER = /(-?\d+),(-?\d+) -> (-?\d+),(-?\d+)/;
 
-const parse = (input, { onlyAdjacent = false } = true) => {
+const parse = (input, { onlyAdjacent = false } = {}) => {
   const grid = new Grid();
   const lines = input.trim().split('\n');
   for (const line of lines) {
