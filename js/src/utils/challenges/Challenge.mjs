@@ -95,14 +95,18 @@ class Challenge {
       const { answer, duration } = await execute(
         input, example.args ? camelcaseKeysFor(example.args) : {},
       );
-      if (answer == null) {
-        line(`Example ${colors.yellow(excerpt)}`, '[not yet solved]');
-        continue;
-      }
 
       const passed = answer === expected;
-      const text = passed ? answer : `${answer} (expected: ${expected})`;
-      line(`Example ${colors.yellow(excerpt)}`, text, passed, duration);
+      if (answer == null) {
+        line(`Example ${colors.yellow(excerpt)}`, '[not yet solved]');
+      } else {
+        const text = passed ? answer : `${answer} (expected: ${expected})`;
+        line(`Example ${colors.yellow(excerpt)}`, text, passed, duration);
+      }
+      if (!passed) {
+        console.log();
+        return;
+      }
     }
 
     if (solution.inefficient) {
