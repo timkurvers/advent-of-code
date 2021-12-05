@@ -6,11 +6,11 @@ macro_rules! p {
         println!();
     };
 
-    ($val:literal $(,)?) => {
+    (arg $val:literal $(,)?) => {
         print!("{} ", $val)
     };
 
-    ($val:expr $(,)?) => {
+    (arg $val:expr $(,)?) => {
         print!(
             "{}{} {}{} ",
             stringify!($val).bright_black(),
@@ -21,9 +21,9 @@ macro_rules! p {
     };
 
     ($($val:expr),+ $(,)?) => {
-        ($(
-            p!($val)
-        ),+,);
+        $(
+            p!(arg $val);
+        )+
         println!();
     };
 }
