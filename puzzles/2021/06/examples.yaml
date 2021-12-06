@@ -1,0 +1,7 @@
+part-one:
+  - input: &example1 |
+      3,4,3,1,2
+    answer: 5934
+part-two:
+  - input: *example1
+    answer: 26984457539
