@@ -4,7 +4,7 @@ macro_rules! preload_challenges {
         preload_challenges! {
             into $vec
             2019 (
-                01, 02
+                01, 02, 05
             )
             2021 (
                 01, 02, 03, 04, 05, 06

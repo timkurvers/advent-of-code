@@ -5,7 +5,7 @@ use intcode::Intcode;
 
 puzzle_args!(override_memory: bool = true);
 
-fn override_memory(machine: &mut Intcode, noun: u32, verb: u32) {
+fn override_memory(machine: &mut Intcode, noun: i32, verb: i32) {
     machine.memory[1] = noun;
     machine.memory[2] = verb;
 }
@@ -18,7 +18,7 @@ fn part_one(input: &PuzzleInput, raw_args: &RawPuzzleArgs) -> Solution {
         override_memory(&mut machine, 12, 2);
     }
     machine.run();
-    Answer(machine.memory[0].into())
+    Answer(machine.memory[0] as u64)
 }
 
 fn part_two(input: &PuzzleInput, _raw_args: &RawPuzzleArgs) -> Solution {
@@ -31,7 +31,7 @@ fn part_two(input: &PuzzleInput, _raw_args: &RawPuzzleArgs) -> Solution {
             override_memory(&mut machine, noun, verb);
             machine.run();
             if machine.memory[0] == target {
-                return Answer((100 * noun + verb).into())
+                return Answer((100 * noun + verb) as u64)
             }
         }
     }
