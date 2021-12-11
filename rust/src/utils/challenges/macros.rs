@@ -36,8 +36,8 @@ macro_rules! reference_challenge_modules {
     ($year:literal, ( $($day:literal),+ )) => {
         $(
             paste! {
-                #[path=$year "/" $day ".rs"]
-                mod [<y $year c $day>];
+                #[path="../" $year "/" $day ".rs"]
+                mod [<year $year day $day>];
             }
         )+
     }
@@ -50,7 +50,7 @@ macro_rules! create_challenges {
             $(
                 $vec.push(
                     Challenge::new(
-                        $year, $day, &*crate::[<y $year c $day>]::PARTS
+                        $year, $day, &*crate::[<year $year day $day>]::PARTS
                     )
                 );
             )+

@@ -1,7 +1,6 @@
-use crate::utils::challenges::prelude::*;
+use advent_of_code::utils::challenges::prelude::*;
 
-mod intcode;
-use intcode::Intcode;
+use crate::year2019day02::intcode::Intcode;
 
 fn part_one(input: &PuzzleInput, _raw_args: &RawPuzzleArgs) -> Solution {
     let mut machine = Intcode::from(input);

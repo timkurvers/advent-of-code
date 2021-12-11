@@ -5,7 +5,7 @@ use std::fmt;
 use lazy_static::lazy_static;
 use regex::Regex;
 
-use crate::utils::challenges::prelude::*;
+use advent_of_code::utils::challenges::prelude::*;
 
 #[derive(Debug, Default)]
 struct Grid {

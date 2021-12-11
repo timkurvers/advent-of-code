@@ -1,6 +1,6 @@
 use std::num::ParseIntError;
 
-use crate::utils::challenges::prelude::*;
+use advent_of_code::utils::challenges::prelude::*;
 
 #[derive(Debug)]
 enum Command {

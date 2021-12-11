@@ -1,4 +1,4 @@
-use crate::utils::challenges::prelude::*;
+use advent_of_code::utils::challenges::prelude::*;
 
 type Fish = usize;
 

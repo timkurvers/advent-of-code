@@ -1,6 +1,6 @@
-use crate::utils::challenges::prelude::*;
+use advent_of_code::utils::challenges::prelude::*;
 
-mod intcode;
+pub mod intcode;
 use intcode::Intcode;
 
 puzzle_args!(override_memory: bool = true);

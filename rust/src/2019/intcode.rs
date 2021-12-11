@@ -1,7 +1,5 @@
 use std::collections::VecDeque;
 
-use crate::utils::challenges::prelude::*;
-
 #[derive(Debug, Default)]
 pub struct Intcode {
     source: Vec<i32>,

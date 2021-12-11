@@ -1,14 +1,22 @@
 [package]
-name = "advent-of-code"
+name = "advent_of_code"
 authors = ["Tim Kurvers"]
 version = "0.1.0"
 publish = false
 edition = "2021"
-default-run = "advent-of-code"
+default-run = "runner"
+
+[lib]
+name = "advent_of_code"
+path = "src/lib.rs"
+
+[[bin]]
+name = "runner"
+path = "src/bin/runner.rs"
 
 [[bin]]
 name = "progress"
-path = "src/progress.rs"
+path = "src/bin/progress.rs"
 
 [dependencies]
 colored = "2"

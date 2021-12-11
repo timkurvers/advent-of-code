@@ -1,6 +1,6 @@
 use std::cmp;
 
-use crate::utils::challenges::prelude::*;
+use advent_of_code::utils::challenges::prelude::*;
 
 fn parse(input: &PuzzleInput) -> Vec<i32> {
     input.trim().lines().map(|s| s.parse().unwrap()).collect()

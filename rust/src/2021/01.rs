@@ -1,4 +1,4 @@
-use crate::utils::challenges::prelude::*;
+use advent_of_code::utils::challenges::prelude::*;
 
 fn parse(input: &PuzzleInput) -> Vec<u32> {
     input.trim().lines().map(|s| s.parse().unwrap()).collect()

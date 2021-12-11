@@ -1,8 +1,9 @@
 use std::env;
 
-mod utils;
+#[macro_use]
+extern crate advent_of_code;
 
-use crate::utils::challenges::prelude::*;
+use advent_of_code::utils::challenges::prelude::*;
 
 preload_challenges!(into CHALLENGES);
 
