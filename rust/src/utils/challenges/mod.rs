@@ -1,6 +1,7 @@
 use colored::*;
 use core::fmt::Debug;
 use lazy_static::lazy_static;
+use num::Integer;
 use regex::Regex;
 use serde::Deserialize;
 use std::collections::BTreeMap;
@@ -200,9 +201,9 @@ impl Challenge {
         let fmt_suffix = if matches!(result, Solution::Answer(_)) {
             let nanos = duration.as_nanos();
             if nanos >= 1000000 {
-                format!(" {}ms", nanos / 1000000).bright_black()
+                format!(" {}ms", nanos.div_ceil(&1000000)).bright_black()
             } else if nanos >= 1000 {
-                format!(" {}μs", nanos / 1000).bright_black()
+                format!(" {}μs", nanos.div_ceil(&1000)).bright_black()
             } else {
                 format!(" {}ns", nanos).bright_black()
             }.to_string()
