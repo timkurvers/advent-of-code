@@ -1,47 +1,58 @@
+use std::fmt;
 use std::num::ParseIntError;
 
 use advent_of_code::utils::challenges::prelude::*;
+use advent_of_code::utils::datastructures::Grid;
 
 type DrawQueue = Vec<u64>;
 
-#[derive(Clone, Debug, Default, Eq, Hash, PartialEq)]
+#[derive(Debug, Default)]
 struct Board {
-    rows: Vec<BoardAxis>,
+    grid: Grid<usize, usize, BoardNumber>,
     is_winner: bool,
 }
-type BoardAxis = Vec<BoardNumber>;
-type BoardNumber = (u64, bool);
+
+impl fmt::Display for Board {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "{}", self.grid)
+    }
+}
+
+#[derive(Debug, Default)]
+struct BoardNumber(u64, bool);
+
+impl fmt::Display for BoardNumber {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        if self.1 {
+            write!(f, "x")?
+        } else {
+            write!(f, "{}", self.0)?
+        }
+        Ok(())
+    }
+}
 
 impl Board {
-    fn columns(&self) -> Vec<BoardAxis> {
-        let size = self.rows[0].len();
-        (0..size).map(|x| (
-            self.rows.iter().map(|row| row[x]).collect()
-        )).collect()
-    }
-
     fn mark_as_bingo(&mut self, bingo_nr: u64) {
-        for row in &mut self.rows {
-            for board_nr in row {
-                if board_nr.0 == bingo_nr {
-                    board_nr.1 = true;
-                }
+        for (_, BoardNumber(nr, ref mut marked)) in self.grid.iter_mut() {
+            if *nr == bingo_nr {
+                *marked = true;
             }
         }
     }
 
     fn has_bingo(&mut self) -> bool {
-        let is_bingo = |board_nr: &BoardNumber| board_nr.1;
+        let is_bingo = |board_nr: Option<&BoardNumber>| board_nr.unwrap().1;
 
-        if self.rows.iter().any(|row| (
-            row.iter().all(is_bingo)
+        if self.grid.rows().any(|mut row| (
+            row.all(is_bingo)
         )) {
             self.is_winner = true;
             return true;
         }
 
-        if self.columns().iter().any(|row| (
-            row.iter().all(is_bingo)
+        if self.grid.columns().any(|mut col| (
+            col.all(is_bingo)
         )) {
             self.is_winner = true;
             return true;
@@ -51,11 +62,9 @@ impl Board {
     }
 
     fn score(&self) -> u64 {
-        self.rows.iter().map(|row| (
-            row.iter().map(|board_nr| (
-                if board_nr.1 { 0 } else { board_nr.0 }
-            )).sum::<u64>()
-        )).sum()
+        self.grid.iter().fold(0, |sum, ((_, _), &BoardNumber(nr, marked)) | {
+            sum + if marked { 0 } else { nr }
+        })
     }
 }
 
@@ -63,11 +72,15 @@ impl std::str::FromStr for Board {
     type Err = ParseIntError;
 
     fn from_str(s: &str) -> Result<Self, Self::Err> {
-        let rows: Vec<BoardAxis> = s.lines().map(|line| {
-            line.split_ascii_whitespace()
-                .map(|s| (s.parse().unwrap(), false)).collect()
-        }).collect();
-        Ok(Self { rows, ..Default::default() })
+        let mut board = Self { ..Default::default() };
+        // TODO: Refactor this with generic Grid::from_graphic()
+        for (y, line) in s.lines().enumerate() {
+            for (x, nr) in line.split_ascii_whitespace().enumerate() {
+                let nr = BoardNumber(nr.parse().unwrap(), false);
+                board.grid.set((x, y), nr);
+            }
+        }
+        Ok(board)
     }
 }
 

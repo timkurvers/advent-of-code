@@ -1,8 +1,9 @@
+use num::Integer;
 use std::collections::HashMap;
 use std::collections::hash_map::Entry;
 use std::fmt::{self, Debug};
 use std::hash::Hash;
-use std::ops::Range;
+use std::ops::{AddAssign, Range};
 
 #[derive(Debug, Default)]
 pub struct Grid<X, Y, V> {
@@ -12,10 +13,66 @@ type GridPoint<X, Y> = (X, Y);
 type GridValue<V> = V;
 
 impl<
-    X: Copy + Hash + Ord,
-    Y: Copy + Hash + Ord,
+    X: AddAssign + Copy + Hash + Integer,
+    Y: AddAssign + Copy + Hash + Integer,
     V: fmt::Display,
 > Grid<X, Y, V> {
+    pub fn column(&self, x: X) -> impl Iterator<Item = Option<&GridValue<V>>> + '_ {
+        let mut y = self.min_y();
+        let max_y = self.max_y();
+        std::iter::from_fn(move || {
+            let result = if y <= max_y {
+                Some(self.get((x, y)))
+            } else {
+                None
+            };
+            y += Y::one();
+            result
+        })
+    }
+
+    pub fn columns(&self) -> impl Iterator<Item = impl Iterator<Item = Option<&GridValue<V>>> + '_> + '_ {
+        let mut x = self.min_x();
+        let max_x = self.max_x();
+        std::iter::from_fn(move || {
+            let result = if x <= max_x {
+                Some(self.column(x))
+            } else {
+                None
+            };
+            x += X::one();
+            result
+        })
+    }
+
+    pub fn row(&self, y: Y) -> impl Iterator<Item = Option<&GridValue<V>>> + '_ {
+        let mut x = self.min_x();
+        let max_x = self.max_x();
+        std::iter::from_fn(move || {
+            let result = if x <= max_x {
+                Some(self.get((x, y)))
+            } else {
+                None
+            };
+            x += X::one();
+            result
+        })
+    }
+
+    pub fn rows(&self) -> impl Iterator<Item = impl Iterator<Item = Option<&GridValue<V>>> + '_> + '_ {
+        let mut y = self.min_y();
+        let max_y = self.max_y();
+        std::iter::from_fn(move || {
+            let result = if y <= max_y {
+                Some(self.row(y))
+            } else {
+                None
+            };
+            y += Y::one();
+            result
+        })
+    }
+
     fn xs(&self) -> impl Iterator<Item = X> + '_ {
         self.points.iter().map(|((x, _), _)| *x)
     }
@@ -44,6 +101,10 @@ impl<
         self.points.iter()
     }
 
+    pub fn iter_mut(&mut self) -> impl Iterator<Item = (&GridPoint<X, Y>, &mut GridValue<V>)> {
+        self.points.iter_mut()
+    }
+
     pub fn point(&mut self, point: GridPoint<X, Y>) -> Entry<GridPoint<X, Y>, V> {
         return self.points.entry(point);
     }
@@ -58,8 +119,8 @@ impl<
 }
 
 impl<
-    X: Copy + Hash + Ord,
-    Y: Copy + Hash + Ord,
+    X: AddAssign + Copy + From<usize> + Hash + Integer + Ord,
+    Y: AddAssign + Copy + From<usize> + Hash + Integer + Ord,
     V: fmt::Display,
 > fmt::Display for Grid<X, Y, V>
     where Range<X>: Iterator<Item = X>, Range<Y>: Iterator<Item = Y> {
