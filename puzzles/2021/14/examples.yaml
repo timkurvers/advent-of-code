@@ -1,0 +1,25 @@
+part-one:
+  - input: &example1 |
+      NNCB
+
+      CH -> B
+      HH -> N
+      CB -> H
+      NH -> C
+      HB -> C
+      HC -> B
+      HN -> C
+      NN -> C
+      BH -> H
+      NC -> B
+      NB -> B
+      BN -> B
+      BB -> N
+      BC -> B
+      CC -> N
+      CN -> C
+    answer: 1588
+
+part-two:
+  - input: *example1
+    answer: 2188189693529
