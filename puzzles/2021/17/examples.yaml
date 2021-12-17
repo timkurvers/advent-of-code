@@ -2,9 +2,7 @@ part-one:
   - input: &example1 |
       target area: x=20..30, y=-10..-5
     answer: 45
-    inefficient: true
 
 part-two:
   - input: *example1
     answer: 112
-    inefficient: true
