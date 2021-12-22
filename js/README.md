@@ -12,7 +12,7 @@ My JavaScript / ES2021+ solutions for [Advent of Code](https://adventofcode.com)
 
 ## Setup
 
-Install [Node.js] 12 or higher for your platform.
+Install [Node.js] 14 or higher for your platform.
 
 Install dependencies through npm:
 
