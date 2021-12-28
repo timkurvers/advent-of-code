@@ -49,6 +49,7 @@ class Graph {
   }
 
   static from(grid, {
+    isValidEdge = () => true,
     isVertex,
     vertexForPoint = (point, graph) => (
       isVertex(point) && graph.lookup(point.value)
@@ -69,7 +70,7 @@ class Graph {
 
     for (const a of vps) {
       for (const b of vps) {
-        if (a === b) {
+        if (a === b || !isValidEdge(a, b, graph)) {
           continue;
         }
 

@@ -1,0 +1,13 @@
+part-one:
+  - input: &example1 |
+      #############
+      #...........#
+      ###B#C#B#D###
+        #A#D#C#A#
+        #########
+    answer: 12521
+
+part-two:
+  - input: *example1
+    answer: 44169
+    inefficient: true

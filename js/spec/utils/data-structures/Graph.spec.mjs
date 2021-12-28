@@ -309,6 +309,22 @@ describe('Graph', () => {
       ]);
     });
 
+    it('supports custom edge validation function', () => {
+      const graph = Graph.from(grid, {
+        isVertex: (point) => point.value === 'G' || point.value === 'X',
+        neighborsFor: (current) => (
+          current.adjacentNeighbors.filter((point) => point.value !== '#')
+        ),
+        isValidEdge: (a, _b) => a.point.value === 'X',
+      });
+
+      const [x, g] = graph.vertices;
+
+      expect(graph.edges).toEqual([
+        { from: x, to: g, cost: 5 },
+      ]);
+    });
+
     it('supports custom edge and vertex classes', () => {
       class CustomEdge extends GraphEdge {
         constructor(...args) {
