@@ -1,0 +1,12 @@
+final-part:
+  - input: |
+      v...>>.vv>
+      .vv>>.vv..
+      >>.>v>...v
+      >>v>>.>.v.
+      v>v.vv.v..
+      >.>>..v...
+      .vv..>.>v.
+      v.v..>>v.v
+      ....v..v.>
+    answer: 58
