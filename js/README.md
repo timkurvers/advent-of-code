@@ -1,6 +1,6 @@
 # Advent of Code - JavaScript
 
-![Node Version](https://badgen.net/badge/node/12+/green)
+![Node Version](https://badgen.net/badge/node/18+/green)
 [![MIT License](https://badgen.net/badge/license/MIT/)](LICENSE.md)
 [![CI](https://github.com/timkurvers/advent-of-code/workflows/js/badge.svg)](https://github.com/timkurvers/advent-of-code/actions?query=workflow%3Ajs)
 
@@ -12,7 +12,7 @@ My JavaScript / ES2021+ solutions for [Advent of Code](https://adventofcode.com)
 
 ## Setup
 
-Install [Node.js] 14 or higher for your platform.
+Install [Node.js] 18 or higher for your platform.
 
 Install dependencies through npm:
 
