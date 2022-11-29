@@ -4,12 +4,13 @@
   "repository": "github:timkurvers/advent-of-code",
   "license": "MIT",
   "private": true,
+  "type": "module",
   "scripts": {
-    "bootstrap": "node --experimental-modules --experimental-specifier-resolution=node src/bootstrap.mjs",
+    "bootstrap": "node --experimental-specifier-resolution=node src/bootstrap.js",
     "lint": "eslint . --ext js,mjs",
-    "progress": "node --experimental-modules --experimental-specifier-resolution=node src/progress.mjs",
-    "start": "node --experimental-modules --experimental-specifier-resolution=node src/runner.mjs",
-    "start:dev": "nodemon --ext js,mjs,yaml,txt --watch . --watch ../puzzles --exec npm run start",
+    "progress": "node --experimental-specifier-resolution=node src/progress.js",
+    "start": "node --experimental-specifier-resolution=node src/runner.js",
+    "start:dev": "nodemon --ext js,yaml,txt --watch . --watch ../puzzles --exec npm run start",
     "test": "jest",
     "test:coverage": "jest --coverage",
     "test:watch": "jest --watch"

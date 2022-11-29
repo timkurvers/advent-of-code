@@ -1,8 +1,8 @@
-const { defaults } = require('jest-config');
+import { defaults } from 'jest-config';
 
-module.exports = {
+export default {
   collectCoverageFrom: [
-    'src/utils/**/*.mjs',
+    'src/utils/**/*.js',
     '!src/utils/challenges/**',
   ],
   coverageDirectory: './coverage/',
@@ -11,10 +11,10 @@ module.exports = {
     'mjs',
   ],
   testMatch: [
-    '**/spec/**/*.spec.mjs',
+    '**/spec/**/*.spec.js',
   ],
   transform: {
-    '^.+\\.mjs$': 'babel-jest',
+    '^.+\\.js$': 'babel-jest',
   },
   verbose: true,
 };
