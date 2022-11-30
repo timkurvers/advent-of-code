@@ -87,7 +87,7 @@ describe('math utilities', () => {
   });
 
   describe('reduceMaxBy()', () => {
-    it('returns candidate with minimum value for given prop', () => {
+    it('returns candidate with maximum value for given prop', () => {
       const pete = { age: 10 };
       const sara = { age: 25 };
       const bob = { age: 10 };
