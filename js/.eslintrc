@@ -7,6 +7,8 @@
     "ecmaVersion": 2021
   },
   "rules": {
+    "default-case-last": "off",
+    "function-paren-newline": "off",
     "import/no-cycle": "off",
     "max-classes-per-file": "off",
     "no-await-in-loop": "off",
@@ -15,6 +17,7 @@
     "no-constant-condition": "off",
     "no-continue": "off",
     "no-plusplus": "off",
+    "no-promise-executor-return": "off",
     "no-restricted-syntax": "off",
     "no-underscore-dangle": "off"
   },

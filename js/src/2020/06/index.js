@@ -18,7 +18,6 @@ export const partOne = solution((input) => {
   return sum(groups.map((group) => Object.values(group.tally).length));
 });
 
-
 export const partTwo = solution((input) => {
   const groups = parse(input);
   return sum(groups.map((group) => {
