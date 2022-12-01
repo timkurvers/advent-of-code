@@ -9,6 +9,9 @@ macro_rules! preload_challenges {
             2021 (
                 01, 02, 03, 04, 05, 06, 07, 10
             )
+            2022 (
+                01
+            )
         }
     };
 
