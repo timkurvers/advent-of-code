@@ -1,0 +1,23 @@
+part-one:
+  - input: mjqjpqmgbljsphdztnvjfqwrcgsmlb
+    answer: 7
+  - input: bvwbjplbgvbhsrlpgdmjqwftvncz
+    answer: 5
+  - input: nppdvjthqldpwncqszvftbrmjlhg
+    answer: 6
+  - input: nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg
+    answer: 10
+  - input: zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw
+    answer: 11
+
+part-two:
+  - input: mjqjpqmgbljsphdztnvjfqwrcgsmlb
+    answer: 19
+  - input: bvwbjplbgvbhsrlpgdmjqwftvncz
+    answer: 23
+  - input: nppdvjthqldpwncqszvftbrmjlhg
+    answer: 23
+  - input: nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg
+    answer: 29
+  - input: zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw
+    answer: 26
