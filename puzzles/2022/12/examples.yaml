@@ -1,0 +1,12 @@
+part-one:
+  - input: &example1 |
+      Sabqponm
+      abcryxxl
+      accszExk
+      acctuvwj
+      abdefghi
+    answer: 31
+
+part-two:
+  - input: *example1
+    answer: 29
