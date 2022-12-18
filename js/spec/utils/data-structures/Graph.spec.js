@@ -8,6 +8,13 @@ import {
   stripIndent,
 } from '../../../src/utils';
 
+const sample = new Graph();
+sample.edge(1, 3, { cost: -2 });
+sample.edge(3, 4, { cost: 2 });
+sample.edge(4, 2, { cost: -1 });
+sample.edge(2, 1, { cost: 4 });
+sample.edge(2, 3, { cost: 3 });
+
 describe('Graph', () => {
   describe('constructor', () => {
     it('creates an empty graph with default edge and vertex classes', () => {
@@ -223,6 +230,35 @@ describe('Graph', () => {
       ]);
       expect(graph.find('a')).toBe(a);
       expect(graph.find('b')).toBe(b);
+    });
+  });
+
+  describe('floydwarshall()', () => {
+    it('generates Floyd-Warshall distance matrix', () => {
+      const matrix = sample.floydwarshall();
+
+      const [v1, v2, v3, v4] = [sample.find(1), sample.find(2), sample.find(3), sample.find(4)];
+      expect(matrix).toEqual(new Map([
+        [v1, new Map([[v1, 0], [v2, -1], [v3, -2], [v4, 0]])],
+        [v2, new Map([[v1, 4], [v2, 0], [v3, 2], [v4, 4]])],
+        [v3, new Map([[v1, 5], [v2, 1], [v3, 0], [v4, 2]])],
+        [v4, new Map([[v1, 3], [v2, -1], [v3, 1], [v4, 0]])],
+      ]));
+    });
+  });
+
+  describe('simplify()', () => {
+    it('simplifies this graph using Floyd-Warshall, dropping unwanted vertices', () => {
+      const [v1, v2, v3, v4] = [sample.find(1), sample.find(2), sample.find(3), sample.find(4)];
+
+      const simplified = sample.simplify({
+        keep: (vertex) => vertex !== v1 && vertex !== v4,
+      });
+
+      expect(simplified.edges).toEqual([
+        { from: v3, to: v2, cost: 1 },
+        { from: v2, to: v3, cost: 2 },
+      ]);
     });
   });
 

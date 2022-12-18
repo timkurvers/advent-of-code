@@ -48,6 +48,63 @@ class Graph {
     ];
   }
 
+  floydwarshall() {
+    const { vertices } = this;
+
+    // Initialize the matrix with each vertex's distance to another
+    const matrix = vertices.reduce((map, vertex) => {
+      const inner = new Map();
+      for (const other of vertices) {
+        inner.set(other, other === vertex ? 0 : Infinity);
+      }
+      map.set(vertex, inner);
+      return map;
+    }, new Map());
+
+    // Apply all edges
+    for (const edge of this.edges) {
+      matrix.get(edge.from).set(edge.to, edge.cost);
+    }
+
+    // See: https://en.wikipedia.org/wiki/Floyd%E2%80%93Warshall_algorithm
+    for (const k of vertices) {
+      for (const i of vertices) {
+        const inner = matrix.get(i);
+        for (const j of vertices) {
+          const itoj = inner.get(j);
+          const itok = inner.get(k);
+          const ktoj = matrix.get(k).get(j);
+          if (itoj > itok + ktoj) {
+            inner.set(j, itok + ktoj);
+          }
+        }
+      }
+    }
+
+    return matrix;
+  }
+
+  simplify({ keep } = {}) {
+    const distances = this.floydwarshall();
+
+    this.vertices = this.vertices.reduce((vertices, vertex) => {
+      if (keep(vertex)) {
+        vertex.edges = [];
+
+        for (const [to, cost] of distances.get(vertex)) {
+          if (vertex !== to && keep(to)) {
+            vertex.edge(to, { cost, class: this.edgeClass });
+          }
+        }
+
+        vertices.push(vertex);
+      }
+      return vertices;
+    }, []);
+
+    return this;
+  }
+
   static from(grid, {
     isValidEdge = () => true,
     isVertex,
