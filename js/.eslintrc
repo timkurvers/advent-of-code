@@ -19,7 +19,11 @@
     "no-plusplus": "off",
     "no-promise-executor-return": "off",
     "no-restricted-syntax": "off",
-    "no-underscore-dangle": "off"
+    "no-underscore-dangle": "off",
+    "no-unused-vars": ["warn", {
+      "argsIgnorePattern": "^_",
+      "varsIgnorePattern": "^_"
+    }]
   },
   "overrides": [
     {
