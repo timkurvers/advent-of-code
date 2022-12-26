@@ -29,7 +29,7 @@ export const groupBy = (array, prop) => array.reduce((groups, current) => {
   const group = groups.lookup(value);
   group.push(current);
   return groups;
-}, new Cache(() => []));
+}, new Cache({ init: () => [] }));
 
 export const reduceMinBy = (array, prop) => array.reduce((candidate, other) => (
   candidate[prop] > other[prop] ? other : candidate

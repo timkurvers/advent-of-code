@@ -14,7 +14,9 @@ const OpInverse = {
 };
 
 const parse = (input) => {
-  const monkeys = new Cache((id) => ({ id }));
+  const monkeys = new Cache({
+    init: (id) => ({ id }),
+  });
   for (const { groups } of input.trim().matchAll(MONKEY_MATCHER)) {
     const monkey = monkeys.lookup(groups.id);
     if (groups.nr) {

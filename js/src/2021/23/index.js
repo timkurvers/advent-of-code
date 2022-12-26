@@ -40,7 +40,7 @@ const assemble = (grid) => {
   const podStarts = [];
 
   // Holds target rooms by type (e.g. A => [A1, A2], B => [B1, B2] etc.)
-  const rooms = new Cache(() => []);
+  const rooms = new Cache({ init: () => [] });
 
   const graph = Graph.from(grid, {
     isValidEdge: ({ vertex: a }, { vertex: b }) => {

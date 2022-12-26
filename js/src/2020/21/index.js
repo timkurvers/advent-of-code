@@ -6,16 +6,20 @@ import {
 
 const parse = (input) => {
   const dishes = [];
-  const ingredients = new Cache((name) => ({
-    name,
-    allergen: null,
-    get dishes() { return dishes.filter((dish) => dish.ingredients.includes(this)); },
-  }));
-  const allergens = new Cache((name) => ({
-    name,
-    ingredient: null,
-    get dishes() { return dishes.filter((dish) => dish.allergens.includes(this)); },
-  }));
+  const ingredients = new Cache({
+    init: (name) => ({
+      name,
+      allergen: null,
+      get dishes() { return dishes.filter((dish) => dish.ingredients.includes(this)); },
+    }),
+  });
+  const allergens = new Cache({
+    init: (name) => ({
+      name,
+      ingredient: null,
+      get dishes() { return dishes.filter((dish) => dish.allergens.includes(this)); },
+    }),
+  });
 
   for (const line of input.trim().split('\n')) {
     const dish = {

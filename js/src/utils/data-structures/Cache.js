@@ -1,15 +1,20 @@
 class Cache extends Map {
-  constructor(create = (key) => key) {
+  constructor({
+    init = (key) => key,
+    hash = (key) => key,
+  } = {}) {
     super();
 
-    this.create = create;
+    this.init = init;
+    this.hash = hash;
   }
 
-  lookup(key, create = this.create) {
-    let entry = this.get(key);
+  lookup(key) {
+    const hash = this.hash(key);
+    let entry = this.get(hash);
     if (!entry) {
-      entry = create(key);
-      this.set(key, entry);
+      entry = this.init(key, hash);
+      this.set(hash, entry);
     }
     return entry;
   }

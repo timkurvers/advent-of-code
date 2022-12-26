@@ -8,7 +8,7 @@ const BOT_MATCHER = /value (\d+) goes to (.+)/g;
 const INSTRUCTION_MATCHER = /(.+) gives low to (.+) and high to (.+)/g;
 
 const parse = (input) => {
-  const entities = new Cache((id) => new Bot(id));
+  const entities = new Cache({ init: (id) => new Bot(id) });
 
   for (const match of input.matchAll(BOT_MATCHER)) {
     const [, value, id] = match;

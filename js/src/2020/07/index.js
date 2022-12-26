@@ -21,7 +21,9 @@ class Bag {
 }
 
 const parse = (input) => {
-  const bags = new Cache((name) => new Bag(name));
+  const bags = new Cache({
+    init: (name) => new Bag(name),
+  });
 
   const lines = input.trim().split('\n');
   for (const line of lines) {

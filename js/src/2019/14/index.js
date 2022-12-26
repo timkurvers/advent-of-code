@@ -51,7 +51,9 @@ const produce = (quantity, type, reactions, stock) => {
 
 export const partOne = solution((input) => {
   const reactions = parse(input);
-  const stock = new Cache(() => ({ available: 0, used: 0 }));
+  const stock = new Cache({
+    init: () => ({ available: 0, used: 0 }),
+  });
   stock.lookup('ORE').available = Infinity;
   produce(1, 'FUEL', reactions, stock);
   return stock.get('ORE').used;
@@ -64,7 +66,9 @@ export const partTwo = solution(async (input) => {
 
   // Whether requested amount of fuel can be produced with a trillion ore
   const feasible = (fuel) => {
-    const stock = new Cache(() => ({ available: 0, used: 0 }));
+    const stock = new Cache({
+      init: () => ({ available: 0, used: 0 }),
+    });
     stock.lookup('ORE').available = ore;
     produce(fuel, 'FUEL', reactions, stock);
     return stock.get('FUEL').available === fuel;

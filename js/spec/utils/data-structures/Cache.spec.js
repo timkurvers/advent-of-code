@@ -2,17 +2,25 @@ import { Cache } from '../../../src/utils';
 
 describe('Cache', () => {
   describe('constructor', () => {
-    it('creates a cache, backed by a map with a default create function', () => {
+    it('creates a cache, backed by a map with a default init and hash function', () => {
       const cache = new Cache();
       expect(cache).toBeInstanceOf(Map);
-      expect(cache.create).toBeInstanceOf(Function);
+      expect(cache.init).toBeInstanceOf(Function);
+      expect(cache.hash).toBeInstanceOf(Function);
     });
 
     it('supports a custom create function', () => {
-      const create = () => {};
-      const cache = new Cache(create);
+      const init = () => {};
+      const cache = new Cache({ init });
       expect(cache).toBeInstanceOf(Map);
-      expect(cache.create).toBe(create);
+      expect(cache.init).toBe(init);
+    });
+
+    it('supports a custom hash function', () => {
+      const hash = () => {};
+      const cache = new Cache({ hash });
+      expect(cache).toBeInstanceOf(Map);
+      expect(cache.hash).toBe(hash);
     });
   });
 
@@ -29,16 +37,22 @@ describe('Cache', () => {
       expect(cache.lookup('bar')).toBe(entry);
     });
 
-    it('uses the custom create function configured for this cache', () => {
-      const cache = new Cache((key) => ({ key }));
+    it('uses the custom init function configured for this cache', () => {
+      const cache = new Cache({ init: (key) => ({ key }) });
       const entry = cache.lookup('foo');
       expect(entry).toEqual({ key: 'foo' });
     });
 
-    it('supports a custom create function', () => {
-      const cache = new Cache();
-      const entry = cache.lookup('baz', (key) => ({ key }));
-      expect(entry).toEqual({ key: 'baz' });
+    it('uses the custom hash function configured for this cache', () => {
+      const cache = new Cache({
+        init: (key, hash) => ({ key, hash }),
+        hash: (key) => key.join(','),
+      });
+      const entry = cache.lookup([0, 1, 2]);
+      expect(entry).toEqual({
+        key: [0, 1, 2],
+        hash: '0,1,2',
+      });
     });
   });
 });
