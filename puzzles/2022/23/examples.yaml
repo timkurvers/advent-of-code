@@ -1,0 +1,14 @@
+part-one:
+  - input: &example1 |
+      ....#..
+      ..###.#
+      #...#.#
+      .#...##
+      #.###..
+      ##.#.##
+      .#..#..
+    answer: 110
+
+part-two:
+  - input: *example1
+    answer: 20
