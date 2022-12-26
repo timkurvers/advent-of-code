@@ -18,7 +18,7 @@ const parse = (input) => {
   for (const { groups } of input.trim().matchAll(MONKEY_MATCHER)) {
     const monkey = monkeys.lookup(groups.id);
     if (groups.nr) {
-      monkey.nr = BigInt(groups.nr);
+      monkey.nr = +groups.nr;
     } else {
       monkey.op = groups.op;
       monkey.a = monkeys.lookup(groups.a);
@@ -34,7 +34,6 @@ const calc = (a, op, b) => {
     case '-': return a - b;
     case '*': return a * b;
     case '/': return a / b;
-    case '=': return a === b;
   }
 };
 
@@ -77,7 +76,7 @@ const solve = (eq) => {
     unknown = next.a;
   } else {
     // Left-hand-side is constant: constant [op] rhs = result
-    if (next.op === '-') {
+    if (next.op === '-' || next.op === '/') {
       target = calc(lhs, next.op, result);
     } else {
       target = calc(result, OpInverse[next.op], lhs);
@@ -91,12 +90,12 @@ const solve = (eq) => {
 export const partOne = solution((input) => {
   const monkeys = parse(input);
   const root = monkeys.get('root');
-  return Number(resolve(root, monkeys));
+  return resolve(root);
 });
 
 export const partTwo = solution((input) => {
   const monkeys = parse(input);
   const root = monkeys.get('root');
   monkeys.get('humn').nr = UNKNOWN;
-  return Number(solve(root, monkeys));
+  return solve(root);
 });
