@@ -12,6 +12,9 @@ macro_rules! preload_challenges {
             2022 (
                 01
             )
+            2023 (
+                01
+            )
         }
     };
 
@@ -93,7 +96,6 @@ macro_rules! puzzle_args {
         }
     }
 }
-
 
 #[macro_export]
 macro_rules! puzzle_args_extract_value {
