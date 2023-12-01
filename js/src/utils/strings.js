@@ -1,4 +1,4 @@
-/* eslint-disable no-param-reassign */
+/* eslint-disable no-cond-assign, no-param-reassign */
 
 export const toASCII = (string) => {
   if (string.length > 1) {
@@ -12,6 +12,18 @@ export const fromASCII = (codes) => {
     return String.fromCharCode(...codes);
   }
   return String.fromCharCode(codes);
+};
+
+// TODO: Add tests
+export const overlappingMatch = (input, regexp, { window = 1 } = {}) => {
+  const local = new RegExp(regexp, regexp?.flags);
+  const matches = [];
+  let match;
+  while (match = local.exec(input)) {
+    matches.push(match[0]);
+    local.lastIndex = match.index + window;
+  }
+  return matches;
 };
 
 export const reverse = (string) => string.split('').reverse().join('');
