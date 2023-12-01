@@ -5,7 +5,7 @@ import minimist from 'minimist';
 import { Challenge } from './utils';
 
 const args = minimist(process.argv.slice(2));
-const exitCode = args['exit-code'];
+const { benchmark, 'exit-code': exitCode } = args;
 const requested = args._.map(Number);
 
 const isYear = (nr) => nr > 1000;
@@ -45,7 +45,7 @@ const isYear = (nr) => nr > 1000;
       // Find challenge for this requested year and day
       const challenge = challenges.find((c) => c.day === nr && c.year === year);
       if (challenge) {
-        await challenge.run();
+        await challenge.run({ benchmark });
       } else {
         throw new Error(`Could not find year ${year} day ${nr}`);
       }
