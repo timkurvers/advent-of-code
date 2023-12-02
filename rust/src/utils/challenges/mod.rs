@@ -10,6 +10,7 @@ use std::path::PathBuf;
 use std::time::{Duration, Instant};
 
 use super::strings::StringExt;
+use super::durations::DurationExt;
 
 pub mod macros;
 pub mod prelude;
@@ -21,7 +22,7 @@ type Year = u16;
 pub type PuzzleInput = String;
 type PartIdentifier = String;
 
-#[derive(Debug, Deserialize, PartialEq)]
+#[derive(Clone, Debug, Deserialize, PartialEq)]
 #[serde(untagged)]
 pub enum Solution {
     Answer(u64),
@@ -63,6 +64,14 @@ impl SolutionPart {
     pub fn new(ident: &'static str, solution_fn: SolutionFn) -> SolutionPart {
         SolutionPart { ident: PartIdentifier::from(ident.to_string()), solution_fn }
     }
+}
+
+#[derive(Debug)]
+struct Bench {
+    pub avg: Duration,
+    pub min: Duration,
+    pub max: Duration,
+    pub first: Duration,
 }
 
 #[derive(Debug, Deserialize)]
@@ -124,14 +133,38 @@ impl Challenge {
         path
     }
 
-    fn execute<'a>(&self, part: &SolutionPart, input: &'a PuzzleInput, args: &RawPuzzleArgs) -> (Solution, Duration) {
-        let start = Instant::now();
-        let result = (part.solution_fn)(input, args);
-        let duration = start.elapsed();
-        (result, duration)
+    fn execute<'a>(
+        &self,
+        part: &SolutionPart,
+        input: &'a PuzzleInput,
+        args: &RawPuzzleArgs,
+        iterations: i32,
+    ) -> (Solution, Duration, Option<Bench>) {
+        let mut runs = Vec::new();
+        for _ in 1..=iterations {
+            let start = Instant::now();
+            let result = (part.solution_fn)(input, args);
+            let duration = start.elapsed();
+            runs.push((result, duration));
+        }
+
+        // Only care about answer from the first run
+        let (result, duration) = runs.first().unwrap();
+
+        let mut bench = None;
+        if iterations > 1 {
+            let durations: Vec<Duration> = runs.iter().map(|run| run.1).collect();
+            bench = Some(Bench {
+                avg: durations.iter().sum::<Duration>() / durations.len() as u32,
+                min: *durations.iter().min().unwrap_or(&Duration::ZERO),
+                max: *durations.iter().max().unwrap_or(&Duration::ZERO),
+                first: *duration,
+            });
+        }
+        (result.clone(), *duration, bench)
     }
 
-    pub fn run(&self) {
+    pub fn run(&self, iterations: i32) {
         let examples_by_part = self.examples();
         let input = self.input();
         let args = RawPuzzleArgs::new();
@@ -152,8 +185,8 @@ impl Challenge {
                 } in examples {
                     let excerpt: String = WHITESPACE.replace_all(input, " ")
                         .chars().take(25).collect();
-                    let (result, duration) = self.execute(part, &input, &args);
-                    self.output(&result, &duration, Some(expected), Some(&excerpt));
+                    let (result, duration, bench) = self.execute(part, &input, &args, iterations);
+                    self.output(&result, &duration, Some(expected), Some(&excerpt), bench);
                     if result != *expected {
                         println!();
                         continue 'next_part;
@@ -161,15 +194,15 @@ impl Challenge {
                 }
             }
 
-            let (result, duration) = self.execute(part, &input, &args);
-            self.output(&result, &duration, None, None);
+            let (result, duration, bench) = self.execute(part, &input, &args, iterations);
+            self.output(&result, &duration, None, None, bench);
             println!();
         }
     }
 
     fn output(
         &self, result: &Solution, duration: &Duration,
-        expected: Option<&Solution>, excerpt: Option<&str>
+        expected: Option<&Solution>, excerpt: Option<&str>, bench: Option<Bench>,
     ) {
         let is_example = expected.is_some();
 
@@ -197,20 +230,24 @@ impl Challenge {
             Solution::Unsolved => "[not yet solved]".red(),
         };
 
-        let fmt_suffix = if matches!(result, Solution::Answer(_)) {
-            let nanos = duration.as_nanos();
-            if nanos >= 1000000 {
-                format!(" {}ms", num::Integer::div_ceil(&nanos, &1000000)).bright_black()
-            } else if nanos >= 1000 {
-                format!(" {}μs", num::Integer::div_ceil(&nanos, &1000)).bright_black()
-            } else {
-                format!(" {}ns", nanos).bright_black()
-            }.to_string()
+        let fmt_suffix = if bench.is_none() && matches!(result, Solution::Answer(_)) {
+            format!(" {}", duration.humanize()).bright_black().to_string()
         } else {
             "".to_string()
         };
 
         println!(" => {}: {}{}", fmt_label, fmt_text, fmt_suffix);
+
+        if let Some(bench) = bench {
+            let fmt_bench = format!(
+                "{{ avg: {: >5}, min: {: >5}, max: {: >5}, first: {: >5} }}",
+                bench.avg.humanize(),
+                bench.min.humanize(),
+                bench.max.humanize(),
+                bench.first.humanize(),
+            ).bright_black();
+            println!("    {}", fmt_bench);
+        }
     }
 
     pub fn new(year: Year, day: Day, parts: &'static Vec<SolutionPart>) -> Challenge {

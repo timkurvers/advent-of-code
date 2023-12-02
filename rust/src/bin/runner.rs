@@ -12,7 +12,16 @@ fn is_year(nr: &u16) -> bool { nr > &1000 }
 fn main() {
     let challenges = &*CHALLENGES;
 
-    let mut requested: Vec<u16> = env::args().skip(1)
+    let mut args: Vec<String> = env::args().collect();
+
+    // Facilitate running benchmark
+    let mut iterations = 1;
+    if let Some(benchmark) = args.iter().position(|s| *s == "--benchmark") {
+        iterations = 1000;
+        args.remove(benchmark);
+    }
+
+    let mut requested: Vec<u16> = args.iter().skip(1)
         .map(|s| s.parse().unwrap()).collect();
 
     // If no specific year was requested, default to the current edition
@@ -51,7 +60,7 @@ fn main() {
             .iter()
             .find(|c| c.day as u16 == nr && c.year == year)
         {
-            challenge.run();
+            challenge.run(iterations);
         } else {
             panic!("Could not find year {} day {}", year, nr);
         }
