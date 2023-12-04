@@ -1,20 +1,21 @@
 use num::Integer;
-use std::collections::HashMap;
-use std::collections::hash_map::Entry;
+use std::collections::BTreeMap;
+use std::collections::btree_map::Entry;
 use std::fmt::{self, Debug};
-use std::hash::Hash;
 use std::ops::{AddAssign, Range};
 
 #[derive(Debug, Default)]
 pub struct Grid<X, Y, V> {
-    points: HashMap<GridPoint<X, Y>, GridValue<V>>,
+    pub points: BTreeMap<GridPoint<Y, X>, GridValue<V>>,
 }
-type GridPoint<X, Y> = (X, Y);
+
+// Note: For ordering purposes, a grid point is (y, x) not (x, y)
+type GridPoint<Y, X> = (Y, X);
 type GridValue<V> = V;
 
 impl<
-    X: AddAssign + Copy + Hash + Integer,
-    Y: AddAssign + Copy + Hash + Integer,
+    X: AddAssign + Copy + Debug + Integer,
+    Y: AddAssign + Copy + Debug + Integer,
     V: fmt::Display,
 > Grid<X, Y, V> {
     pub fn column(&self, x: X) -> impl Iterator<Item = Option<&GridValue<V>>> + '_ {
@@ -22,7 +23,7 @@ impl<
         let max_y = self.max_y();
         std::iter::from_fn(move || {
             let result = if y <= max_y {
-                Some(self.get((x, y)))
+                Some(self.get((y, x)))
             } else {
                 None
             };
@@ -50,7 +51,7 @@ impl<
         let max_x = self.max_x();
         std::iter::from_fn(move || {
             let result = if x <= max_x {
-                Some(self.get((x, y)))
+                Some(self.get((y, x)))
             } else {
                 None
             };
@@ -74,7 +75,7 @@ impl<
     }
 
     fn xs(&self) -> impl Iterator<Item = X> + '_ {
-        self.points.iter().map(|((x, _), _)| *x)
+        self.points.iter().map(|((_, x), _)| *x)
     }
 
     fn min_x(&self) -> X {
@@ -86,7 +87,7 @@ impl<
     }
 
     fn ys(&self) -> impl Iterator<Item = Y> + '_ {
-        self.points.iter().map(|((_, y), _)| *y)
+        self.points.iter().map(|((y, _), _)| *y)
     }
 
     fn min_y(&self) -> Y {
@@ -97,37 +98,62 @@ impl<
         self.ys().max().unwrap()
     }
 
-    pub fn iter(&self) -> impl Iterator<Item = (&GridPoint<X, Y>, &GridValue<V>)> {
+    pub fn iter(&self) -> impl Iterator<Item = (&GridPoint<Y, X>, &GridValue<V>)> {
         self.points.iter()
     }
 
-    pub fn iter_mut(&mut self) -> impl Iterator<Item = (&GridPoint<X, Y>, &mut GridValue<V>)> {
+    pub fn iter_mut(&mut self) -> impl Iterator<Item = (&GridPoint<Y, X>, &mut GridValue<V>)> {
         self.points.iter_mut()
     }
 
-    pub fn point(&mut self, point: GridPoint<X, Y>) -> Entry<GridPoint<X, Y>, V> {
+    pub fn get_entry_mut(&mut self, point: GridPoint<Y, X>) -> Entry<GridPoint<Y, X>, V> {
         return self.points.entry(point);
     }
 
-    pub fn get(&self, point: GridPoint<X, Y>) -> Option<&GridValue<V>> {
+    pub fn get(&self, point: GridPoint<Y, X>) -> Option<&GridValue<V>> {
         return self.points.get(&point);
     }
 
-    pub fn set(&mut self, point: GridPoint<X, Y>, value: GridValue<V>) {
+    pub fn get_point(&self, point: GridPoint<Y, X>) -> Option<(&GridPoint<Y, X>, &GridValue<V>)> {
+        return self.points.get_key_value(&point);
+    }
+
+    pub fn set(&mut self, point: GridPoint<Y, X>, value: GridValue<V>) {
         self.points.insert(point, value);
+    }
+
+    pub fn neighbors_iter(&self, (y, x): GridPoint<Y, X>) -> impl Iterator<Item = (&GridPoint<Y, X>, &GridValue<V>)> {
+        let x1 = X::one();
+        let y1 = Y::one();
+        let neighbors = [
+            (y - y1, x - x1), (y - y1, x), (y - y1, x + x1),
+            (y,      x - x1),              (y,      x + x1),
+            (y + y1, x - x1), (y + y1, x), (y + y1, x + x1),
+        ];
+        let mut index = 0;
+        std::iter::from_fn(move || {
+            while index < neighbors.len() {
+                let result = self.get_point(neighbors[index]);
+                index += 1;
+                if result.is_some() {
+                    return result
+                }
+            }
+            None
+        })
     }
 }
 
 impl<
-    X: AddAssign + Copy + From<usize> + Hash + Integer + Ord,
-    Y: AddAssign + Copy + From<usize> + Hash + Integer + Ord,
+    X: AddAssign + Copy + Debug + Integer + Ord,
+    Y: AddAssign + Copy + Debug + Integer + Ord,
     V: fmt::Display,
 > fmt::Display for Grid<X, Y, V>
     where Range<X>: Iterator<Item = X>, Range<Y>: Iterator<Item = Y> {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        for y in self.min_y()..self.max_y() {
-            for x in self.min_x()..self.max_x() {
-                if let Some(value) = self.points.get(&(x, y)) {
+        for y in self.min_y()..self.max_y() + Y::one() {
+            for x in self.min_x()..self.max_x() + X::one() {
+                if let Some(value) = self.points.get(&(y, x)) {
                     write!(f, "{}", value)?;
                 } else {
                     write!(f, ".")?;

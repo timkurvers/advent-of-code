@@ -36,8 +36,8 @@ fn parse(input: &PuzzleInput, adjacent_only: bool) -> Grid<i32, i32, u32> {
         let mut x = x1;
         let mut y = y1;
         for _i in 0..=length {
-            let key = (x, y);
-            let entry = grid.point(key).or_insert(0);
+            let key = (y, x);
+            let entry = grid.get_entry_mut(key).or_insert(0);
             *entry += 1;
             x += dx;
             y += dy;

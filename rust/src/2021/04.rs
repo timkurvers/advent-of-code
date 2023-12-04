@@ -77,7 +77,7 @@ impl std::str::FromStr for Board {
         for (y, line) in s.lines().enumerate() {
             for (x, nr) in line.split_ascii_whitespace().enumerate() {
                 let nr = BoardNumber(nr.parse().unwrap(), false);
-                board.grid.set((x, y), nr);
+                board.grid.set((y, x), nr);
             }
         }
         Ok(board)
