@@ -1,0 +1,9 @@
+part-one:
+  - input: &example1 |
+      Time:      7  15   30
+      Distance:  9  40  200
+    answer: 288
+
+part-two:
+  - input: *example1
+    answer: 71503
