@@ -21,7 +21,7 @@
     "globby": "^10.0.1",
     "minimist": "^1.2.6",
     "table": "^5.4.6",
-    "yaml": "^1.10.2"
+    "yaml": "^2.2.2"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.9.5",
