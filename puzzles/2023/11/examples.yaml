@@ -1,0 +1,24 @@
+part-one:
+  - input: &example1 |
+      ...#......
+      .......#..
+      #.........
+      ..........
+      ......#...
+      .#........
+      .........#
+      ..........
+      .......#..
+      #...#.....
+    answer: 374
+
+part-two:
+  - input: *example1
+    answer: 1030
+    args:
+      times: 10
+
+  - input: *example1
+    answer: 8410
+    args:
+      times: 100
