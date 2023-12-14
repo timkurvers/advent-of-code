@@ -1,0 +1,17 @@
+part-one:
+  - input: &example1 |
+      O....#....
+      O.OO#....#
+      .....##...
+      OO.#O....O
+      .O.....O#.
+      O.#..O.#.#
+      ..O..#O..O
+      .......O..
+      #....###..
+      #OO..#....
+    answer: 136
+
+part-two:
+  - input: *example1
+    answer: 64
