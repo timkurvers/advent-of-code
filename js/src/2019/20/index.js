@@ -1,4 +1,5 @@
 import {
+  Cache,
   Graph,
   GraphVertex,
   Grid,
@@ -90,7 +91,7 @@ const travel = (graph, { recursiveSpaces = false } = {}) => {
 
   const initial = { vertex: start, level: 0 };
 
-  const cache = new Map();
+  const cache = new Cache({ hash: serialize });
 
   return astar(initial, null, {
     cost: (current, next) => current.vertex.edge(next.vertex).cost,
@@ -111,11 +112,8 @@ const travel = (graph, { recursiveSpaces = false } = {}) => {
           level += vertex.outer ? -1 : +1;
         }
 
-        let next = { vertex: edge.to, level };
-        const hash = serialize(next);
-        next = cache.get(hash) || next;
+        const next = cache.lookup({ vertex: edge.to, level });
         nodes.push(next);
-        cache.set(hash, next);
       }
 
       return nodes;

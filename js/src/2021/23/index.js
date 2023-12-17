@@ -101,7 +101,7 @@ const assemble = (grid) => {
     index: null,
   };
 
-  const cache = new Map();
+  const cache = new Cache({ hash: serialize });
 
   const result = astar(initial, null, {
     cost: (current, next) => {
@@ -173,14 +173,10 @@ const assemble = (grid) => {
           const nextPods = pods.slice();
           nextPods[index] = to;
 
-          let next = {
+          const next = cache.lookup({
             pods: nextPods,
             index,
-          };
-
-          const hash = serialize(next);
-          next = cache.get(hash) || next;
-          cache.set(hash, next);
+          });
 
           // Forced movement into a target room
           if (to.isTarget) {

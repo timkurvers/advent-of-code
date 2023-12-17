@@ -1,6 +1,7 @@
 /* eslint-disable no-multi-spaces */
 
 import {
+  Cache,
   Graph,
   GraphVertex,
   Grid,
@@ -72,7 +73,7 @@ const collect = (grid) => {
     index: null,
   };
 
-  const cache = new Map();
+  const cache = new Cache({ hash: serialize });
 
   return astar(initial, null, {
     cost: (current, next) => {
@@ -103,16 +104,12 @@ const collect = (grid) => {
           const nextRobots = robots.slice();
           nextRobots[index] = to;
 
-          let next = {
+          const next = cache.lookup({
             robots: nextRobots,
             keys: keys | maskFor(to.value),
             index,
-          };
-
-          const hash = serialize(next);
-          next = cache.get(hash) || next;
+          });
           nodes.push(next);
-          cache.set(hash, next);
         }
       }
       return nodes;

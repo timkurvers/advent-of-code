@@ -1,4 +1,4 @@
-import { Grid, Orientation, Rotation, astar, cast, dx, dy, normalizeOrientation, solution } from '../../utils';
+import { Cache, Grid, Orientation, Rotation, astar, cast, dx, dy, normalizeOrientation, solution } from '../../utils';
 
 const parse = (input) => Grid.from(input.trim(), { cast });
 
@@ -12,7 +12,7 @@ const traverse = (grid, { isUltra = false } = {}) => {
 
   const initial = { location: start, orientation: null, consecutive: 1 };
 
-  const cache = new Map();
+  const cache = new Cache({ hash: serialize });
 
   const result = astar(initial, null, {
     cost: (from, to) => to.location.value,
@@ -51,16 +51,13 @@ const traverse = (grid, { isUltra = false } = {}) => {
           const { location: { x, y } } = current;
           const target = grid.getPoint(x + dx(orientation), y + dy(orientation));
           if (target) {
-            let next = {
+            const next = cache.lookup({
               location: target,
               orientation: normalizeOrientation(orientation),
               consecutive,
-            };
+            });
 
-            const hash = serialize(next);
-            next = cache.get(hash) || next;
             nodes.push(next);
-            cache.set(hash, next);
           }
         };
 
