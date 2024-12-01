@@ -28,6 +28,12 @@ To run all solutions for the current edition:
 npm start
 ```
 
+To run solutions for all editions:
+
+```bash
+npm start all
+```
+
 To run solutions for specific days, pass one or more days as arguments:
 
 ```bash

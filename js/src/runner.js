@@ -2,17 +2,23 @@
 
 import minimist from 'minimist';
 
-import { Challenge } from './utils/index.js';
+import { Challenge, cast } from './utils/index.js';
 
 const args = minimist(process.argv.slice(2));
 const { benchmark, 'exit-code': exitCode } = args;
-const requested = args._.map(Number);
+let requested = args._.map(cast);
 
 const isYear = (nr) => nr > 1000;
 
 (async () => {
   try {
     const challenges = await Challenge.list();
+
+    // Support running all editions when requested
+    if (requested.length === 1 && requested[0] === 'all') {
+      const byYear = Object.groupBy(challenges, (c) => c.year);
+      requested = Object.keys(byYear).map(Number);
+    }
 
     // If no specific year was requested, default to the current edition
     if (!isYear(requested[0])) {
