@@ -6,9 +6,7 @@ import Step from './Step.js';
 import Worker from './Worker.js';
 
 const solve = (steps, { instantCompletion, workerCount = 1, fixedDuration = 0 }) => {
-  const workers = Array.from(new Array(workerCount).keys(), (nr) => (
-    new Worker(nr)
-  ));
+  const workers = Array.from(new Array(workerCount).keys(), (nr) => new Worker(nr));
 
   // Alphabetical sort order is maintained when filtering steps below
   let remaining = steps.sort((a, b) => a.id.localeCompare(b.id));
@@ -38,7 +36,7 @@ const solve = (steps, { instantCompletion, workerCount = 1, fixedDuration = 0 })
     }
 
     let worker;
-    while (worker = workers.find((w) => w.idle)) {
+    while ((worker = workers.find((w) => w.idle))) {
       const index = remaining.findIndex((step) => step.eligible);
       const step = remaining[index];
 
@@ -63,7 +61,9 @@ export const partOne = solution((input) => {
   const steps = Step.from(input);
   return solve(steps, {
     instantCompletion: true,
-  }).order.map((step) => step.id).join('');
+  })
+    .order.map((step) => step.id)
+    .join('');
 });
 
 export const partTwo = solution((input, { workerCount = 5, fixedDuration = 60 }) => {

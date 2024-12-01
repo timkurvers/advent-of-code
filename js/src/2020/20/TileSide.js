@@ -1,5 +1,9 @@
 import {
-  Orientation, Rotation, normalizeOrientation, isHorizontalRotation, isSameOrientation,
+  Orientation,
+  Rotation,
+  normalizeOrientation,
+  isHorizontalRotation,
+  isSameOrientation,
 } from '../../utils/index.js';
 
 class TileSide {

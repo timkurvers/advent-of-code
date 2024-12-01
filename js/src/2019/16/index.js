@@ -37,7 +37,7 @@ const fft = (list, { basePattern, phases }) => {
 //
 const fftWithOffset = (list, offset, { basePattern, phases }) => {
   let { length } = list;
-  let half = length / 2 | 0;
+  let half = (length / 2) | 0;
 
   // Requested offset is not in the second half, so calculate FFT normally
   if (offset < half) {
@@ -62,23 +62,19 @@ const fftWithOffset = (list, offset, { basePattern, phases }) => {
   return list.join('').slice(half);
 };
 
-export const partOne = solution((input, {
-  basePattern = [0, 1, 0, -1],
-  phases = 100,
-}) => {
+export const partOne = solution((input, { basePattern = [0, 1, 0, -1], phases = 100 }) => {
   const result = fft(parse(input), { basePattern, phases });
   return result.slice(0, 8);
 });
 
-export const partTwo = solution.inefficient((input, {
-  basePattern = [0, 1, 0, -1],
-  messageLength = 8,
-  offsetLength = 7,
-  phases = 100,
-  repeat = 10000,
-}) => {
-  const offset = +input.slice(0, offsetLength);
-  const signal = parse(input.repeat(repeat));
-  const result = fftWithOffset(signal, offset, { basePattern, phases });
-  return result.slice(0, messageLength);
-});
+export const partTwo = solution.inefficient(
+  (
+    input,
+    { basePattern = [0, 1, 0, -1], messageLength = 8, offsetLength = 7, phases = 100, repeat = 10000 },
+  ) => {
+    const offset = +input.slice(0, offsetLength);
+    const signal = parse(input.repeat(repeat));
+    const result = fftWithOffset(signal, offset, { basePattern, phases });
+    return result.slice(0, messageLength);
+  },
+);

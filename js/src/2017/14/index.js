@@ -9,9 +9,7 @@ const keyToGrid = (key, size = 128) => {
   const grid = new Grid();
   for (let y = 0; y < size; ++y) {
     const hash = knothash(`${key}-${y}`);
-    const bits = hash.flatMap((byte) => (
-      byte.toString(2).padStart(8, '0').split('').map(Number)
-    ));
+    const bits = hash.flatMap((byte) => byte.toString(2).padStart(8, '0').split('').map(Number));
 
     for (let x = 0; x < size; ++x) {
       grid.set(x, y, !!bits[x]);

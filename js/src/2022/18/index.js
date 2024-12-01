@@ -20,9 +20,12 @@ const parse = (input) => {
 };
 
 const sides = [
-  [-1, 0, 0], [1, 0, 0],
-  [0, -1, 0], [0, 1, 0],
-  [0, 0, -1], [0, 0, 1],
+  [-1, 0, 0],
+  [1, 0, 0],
+  [0, -1, 0],
+  [0, 1, 0],
+  [0, 0, -1],
+  [0, 0, 1],
 ];
 
 export const partOne = solution((input) => {
@@ -31,9 +34,7 @@ export const partOne = solution((input) => {
   let surface = 0;
   for (const cube of cubes.values()) {
     for (const side of sides) {
-      const target = [
-        cube[0] + side[0], cube[1] + side[1], cube[2] + side[2],
-      ];
+      const target = [cube[0] + side[0], cube[1] + side[1], cube[2] + side[2]];
       if (!cubes.has(serialize(target))) {
         ++surface;
       }
@@ -48,20 +49,20 @@ export const partTwo = solution((input) => {
 
   const space = new Map([[serialize(min), min]]);
 
-  const isOutOfBounds = (target) => (
-    target[0] < min[0] - 1 || target[0] > max[0] + 1
-    || target[1] < min[1] - 1 || target[1] > max[1] + 1
-    || target[2] < min[2] - 1 || target[2] > max[2] + 1
-  );
+  const isOutOfBounds = (target) =>
+    target[0] < min[0] - 1 ||
+    target[0] > max[0] + 1 ||
+    target[1] < min[1] - 1 ||
+    target[1] > max[1] + 1 ||
+    target[2] < min[2] - 1 ||
+    target[2] > max[2] + 1;
 
   let surface = 0;
   bfs(min, null, {
     nodesFor: (current) => {
       const nodes = [];
       for (const side of sides) {
-        const target = [
-          current[0] + side[0], current[1] + side[1], current[2] + side[2],
-        ];
+        const target = [current[0] + side[0], current[1] + side[1], current[2] + side[2]];
 
         if (isOutOfBounds(target)) {
           continue;

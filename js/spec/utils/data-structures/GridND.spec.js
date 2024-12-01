@@ -70,18 +70,19 @@ describe('GridND', () => {
 
     describe('get neighbors', () => {
       it('returns neighboring points (if any) in all directions for all dimensions', () => {
-        const grid = GridND.from(stripIndent`
+        const grid = GridND.from(
+          stripIndent`
           abc
           def
           ghi
-        `, dimensions);
+        `,
+          dimensions,
+        );
         const j = grid.set([1, 1, 1, 0], 'j');
         const k = grid.set([1, 1, -1, 0], 'k');
 
         const [a, b, c, d, e, f, g, h, i] = grid.points;
-        expect(e.neighbors).toEqual(
-          [a, d, g, b, k, j, h, c, f, i],
-        );
+        expect(e.neighbors).toEqual([a, d, g, b, k, j, h, c, f, i]);
       });
     });
 
@@ -135,10 +136,13 @@ describe('GridND', () => {
 
   describe('positions()', () => {
     it('returns all position values for given dimension', () => {
-      const grid = GridND.from(stripIndent`
+      const grid = GridND.from(
+        stripIndent`
         abc
         def
-      `, dimensions);
+      `,
+        dimensions,
+      );
       grid.set([1, 1, 2, 0]);
 
       expect(grid.positions(0)).toEqual([0, 1, 2]);
@@ -453,9 +457,7 @@ describe('GridND', () => {
     });
 
     it('supports custom renderer', () => {
-      const result = grid.toString({ z: 0, w: 0 }, (point) => (
-        point ? point.value : '?'
-      ));
+      const result = grid.toString({ z: 0, w: 0 }, (point) => (point ? point.value : '?'));
       expect(result).toEqual(stripIndent`
         a?b
         ??c

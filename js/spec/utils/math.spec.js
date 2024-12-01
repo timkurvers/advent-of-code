@@ -106,11 +106,7 @@ describe('math utilities', () => {
 
     it('generates all combinations in given array', () => {
       const combinations = Array.from(combine(values));
-      expect(combinations).toEqual([
-        [1], [2], [3],
-        [1, 2], [1, 3], [2, 3],
-        [1, 2, 3],
-      ]);
+      expect(combinations).toEqual([[1], [2], [3], [1, 2], [1, 3], [2, 3], [1, 2, 3]]);
     });
 
     it('supports k = 0', () => {
@@ -125,7 +121,11 @@ describe('math utilities', () => {
 
     it('supports k = ?', () => {
       const combinations = Array.from(combine(values, { k: 2 }));
-      expect(combinations).toEqual([[1, 2], [1, 3], [2, 3]]);
+      expect(combinations).toEqual([
+        [1, 2],
+        [1, 3],
+        [2, 3],
+      ]);
     });
 
     it('supports k = n', () => {
@@ -145,8 +145,12 @@ describe('math utilities', () => {
     it('generates all combinations in given array', () => {
       const permutations = Array.from(permute(values));
       expect(permutations).toEqual([
-        [1, 2, 3], [2, 1, 3], [3, 1, 2],
-        [1, 3, 2], [2, 3, 1], [3, 2, 1],
+        [1, 2, 3],
+        [2, 1, 3],
+        [3, 1, 2],
+        [1, 3, 2],
+        [2, 3, 1],
+        [3, 2, 1],
       ]);
     });
 
@@ -158,27 +162,49 @@ describe('math utilities', () => {
 
   describe('dfor()', () => {
     it('generates all dynamic for-loop iterations for given boundaries', () => {
-      const iterations3d = Array.from(dfor([
-        { min: 0, max: 1 },
-        { min: 1, max: 3 },
-        { min: 0, max: 1 },
-      ]));
+      const iterations3d = Array.from(
+        dfor([
+          { min: 0, max: 1 },
+          { min: 1, max: 3 },
+          { min: 0, max: 1 },
+        ]),
+      );
       expect(iterations3d).toEqual([
-        [0, 1, 0], [0, 1, 1], [0, 2, 0], [0, 2, 1],
-        [0, 3, 0], [0, 3, 1], [1, 1, 0], [1, 1, 1],
-        [1, 2, 0], [1, 2, 1], [1, 3, 0], [1, 3, 1],
+        [0, 1, 0],
+        [0, 1, 1],
+        [0, 2, 0],
+        [0, 2, 1],
+        [0, 3, 0],
+        [0, 3, 1],
+        [1, 1, 0],
+        [1, 1, 1],
+        [1, 2, 0],
+        [1, 2, 1],
+        [1, 3, 0],
+        [1, 3, 1],
       ]);
 
-      const iterations4d = Array.from(dfor([
-        { min: 0, max: 1 },
-        { min: 1, max: 3 },
-        { min: 1, max: 1 },
-        { min: 0, max: 1 },
-      ]));
+      const iterations4d = Array.from(
+        dfor([
+          { min: 0, max: 1 },
+          { min: 1, max: 3 },
+          { min: 1, max: 1 },
+          { min: 0, max: 1 },
+        ]),
+      );
       expect(iterations4d).toEqual([
-        [0, 1, 1, 0], [0, 1, 1, 1], [0, 2, 1, 0], [0, 2, 1, 1],
-        [0, 3, 1, 0], [0, 3, 1, 1], [1, 1, 1, 0], [1, 1, 1, 1],
-        [1, 2, 1, 0], [1, 2, 1, 1], [1, 3, 1, 0], [1, 3, 1, 1],
+        [0, 1, 1, 0],
+        [0, 1, 1, 1],
+        [0, 2, 1, 0],
+        [0, 2, 1, 1],
+        [0, 3, 1, 0],
+        [0, 3, 1, 1],
+        [1, 1, 1, 0],
+        [1, 1, 1, 1],
+        [1, 2, 1, 0],
+        [1, 2, 1, 1],
+        [1, 3, 1, 0],
+        [1, 3, 1, 1],
       ]);
     });
   });
@@ -234,9 +260,9 @@ describe('math utilities', () => {
       expect(modPow(2n, 255n, 64n)).toEqual(0n);
       expect(modPow(4n, -1n, 1n)).toEqual(0n);
       expect(modPow(4n, -1n, 19n)).toEqual(5n);
-      expect(modPow(
-        48116552563827n, 12139369866491111222698357067n, 119315717514047n,
-      )).toEqual(21286856575014n);
+      expect(modPow(48116552563827n, 12139369866491111222698357067n, 119315717514047n)).toEqual(
+        21286856575014n,
+      );
     });
   });
 

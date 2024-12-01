@@ -11,9 +11,9 @@ class Equipment {
   }
 }
 
-class Armor extends Equipment { }
-class Ring extends Equipment { }
-class Weapon extends Equipment { }
+class Armor extends Equipment {}
+class Ring extends Equipment {}
+class Weapon extends Equipment {}
 
 export default Equipment;
 export { Armor, Ring, Weapon };

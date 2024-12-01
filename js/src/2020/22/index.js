@@ -1,10 +1,14 @@
 import { cast, solution, sum } from '../../utils/index.js';
 
-const parse = (input) => input.trim().split('\n\n').map((chunk, index) => {
-  const deck = chunk.split('\n').map(cast).reverse();
-  const name = deck.pop().slice(0, -1);
-  return { name, index, deck };
-});
+const parse = (input) =>
+  input
+    .trim()
+    .split('\n\n')
+    .map((chunk, index) => {
+      const deck = chunk.split('\n').map(cast).reverse();
+      const name = deck.pop().slice(0, -1);
+      return { name, index, deck };
+    });
 
 // Creates a hash based on the decks of the players
 const hash = (players) => players.map((player) => player.deck).join(';');
@@ -39,9 +43,7 @@ const play = (players, { mode = 'normal' } = {}) => {
     }
 
     // Recurse if applicable
-    const recurse = played.every((card, index) => (
-      players[index].deck.length >= card
-    ));
+    const recurse = played.every((card, index) => players[index].deck.length >= card);
     if (mode === 'recursive' && recurse) {
       // Slice decks for all players and play a recursive combat game with those
       const copies = players.map((player) => ({
@@ -66,9 +68,7 @@ const play = (players, { mode = 'normal' } = {}) => {
 };
 
 // Calculates score for given player by inspecting their deck
-const score = (player) => player.deck.reduce((total, card, index) => (
-  total + card * (index + 1)
-), 0);
+const score = (player) => player.deck.reduce((total, card, index) => total + card * (index + 1), 0);
 
 export const partOne = solution((input) => {
   const players = parse(input);

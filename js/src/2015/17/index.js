@@ -1,17 +1,10 @@
-import {
-  combine,
-  reduceMinBy,
-  solution,
-  sum,
-} from '../../utils/index.js';
+import { combine, reduceMinBy, solution, sum } from '../../utils/index.js';
 
 const parse = (input) => input.trim().split('\n').map(Number);
 
 const bruteforce = (containers, total, options = {}) => {
   const combinations = Array.from(combine(containers, options));
-  const solutions = combinations.filter((combination) => (
-    sum(combination) === total
-  ));
+  const solutions = combinations.filter((combination) => sum(combination) === total);
   return solutions;
 };
 

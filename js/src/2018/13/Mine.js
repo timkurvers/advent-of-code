@@ -5,7 +5,7 @@ import Cart from './Cart.js';
 const CART_REPLACEMENTS = {
   '>': '-',
   '<': '-',
-  'v': '|',
+  v: '|',
   '^': '|',
 };
 
@@ -59,9 +59,7 @@ class Mine {
         cart.next(this);
       } catch (crash) {
         if (this.cleanUpCrashes) {
-          this.carts = this.carts.filter((c) => (
-            c !== crash.cart && c !== crash.otherCart
-          ));
+          this.carts = this.carts.filter((c) => c !== crash.cart && c !== crash.otherCart);
         } else {
           throw crash;
         }

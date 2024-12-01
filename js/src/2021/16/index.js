@@ -42,20 +42,24 @@ const process = (stream) => {
   const lengthID = read(stream);
   switch (lengthID) {
     // Total length in bits
-    case 0: {
-      const length = read(stream, 15);
-      const end = stream.pos + length;
-      while (stream.pos < end) {
-        packet.packets.push(process(stream));
+    case 0:
+      {
+        const length = read(stream, 15);
+        const end = stream.pos + length;
+        while (stream.pos < end) {
+          packet.packets.push(process(stream));
+        }
       }
-    } break;
+      break;
     // Number of sub packets
-    case 1: {
-      const count = read(stream, 11);
-      for (let i = 0; i < count; ++i) {
-        packet.packets.push(process(stream));
+    case 1:
+      {
+        const count = read(stream, 11);
+        for (let i = 0; i < count; ++i) {
+          packet.packets.push(process(stream));
+        }
       }
-    } break;
+      break;
     default:
       throw new Error(`invalid length ID: ${lengthID}`);
   }
@@ -98,9 +102,7 @@ const process = (stream) => {
 
 export const partOne = solution((input) => {
   const stream = parse(input);
-  const versionize = (packet) => (
-    packet.version + sum(packet.packets.map(versionize))
-  );
+  const versionize = (packet) => packet.version + sum(packet.packets.map(versionize));
   const root = process(stream);
   return versionize(root);
 });

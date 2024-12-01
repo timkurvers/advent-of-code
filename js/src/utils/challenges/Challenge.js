@@ -7,19 +7,16 @@ import YAML from 'yaml';
 import colors from 'colors';
 import globby from 'globby';
 
-import {
-  camelcase, sum, time, titleize,
-} from '../index.js';
+import { camelcase, sum, time, titleize } from '../index.js';
 
 const SRC_ROOT = 'src';
 const PUZZLE_ROOT = '../puzzles';
 
-const camelcaseKeysFor = (original) => (
+const camelcaseKeysFor = (original) =>
   Object.entries(original).reduce((obj, [key, value]) => {
     obj[camelcase(key)] = value;
     return obj;
-  }, {})
-);
+  }, {});
 
 class Challenge {
   constructor(pathWithRoot) {
@@ -62,9 +59,7 @@ class Challenge {
     }
   }
 
-  async runPart({
-    part, solution, puzzleInput, examples = [], benchmark,
-  } = {}) {
+  async runPart({ part, solution, puzzleInput, examples = [], benchmark } = {}) {
     const heading = `${this.year} · Day ${this.day} · ${titleize(part)}`;
     console.log(colors.cyan(heading));
 
@@ -106,9 +101,7 @@ class Challenge {
       const colored = correct ? colors.green(text) : colors.red(text);
       let suffix = '';
       if (bench) {
-        const results = Object.entries(bench).map(([k, v]) => (
-          `${k}: ${formatDuration(v).padStart(5, ' ')}`
-        ));
+        const results = Object.entries(bench).map(([k, v]) => `${k}: ${formatDuration(v).padStart(5, ' ')}`);
         suffix += `\n    ${colors.gray(`{ ${results.join(', ')} }`)}`;
       } else if (duration) {
         suffix += ` ${colors.gray(formatDuration(duration))}`;
@@ -126,7 +119,8 @@ class Challenge {
       }
 
       const { answer, duration, bench } = await execute(
-        input, example.args ? camelcaseKeysFor(example.args) : {},
+        input,
+        example.args ? camelcaseKeysFor(example.args) : {},
       );
 
       const passed = answer === expected;

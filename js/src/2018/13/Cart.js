@@ -1,16 +1,6 @@
-import {
-  Orientation,
-  Rotation,
-  isHorizontalOrientation,
-  dx,
-  dy,
-} from '../../utils/index.js';
+import { Orientation, Rotation, isHorizontalOrientation, dx, dy } from '../../utils/index.js';
 
-const INTERSECTION_OPTIONS = [
-  Rotation.TURN_LEFT,
-  Rotation.NONE,
-  Rotation.TURN_RIGHT,
-];
+const INTERSECTION_OPTIONS = [Rotation.TURN_LEFT, Rotation.NONE, Rotation.TURN_RIGHT];
 
 let ord = 65;
 
@@ -67,7 +57,7 @@ class Cart {
       case '|':
         break;
       default:
-        // Should never happen (famous last words)
+      // Should never happen (famous last words)
     }
 
     if (change) {

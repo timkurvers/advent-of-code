@@ -1,8 +1,6 @@
 /* eslint-disable no-loop-func */
 
-import {
-  cast, multiply, modMulInv, solution, zip,
-} from '../../utils/index.js';
+import { cast, multiply, modMulInv, solution, zip } from '../../utils/index.js';
 
 const parse = (input) => {
   const lines = input.trim().split('\n');

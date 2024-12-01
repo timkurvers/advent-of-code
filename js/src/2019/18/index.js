@@ -1,14 +1,6 @@
 /* eslint-disable no-multi-spaces */
 
-import {
-  Cache,
-  Graph,
-  GraphVertex,
-  Grid,
-  astar,
-  solution,
-  sum,
-} from '../../utils/index.js';
+import { Cache, Graph, GraphVertex, Grid, astar, solution, sum } from '../../utils/index.js';
 
 const Type = {
   EMPTY: '.',
@@ -24,9 +16,7 @@ const keyForDoor = (door) => door.toLowerCase();
 // Calculates bitmask for given key (a: 0b001, b: 0b010, c: 0b100 etc.)
 const maskFor = (key) => 1 << (key.charCodeAt(0) - 'a'.charCodeAt(0));
 
-const serialize = (state) => (
-  `${state.index};${state.robots.map((loc) => loc.value).join(',')};${state.keys}`
-);
+const serialize = (state) => `${state.index};${state.robots.map((loc) => loc.value).join(',')};${state.keys}`;
 
 const collect = (grid) => {
   // Generate a bitmask for all keys
@@ -51,9 +41,7 @@ const collect = (grid) => {
       }
       return null;
     },
-    neighborsFor: (current) => (
-      current.adjacentNeighbors.filter((point) => point.value !== Type.WALL)
-    ),
+    neighborsFor: (current) => current.adjacentNeighbors.filter((point) => point.value !== Type.WALL),
   });
 
   // Augment edges with a bitmask of keys required along this path (if any)
@@ -127,9 +115,15 @@ export const partTwo = solution.inefficient((input) => {
   const { center } = grid;
   const { left, right } = center;
 
-  left.up.value   = '@'; center.up.value   = '#'; right.up.value   = '@';
-  left.value      = '#'; center.value      = '#'; right.value      = '#';
-  left.down.value = '@'; center.down.value = '#'; right.down.value = '@';
+  left.up.value = '@';
+  center.up.value = '#';
+  right.up.value = '@';
+  left.value = '#';
+  center.value = '#';
+  right.value = '#';
+  left.down.value = '@';
+  center.down.value = '#';
+  right.down.value = '@';
 
   return collect(grid).score;
 });

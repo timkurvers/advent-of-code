@@ -8,7 +8,7 @@ const parse = (input) => {
   const moves = [];
 
   let match;
-  while (match = DANCE_MOVE_MATCHER.exec(input)) {
+  while ((match = DANCE_MOVE_MATCHER.exec(input))) {
     const [, id, from, to] = match;
     moves.push({
       id,
@@ -64,9 +64,7 @@ const dance = (programs, moves, iterations = 1) => {
       const permutations = tracking.size;
       const offset = iterations % permutations;
 
-      const found = Array.from(tracking.values()).find((seen) => (
-        seen.offset === offset
-      ));
+      const found = Array.from(tracking.values()).find((seen) => seen.offset === offset);
       return found.programs;
     }
   }

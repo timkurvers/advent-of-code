@@ -25,11 +25,7 @@ const play = (cups, { moves, flood }) => {
 
   // Play through the requested amount of moves
   for (let move = 1; move <= moves; ++move) {
-    const picked = [
-      current.next,
-      current.next.next,
-      current.next.next.next,
-    ];
+    const picked = [current.next, current.next.next, current.next.next.next];
 
     const isNumberPicked = (number) => picked.some((cup) => cup.value === number);
 

@@ -1,11 +1,13 @@
 import { Grid, solution } from '../../utils/index.js';
 
-const parse = (input) => (
-  input.trim().split('\n').map((line) => {
-    const parts = line.split(' ');
-    return { dir: parts[0], steps: +parts[1] };
-  })
-);
+const parse = (input) =>
+  input
+    .trim()
+    .split('\n')
+    .map((line) => {
+      const parts = line.split(' ');
+      return { dir: parts[0], steps: +parts[1] };
+    });
 
 const HEAD = 'H';
 const TAIL = 'T';

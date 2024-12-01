@@ -23,9 +23,7 @@ class Location {
   }
 
   get totalDistanceToAllCoords() {
-    return this.coords.reduce((sum, coord) => (
-      sum + coord.distanceTo(this.x, this.y)
-    ), 0);
+    return this.coords.reduce((sum, coord) => sum + coord.distanceTo(this.x, this.y), 0);
   }
 }
 

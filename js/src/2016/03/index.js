@@ -1,10 +1,10 @@
 import { solution } from '../../utils/index.js';
 
-const parse = (input) => (
-  input.trim().split('\n').map((row) => (
-    row.trim().split(/\s+/).map(Number)
-  ))
-);
+const parse = (input) =>
+  input
+    .trim()
+    .split('\n')
+    .map((row) => row.trim().split(/\s+/).map(Number));
 
 const transpose = (sets) => {
   const transposed = [];
@@ -22,10 +22,6 @@ const isPossibleTriangle = (sides) => {
   return a + b > c && a + c > b && b + c > a;
 };
 
-export const partOne = solution((input) => (
-  parse(input).filter(isPossibleTriangle).length
-));
+export const partOne = solution((input) => parse(input).filter(isPossibleTriangle).length);
 
-export const partTwo = solution((input) => (
-  transpose(parse(input)).filter(isPossibleTriangle).length
-));
+export const partTwo = solution((input) => transpose(parse(input)).filter(isPossibleTriangle).length);

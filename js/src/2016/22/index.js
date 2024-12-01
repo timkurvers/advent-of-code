@@ -1,9 +1,4 @@
-import {
-  Grid,
-  astar,
-  cast,
-  solution,
-} from '../../utils/index.js';
+import { Grid, astar, cast, solution } from '../../utils/index.js';
 
 const NODE_MATCHER = /.+?node-x(\d+)-y(\d+)\s+(\d+)T\s+(\d+)T\s+(\d+)T\s+(\d+)%/g;
 
@@ -13,7 +8,7 @@ const Type = {
   FULL: '#',
 };
 
-const parse = (input) => (
+const parse = (input) =>
   Array.from(input.matchAll(NODE_MATCHER)).map((match) => {
     const [, x, y, size, used, avail, share] = match;
     return {
@@ -24,8 +19,7 @@ const parse = (input) => (
       avail: cast(avail),
       share: cast(share),
     };
-  })
-);
+  });
 
 const isViablePair = (a, b) => {
   if (a === b) {
@@ -74,9 +68,7 @@ export const partTwo = solution((input) => {
   // avoiding any full nodes along the way
   const goal = data.left;
   const result = astar(empty, goal, {
-    neighborsFor: (current) => (
-      current.adjacentNeighbors.filter((point) => point.value !== Type.FULL)
-    ),
+    neighborsFor: (current) => current.adjacentNeighbors.filter((point) => point.value !== Type.FULL),
     heuristic: (next) => next.distanceToPoint(goal),
   });
 

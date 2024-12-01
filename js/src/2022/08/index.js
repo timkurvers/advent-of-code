@@ -29,19 +29,18 @@ const score = (tree, direction) => {
 export const partOne = solution((input) => {
   const trees = parse(input);
 
-  const visible = trees.filter((tree) => (
-    isVisible(tree, 'up') || isVisible(tree, 'down')
-    || isVisible(tree, 'left') || isVisible(tree, 'right')
-  ));
+  const visible = trees.filter(
+    (tree) =>
+      isVisible(tree, 'up') || isVisible(tree, 'down') || isVisible(tree, 'left') || isVisible(tree, 'right'),
+  );
   return visible.length;
 });
 
 export const partTwo = solution((input) => {
   const grid = parse(input);
 
-  const scores = grid.map((tree) => (
-    score(tree, 'up') * score(tree, 'down')
-     * score(tree, 'left') * score(tree, 'right')
-  ));
+  const scores = grid.map(
+    (tree) => score(tree, 'up') * score(tree, 'down') * score(tree, 'left') * score(tree, 'right'),
+  );
   return Math.max(...scores);
 });

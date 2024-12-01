@@ -26,9 +26,7 @@ const parse = (input) => {
   return { stacks, procedure };
 };
 
-const serialize = (stacks) => stacks.reduce((str, stack) => (
-  str + stack[stack.length - 1]
-), '');
+const serialize = (stacks) => stacks.reduce((str, stack) => str + stack[stack.length - 1], '');
 
 const step = (stacks, move, { maintainOrder = false } = {}) => {
   const slice = stacks[move.from].splice(-move.count, move.count);

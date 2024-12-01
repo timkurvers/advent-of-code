@@ -65,7 +65,7 @@ export const partTwo = solution((input) => {
   let steps;
   while (true) {
     // Attempt to fabricate the medicine
-    if (steps = fabricate(medicine, transitions)) {
+    if ((steps = fabricate(medicine, transitions))) {
       return steps;
     }
     // Shuffle list of transitions on failure and retry

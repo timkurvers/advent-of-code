@@ -31,9 +31,7 @@ const isValid = (password, { adjacentPredicate = isDouble } = {}) => {
   return true;
 };
 
-const isStrictlyValid = (password) => (
-  isValid(password, { adjacentPredicate: isStrictlyDouble })
-);
+const isStrictlyValid = (password) => isValid(password, { adjacentPredicate: isStrictlyDouble });
 
 export const partOne = solution((input) => {
   const passwords = parse(input);

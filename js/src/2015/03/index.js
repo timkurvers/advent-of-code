@@ -1,16 +1,10 @@
 /* eslint-disable quote-props */
 
-import {
-  Grid,
-  Orientation,
-  dx,
-  dy,
-  solution,
-} from '../../utils/index.js';
+import { Grid, Orientation, dx, dy, solution } from '../../utils/index.js';
 
 const directions = {
   '^': Orientation.UP,
-  'v': Orientation.DOWN,
+  v: Orientation.DOWN,
   '>': Orientation.RIGHT,
   '<': Orientation.LEFT,
 };
@@ -38,10 +32,6 @@ const deliver = (input, { santas = 1 } = {}) => {
   return { grid, visited };
 };
 
-export const partOne = solution((input) => (
-  deliver(input).visited.length
-));
+export const partOne = solution((input) => deliver(input).visited.length);
 
-export const partTwo = solution((input) => (
-  deliver(input, { santas: 2 }).visited.length
-));
+export const partTwo = solution((input) => deliver(input, { santas: 2 }).visited.length);

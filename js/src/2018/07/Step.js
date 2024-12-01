@@ -19,8 +19,7 @@ class Step {
   }
 
   get eligible() {
-    return !this.started
-           && this.prerequisites.every((step) => step.completed);
+    return !this.started && this.prerequisites.every((step) => step.completed);
   }
 
   get started() {
@@ -51,10 +50,13 @@ class Step {
       return step;
     };
 
-    input.trim().split('\n').forEach((instruction) => {
-      const [, prequisite, id] = instruction.match(INSTRUCTION_MATCHER);
-      lookup(id).prerequisites.push(lookup(prequisite));
-    });
+    input
+      .trim()
+      .split('\n')
+      .forEach((instruction) => {
+        const [, prequisite, id] = instruction.match(INSTRUCTION_MATCHER);
+        lookup(id).prerequisites.push(lookup(prequisite));
+      });
 
     return Array.from(cache.values());
   }

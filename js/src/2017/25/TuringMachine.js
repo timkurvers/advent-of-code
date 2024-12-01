@@ -32,7 +32,10 @@ class TuringMachine {
   run() {
     const { numSteps } = this;
     for (let step = 1; step <= numSteps; ++step) {
-      const { state: { branches }, value } = this;
+      const {
+        state: { branches },
+        value,
+      } = this;
 
       const branch = branches.get(value);
       this.value = branch.write;
@@ -42,11 +45,7 @@ class TuringMachine {
   }
 
   static from(blueprint) {
-    const [
-      stateId,
-      numSteps,
-      ...stateDefs
-    ] = blueprint.match(/[A-Z]\b|\d+|right|left/g);
+    const [stateId, numSteps, ...stateDefs] = blueprint.match(/[A-Z]\b|\d+|right|left/g);
 
     const states = [];
     while (stateDefs.length) {

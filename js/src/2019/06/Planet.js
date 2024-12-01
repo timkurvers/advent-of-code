@@ -30,16 +30,14 @@ class Planet {
   get orbits() {
     let orbits = 0;
     let current = this;
-    while (current = current.parent) {
+    while ((current = current.parent)) {
       ++orbits;
     }
     return orbits;
   }
 
   get totalOrbits() {
-    return this.orbits + sum(
-      Array.from(this.children).map((child) => child.totalOrbits),
-    );
+    return this.orbits + sum(Array.from(this.children).map((child) => child.totalOrbits));
   }
 }
 

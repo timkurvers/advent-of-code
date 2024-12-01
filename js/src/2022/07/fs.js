@@ -26,9 +26,7 @@ class Dir {
   }
 
   get size() {
-    return Array.from(this.nodes.values()).reduce((total, node) => (
-      total + node.size
-    ), 0);
+    return Array.from(this.nodes.values()).reduce((total, node) => total + node.size, 0);
   }
 }
 

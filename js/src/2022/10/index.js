@@ -4,12 +4,11 @@ const INSTRUCTION_MATCHER = /(?<op>[a-z]{4})(?: (?<arg>-?\d+))?/g;
 
 const WIDTH = 40;
 
-const parse = (input) => (
+const parse = (input) =>
   Array.from(input.trim().matchAll(INSTRUCTION_MATCHER)).map((match) => ({
     op: match.groups.op,
     arg: match.groups.arg && +match.groups.arg,
-  }))
-);
+  }));
 
 function* run({ instructions }) {
   let x = 1;

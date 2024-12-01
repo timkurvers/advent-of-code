@@ -27,7 +27,7 @@ class RecursiveGridPoint extends GridNDPoint.for(['x', 'y', 'z']) {
       neighbors.push(
         this.visit(OUTER_RING_MIN, OUTER_RING_MAX, z + 1),
         this.visit(INNER_RING_MIN, OUTER_RING_MAX, z + 1),
-        this.visit(CENTER,         OUTER_RING_MAX, z + 1),
+        this.visit(CENTER, OUTER_RING_MAX, z + 1),
         this.visit(INNER_RING_MAX, OUTER_RING_MAX, z + 1),
         this.visit(OUTER_RING_MAX, OUTER_RING_MAX, z + 1),
       );
@@ -42,7 +42,7 @@ class RecursiveGridPoint extends GridNDPoint.for(['x', 'y', 'z']) {
       neighbors.push(
         this.visit(OUTER_RING_MIN, OUTER_RING_MIN, z + 1),
         this.visit(INNER_RING_MIN, OUTER_RING_MIN, z + 1),
-        this.visit(CENTER,         OUTER_RING_MIN, z + 1),
+        this.visit(CENTER, OUTER_RING_MIN, z + 1),
         this.visit(INNER_RING_MAX, OUTER_RING_MIN, z + 1),
         this.visit(OUTER_RING_MAX, OUTER_RING_MIN, z + 1),
       );
@@ -57,7 +57,7 @@ class RecursiveGridPoint extends GridNDPoint.for(['x', 'y', 'z']) {
       neighbors.push(
         this.visit(OUTER_RING_MAX, OUTER_RING_MIN, z + 1),
         this.visit(OUTER_RING_MAX, INNER_RING_MIN, z + 1),
-        this.visit(OUTER_RING_MAX, CENTER,         z + 1),
+        this.visit(OUTER_RING_MAX, CENTER, z + 1),
         this.visit(OUTER_RING_MAX, INNER_RING_MAX, z + 1),
         this.visit(OUTER_RING_MAX, OUTER_RING_MAX, z + 1),
       );
@@ -72,7 +72,7 @@ class RecursiveGridPoint extends GridNDPoint.for(['x', 'y', 'z']) {
       neighbors.push(
         this.visit(OUTER_RING_MIN, OUTER_RING_MIN, z + 1),
         this.visit(OUTER_RING_MIN, INNER_RING_MIN, z + 1),
-        this.visit(OUTER_RING_MIN, CENTER,         z + 1),
+        this.visit(OUTER_RING_MIN, CENTER, z + 1),
         this.visit(OUTER_RING_MIN, INNER_RING_MAX, z + 1),
         this.visit(OUTER_RING_MIN, OUTER_RING_MAX, z + 1),
       );

@@ -40,9 +40,7 @@ const densify = (sparse) => {
   return dense;
 };
 
-const hexhash = (dense) => (
-  dense.map((number) => number.toString(16).padStart(2, '0')).join('')
-);
+const hexhash = (dense) => dense.map((number) => number.toString(16).padStart(2, '0')).join('');
 
 export const knothash = (source, { range } = {}) => {
   const lengths = parse(source, { asASCII: true });
@@ -53,6 +51,4 @@ export const knothash = (source, { range } = {}) => {
   return densify(sparse);
 };
 
-export const hexknothash = (source, options) => (
-  hexhash(knothash(source, options))
-);
+export const hexknothash = (source, options) => hexhash(knothash(source, options));

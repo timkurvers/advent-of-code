@@ -1,11 +1,6 @@
 import { CircularLinkedList, solution } from '../../utils/index.js';
 
-import {
-  createRange,
-  hexknothash,
-  parse,
-  twist,
-} from './knothash.js';
+import { createRange, hexknothash, parse, twist } from './knothash.js';
 
 export const partOne = solution((input, { size = undefined }) => {
   const lengths = parse(input);
@@ -14,6 +9,4 @@ export const partOne = solution((input, { size = undefined }) => {
   return root.value * root.next.value;
 });
 
-export const partTwo = solution((input) => (
-  hexknothash(input)
-));
+export const partTwo = solution((input) => hexknothash(input));

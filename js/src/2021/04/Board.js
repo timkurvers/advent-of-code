@@ -30,9 +30,7 @@ class Board extends Grid {
   }
 
   get score() {
-    return sum(this.map(({ value }) => (
-      value === BINGO ? 0 : value
-    )));
+    return sum(this.map(({ value }) => (value === BINGO ? 0 : value)));
   }
 }
 

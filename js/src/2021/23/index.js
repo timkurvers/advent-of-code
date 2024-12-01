@@ -1,8 +1,6 @@
 /* eslint-disable consistent-return */
 
-import {
-  Cache, Graph, Grid, astar, solution,
-} from '../../utils/index.js';
+import { Cache, Graph, Grid, astar, solution } from '../../utils/index.js';
 
 const parse = (input) => Grid.from(input);
 
@@ -30,9 +28,7 @@ const homeFor = (point) => {
   }
 };
 
-const serialize = (state) => (
-  `${state.index};${state.pods.map((loc) => loc.value).join(',')}`
-);
+const serialize = (state) => `${state.index};${state.pods.map((loc) => loc.value).join(',')}`;
 
 const assemble = (grid) => {
   // Holds amphipod types and their starting points
@@ -87,9 +83,7 @@ const assemble = (grid) => {
 
       return null;
     },
-    neighborsFor: (current) => (
-      current.adjacentNeighbors.filter((point) => point.value !== GridType.WALL)
-    ),
+    neighborsFor: (current) => current.adjacentNeighbors.filter((point) => point.value !== GridType.WALL),
   });
 
   // Whether pod at given index is at home at given vertex
@@ -112,14 +106,13 @@ const assemble = (grid) => {
       return a.edge(b).cost * PodType[type].energyPerStep;
     },
     done: (current) => current.pods.every(isHome),
-    heuristic: (current) => (
+    heuristic: (current) =>
       current.pods.reduce((total, from, index) => {
         const type = podTypes[index];
         const target = graph.lookup(`${type}1`);
         const estimate = from.point.distanceToPoint(target.point);
         return total + estimate * PodType[type].energyPerStep;
-      }, 0)
-    ),
+      }, 0),
     nodesFor: (current) => {
       const { pods } = current;
 
@@ -133,13 +126,15 @@ const assemble = (grid) => {
         // Prevent moving out of correct target room
         if (from.isTarget && from.homeFor === type) {
           // If all spots deeper into room are of correct type (with no gaps)
-          if (rooms.lookup(type).every((other) => {
-            if (other.depth <= from.depth) {
-              return true;
-            }
-            const oindex = pods.findIndex((v) => v === other);
-            return podTypes[oindex] === type;
-          })) {
+          if (
+            rooms.lookup(type).every((other) => {
+              if (other.depth <= from.depth) {
+                return true;
+              }
+              const oindex = pods.findIndex((v) => v === other);
+              return podTypes[oindex] === type;
+            })
+          ) {
             continue;
           }
         }
@@ -159,13 +154,15 @@ const assemble = (grid) => {
 
           // Prevent movement when target room is occupied by different type
           if (to.isTarget && to.homeFor === type) {
-            if (rooms.lookup(type).some((other) => {
-              if (other.depth <= to.depth) {
-                return false;
-              }
-              const oindex = pods.findIndex((v) => v === other);
-              return podTypes[oindex] !== type;
-            })) {
+            if (
+              rooms.lookup(type).some((other) => {
+                if (other.depth <= to.depth) {
+                  return false;
+                }
+                const oindex = pods.findIndex((v) => v === other);
+                return podTypes[oindex] !== type;
+              })
+            ) {
               continue;
             }
           }

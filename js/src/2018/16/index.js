@@ -11,9 +11,7 @@ const parse = (input) => {
 
 export const partOne = solution((input) => {
   const { samples } = parse(input);
-  return samples.filter((sample) => (
-    sample.probe().length >= 3
-  )).length;
+  return samples.filter((sample) => sample.probe().length >= 3).length;
 });
 
 export const partTwo = solution((input) => {
@@ -22,9 +20,7 @@ export const partTwo = solution((input) => {
   const remaining = new Set(samples);
   while (remaining.size) {
     for (const sample of remaining) {
-      const candidates = sample.probe().filter((operation) => (
-        operation.opcode === undefined
-      ));
+      const candidates = sample.probe().filter((operation) => operation.opcode === undefined);
       if (candidates.length === 1) {
         const [operation] = candidates;
         operation.opcode = sample.opcode;

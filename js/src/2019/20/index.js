@@ -1,11 +1,4 @@
-import {
-  Cache,
-  Graph,
-  GraphVertex,
-  Grid,
-  astar,
-  solution,
-} from '../../utils/index.js';
+import { Cache, Graph, GraphVertex, Grid, astar, solution } from '../../utils/index.js';
 
 const Type = {
   EMPTY: '.',
@@ -17,9 +10,7 @@ const directions = ['up', 'down', 'left', 'right'];
 
 const isEmpty = (point) => point.value === Type.EMPTY;
 const isLetter = (point) => point && point.value >= 'A' && point.value <= 'Z';
-const isPortal = (point) => (
-  isEmpty(point) && point.adjacentNeighbors.some(isLetter)
-);
+const isPortal = (point) => isEmpty(point) && point.adjacentNeighbors.some(isLetter);
 const isPassable = (point) => isEmpty(point) || isPortal(point);
 
 const prepare = (input) => {
@@ -50,12 +41,11 @@ const prepare = (input) => {
       vertex.point = point;
 
       // Whether this portal is on the outer ring of the maze
-      vertex.outer = (
-        point.x < OUTER_RING_SIZE
-        || point.y < OUTER_RING_SIZE
-        || maxX - point.x < OUTER_RING_SIZE
-        || maxY - point.y < OUTER_RING_SIZE
-      );
+      vertex.outer =
+        point.x < OUTER_RING_SIZE ||
+        point.y < OUTER_RING_SIZE ||
+        maxX - point.x < OUTER_RING_SIZE ||
+        maxY - point.y < OUTER_RING_SIZE;
 
       return vertex;
     },
@@ -95,9 +85,7 @@ const travel = (graph, { recursiveSpaces = false } = {}) => {
 
   return astar(initial, null, {
     cost: (current, next) => current.vertex.edge(next.vertex).cost,
-    done: (current) => (
-      current.vertex === goal && (!recursiveSpaces || current.level === 0)
-    ),
+    done: (current) => current.vertex === goal && (!recursiveSpaces || current.level === 0),
     nodesFor: (current) => {
       const { vertex } = current;
       let { level } = current;

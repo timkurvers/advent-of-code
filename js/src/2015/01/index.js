@@ -1,15 +1,11 @@
 import { solution } from '../../utils/index.js';
 
-const counter = (regexp) => (str) => (
-  (str.match(regexp) || []).length
-);
+const counter = (regexp) => (str) => (str.match(regexp) || []).length;
 
 const up = counter(/\(/g);
 const down = counter(/\)/g);
 
-export const partOne = solution((input) => (
-  up(input) - down(input)
-));
+export const partOne = solution((input) => up(input) - down(input));
 
 export const partTwo = solution((input) => {
   let floor = 0;

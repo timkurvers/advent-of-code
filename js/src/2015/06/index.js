@@ -4,10 +4,14 @@ import { Grid, solution, sum } from '../../utils/index.js';
 
 const INSTRUCTION_MATCHER = /(on|off|toggle) (\d+),(\d+) through (\d+),(\d+)/;
 
-const parse = (input) => input.trim().split('\n').map((line) => {
-  const [, op, fromX, fromY, toX, toY] = line.match(INSTRUCTION_MATCHER);
-  return { op, fromX: +fromX, fromY: +fromY, toX: +toX, toY: +toY };
-});
+const parse = (input) =>
+  input
+    .trim()
+    .split('\n')
+    .map((line) => {
+      const [, op, fromX, fromY, toX, toY] = line.match(INSTRUCTION_MATCHER);
+      return { op, fromX: +fromX, fromY: +fromY, toX: +toX, toY: +toY };
+    });
 
 const configure = (instructions, { version = 1 } = {}) => {
   const lights = new Grid();
@@ -40,10 +44,6 @@ const configure = (instructions, { version = 1 } = {}) => {
   return { lights, brightness, on };
 };
 
-export const partOne = solution.inefficient((input) => (
-  configure(parse(input), { version: 1 }).on.length
-));
+export const partOne = solution.inefficient((input) => configure(parse(input), { version: 1 }).on.length);
 
-export const partTwo = solution.inefficient((input) => (
-  configure(parse(input), { version: 2 }).brightness
-));
+export const partTwo = solution.inefficient((input) => configure(parse(input), { version: 2 }).brightness);

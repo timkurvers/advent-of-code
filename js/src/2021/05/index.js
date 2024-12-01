@@ -9,13 +9,10 @@ const parse = (input, { onlyAdjacent = false } = {}) => {
   const lines = input.trim().split('\n');
   for (const line of lines) {
     const match = line.match(LINE_MATCHER);
-    const [x1, y1, x2, y2] = [
-      cast(match[1]), cast(match[2]),
-      cast(match[3]), cast(match[4]),
-    ];
+    const [x1, y1, x2, y2] = [cast(match[1]), cast(match[2]), cast(match[3]), cast(match[4])];
 
-    const dx = x1 < x2 ? 1 : (x1 > x2 ? -1 : 0);
-    const dy = y1 < y2 ? 1 : (y1 > y2 ? -1 : 0);
+    const dx = x1 < x2 ? 1 : x1 > x2 ? -1 : 0;
+    const dy = y1 < y2 ? 1 : y1 > y2 ? -1 : 0;
 
     const isAdjacent = dx === 0 || dy === 0;
     if (onlyAdjacent && !isAdjacent) {

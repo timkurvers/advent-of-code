@@ -1,9 +1,4 @@
-import {
-  permute,
-  solution,
-  sum,
-  wrap,
-} from '../../utils/index.js';
+import { permute, solution, sum, wrap } from '../../utils/index.js';
 
 import Person from './Person.js';
 
@@ -35,11 +30,13 @@ const parse = (input) => {
 
 const rate = (arrangement) => {
   const { length } = arrangement;
-  return sum(arrangement.map((person, index) => {
-    const left = arrangement[wrap(index - 1, length)];
-    const right = arrangement[wrap(index + 1, length)];
-    return person.happinessWith(left, right);
-  }));
+  return sum(
+    arrangement.map((person, index) => {
+      const left = arrangement[wrap(index - 1, length)];
+      const right = arrangement[wrap(index + 1, length)];
+      return person.happinessWith(left, right);
+    }),
+  );
 };
 
 const seat = (people) => {

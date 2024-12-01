@@ -16,7 +16,11 @@ class Program {
       const operation = operations.find((candidate) => candidate.name === opname);
       const [inputA, inputB, outputC] = line.match(/\d+/g).map(Number);
       return {
-        opname, operation, inputA, inputB, outputC,
+        opname,
+        operation,
+        inputA,
+        inputB,
+        outputC,
       };
     });
 
@@ -41,9 +45,7 @@ class Program {
   log(operation, preA, preB, inputA, inputB, outputC) {
     const { data, ip, ipbinding } = this;
 
-    const reg = (nr) => (
-      nr === ipbinding ? colors.yellow('[ip]') : colors.gray(`[r${nr}]`)
-    );
+    const reg = (nr) => (nr === ipbinding ? colors.yellow('[ip]') : colors.gray(`[r${nr}]`));
 
     let impl = operation.toString().split('\n')[1];
     impl = impl.replace('  data[outputC] = ', `#${ip}: ${operation.name}: ${reg(outputC)} = (`);
@@ -64,9 +66,7 @@ class Program {
       }
 
       data[this.ipbinding] = this.ip;
-      const {
-        operation, inputA, inputB, outputC,
-      } = instruction;
+      const { operation, inputA, inputB, outputC } = instruction;
       const preA = data[inputA];
       const preB = data[inputB];
       operation(data, inputA, inputB, outputC);

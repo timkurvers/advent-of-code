@@ -44,11 +44,7 @@ class HexGridPoint extends GridPoint {
   }
 
   get neighbors() {
-    return [
-      this.nw, this.ne,
-      this.w, this.e,
-      this.sw, this.se,
-    ];
+    return [this.nw, this.ne, this.w, this.e, this.sw, this.se];
   }
 
   // Explores hex grid in given direction. If the target point does not yet

@@ -8,9 +8,7 @@ class Present {
   }
 
   get areas() {
-    return this.sides.map(([a, b]) => (
-      2 * a * b
-    ));
+    return this.sides.map(([a, b]) => 2 * a * b);
   }
 
   get ribbon() {
@@ -40,9 +38,7 @@ class Present {
   }
 
   static from(input) {
-    return input.split('\n').map((line) => (
-      new this(...line.split('x').map(Number))
-    ));
+    return input.split('\n').map((line) => new this(...line.split('x').map(Number)));
   }
 }
 

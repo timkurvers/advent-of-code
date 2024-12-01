@@ -2,10 +2,14 @@
 
 import { solution, sum } from '../../utils/index.js';
 
-const parse = (input) => input.trim().split('\n').map((code) => ({
-  code,
-  string: eval(code),
-}));
+const parse = (input) =>
+  input
+    .trim()
+    .split('\n')
+    .map((code) => ({
+      code,
+      string: eval(code),
+    }));
 
 const encode = (str) => JSON.stringify(str);
 

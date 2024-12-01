@@ -1,13 +1,7 @@
 import assert from 'assert';
 
 import IntcodeProgram from '../02/IntcodeProgram.js';
-import {
-  Grid,
-  fromASCII,
-  solution,
-  stripIndent,
-  toASCII,
-} from '../../utils/index.js';
+import { Grid, fromASCII, solution, stripIndent, toASCII } from '../../utils/index.js';
 
 const ground = '#';
 const hole = '.';
@@ -71,37 +65,41 @@ const simulate = (tape, shouldJump) => {
 export const partOne = solution((input) => {
   // Simulate using pure JavaScript
   const tape = '#####.################.##.#############...##############.#..########';
-  const success = simulate(tape, (first, _, third, fourth) => (
-    (first === hole || third === hole)
-    && fourth === ground
-  ));
+  const success = simulate(
+    tape,
+    (first, _, third, fourth) => (first === hole || third === hole) && fourth === ground,
+  );
   assert(success);
 
   // The above logic expressed in springscript
-  return springscript(input, stripIndent`
+  return springscript(
+    input,
+    stripIndent`
     NOT A J
     NOT C T
     OR T J
     AND D J
     WALK
-  `);
+  `,
+  );
 });
 
 export const partTwo = solution((input) => {
   // Simulate using pure JavaScript
-  const tape = '#####.################.##.#############...##############.#.##.##.#######.#..#############.##..#.#.###';
-  const success = simulate(tape, (first, second, third, fourth, fifth, _, __, eighth) => (
-    (
-      (third === hole && (fifth === ground || eighth === ground))
-      || second === hole
-      || first === hole
-    )
-    && fourth === ground
-  ));
+  const tape =
+    '#####.################.##.#############...##############.#.##.##.#######.#..#############.##..#.#.###';
+  const success = simulate(
+    tape,
+    (first, second, third, fourth, fifth, _, __, eighth) =>
+      ((third === hole && (fifth === ground || eighth === ground)) || second === hole || first === hole) &&
+      fourth === ground,
+  );
   assert(success);
 
   // The above logic expressed in springscript
-  return springscript(input, stripIndent`
+  return springscript(
+    input,
+    stripIndent`
     NOT C J
     OR E T
     OR H T
@@ -112,5 +110,6 @@ export const partTwo = solution((input) => {
     OR T J
     AND D J
     RUN
-  `);
+  `,
+  );
 });

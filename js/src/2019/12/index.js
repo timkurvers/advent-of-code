@@ -1,9 +1,4 @@
-import {
-  combine,
-  lcm,
-  solution,
-  sum,
-} from '../../utils/index.js';
+import { combine, lcm, solution, sum } from '../../utils/index.js';
 
 import Moon from './Moon.js';
 

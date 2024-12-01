@@ -3,14 +3,12 @@
 import colors from 'colors';
 
 import Coord from './Coord.js';
-import {
-  Elf, Goblin, Unit, Wall,
-} from './entities/index.js';
+import { Elf, Goblin, Unit, Wall } from './entities/index.js';
 
 const CHAR_MAPPINGS = {
   '#': Wall,
-  'G': Goblin,
-  'E': Elf,
+  G: Goblin,
+  E: Elf,
   '.': null,
 };
 
@@ -64,14 +62,18 @@ class Map {
   }
 
   get visual() {
-    const overview = this.grid.map((row) => (
-      row.map(({ entity }) => {
-        if (!entity) return ' ';
-        if (entity instanceof Wall) return '#';
-        if (entity instanceof Goblin) return colors.red(entity.id);
-        return colors.green(entity.id);
-      }).join('')
-    )).join('\n');
+    const overview = this.grid
+      .map((row) =>
+        row
+          .map(({ entity }) => {
+            if (!entity) return ' ';
+            if (entity instanceof Wall) return '#';
+            if (entity instanceof Goblin) return colors.red(entity.id);
+            return colors.green(entity.id);
+          })
+          .join(''),
+      )
+      .join('\n');
     return overview;
   }
 

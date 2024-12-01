@@ -122,11 +122,7 @@ describe('LinkedList', () => {
   describe('static toArray()', () => {
     it('returns all nodes in this linked list as an array', () => {
       const root = LinkedList.from(['a', 'b', 'c']);
-      expect(LinkedList.toArray(root)).toEqual([
-        root,
-        root.seek(1),
-        root.seek(2),
-      ]);
+      expect(LinkedList.toArray(root)).toEqual([root, root.seek(1), root.seek(2)]);
     });
   });
 

@@ -13,12 +13,7 @@ class Point {
   }
 
   clone() {
-    return new this.constructor(
-      this.grid,
-      this.x,
-      this.y,
-      this.value,
-    );
+    return new this.constructor(this.grid, this.x, this.y, this.value);
   }
 
   distanceTo(x, y) {
@@ -30,20 +25,20 @@ class Point {
   }
 
   get adjacentNeighbors() {
-    return [
-      this.up,
-      this.down,
-      this.left,
-      this.right,
-    ].filter(Boolean);
+    return [this.up, this.down, this.left, this.right].filter(Boolean);
   }
 
   get neighbors() {
     const { grid, x, y } = this;
     return [
-      grid.getPoint(x - 1, y - 1), this.up, grid.getPoint(x + 1, y - 1),
-      this.left, this.right,
-      grid.getPoint(x - 1, y + 1), this.down, grid.getPoint(x + 1, y + 1),
+      grid.getPoint(x - 1, y - 1),
+      this.up,
+      grid.getPoint(x + 1, y - 1),
+      this.left,
+      this.right,
+      grid.getPoint(x - 1, y + 1),
+      this.down,
+      grid.getPoint(x + 1, y + 1),
     ].filter(Boolean);
   }
 

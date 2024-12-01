@@ -7,9 +7,7 @@ class Guard {
   }
 
   get totalMinutesAsleep() {
-    return this.shifts.reduce((sum, shift) => (
-      sum + shift.minutesAsleep
-    ), 0);
+    return this.shifts.reduce((sum, shift) => sum + shift.minutesAsleep, 0);
   }
 
   get mostAsleepPerMinute() {

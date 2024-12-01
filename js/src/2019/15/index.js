@@ -1,15 +1,7 @@
 /* eslint-disable no-param-reassign */
 
 import IntcodeProgram from '../02/IntcodeProgram.js';
-import {
-  Grid,
-  Orientation,
-  Rotation,
-  astar,
-  dx,
-  dy,
-  solution,
-} from '../../utils/index.js';
+import { Grid, Orientation, Rotation, astar, dx, dy, solution } from '../../utils/index.js';
 
 const Move = {
   [Orientation.UP]: 1,
@@ -74,20 +66,14 @@ const build = async (input) => {
 
   await explore(grid, {
     // See: https://en.wikipedia.org/wiki/Maze_solving_algorithm#Wall_follower
-    approach: [
-      Rotation.TURN_LEFT, Rotation.NONE,
-      Rotation.TURN_RIGHT, Rotation.TURN_AROUND,
-    ],
+    approach: [Rotation.TURN_LEFT, Rotation.NONE, Rotation.TURN_RIGHT, Rotation.TURN_AROUND],
     program,
     start,
   });
 
   await explore(grid, {
     // See: https://en.wikipedia.org/wiki/Maze_solving_algorithm#Wall_follower
-    approach: [
-      Rotation.TURN_RIGHT, Rotation.NONE,
-      Rotation.TURN_LEFT, Rotation.TURN_AROUND,
-    ],
+    approach: [Rotation.TURN_RIGHT, Rotation.NONE, Rotation.TURN_LEFT, Rotation.TURN_AROUND],
     program,
     start,
   });
@@ -100,9 +86,7 @@ const build = async (input) => {
 export const partOne = solution(async (input) => {
   const { start, goal } = await build(input);
   const result = astar(start, goal, {
-    neighborsFor: (point) => point.adjacentNeighbors.filter((neighbor) => (
-      neighbor.value !== Type.WALL
-    )),
+    neighborsFor: (point) => point.adjacentNeighbors.filter((neighbor) => neighbor.value !== Type.WALL),
   });
   return result.score;
 });
@@ -120,9 +104,7 @@ export const partTwo = solution(async (input, { gridFromInput }) => {
       grid.set(point.x, point.y, Type.OXYGEN);
       remaining.delete(point);
 
-      const accessible = point.adjacentNeighbors.filter((neighbor) => (
-        neighbor.value === Type.EMPTY
-      ));
+      const accessible = point.adjacentNeighbors.filter((neighbor) => neighbor.value === Type.EMPTY);
 
       for (const next of accessible) {
         remaining.add(next);

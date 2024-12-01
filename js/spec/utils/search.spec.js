@@ -8,22 +8,26 @@ describe('search utilities', () => {
       const indices = range({ start, end });
 
       for (const index of indices) {
-        expect(await bisect({
-          lower: start,
-          upper: end,
-          until: (x) => x >= index,
-        })).toEqual(index);
+        expect(
+          await bisect({
+            lower: start,
+            upper: end,
+            until: (x) => x >= index,
+          }),
+        ).toEqual(index);
       }
     });
 
     it('supports values larger than 32-bit', async () => {
       const value = 2 ** 32;
       const target = value + 2;
-      expect(await bisect({
-        lower: value,
-        upper: value + 4,
-        until: (x) => x >= target,
-      })).toEqual(target);
+      expect(
+        await bisect({
+          lower: value,
+          upper: value + 4,
+          until: (x) => x >= target,
+        }),
+      ).toEqual(target);
     });
   });
 });

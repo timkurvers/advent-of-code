@@ -19,10 +19,12 @@ class Tile extends GridPoint {
   }
 
   get isWater() {
-    return this.type === Type.WATER_STILL
-           || this.type === Type.WATER_FLOWING_DOWN
-           || this.type === Type.WATER_FLOWING_LEFT
-           || this.type === Type.WATER_FLOWING_RIGHT;
+    return (
+      this.type === Type.WATER_STILL ||
+      this.type === Type.WATER_FLOWING_DOWN ||
+      this.type === Type.WATER_FLOWING_LEFT ||
+      this.type === Type.WATER_FLOWING_RIGHT
+    );
   }
 
   get isStillWater() {
@@ -30,8 +32,7 @@ class Tile extends GridPoint {
   }
 
   get isHorizontalFlowingWater() {
-    return this.type === Type.WATER_FLOWING_LEFT
-           || this.type === Type.WATER_FLOWING_RIGHT;
+    return this.type === Type.WATER_FLOWING_LEFT || this.type === Type.WATER_FLOWING_RIGHT;
   }
 }
 

@@ -1,8 +1,6 @@
 /* eslint-disable no-cond-assign */
 
-import {
-  Cache, intersection, solution, sum,
-} from '../../utils/index.js';
+import { Cache, intersection, solution, sum } from '../../utils/index.js';
 
 const parse = (input) => {
   const dishes = [];
@@ -10,14 +8,18 @@ const parse = (input) => {
     init: (name) => ({
       name,
       allergen: null,
-      get dishes() { return dishes.filter((dish) => dish.ingredients.includes(this)); },
+      get dishes() {
+        return dishes.filter((dish) => dish.ingredients.includes(this));
+      },
     }),
   });
   const allergens = new Cache({
     init: (name) => ({
       name,
       ingredient: null,
-      get dishes() { return dishes.filter((dish) => dish.allergens.includes(this)); },
+      get dishes() {
+        return dishes.filter((dish) => dish.allergens.includes(this));
+      },
     }),
   });
 
@@ -57,7 +59,7 @@ const resolve = (allergens) => {
   const frontier = Array.from(allergens.values());
 
   let current = null;
-  while (current = frontier.shift()) {
+  while ((current = frontier.shift())) {
     // Find all shared ingredients between dishes known to contain this allergen
     const shared = intersection(...current.dishes.map((dish) => dish.ingredients));
 
@@ -90,8 +92,6 @@ export const partTwo = solution((input) => {
   resolve(allergens);
 
   // Sort all allergens alphabetically by name and comma-separate their ingredients
-  const sorted = Array.from(allergens.values()).sort((a, b) => (
-    a.name.localeCompare(b.name)
-  ));
+  const sorted = Array.from(allergens.values()).sort((a, b) => a.name.localeCompare(b.name));
   return sorted.map((allergen) => allergen.ingredient.name).join(',');
 });

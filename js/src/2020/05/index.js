@@ -13,7 +13,7 @@ const MAX_COLUMN = COLUMN_COUNT - 1;
 
 const bps = (ops, { upper, lower = 0 } = {}) => {
   for (const char of ops) {
-    const middle = (upper + lower) / 2 | 0;
+    const middle = ((upper + lower) / 2) | 0;
     if (char === 'F' || char === 'L') {
       upper = middle;
     } else {

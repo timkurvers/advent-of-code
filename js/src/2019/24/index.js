@@ -1,11 +1,9 @@
-import {
-  Grid, GridND, solution, sum,
-} from '../../utils/index.js';
+import { Grid, GridND, solution, sum } from '../../utils/index.js';
 
 import RecursiveGridPoint from './RecursiveGridPoint.js';
 
 const GRID_SIZE = 5;
-const CENTER = GRID_SIZE / 2 | 0;
+const CENTER = (GRID_SIZE / 2) | 0;
 
 const Type = {
   BUG: '#',
@@ -14,17 +12,12 @@ const Type = {
 
 const isBug = (point) => point.value === Type.BUG;
 
-const rate = (grid) => (
-  sum(grid.map(({ x, y, value }) => (
-    value === Type.BUG ? 2 ** (y * GRID_SIZE + x) : 0
-  )))
-);
+const rate = (grid) =>
+  sum(grid.map(({ x, y, value }) => (value === Type.BUG ? 2 ** (y * GRID_SIZE + x) : 0)));
 
 const step = (grid) => {
   const recursive = grid instanceof GridND;
-  const next = recursive ? (
-    new GridND(grid.dimensions, { pointClass: grid.pointClass })
-  ) : new Grid();
+  const next = recursive ? new GridND(grid.dimensions, { pointClass: grid.pointClass }) : new Grid();
 
   for (const point of grid) {
     let { value } = point;
@@ -69,7 +62,7 @@ export const partTwo = solution.inefficient(async (input, { minutes = 200 }) => 
 
   // Preparing depth levels upfront, ensures that neighbors discovered while
   // iterating are properly propogated to the next state
-  const depth = minutes / 2 | 0;
+  const depth = (minutes / 2) | 0;
   for (let z = -depth; z <= depth; ++z) {
     if (z === 0) continue;
     for (let y = 0; y < GRID_SIZE; ++y) {

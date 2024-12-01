@@ -38,9 +38,8 @@ export const normalizeOrientation = (orientation) => {
 
 export const isHorizontalOrientation = (orientation) => dx(orientation) !== 0;
 export const isVerticalOrientation = (orientation) => dy(orientation) !== 0;
-export const isSameOrientation = (a, b) => (
-  Math.abs(normalizeOrientation(a) - normalizeOrientation(b)) < EPSILON
-);
+export const isSameOrientation = (a, b) =>
+  Math.abs(normalizeOrientation(a) - normalizeOrientation(b)) < EPSILON;
 
 export const isHorizontalRotation = (rotation) => !isHorizontalOrientation(rotation);
 export const isVerticalRotation = (rotation) => !isVerticalOrientation(rotation);
@@ -58,10 +57,7 @@ export const nameForOrientation = (orientation) => {
   return matches.join(' / ');
 };
 
-export const distance2D = (x1, y1, x2, y2) => (
-  Math.abs(x1 - x2) + Math.abs(y1 - y2)
-);
+export const distance2D = (x1, y1, x2, y2) => Math.abs(x1 - x2) + Math.abs(y1 - y2);
 
-export const distance3D = (x1, y1, z1, x2, y2, z2) => (
-  Math.abs(x1 - x2) + Math.abs(y1 - y2) + Math.abs(z1 - z2)
-);
+export const distance3D = (x1, y1, z1, x2, y2, z2) =>
+  Math.abs(x1 - x2) + Math.abs(y1 - y2) + Math.abs(z1 - z2);

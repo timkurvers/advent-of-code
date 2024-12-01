@@ -4,17 +4,18 @@ import { solution } from '../../utils/index.js';
 
 const LINE_MATCHER = /Sue (\d+): (\w+): (\d+), (\w+): (\d+), (\w+): (\d+)/;
 
-const parse = (input) => input.split('\n').map((line) => {
-  const match = line.match(LINE_MATCHER);
-  return {
-    id: +match[1],
-    props: {
-      [match[2]]: +match[3],
-      [match[4]]: +match[5],
-      [match[6]]: +match[7],
-    },
-  };
-});
+const parse = (input) =>
+  input.split('\n').map((line) => {
+    const match = line.match(LINE_MATCHER);
+    return {
+      id: +match[1],
+      props: {
+        [match[2]]: +match[3],
+        [match[4]]: +match[5],
+        [match[6]]: +match[7],
+      },
+    };
+  });
 
 const initialClues = {
   children: 3,

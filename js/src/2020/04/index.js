@@ -4,21 +4,21 @@ import { solution } from '../../utils/index.js';
 
 const PASSPORT_MATCHER = /(?<field>[^:]+):(?<value>[^\s]+)\s*/g;
 
-const parse = (input) => input.trim().split('\n\n').map((batch) => {
-  const matches = Array.from(batch.matchAll(PASSPORT_MATCHER));
-  return matches.reduce((passport, match) => {
-    passport[match.groups.field] = match.groups.value;
-    return passport;
-  }, {});
-});
+const parse = (input) =>
+  input
+    .trim()
+    .split('\n\n')
+    .map((batch) => {
+      const matches = Array.from(batch.matchAll(PASSPORT_MATCHER));
+      return matches.reduce((passport, match) => {
+        passport[match.groups.field] = match.groups.value;
+        return passport;
+      }, {});
+    });
 
-const PRESENCE_RULES = [
-  'byr', 'iyr', 'eyr', 'hgt', 'hcl', 'ecl', 'pid',
-];
+const PRESENCE_RULES = ['byr', 'iyr', 'eyr', 'hgt', 'hcl', 'ecl', 'pid'];
 
-const isPresent = (passport) => (
-  PRESENCE_RULES.every((field) => field in passport)
-);
+const isPresent = (passport) => PRESENCE_RULES.every((field) => field in passport);
 
 const VALIDATION_RULES = {
   byr: (value) => value >= 1920 && value <= 2002,

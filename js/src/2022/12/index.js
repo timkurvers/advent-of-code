@@ -16,14 +16,13 @@ const canMove = (from, to) => {
   return cost <= 1;
 };
 
-const navigate = (start, goal) => (
+const navigate = (start, goal) =>
   astar(start, goal, {
     neighborsFor: (current) => {
       const neighbors = current.adjacentNeighbors;
       return neighbors.filter((next) => canMove(current, next));
     },
-  })
-);
+  });
 
 export const partOne = solution((input) => {
   const { start, goal } = parse(input);

@@ -11,12 +11,15 @@ class Ground {
   constructor(definition) {
     const lines = definition.trim().split('\n');
     this.areas = lines.map((line) => {
-      let [, axis1, x1, x2 = x1,, y1, y2 = y1] = line.match(AREA_MATCHER);
+      let [, axis1, x1, x2 = x1, , y1, y2 = y1] = line.match(AREA_MATCHER);
       if (axis1 === 'y') {
         [x1, x2, y1, y2] = [y1, y2, x1, x2];
       }
       return {
-        x1: +x1, x2: +x2, y1: +y1, y2: +y2,
+        x1: +x1,
+        x2: +x2,
+        y1: +y1,
+        y2: +y2,
       };
     });
 
@@ -54,28 +57,30 @@ class Ground {
   }
 
   get eligibleTiles() {
-    return this.tiles.filter((tile) => (
-      tile.y >= this.minY && tile.y <= this.maxY
-    ));
+    return this.tiles.filter((tile) => tile.y >= this.minY && tile.y <= this.maxY);
   }
 
   get visual() {
-    const overview = this.grid.map((row) => (
-      row.map((tile) => {
-        const { type } = tile;
-        let char = ' ';
-        if (type === Type.SPRING) char = '+';
-        if (type === Type.OBSTRUCTED) char = '#';
-        if (type === Type.WATER_STILL) char = '~';
-        if (type === Type.WATER_FLOWING_DOWN) char = '|';
-        if (type === Type.WATER_FLOWING_LEFT) char = '<';
-        if (type === Type.WATER_FLOWING_RIGHT) char = '>';
-        if (this.activeTiles.includes(tile)) {
-          return colors.green(char);
-        }
-        return char;
-      }).join('')
-    )).join('\n');
+    const overview = this.grid
+      .map((row) =>
+        row
+          .map((tile) => {
+            const { type } = tile;
+            let char = ' ';
+            if (type === Type.SPRING) char = '+';
+            if (type === Type.OBSTRUCTED) char = '#';
+            if (type === Type.WATER_STILL) char = '~';
+            if (type === Type.WATER_FLOWING_DOWN) char = '|';
+            if (type === Type.WATER_FLOWING_LEFT) char = '<';
+            if (type === Type.WATER_FLOWING_RIGHT) char = '>';
+            if (this.activeTiles.includes(tile)) {
+              return colors.green(char);
+            }
+            return char;
+          })
+          .join(''),
+      )
+      .join('\n');
     return overview;
   }
 
@@ -152,8 +157,8 @@ class Ground {
               next.push(water.up);
             }
 
-          // For multiple streams of water moving towards each-other, make sure
-          // these edge tiles are kept active until still water is ruled out
+            // For multiple streams of water moving towards each-other, make sure
+            // these edge tiles are kept active until still water is ruled out
           } else if (!current.type && current.down.type) {
             next.push(tile);
           }
@@ -189,8 +194,8 @@ class Ground {
               next.push(water.up);
             }
 
-          // For multiple streams of water moving towards each-other, make sure
-          // these edge tiles are kept active until still water is ruled out
+            // For multiple streams of water moving towards each-other, make sure
+            // these edge tiles are kept active until still water is ruled out
           } else if (!current.type && current.down.type) {
             next.push(tile);
           }

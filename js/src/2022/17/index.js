@@ -1,8 +1,10 @@
 import { Grid, reduceMinBy, solution } from '../../utils/index.js';
 
-const parse = (input) => (
-  input.trim().split('').map((c) => (c === '<' ? -1 : 1))
-);
+const parse = (input) =>
+  input
+    .trim()
+    .split('')
+    .map((c) => (c === '<' ? -1 : 1));
 
 const WIDTH = 7;
 
@@ -13,27 +15,54 @@ const LANDED = '#';
 
 const RockShape = {
   // ####
-  lineh: [[0, 0], [1, 0], [2, 0], [3, 0]],
+  lineh: [
+    [0, 0],
+    [1, 0],
+    [2, 0],
+    [3, 0],
+  ],
 
   //  #
   // ###
   //  #
-  plus: [[0, -1], [1, -1], [2, -1], [1, -2], [1, 0]],
+  plus: [
+    [0, -1],
+    [1, -1],
+    [2, -1],
+    [1, -2],
+    [1, 0],
+  ],
 
   //   #
   //   #
   // ###
-  corner: [[0, 0], [1, 0], [2, 0], [2, -1], [2, -2]],
+  corner: [
+    [0, 0],
+    [1, 0],
+    [2, 0],
+    [2, -1],
+    [2, -2],
+  ],
 
   // #
   // #
   // #
   // #
-  linev: [[0, 0], [0, -1], [0, -2], [0, -3]],
+  linev: [
+    [0, 0],
+    [0, -1],
+    [0, -2],
+    [0, -3],
+  ],
 
   // ##
   // ##
-  square: [[0, 0], [1, 0], [0, -1], [1, -1]],
+  square: [
+    [0, 0],
+    [1, 0],
+    [0, -1],
+    [1, -1],
+  ],
 };
 
 const shapes = Object.values(RockShape);
@@ -84,13 +113,16 @@ const simulate = (jets, { rounds }) => {
 
     const hash = JSON.stringify([
       current.jet,
-      current.rock.x, current.height + current.rock.y,
+      current.rock.x,
+      current.height + current.rock.y,
 
       prev.jet,
-      prev.rock.x, prev.height + prev.rock.y,
+      prev.rock.x,
+      prev.height + prev.rock.y,
 
       prev2.jet,
-      prev2.rock.x, prev2.height + prev2.rock.y,
+      prev2.rock.x,
+      prev2.height + prev2.rock.y,
     ]);
     return hash;
   };
@@ -142,7 +174,11 @@ const simulate = (jets, { rounds }) => {
         height = -minY;
 
         const stat = {
-          round, height, rock, shape, jet: (index - 1) % jets.length,
+          round,
+          height,
+          rock,
+          shape,
+          jet: (index - 1) % jets.length,
         };
         stats.set(round, stat);
 
@@ -157,9 +193,7 @@ const simulate = (jets, { rounds }) => {
           const fullCycles = Math.floor(roundsRemaining / cycleLength);
           const remainder = roundsRemaining % cycleLength;
 
-          height = (
-            cycleHeight * fullCycles + stats.get(entry.round + remainder).height
-          );
+          height = cycleHeight * fullCycles + stats.get(entry.round + remainder).height;
 
           return { height };
         }

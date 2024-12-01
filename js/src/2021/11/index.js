@@ -25,7 +25,7 @@ const round = (grid) => {
   }
 
   let current = null;
-  while (current = frontier.pop()) {
+  while ((current = frontier.pop())) {
     increase(current);
   }
 

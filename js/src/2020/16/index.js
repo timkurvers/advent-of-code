@@ -1,6 +1,4 @@
-import {
-  multiply, solution, sum, zip,
-} from '../../utils/index.js';
+import { multiply, solution, sum, zip } from '../../utils/index.js';
 
 const TICKET_FIELD_MATCHER = /(.+): (\d+)-(\d+) or (\d+)-(\d+)/g;
 const TICKET_NUMBER_MATCHER = /\d+/g;
@@ -14,19 +12,17 @@ const parse = (input) => {
     range2: { min: +match[4], max: +match[5] },
   }));
   const mine = parts[1].match(TICKET_NUMBER_MATCHER).map(Number);
-  const nearby = parts[2].split('\n').slice(1).map((line) => (
-    line.match(TICKET_NUMBER_MATCHER).map(Number)
-  ));
+  const nearby = parts[2]
+    .split('\n')
+    .slice(1)
+    .map((line) => line.match(TICKET_NUMBER_MATCHER).map(Number));
   return { fields, mine, nearby };
 };
 
 // Whether given value is allowed within ranges of given field
 const validateValue = (value, field) => {
   const { range1, range2 } = field;
-  return (
-    (range1.min <= value && value <= range1.max)
-    || (range2.min <= value && value <= range2.max)
-  );
+  return (range1.min <= value && value <= range1.max) || (range2.min <= value && value <= range2.max);
 };
 
 // Pre-processes given tickets, tagging invalid values found
@@ -66,9 +62,9 @@ export const partTwo = solution((input, { prefix = 'departure' }) => {
       const values = valuesByIndex[index];
 
       // Find fields that satisfy their requirements on all values for this index
-      const matches = Array.from(unresolvedFields).filter((field) => (
-        values.every((value) => validateValue(value, field))
-      ));
+      const matches = Array.from(unresolvedFields).filter((field) =>
+        values.every((value) => validateValue(value, field)),
+      );
 
       // Found the one and only field for this index
       if (matches.length === 1) {

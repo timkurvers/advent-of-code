@@ -2,9 +2,7 @@ import { solution } from '../../utils/index.js';
 
 import AssembunnyProgram from '../12/AssembunnyProgram.js';
 
-const isClockSignal = (signal) => signal.every((value, index) => (
-  value === index % 2
-));
+const isClockSignal = (signal) => signal.every((value, index) => value === index % 2);
 
 export const finalPart = solution((input) => {
   let a = 0;

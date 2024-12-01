@@ -12,14 +12,16 @@ const CARD_VALUES = {
   T: 10,
 };
 
-const parse = (input) => (
-  input.trim().split('\n').map((line) => {
-    const match = HAND_BID_MATCHER.exec(line);
-    const cards = match[1].split('').map((char) => CARD_VALUES[char] || cast(char));
-    const bid = cast(match[2]);
-    return { line, cards, bid };
-  })
-);
+const parse = (input) =>
+  input
+    .trim()
+    .split('\n')
+    .map((line) => {
+      const match = HAND_BID_MATCHER.exec(line);
+      const cards = match[1].split('').map((char) => CARD_VALUES[char] || cast(char));
+      const bid = cast(match[2]);
+      return { line, cards, bid };
+    });
 
 // Grades given hand augmenting it with type (see mapping below)
 const grade = (hand) => {
@@ -28,7 +30,9 @@ const grade = (hand) => {
     return acc;
   }, {});
 
-  const [first, second] = Object.values(groups).sort((a, b) => b - a).slice(0, 2);
+  const [first, second] = Object.values(groups)
+    .sort((a, b) => b - a)
+    .slice(0, 2);
 
   //   5 => 5    (five of a kind)
   //   4 => 4    (four of a kind)
@@ -53,9 +57,9 @@ const strengthen = (hand) => {
   const max = CARD_VALUES.A;
 
   // Generate all possible permutations using jokers
-  const variants = Array.from(dfor(hand.cards.map((card) => (
-    card === CARD_VALUES.J ? { min, max } : { min: card, max: card }
-  ))));
+  const variants = Array.from(
+    dfor(hand.cards.map((card) => (card === CARD_VALUES.J ? { min, max } : { min: card, max: card }))),
+  );
 
   // Find best permutation
   const best = { variant: null, type: -Infinity };

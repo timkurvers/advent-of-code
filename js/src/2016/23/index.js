@@ -9,8 +9,9 @@ export const partOne = solution((input) => {
   return program.data.a;
 });
 
-export const partTwo = solution(() => (
-  // Manually converted Assembunny instructions to loop-based JavaScript,
-  // which provided the answer in ~1200ms
-  479009263
-));
+export const partTwo = solution(
+  () =>
+    // Manually converted Assembunny instructions to loop-based JavaScript,
+    // which provided the answer in ~1200ms
+    479009263,
+);

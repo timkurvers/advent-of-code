@@ -1,10 +1,6 @@
 /* eslint-disable consistent-return */
 
-import {
-  astar,
-  combine,
-  solution,
-} from '../../utils/index.js';
+import { astar, combine, solution } from '../../utils/index.js';
 
 import Component from './Component.js';
 
@@ -18,15 +14,18 @@ const parse = (input) => {
 
   // Generate a bit field for all floors
   // Example: 0b00011011 (first bit marks elevator, the others components)
-  input.trim().split('\n').forEach((line) => {
-    let floor = 0;
-    for (const match of line.match(COMPONENT_MATCHER) || []) {
-      const component = new Component(components.length, match);
-      components.push(component);
-      floor |= component.bit;
-    }
-    floors.push(floor);
-  });
+  input
+    .trim()
+    .split('\n')
+    .forEach((line) => {
+      let floor = 0;
+      for (const match of line.match(COMPONENT_MATCHER) || []) {
+        const component = new Component(components.length, match);
+        components.push(component);
+        floor |= component.bit;
+      }
+      floors.push(floor);
+    });
 
   // Mark elevator bit for the first floor
   floors[0] |= ELEVATOR_BIT;
@@ -51,7 +50,7 @@ const componentsFor = (floor, components) => {
   return { available, chips, generators };
 };
 
-const validate = (floors, components) => (
+const validate = (floors, components) =>
   floors.every((floor) => {
     const { chips, generators } = componentsFor(floor, components);
     return chips.every((chip) => {
@@ -64,39 +63,38 @@ const validate = (floors, components) => (
       }
       return intact;
     });
-  })
-);
+  });
 
 const serialize = (floors, components) => {
   const { length } = components;
-  return floors.map((floor) => {
-    const { chips, generators } = componentsFor(floor, components);
+  return floors
+    .map((floor) => {
+      const { chips, generators } = componentsFor(floor, components);
 
-    // Pairs are interchangable, ensure serializiation takes this into account
-    // Example: 0b00000001 00010001 (high part indicates one pair)
-    let pairless = floor;
-    let pairs = 0;
+      // Pairs are interchangable, ensure serializiation takes this into account
+      // Example: 0b00000001 00010001 (high part indicates one pair)
+      let pairless = floor;
+      let pairs = 0;
 
-    for (const chip of chips) {
-      for (const generator of generators) {
-        if (generator.compound === chip.compound) {
-          ++pairs;
-          pairless ^= chip.bit;
-          pairless ^= generator.bit;
+      for (const chip of chips) {
+        for (const generator of generators) {
+          if (generator.compound === chip.compound) {
+            ++pairs;
+            pairless ^= chip.bit;
+            pairless ^= generator.bit;
+          }
         }
       }
-    }
 
-    return (pairs << (length + 1)) | pairless;
-  }).join();
+      return (pairs << (length + 1)) | pairless;
+    })
+    .join();
 };
 
 const simulate = (floors, components) => {
   const cache = new Map();
 
-  const done = components.reduce((mask, component) => (
-    mask ^ component.bit
-  ), 0);
+  const done = components.reduce((mask, component) => mask ^ component.bit, 0);
 
   const transition = (current, scenario, index, diff) => {
     const offset = index + diff;
@@ -139,10 +137,7 @@ const simulate = (floors, components) => {
       const { available } = componentsFor(floor, components);
 
       // Scenarios of bringing one or two components (elevator requirement)
-      const scenarios = [
-        ...combine(available, { k: 1 }),
-        ...combine(available, { k: 2 }),
-      ];
+      const scenarios = [...combine(available, { k: 1 }), ...combine(available, { k: 2 })];
 
       const nodes = [];
       for (const scenario of scenarios) {
@@ -158,7 +153,7 @@ const simulate = (floors, components) => {
       return nodes;
     },
     done: (current) => (current[TOP_FLOOR_INDEX] & done) === done,
-    heuristic: (next) => (
+    heuristic: (next) =>
       next.reduce((heuristic, floor, index) => {
         const { available } = componentsFor(floor, components);
 
@@ -168,8 +163,7 @@ const simulate = (floors, components) => {
           steps -= distance;
         }
         return heuristic + steps;
-      }, 0)
-    ),
+      }, 0),
   });
 };
 

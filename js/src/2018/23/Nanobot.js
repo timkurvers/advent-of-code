@@ -21,14 +21,17 @@ class Nanobot {
   }
 
   static from(input) {
-    return input.trim().split('\n').map((definition) => {
-      const match = definition.match(/-?\d+/g);
-      const x = +match[0];
-      const y = +match[1];
-      const z = +match[2];
-      const radius = +match[3];
-      return new this(x, y, z, radius);
-    });
+    return input
+      .trim()
+      .split('\n')
+      .map((definition) => {
+        const match = definition.match(/-?\d+/g);
+        const x = +match[0];
+        const y = +match[1];
+        const z = +match[2];
+        const radius = +match[3];
+        return new this(x, y, z, radius);
+      });
   }
 }
 

@@ -2,9 +2,11 @@
 
 import { reduceMaxBy, solution, sum } from '../../utils/index.js';
 
-const parse = (input) => (
-  input.trim().split('\n').map((line) => line.split('/').map(Number))
-);
+const parse = (input) =>
+  input
+    .trim()
+    .split('\n')
+    .map((line) => line.split('/').map(Number));
 
 const generate = (components) => {
   const frontier = [];
@@ -35,7 +37,7 @@ const generate = (components) => {
 
   const bridges = [];
   let current;
-  while (current = frontier.pop()) {
+  while ((current = frontier.pop())) {
     const { bridge, remaining, connect } = current;
 
     const candidates = remaining.filter((c) => c.includes(connect));

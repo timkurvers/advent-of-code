@@ -1,12 +1,4 @@
-import {
-  Grid,
-  Orientation,
-  dx,
-  dy,
-  reduceMinBy,
-  solution,
-  sum,
-} from '../../utils/index.js';
+import { Grid, Orientation, dx, dy, reduceMinBy, solution, sum } from '../../utils/index.js';
 
 const orientations = {
   U: Orientation.UP,

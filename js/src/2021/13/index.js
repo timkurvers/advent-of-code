@@ -5,9 +5,10 @@ const FOLD_MATCHER = /(x|y)=(\d+)/;
 const DOT = '#';
 
 const parse = (input) => {
-  const parts = input.trim().split('\n\n').map((lines) => (
-    lines.split('\n')
-  ));
+  const parts = input
+    .trim()
+    .split('\n\n')
+    .map((lines) => lines.split('\n'));
   const dots = parts[0].map((str) => str.split(',').map(Number));
   const folds = parts[1].map((str) => {
     const match = FOLD_MATCHER.exec(str);

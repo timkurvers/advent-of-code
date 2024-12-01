@@ -51,7 +51,7 @@ const merge = (parts) => {
   const count = Math.sqrt(parts.length);
   const size = count * psize;
   return Array.from({ length: size }, (_, y) => {
-    const index = y / psize | 0;
+    const index = (y / psize) | 0;
     let row = [];
     for (let p = 0; p < count; ++p) {
       const slice = parts[index * count + p][y % psize];

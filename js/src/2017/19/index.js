@@ -1,10 +1,4 @@
-import {
-  Orientation,
-  Rotation,
-  dx,
-  dy,
-  solution,
-} from '../../utils/index.js';
+import { Orientation, Rotation, dx, dy, solution } from '../../utils/index.js';
 
 import Diagram from './Diagram.js';
 
@@ -21,17 +15,19 @@ const follow = (diagram) => {
       case '-':
       case '|':
         break;
-      case '+': {
-        const options = [Rotation.NONE, Rotation.TURN_RIGHT, Rotation.TURN_LEFT];
-        for (const rotation of options) {
-          const x = position.x + dx(orientation + rotation);
-          const y = position.y + dy(orientation + rotation);
-          if (diagram.get(x, y)) {
-            orientation += rotation;
-            break;
+      case '+':
+        {
+          const options = [Rotation.NONE, Rotation.TURN_RIGHT, Rotation.TURN_LEFT];
+          for (const rotation of options) {
+            const x = position.x + dx(orientation + rotation);
+            const y = position.y + dy(orientation + rotation);
+            if (diagram.get(x, y)) {
+              orientation += rotation;
+              break;
+            }
           }
         }
-      } break;
+        break;
       default:
         letters.push(char);
     }

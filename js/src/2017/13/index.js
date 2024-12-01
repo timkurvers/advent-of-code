@@ -2,16 +2,18 @@
 
 import { solution } from '../../utils/index.js';
 
-const parse = (input) => input.trim().split('\n').reduce((firewall, line) => {
-  const [depth, range] = line.split(': ').map(Number);
-  firewall[depth] = { depth, range };
-  return firewall;
-}, []);
+const parse = (input) =>
+  input
+    .trim()
+    .split('\n')
+    .reduce((firewall, line) => {
+      const [depth, range] = line.split(': ').map(Number);
+      firewall[depth] = { depth, range };
+      return firewall;
+    }, []);
 
 // See: https://en.wikipedia.org/wiki/Triangle_wave
-const position = (time, range) => (
-  range - Math.abs(range - (time % (2 * range)))
-);
+const position = (time, range) => range - Math.abs(range - (time % (2 * range)));
 
 const probe = (firewall, { delay = 0 } = {}) => {
   let caught = false;

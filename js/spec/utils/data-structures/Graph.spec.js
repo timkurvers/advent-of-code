@@ -1,12 +1,6 @@
 /* eslint-disable object-curly-newline */
 
-import {
-  Graph,
-  GraphEdge,
-  GraphVertex,
-  Grid,
-  stripIndent,
-} from '../../../src/utils/index.js';
+import { Graph, GraphEdge, GraphVertex, Grid, stripIndent } from '../../../src/utils/index.js';
 
 const sample = new Graph();
 sample.edge(1, 3, { cost: -2 });
@@ -238,12 +232,46 @@ describe('Graph', () => {
       const matrix = sample.floydwarshall();
 
       const [v1, v2, v3, v4] = [sample.find(1), sample.find(2), sample.find(3), sample.find(4)];
-      expect(matrix).toEqual(new Map([
-        [v1, new Map([[v1, 0], [v2, -1], [v3, -2], [v4, 0]])],
-        [v2, new Map([[v1, 4], [v2, 0], [v3, 2], [v4, 4]])],
-        [v3, new Map([[v1, 5], [v2, 1], [v3, 0], [v4, 2]])],
-        [v4, new Map([[v1, 3], [v2, -1], [v3, 1], [v4, 0]])],
-      ]));
+      expect(matrix).toEqual(
+        new Map([
+          [
+            v1,
+            new Map([
+              [v1, 0],
+              [v2, -1],
+              [v3, -2],
+              [v4, 0],
+            ]),
+          ],
+          [
+            v2,
+            new Map([
+              [v1, 4],
+              [v2, 0],
+              [v3, 2],
+              [v4, 4],
+            ]),
+          ],
+          [
+            v3,
+            new Map([
+              [v1, 5],
+              [v2, 1],
+              [v3, 0],
+              [v4, 2],
+            ]),
+          ],
+          [
+            v4,
+            new Map([
+              [v1, 3],
+              [v2, -1],
+              [v3, 1],
+              [v4, 0],
+            ]),
+          ],
+        ]),
+      );
     });
   });
 
@@ -274,9 +302,7 @@ describe('Graph', () => {
     it('creates a graph from given grid', () => {
       const graph = Graph.from(grid, {
         isVertex: (point) => point.value >= 'A' && point.value <= 'Z',
-        neighborsFor: (current) => (
-          current.adjacentNeighbors.filter((point) => point.value !== '#')
-        ),
+        neighborsFor: (current) => current.adjacentNeighbors.filter((point) => point.value !== '#'),
       });
 
       const [s, x, g, i] = graph.vertices;
@@ -301,9 +327,7 @@ describe('Graph', () => {
     it('augments edges with path between vertices', () => {
       const graph = Graph.from(grid, {
         isVertex: (point) => point.value >= 'S' && point.value <= 'X',
-        neighborsFor: (current) => (
-          current.adjacentNeighbors.filter((point) => point.value !== '#')
-        ),
+        neighborsFor: (current) => current.adjacentNeighbors.filter((point) => point.value !== '#'),
       });
 
       const [sx, xs] = graph.edges;
@@ -328,9 +352,7 @@ describe('Graph', () => {
           }
           return g.lookup(new GraphVertex(`${point.value}+`));
         },
-        neighborsFor: (current) => (
-          current.adjacentNeighbors.filter((point) => point.value !== '#')
-        ),
+        neighborsFor: (current) => current.adjacentNeighbors.filter((point) => point.value !== '#'),
       });
 
       const [s, g, i] = graph.vertices;
@@ -348,17 +370,13 @@ describe('Graph', () => {
     it('supports custom edge validation function', () => {
       const graph = Graph.from(grid, {
         isVertex: (point) => point.value === 'G' || point.value === 'X',
-        neighborsFor: (current) => (
-          current.adjacentNeighbors.filter((point) => point.value !== '#')
-        ),
+        neighborsFor: (current) => current.adjacentNeighbors.filter((point) => point.value !== '#'),
         isValidEdge: (a, _b) => a.point.value === 'X',
       });
 
       const [x, g] = graph.vertices;
 
-      expect(graph.edges).toEqual([
-        { from: x, to: g, cost: 5 },
-      ]);
+      expect(graph.edges).toEqual([{ from: x, to: g, cost: 5 }]);
     });
 
     it('supports custom edge and vertex classes', () => {
@@ -378,9 +396,7 @@ describe('Graph', () => {
 
       const graph = Graph.from(grid, {
         isVertex: (point) => point.value >= 'A' && point.value <= 'Z',
-        neighborsFor: (current) => (
-          current.adjacentNeighbors.filter((point) => point.value !== '#')
-        ),
+        neighborsFor: (current) => current.adjacentNeighbors.filter((point) => point.value !== '#'),
         edgeClass: CustomEdge,
         vertexClass: CustomVertex,
       });

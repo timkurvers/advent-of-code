@@ -1,8 +1,6 @@
 import { solution, sum } from '../../utils/index.js';
 
-const parse = (input) => (
-  input.trim().split(',').map(Number)
-);
+const parse = (input) => input.trim().split(',').map(Number);
 
 const count = (fish, { days }) => {
   // Each slot contains the amount of fish for that lifetime

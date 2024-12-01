@@ -13,9 +13,7 @@ const step = (grid, { isStuck = () => false } = {}) => {
     let { value } = point;
 
     if (!isStuck(point)) {
-      const litNeighbors = point.neighbors.filter((neighbor) => (
-        neighbor.value === State.ON
-      )).length;
+      const litNeighbors = point.neighbors.filter((neighbor) => neighbor.value === State.ON).length;
 
       if (value === State.ON && litNeighbors !== 2 && litNeighbors !== 3) {
         value = State.OFF;
@@ -41,24 +39,18 @@ export const partOne = solution.inefficient((input, { steps = 100 } = {}) => {
 
 export const partTwo = solution.inefficient((input, { steps = 100 } = {}) => {
   const grid = Grid.from(input);
-  const {
-    minX,
-    maxX,
-    minY,
-    maxY,
-  } = grid;
+  const { minX, maxX, minY, maxY } = grid;
 
   grid.set(minX, minY, State.ON);
   grid.set(minX, maxY, State.ON);
   grid.set(maxX, minY, State.ON);
   grid.set(maxX, maxY, State.ON);
 
-  const isStuck = (point) => (
-    (point.x === minX && point.y === minY)
-    || (point.x === minX && point.y === maxY)
-    || (point.x === maxX && point.y === minY)
-    || (point.x === maxX && point.y === maxY)
-  );
+  const isStuck = (point) =>
+    (point.x === minX && point.y === minY) ||
+    (point.x === minX && point.y === maxY) ||
+    (point.x === maxX && point.y === minY) ||
+    (point.x === maxX && point.y === maxY);
 
   let current = grid;
   for (let s = 0; s < steps; ++s) {

@@ -28,7 +28,7 @@ const simulate = (input, { seek } = {}) => {
   const { entities, instructions } = parse(input);
 
   let instruction = null;
-  while (instruction = instructions.shift()) {
+  while ((instruction = instructions.shift())) {
     const from = entities.lookup(instruction.from);
     const { low, high } = from;
 
@@ -63,10 +63,6 @@ export const partOne = solution((input, { low = 17, high = 61 } = {}) => {
 
 export const partTwo = solution((input) => {
   const { entities } = simulate(input);
-  const outputs = [
-    entities.get('output 0'),
-    entities.get('output 1'),
-    entities.get('output 2'),
-  ];
+  const outputs = [entities.get('output 0'), entities.get('output 1'), entities.get('output 2')];
   return outputs.reduce((total, current) => total * current.value, 1);
 });

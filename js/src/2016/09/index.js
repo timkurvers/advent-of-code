@@ -9,7 +9,7 @@ const decompress = (str, { recursive } = {}) => {
 
   let i = 0;
   let char = '';
-  while (char = str[i]) {
+  while ((char = str[i])) {
     if (char === '(') {
       matcher.lastIndex = i;
       const match = matcher.exec(str);
@@ -35,10 +35,6 @@ const decompress = (str, { recursive } = {}) => {
   return total;
 };
 
-export const partOne = solution((input) => (
-  decompress(input)
-));
+export const partOne = solution((input) => decompress(input));
 
-export const partTwo = solution.inefficient((input) => (
-  decompress(input, { recursive: true })
-));
+export const partTwo = solution.inefficient((input) => decompress(input, { recursive: true }));

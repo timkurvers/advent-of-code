@@ -11,12 +11,7 @@ class PointWithPath {
   options(passcode) {
     const hash = hexmd5(passcode + this.path);
 
-    const {
-      up,
-      down,
-      left,
-      right,
-    } = this.point;
+    const { up, down, left, right } = this.point;
 
     const options = [];
     if (up && isUnlocked(hash[0])) {

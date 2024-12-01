@@ -1,6 +1,15 @@
 /* eslint-disable max-len, no-cond-assign, no-shadow, prefer-const */
 
-import { Grid, Orientation, Rotation, dx, dy, isHorizontalOrientation, isVerticalOrientation, solution } from '../../utils/index.js';
+import {
+  Grid,
+  Orientation,
+  Rotation,
+  dx,
+  dy,
+  isHorizontalOrientation,
+  isVerticalOrientation,
+  solution,
+} from '../../utils/index.js';
 
 const parse = (input) => Grid.from(input.trim());
 
@@ -8,15 +17,15 @@ const energize = (grid, start, orientation = Orientation.RIGHT) => {
   const beams = [{ current: start, orientation }];
 
   let beam;
-  while (beam = beams.shift()) {
+  while ((beam = beams.shift())) {
     let { current, orientation } = beam;
     while (current) {
       current.energized = true;
 
       let next = null;
       if (
-        (current.value === '|' && isHorizontalOrientation(orientation))
-        || (current.value === '-' && isVerticalOrientation(orientation))
+        (current.value === '|' && isHorizontalOrientation(orientation)) ||
+        (current.value === '-' && isVerticalOrientation(orientation))
       ) {
         // Prevent splitting ad infinitum
         if (current.split) break;

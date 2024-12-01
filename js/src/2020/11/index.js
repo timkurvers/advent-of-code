@@ -9,22 +9,28 @@ const Type = {
 };
 
 const RayDirections = [
-  { dx: -1, dy: -1 }, { dx: 0, dy: -1 }, { dx: 1, dy: -1 },
-  { dx: -1, dy:  0 },                    { dx: 1, dy:  0 },
-  { dx: -1, dy:  1 }, { dx: 0, dy:  1 }, { dx: 1, dy:  1 },
+  { dx: -1, dy: -1 },
+  { dx: 0, dy: -1 },
+  { dx: 1, dy: -1 },
+  { dx: -1, dy: 0 },
+  { dx: 1, dy: 0 },
+  { dx: -1, dy: 1 },
+  { dx: 0, dy: 1 },
+  { dx: 1, dy: 1 },
 ];
 
 // Whether given point holds an occupied seat
 const isOccupied = (point) => point.value === Type.OCCUPIED;
 
 // Finds the first seats seen (if any) from given point in all eight directions
-const seatsSeenBy = (point) => RayDirections.map(({ dx, dy }) => {
-  let current = point;
-  do {
-    current = point.grid.getPoint(current.x + dx, current.y + dy);
-  } while (current && current.value === Type.FLOOR);
-  return current;
-}).filter(Boolean);
+const seatsSeenBy = (point) =>
+  RayDirections.map(({ dx, dy }) => {
+    let current = point;
+    do {
+      current = point.grid.getPoint(current.x + dx, current.y + dy);
+    } while (current && current.value === Type.FLOOR);
+    return current;
+  }).filter(Boolean);
 
 // Processes the seating model exactly once, returning a new grid if changes were
 // made, if not, the original grid is returned

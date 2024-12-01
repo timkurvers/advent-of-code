@@ -7,14 +7,13 @@ import * as operations from './operations.js';
 
 const INSTRUCTION_MATCHER = /(.{3}) ([+-]\d+)/g;
 
-const parse = (input) => (
+const parse = (input) =>
   Array.from(input.trim().matchAll(INSTRUCTION_MATCHER)).map((match) => {
     const opcode = match[1];
     const operation = operations[opcode];
     const value = +match[2];
     return { operation, value };
-  })
-);
+  });
 
 export const partOne = solution((input) => {
   const instructions = parse(input);

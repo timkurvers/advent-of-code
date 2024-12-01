@@ -1,6 +1,11 @@
 import { Graph, solution } from '../../utils/index.js';
 
-const parse = (input) => input.trim().split('\n').map(Number).sort((a, b) => a - b);
+const parse = (input) =>
+  input
+    .trim()
+    .split('\n')
+    .map(Number)
+    .sort((a, b) => a - b);
 
 // Prepares a list of entries, prepending charging outlet (0) and appending the
 // adapter of device (highest-rated adapter + 3)
@@ -31,9 +36,7 @@ export const partTwo = solution((input) => {
   const entries = prepare(adapters);
 
   // Finds valid connectors for given joltage
-  const connectorsFor = (joltage) => (
-    entries.filter((entry) => joltage >= entry - 3 && joltage < entry)
-  );
+  const connectorsFor = (joltage) => entries.filter((entry) => joltage >= entry - 3 && joltage < entry);
 
   // Creates a graph with the outlet, adapters and device as vertices
   // Note: Probably faster without the graph, but graphs are cool <3

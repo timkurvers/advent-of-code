@@ -30,13 +30,18 @@ const scan = async (input) => {
 export const partOne = solution(async (input, { gridFromInput }) => {
   const grid = gridFromInput ? Grid.from(input) : await scan(input);
 
-  const intersections = grid.filter((point) => (
-    point.value === Type.SCAFFOLD
-    && point.down && point.down.value === Type.SCAFFOLD
-    && point.left && point.left.value === Type.SCAFFOLD
-    && point.right && point.right.value === Type.SCAFFOLD
-    && point.up && point.up.value === Type.SCAFFOLD
-  ));
+  const intersections = grid.filter(
+    (point) =>
+      point.value === Type.SCAFFOLD &&
+      point.down &&
+      point.down.value === Type.SCAFFOLD &&
+      point.left &&
+      point.left.value === Type.SCAFFOLD &&
+      point.right &&
+      point.right.value === Type.SCAFFOLD &&
+      point.up &&
+      point.up.value === Type.SCAFFOLD,
+  );
 
   return sum(intersections.map((point) => point.x * point.y));
 });
@@ -52,10 +57,7 @@ export const partTwo = solution(async (input) => {
   // Steps once using given rotation, returning point if valid, null otherwise
   const step = (rotation) => {
     const proposed = orientation + rotation;
-    const point = grid.getPoint(
-      current.x + dx(proposed),
-      current.y + dy(proposed),
-    );
+    const point = grid.getPoint(current.x + dx(proposed), current.y + dy(proposed));
     return point && point.value === Type.SCAFFOLD ? point : null;
   };
 
@@ -64,7 +66,7 @@ export const partTwo = solution(async (input) => {
     let next;
 
     // Attempt moving forwards
-    if (next = step(Rotation.NONE)) {
+    if ((next = step(Rotation.NONE))) {
       if (!path.length) {
         path.push(0);
       }
@@ -74,11 +76,11 @@ export const partTwo = solution(async (input) => {
     }
 
     // Attempt turning left/right
-    if (next = step(Rotation.TURN_LEFT)) {
+    if ((next = step(Rotation.TURN_LEFT))) {
       path.push('L', 0);
       orientation += Rotation.TURN_LEFT;
       continue;
-    } else if (next = step(Rotation.TURN_RIGHT)) {
+    } else if ((next = step(Rotation.TURN_RIGHT))) {
       path.push('R', 0);
       orientation += Rotation.TURN_RIGHT;
       continue;

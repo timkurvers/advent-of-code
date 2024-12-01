@@ -2,14 +2,16 @@
 
 import { cast, solution } from '../../utils/index.js';
 
-const parse = (input) => (
-  input.trim().split('\n').map((line) => {
-    const [first, second] = line.split('|');
-    const [id, ...winningNrs] = first.match(/\d+/g).map(cast);
-    const nrs = second.match(/\d+/g).map(cast);
-    return { id, winningNrs, nrs };
-  })
-);
+const parse = (input) =>
+  input
+    .trim()
+    .split('\n')
+    .map((line) => {
+      const [first, second] = line.split('|');
+      const [id, ...winningNrs] = first.match(/\d+/g).map(cast);
+      const nrs = second.match(/\d+/g).map(cast);
+      return { id, winningNrs, nrs };
+    });
 
 export const partOne = solution((input) => {
   const cards = parse(input);
@@ -29,7 +31,7 @@ export const partTwo = solution((input) => {
   const pile = [...cards];
   let card;
   let amount = 0;
-  while (card = pile.pop()) {
+  while ((card = pile.pop())) {
     ++amount;
     const winners = card.nrs.filter((have) => card.winningNrs.includes(have));
     if (winners.length) {

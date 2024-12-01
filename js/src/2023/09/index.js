@@ -1,8 +1,10 @@
 import { cast, solution, sum } from '../../utils/index.js';
 
-const parse = (input) => (
-  input.trim().split('\n').map((line) => line.split(' ').map(cast))
-);
+const parse = (input) =>
+  input
+    .trim()
+    .split('\n')
+    .map((line) => line.split(' ').map(cast));
 
 const isZero = (value) => value === 0;
 

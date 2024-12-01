@@ -1,9 +1,4 @@
-import {
-  Grid,
-  astar,
-  bfs,
-  stripIndent,
-} from '../../src/utils/index.js';
+import { Grid, astar, bfs, stripIndent } from '../../src/utils/index.js';
 
 describe('pathfinding utilities', () => {
   const grid = Grid.from(stripIndent`
@@ -24,26 +19,29 @@ describe('pathfinding utilities', () => {
   // From S to G
   const path = [
     start,
-    grid.getPoint(0, 1), grid.getPoint(0, 2),
-    grid.getPoint(0, 3), grid.getPoint(0, 4),
+    grid.getPoint(0, 1),
+    grid.getPoint(0, 2),
+    grid.getPoint(0, 3),
+    grid.getPoint(0, 4),
     goal,
   ];
 
   // From S to G ignoring ?s
   const longPath = [
     start,
-    grid.getPoint(1, 0), grid.getPoint(2, 0), grid.getPoint(3, 0),
-    grid.getPoint(3, 1), grid.getPoint(3, 2), grid.getPoint(3, 3),
-    grid.getPoint(3, 4), grid.getPoint(2, 4),
+    grid.getPoint(1, 0),
+    grid.getPoint(2, 0),
+    grid.getPoint(3, 0),
+    grid.getPoint(3, 1),
+    grid.getPoint(3, 2),
+    grid.getPoint(3, 3),
+    grid.getPoint(3, 4),
+    grid.getPoint(2, 4),
     goal,
   ];
 
   // From S to X
-  const pathX = [
-    start,
-    grid.getPoint(1, 0), grid.getPoint(2, 0),
-    grid.getPoint(3, 0), grid.getPoint(3, 1),
-  ];
+  const pathX = [start, grid.getPoint(1, 0), grid.getPoint(2, 0), grid.getPoint(3, 0), grid.getPoint(3, 1)];
 
   describe('astar()', () => {
     it('returns shortest path with its score', () => {

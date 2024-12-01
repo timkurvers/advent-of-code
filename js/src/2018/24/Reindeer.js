@@ -27,10 +27,7 @@ class Reindeer {
   }
 
   get activeGroups() {
-    return [
-      ...this.immuneSystem.activeGroups,
-      ...this.infection.activeGroups,
-    ];
+    return [...this.immuneSystem.activeGroups, ...this.infection.activeGroups];
   }
 
   get units() {
@@ -46,18 +43,18 @@ class Reindeer {
     });
 
     // Preparation phase (sorted by effective power and initiative)
-    activeGroups.sort((a, b) => {
-      let diff = b.effectivePower - a.effectivePower;
-      if (!diff) {
-        diff = b.initiative - a.initiative;
-      }
-      return diff;
-    }).forEach((group) => group.prepare());
+    activeGroups
+      .sort((a, b) => {
+        let diff = b.effectivePower - a.effectivePower;
+        if (!diff) {
+          diff = b.initiative - a.initiative;
+        }
+        return diff;
+      })
+      .forEach((group) => group.prepare());
 
     // Attack phase (sorted by initiative)
-    activeGroups.sort((a, b) => (
-      b.initiative - a.initiative
-    )).forEach((group) => group.attack());
+    activeGroups.sort((a, b) => b.initiative - a.initiative).forEach((group) => group.attack());
 
     // Army defeat clause
     if (this.immuneSystem.defeated) {

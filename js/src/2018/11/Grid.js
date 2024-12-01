@@ -17,7 +17,7 @@ class Grid {
     let level = rackID * y;
     level += this.serialNumber;
     level *= rackID;
-    level = +(level.toString().slice(-3, -2));
+    level = +level.toString().slice(-3, -2);
     level -= 5;
     return level;
   }

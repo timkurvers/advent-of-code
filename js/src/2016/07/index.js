@@ -1,13 +1,12 @@
 import { solution } from '../../utils/index.js';
 
-const parse = (input) => (
+const parse = (input) =>
   input.split('\n').map((address) => {
     const split = address.split(/\[|\]/);
     const hypernets = split.filter((_, index) => index % 2 === 1);
     const words = split.filter((_, index) => index % 2 === 0);
     return { hypernets, words };
-  })
-);
+  });
 
 const hasABBA = (word) => {
   for (let i = 0; i < word.length - 3; ++i) {
@@ -46,10 +45,6 @@ const supportsSSL = (address) => {
   });
 };
 
-export const partOne = solution((input) => (
-  parse(input).filter(supportsTLS).length
-));
+export const partOne = solution((input) => parse(input).filter(supportsTLS).length);
 
-export const partTwo = solution((input) => (
-  parse(input).filter(supportsSSL).length
-));
+export const partTwo = solution((input) => parse(input).filter(supportsSSL).length);

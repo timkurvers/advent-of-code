@@ -19,7 +19,7 @@ export const overlappingMatch = (input, regexp, { window = 1 } = {}) => {
   const local = new RegExp(regexp, regexp?.flags);
   const matches = [];
   let match;
-  while (match = local.exec(input)) {
+  while ((match = local.exec(input))) {
     matches.push(match[0]);
     local.lastIndex = match.index + window;
   }
@@ -29,9 +29,7 @@ export const overlappingMatch = (input, regexp, { window = 1 } = {}) => {
 export const reverse = (string) => string.split('').reverse().join('');
 
 export const stripIndent = (strings, ...params) => {
-  let source = strings.map((string, i) => (
-    `${string}${params[i] || ''}`
-  )).join('');
+  let source = strings.map((string, i) => `${string}${params[i] || ''}`).join('');
 
   // See: https://github.com/zspecza/common-tags/blob/master/src/stripIndentTransformer/stripIndentTransformer.js
   const match = source.match(/^[^\S\n]*(?=\S)/gm);
@@ -52,9 +50,7 @@ export const stripIndent = (strings, ...params) => {
 
 export const camelcase = (str) => {
   str = str.toLowerCase();
-  str = str.replace(/(?:_|-| )([\p{Lower}\d]+)/gu, (_, part) => (
-    `${part[0].toUpperCase()}${part.slice(1)}`
-  ));
+  str = str.replace(/(?:_|-| )([\p{Lower}\d]+)/gu, (_, part) => `${part[0].toUpperCase()}${part.slice(1)}`);
   return str;
 };
 

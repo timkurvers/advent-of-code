@@ -1,8 +1,6 @@
 import { solution } from '../../utils/index.js';
 
-const parse = (input) => (
-  input.trim().split('\n')
-);
+const parse = (input) => input.trim().split('\n');
 
 const prioritize = (item) => {
   const ord = item.charCodeAt(0);
@@ -33,9 +31,7 @@ const findBadge = (group) => {
 
 export const partOne = solution((input) => {
   const rucksacks = parse(input);
-  return rucksacks.reduce((total, rucksack) => (
-    total + prioritize(findDuplicate(rucksack))
-  ), 0);
+  return rucksacks.reduce((total, rucksack) => total + prioritize(findDuplicate(rucksack)), 0);
 });
 
 export const partTwo = solution((input) => {

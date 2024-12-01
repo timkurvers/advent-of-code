@@ -2,12 +2,14 @@ import { Cache, cast, solution, sum } from '../../utils/index.js';
 
 const STEP_MATCHER = /(\w+)(=|-)(\d+)?/;
 
-const parse = (input) => (
-  input.trim().split(',').map((str) => {
-    const [_, label, op, focalLength] = str.match(STEP_MATCHER);
-    return { str, label, op, focalLength: cast(focalLength) };
-  })
-);
+const parse = (input) =>
+  input
+    .trim()
+    .split(',')
+    .map((str) => {
+      const [_, label, op, focalLength] = str.match(STEP_MATCHER);
+      return { str, label, op, focalLength: cast(focalLength) };
+    });
 
 const hash = (str) => {
   const { length } = str;

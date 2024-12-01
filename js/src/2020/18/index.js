@@ -28,9 +28,9 @@ const sya = (line, { usePrecedence = false }) => {
     } else if (char in operators) {
       let top = null;
       while (
-        (top = peek())
-        && top in operators
-        && (!usePrecedence || operators[top].precedence > operators[char].precedence)
+        (top = peek()) &&
+        top in operators &&
+        (!usePrecedence || operators[top].precedence > operators[char].precedence)
       ) {
         rpn.push(opstack.pop());
       }
@@ -52,9 +52,11 @@ const sya = (line, { usePrecedence = false }) => {
   return rpn;
 };
 
-const parse = (input, { usePrecedence } = {}) => (
-  input.trim().split('\n').map((line) => sya(line, { usePrecedence }))
-);
+const parse = (input, { usePrecedence } = {}) =>
+  input
+    .trim()
+    .split('\n')
+    .map((line) => sya(line, { usePrecedence }));
 
 // Executes given Reverse Polish Notation and returns the remaining stack value
 const execute = (rpn) => {

@@ -4,16 +4,20 @@ import { Cache, bisect, solution } from '../../utils/index.js';
 
 const REACTION_MATCHER = /(\d+) (\w+)/g;
 
-const parse = (input) => input.trim().split('\n').reduce((lookup, line) => {
-  const matches = Array.from(line.matchAll(REACTION_MATCHER));
-  const reagents = matches.map(([, quantity, type]) => ({
-    quantity: +quantity,
-    type,
-  }));
-  const output = reagents.pop();
-  lookup.set(output.type, { ...output, reagents });
-  return lookup;
-}, new Map());
+const parse = (input) =>
+  input
+    .trim()
+    .split('\n')
+    .reduce((lookup, line) => {
+      const matches = Array.from(line.matchAll(REACTION_MATCHER));
+      const reagents = matches.map(([, quantity, type]) => ({
+        quantity: +quantity,
+        type,
+      }));
+      const output = reagents.pop();
+      lookup.set(output.type, { ...output, reagents });
+      return lookup;
+    }, new Map());
 
 const produce = (quantity, type, reactions, stock) => {
   const entry = stock.lookup(type);
@@ -74,9 +78,11 @@ export const partTwo = solution(async (input) => {
     return stock.get('FUEL').available === fuel;
   };
 
-  return await bisect({
-    lower: 1,
-    upper: ore,
-    until: (fuel) => !feasible(fuel),
-  }) - 1;
+  return (
+    (await bisect({
+      lower: 1,
+      upper: ore,
+      until: (fuel) => !feasible(fuel),
+    })) - 1
+  );
 });

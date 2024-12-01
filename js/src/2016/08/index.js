@@ -2,10 +2,14 @@ import { Grid, solution, wrap } from '../../utils/index.js';
 
 const INSTRUCTION_MATCHER = /(rect|row|column).+?(\d+).+?(\d+)/;
 
-const parse = (input) => input.trim().split('\n').map((line) => {
-  const [, opcode, a, b] = line.match(INSTRUCTION_MATCHER);
-  return { opcode, a: +a, b: +b };
-});
+const parse = (input) =>
+  input
+    .trim()
+    .split('\n')
+    .map((line) => {
+      const [, opcode, a, b] = line.match(INSTRUCTION_MATCHER);
+      return { opcode, a: +a, b: +b };
+    });
 
 const swipe = (instructions) => {
   const grid = new Grid();

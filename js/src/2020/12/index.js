@@ -1,32 +1,39 @@
-import {
-  Orientation, Rotation, dx, dy, solution,
-} from '../../utils/index.js';
+import { Orientation, Rotation, dx, dy, solution } from '../../utils/index.js';
 
 const NAV_INSTRUCTION_MATCHER = /(.)(\d+)\s?/g;
 
-const parse = (input) => (
+const parse = (input) =>
   Array.from(input.trim().matchAll(NAV_INSTRUCTION_MATCHER)).map((match) => ({
     action: match[1],
     value: +match[2],
-  }))
-);
+  }));
 
 const navigate = (instructions, { usingWaypoint = false } = {}) => {
   const ship = {
     x: 0,
     y: 0,
     facing: Orientation.EAST,
-    get dx() { return dx(this.facing); },
-    get dy() { return dy(this.facing); },
-    rotate(rotation) { this.facing += rotation; },
+    get dx() {
+      return dx(this.facing);
+    },
+    get dy() {
+      return dy(this.facing);
+    },
+    rotate(rotation) {
+      this.facing += rotation;
+    },
   };
 
   // Waypoint is always relative to the ship, so its x/y represents that delta
   const waypoint = {
     x: 10,
     y: -1,
-    get dx() { return this.x; },
-    get dy() { return this.y; },
+    get dx() {
+      return this.x;
+    },
+    get dy() {
+      return this.y;
+    },
     rotate(rotation) {
       const { x, y } = this;
       const cos = Math.cos(rotation);
@@ -54,14 +61,18 @@ const navigate = (instructions, { usingWaypoint = false } = {}) => {
       case 'W':
         target.x -= value;
         break;
-      case 'L': {
-        const rotation = Rotation.TURN_LEFT * (value / 90);
-        target.rotate(rotation);
-      } break;
-      case 'R': {
-        const rotation = Rotation.TURN_RIGHT * (value / 90);
-        target.rotate(rotation);
-      } break;
+      case 'L':
+        {
+          const rotation = Rotation.TURN_LEFT * (value / 90);
+          target.rotate(rotation);
+        }
+        break;
+      case 'R':
+        {
+          const rotation = Rotation.TURN_RIGHT * (value / 90);
+          target.rotate(rotation);
+        }
+        break;
       case 'F':
         ship.x += target.dx * value;
         ship.y += target.dy * value;

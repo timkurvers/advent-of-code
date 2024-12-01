@@ -3,27 +3,33 @@
 import { Grid, Orientation, dx, dy, solution } from '../../utils/index.js';
 
 const PIPES = {
-  '|': { // vertical pipe connecting north and south.
+  '|': {
+    // vertical pipe connecting north and south.
     [Orientation.UP]: Orientation.UP,
     [Orientation.DOWN]: Orientation.DOWN,
   },
-  '-': { // horizontal pipe connecting east and west.
+  '-': {
+    // horizontal pipe connecting east and west.
     [Orientation.LEFT]: Orientation.LEFT,
     [Orientation.RIGHT]: Orientation.RIGHT,
   },
-  'L': { // 90-degree bend connecting north and east.
+  L: {
+    // 90-degree bend connecting north and east.
     [Orientation.DOWN]: Orientation.RIGHT,
     [Orientation.LEFT]: Orientation.UP,
   },
-  'J': { // 90-degree bend connecting north and west.
+  J: {
+    // 90-degree bend connecting north and west.
     [Orientation.DOWN]: Orientation.LEFT,
     [Orientation.RIGHT]: Orientation.UP,
   },
-  '7': { // 90-degree bend connecting south and west.
+  7: {
+    // 90-degree bend connecting south and west.
     [Orientation.UP]: Orientation.LEFT,
     [Orientation.RIGHT]: Orientation.DOWN,
   },
-  'F': { // 90-degree bend connecting south and east.
+  F: {
+    // 90-degree bend connecting south and east.
     [Orientation.UP]: Orientation.RIGHT,
     [Orientation.LEFT]: Orientation.DOWN,
   },
@@ -97,11 +103,11 @@ export const partTwo = solution((input) => {
         enclosed = !enclosed;
         edge = null;
 
-      // When dealing with a bend: ┌─┘ or └─┐
+        // When dealing with a bend: ┌─┘ or └─┐
       } else if ((edge === 'F' && value === 'J') || (edge === 'L' && value === '7')) {
         edge = null;
 
-      // Mark as intersection for all other cases and handle edge entry: ┌─ or └─
+        // Mark as intersection for all other cases and handle edge entry: ┌─ or └─
       } else {
         enclosed = !enclosed;
         if (value === 'F' || value === 'L') {

@@ -1,11 +1,6 @@
 /* eslint-disable consistent-return */
 
-import {
-  combine,
-  multiply,
-  solution,
-  sum,
-} from '../../utils/index.js';
+import { combine, multiply, solution, sum } from '../../utils/index.js';
 
 const parse = (input) => input.trim().split(/\s+/).map(Number);
 const qe = (numbers) => multiply(numbers);
@@ -29,15 +24,16 @@ const plan = (packages, { numGroups = 3 }) => {
   }
 };
 
-const best = (candidates) => candidates.reduce((winner, next) => {
-  if (next.length < winner.length) {
-    return next;
-  }
-  if (next.length === winner.length && next.qe < winner.qe) {
-    return next;
-  }
-  return winner;
-});
+const best = (candidates) =>
+  candidates.reduce((winner, next) => {
+    if (next.length < winner.length) {
+      return next;
+    }
+    if (next.length === winner.length && next.qe < winner.qe) {
+      return next;
+    }
+    return winner;
+  });
 
 export const partOne = solution.inefficient((input) => {
   const packages = parse(input);

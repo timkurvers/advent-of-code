@@ -20,7 +20,10 @@ const masksFor = (str) => {
     }
   }
   return {
-    and, or, floats, raw: str,
+    and,
+    or,
+    floats,
+    raw: str,
   };
 };
 
@@ -67,10 +70,7 @@ export const partTwo = solution((input) => {
 
     // Process all permutations of floating bits
     const combinations = Array.from(combine(masks.floats));
-    return [
-      base,
-      ...combinations.map((combination) => or(base, combination)),
-    ];
+    return [base, ...combinations.map((combination) => or(base, combination))];
   };
 
   // Reducing an array of ~3 798 464 504 items is not feasible, so sum manually

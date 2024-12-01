@@ -16,9 +16,7 @@ const enhance = (image, algo, { steps }) => {
   for (let step = 0; step < steps; ++step) {
     const next = new Grid();
     const filler = algo[0] === LIGHT_PIXEL && step % 2 ? LIGHT_PIXEL : DARK_PIXEL;
-    const {
-      minX, maxX, minY, maxY,
-    } = current;
+    const { minX, maxX, minY, maxY } = current;
     for (let y = minY - 2; y <= maxY + 2; ++y) {
       for (let x = minX - 2; x <= maxX + 2; ++x) {
         let index = 0;

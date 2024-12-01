@@ -6,7 +6,17 @@ const parse = (input) => {
     const [, px, py, pz, vx, vy, vz, ax, ay, az] = match.map(Number);
     const aavg = (Math.abs(ax) + Math.abs(ay) + Math.abs(az)) / 3;
     return {
-      id, px, py, pz, vx, vy, vz, ax, ay, az, aavg,
+      id,
+      px,
+      py,
+      pz,
+      vx,
+      vy,
+      vz,
+      ax,
+      ay,
+      az,
+      aavg,
     };
   });
 };

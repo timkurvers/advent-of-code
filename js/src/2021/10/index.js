@@ -1,20 +1,30 @@
 import { solution } from '../../utils/index.js';
 
-const parse = (input) => (
-  input.trim().split('\n')
-);
+const parse = (input) => input.trim().split('\n');
 
 const OPEN_CLOSE_PAIRS = {
-  '(': ')', '[': ']', '{': '}', '<': '>',
+  '(': ')',
+  '[': ']',
+  '{': '}',
+  '<': '>',
 };
 const CLOSE_OPEN_PAIRS = {
-  ')': '(', ']': '[', '}': '{', '>': '<',
+  ')': '(',
+  ']': '[',
+  '}': '{',
+  '>': '<',
 };
 const INVALID_SCORE = {
-  ')': 3, ']': 57, '}': 1197, '>': 25137,
+  ')': 3,
+  ']': 57,
+  '}': 1197,
+  '>': 25137,
 };
 const FIX_SCORE = {
-  ')': 1, ']': 2, '}': 3, '>': 4,
+  ')': 1,
+  ']': 2,
+  '}': 3,
+  '>': 4,
 };
 
 const validate = (line) => {
@@ -50,11 +60,9 @@ export const partTwo = solution((input) => {
 
   const candidates = [];
   for (const line of lines) {
-    const [valid,, stack] = validate(line);
+    const [valid, , stack] = validate(line);
     if (valid) {
-      const points = stack.reverse().reduce((acc, char) => (
-        acc * 5 + FIX_SCORE[OPEN_CLOSE_PAIRS[char]]
-      ), 0);
+      const points = stack.reverse().reduce((acc, char) => acc * 5 + FIX_SCORE[OPEN_CLOSE_PAIRS[char]], 0);
       candidates.push(points);
     }
   }

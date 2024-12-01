@@ -1,10 +1,5 @@
 import IntcodeProgram from '../02/IntcodeProgram.js';
-import {
-  combine,
-  fromASCII,
-  solution,
-  stripIndent,
-} from '../../utils/index.js';
+import { combine, fromASCII, solution, stripIndent } from '../../utils/index.js';
 
 export const finalPart = solution.inefficient(async (input) => {
   const program = IntcodeProgram.from(input);

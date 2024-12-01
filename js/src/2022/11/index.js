@@ -1,19 +1,20 @@
 /* eslint-disable no-cond-assign */
 
-import {
-  cast, lcm, solution, stripIndent,
-} from '../../utils/index.js';
+import { cast, lcm, solution, stripIndent } from '../../utils/index.js';
 
-const MONKEY_MATCHER = new RegExp(stripIndent`
+const MONKEY_MATCHER = new RegExp(
+  stripIndent`
   Monkey (?<id>\\d+):
     Starting items: (?<items>[\\d, ]+)
     Operation: new = old (?<operator>[*+]) (?<arg>\\d+|old)
     Test: divisible by (?<divider>\\d+)
       If true: throw to monkey (?<truetarget>\\d+)
       If false: throw to monkey (?<falsetarget>\\d+)
-`, 'g');
+`,
+  'g',
+);
 
-const parse = (input) => (
+const parse = (input) =>
   Array.from(input.matchAll(MONKEY_MATCHER)).map((match) => ({
     id: +match.groups.id,
     items: match.groups.items.split(', ').map(Number),
@@ -27,8 +28,7 @@ const parse = (input) => (
       falsetarget: +match.groups.falsetarget,
       count: 0,
     },
-  }))
-);
+  }));
 
 const simulate = ({ monkeys, rounds, anxious = false }) => {
   // We meet again AoC 2019 day 12! :(
@@ -37,7 +37,7 @@ const simulate = ({ monkeys, rounds, anxious = false }) => {
   for (let round = 0; round < rounds; ++round) {
     for (const { items, operation, test } of monkeys) {
       let item;
-      while (item = items.shift()) {
+      while ((item = items.shift())) {
         let level = item;
 
         const rhs = operation.arg === 'old' ? item : operation.arg;
@@ -50,7 +50,7 @@ const simulate = ({ monkeys, rounds, anxious = false }) => {
         if (anxious) {
           level %= modulus;
         } else {
-          level = level / 3 | 0;
+          level = (level / 3) | 0;
         }
 
         const pass = level % test.divider === 0;

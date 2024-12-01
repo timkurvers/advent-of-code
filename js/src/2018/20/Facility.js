@@ -90,15 +90,11 @@ class Facility {
   }
 
   get rooms() {
-    return this.grid.flatMap((row) => (
-      row.filter((coord) => coord.type === Type.ROOM)
-    ));
+    return this.grid.flatMap((row) => row.filter((coord) => coord.type === Type.ROOM));
   }
 
   get visual() {
-    const overview = this.grid.map((row) => (
-      row.map((coord) => coord.visual).join('')
-    )).join('\n');
+    const overview = this.grid.map((row) => row.map((coord) => coord.visual).join('')).join('\n');
     return overview;
   }
 }

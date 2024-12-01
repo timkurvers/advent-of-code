@@ -57,10 +57,6 @@ const next = (start) => {
   return current;
 };
 
-export const partOne = solution((input) => (
-  reconstruct(next(parse(input)))
-));
+export const partOne = solution((input) => reconstruct(next(parse(input))));
 
-export const partTwo = solution((input) => (
-  reconstruct(next(next(parse(input))))
-));
+export const partTwo = solution((input) => reconstruct(next(next(parse(input)))));

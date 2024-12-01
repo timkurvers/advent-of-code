@@ -1,6 +1,4 @@
-import {
-  Grid, multiply, solution, wrap,
-} from '../../utils/index.js';
+import { Grid, multiply, solution, wrap } from '../../utils/index.js';
 
 const isTree = (value) => value === '#';
 

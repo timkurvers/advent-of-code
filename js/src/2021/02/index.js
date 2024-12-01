@@ -1,11 +1,13 @@
 import { solution } from '../../utils/index.js';
 
-const parse = (input) => (
-  input.trim().split('\n').map((line) => {
-    const [direction, value] = line.split(' ');
-    return { direction, value: Number(value) };
-  })
-);
+const parse = (input) =>
+  input
+    .trim()
+    .split('\n')
+    .map((line) => {
+      const [direction, value] = line.split(' ');
+      return { direction, value: Number(value) };
+    });
 
 const navigate = (commands, { rtfm = false } = {}) => {
   let position = 0;

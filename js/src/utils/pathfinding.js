@@ -14,13 +14,17 @@ const reconstruct = (cameFrom, goal) => {
 
 // See: https://www.redblobgames.com/pathfinding/a-star/introduction.html
 // Also: https://en.wikipedia.org/wiki/A*_search_algorithm#Pseudocode
-export const astar = (start, goal, {
-  cost = () => 1,
-  done = (current, _goal) => current === goal,
-  heuristic = () => 0,
-  nodesFor,
-  neighborsFor = nodesFor,
-}) => {
+export const astar = (
+  start,
+  goal,
+  {
+    cost = () => 1,
+    done = (current, _goal) => current === goal,
+    heuristic = () => 0,
+    nodesFor,
+    neighborsFor = nodesFor,
+  },
+) => {
   const frontier = new PriorityQueue();
   frontier.put(start, 0);
 
@@ -54,11 +58,11 @@ export const astar = (start, goal, {
 };
 
 // See: https://en.wikipedia.org/wiki/Breadth-first_search
-export const bfs = (start, goal, {
-  done = (current, _goal) => current === goal,
-  nodesFor,
-  neighborsFor = nodesFor,
-}) => {
+export const bfs = (
+  start,
+  goal,
+  { done = (current, _goal) => current === goal, nodesFor, neighborsFor = nodesFor },
+) => {
   const visited = new Set();
   visited.add(start);
 

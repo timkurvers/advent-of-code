@@ -590,9 +590,7 @@ describe('Grid', () => {
     });
 
     it('supports custom renderer', () => {
-      const result = grid.toString((point) => (
-        point ? point.value : '?'
-      ));
+      const result = grid.toString((point) => (point ? point.value : '?'));
       expect(result).toEqual(stripIndent`
         a?b
         ??c

@@ -52,8 +52,8 @@ class BinaryHeap {
   _bubbleDown(index) {
     const { compare, data } = this;
 
-    const left = (2 * index) + 1;
-    const right = (2 * index) + 2;
+    const left = 2 * index + 1;
+    const right = 2 * index + 2;
     let best = index;
 
     if (data[left] !== undefined && compare(data[left], data[best]) < 0) {

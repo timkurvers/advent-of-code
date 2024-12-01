@@ -13,18 +13,12 @@ const recover = (words, { frequency } = {}) => {
       counts[char] = (counts[char] || 0) + 1;
     }
 
-    const top = Object.keys(counts).sort((a, b) => (
-      multiplier * (counts[b] - counts[a])
-    ));
+    const top = Object.keys(counts).sort((a, b) => multiplier * (counts[b] - counts[a]));
     result += top[0];
   }
   return result;
 };
 
-export const partOne = solution((input) => (
-  recover(parse(input), { frequency: 'most' })
-));
+export const partOne = solution((input) => recover(parse(input), { frequency: 'most' }));
 
-export const partTwo = solution((input) => (
-  recover(parse(input), { frequency: 'least' })
-));
+export const partTwo = solution((input) => recover(parse(input), { frequency: 'least' }));

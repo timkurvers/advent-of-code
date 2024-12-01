@@ -32,9 +32,7 @@ const calculate = async (input, phases, { feedback } = {}) => {
 
 const simulate = (input, config, options) => {
   const permutations = Array.from(permute(config));
-  return Promise.all(
-    permutations.map((phases) => calculate(input, phases, options)),
-  );
+  return Promise.all(permutations.map((phases) => calculate(input, phases, options)));
 };
 
 export const partOne = solution(async (input) => {

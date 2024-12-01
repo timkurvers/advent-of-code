@@ -5,9 +5,11 @@ import Guard from './Guard.js';
 import Shift from './Shift.js';
 
 const schedule = (input) => {
-  const events = input.trim().split('\n').sort().map((definition) => (
-    new Event(definition)
-  ));
+  const events = input
+    .trim()
+    .split('\n')
+    .sort()
+    .map((definition) => new Event(definition));
 
   let guard = null;
   let shift = null;
@@ -32,9 +34,7 @@ const schedule = (input) => {
 export const partOne = solution((input) => {
   const guards = schedule(input);
 
-  const sleepy = guards.sort((a, b) => (
-    b.totalMinutesAsleep - a.totalMinutesAsleep
-  ))[0];
+  const sleepy = guards.sort((a, b) => b.totalMinutesAsleep - a.totalMinutesAsleep)[0];
 
   return sleepy.id * sleepy.mostAsleepPerMinute.minute;
 });
@@ -42,9 +42,9 @@ export const partOne = solution((input) => {
 export const partTwo = solution((input) => {
   const guards = schedule(input);
 
-  const sleepyPerMinute = guards.sort((a, b) => (
-    b.mostAsleepPerMinute.frequency - a.mostAsleepPerMinute.frequency
-  ))[0];
+  const sleepyPerMinute = guards.sort(
+    (a, b) => b.mostAsleepPerMinute.frequency - a.mostAsleepPerMinute.frequency,
+  )[0];
 
   return sleepyPerMinute.id * sleepyPerMinute.mostAsleepPerMinute.minute;
 });

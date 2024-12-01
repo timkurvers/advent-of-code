@@ -29,10 +29,13 @@ class AssembunnyProgram {
   }
 
   static from(input) {
-    const instructions = input.trim().split('\n').map((line) => {
-      const [opcode, x, y] = line.split(' ');
-      return { opcode, x, y };
-    });
+    const instructions = input
+      .trim()
+      .split('\n')
+      .map((line) => {
+        const [opcode, x, y] = line.split(' ');
+        return { opcode, x, y };
+      });
     return new this(instructions);
   }
 }

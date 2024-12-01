@@ -2,9 +2,7 @@ import { solution } from '../../utils/index.js';
 
 const parse = (input) => input.split(/,?\s+/).map(Number);
 
-export const partOne = solution((input) => (
-  parse(input).reduce((sum, next) => sum + next, 0)
-));
+export const partOne = solution((input) => parse(input).reduce((sum, next) => sum + next, 0));
 
 export const partTwo = solution((input) => {
   const parsed = parse(input);

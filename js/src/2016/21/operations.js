@@ -22,7 +22,7 @@ reverse positions 5 through 6
 */
 export const reverse = (chars, from, to) => {
   const copy = [...chars];
-  for (let i = 0; i <= (to - from); ++i) {
+  for (let i = 0; i <= to - from; ++i) {
     chars[+from + i] = copy[+to - i];
   }
 };

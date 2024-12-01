@@ -22,15 +22,11 @@ class Box {
   }
 
   lettersSharedWith(other) {
-    return this.letters.filter((char, index) => (
-      other.letters[index] === char
-    ));
+    return this.letters.filter((char, index) => other.letters[index] === char);
   }
 
   lettersDifferenceFrom(other) {
-    return this.letters.filter((char, index) => (
-      other.letters[index] !== char
-    ));
+    return this.letters.filter((char, index) => other.letters[index] !== char);
   }
 }
 

@@ -11,9 +11,11 @@ export const partOne = solution((input) => {
 export const partTwo = solution((input) => {
   const programs = Program.from(input);
 
-  const hash = (group) => (
-    Array.from(group).map((program) => program.id).sort().join('-')
-  );
+  const hash = (group) =>
+    Array.from(group)
+      .map((program) => program.id)
+      .sort()
+      .join('-');
 
   const groups = programs.reduce((set, program) => {
     const id = hash(program.group);

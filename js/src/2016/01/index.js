@@ -1,23 +1,15 @@
-import {
-  GridPoint,
-  Orientation,
-  Rotation,
-  dx,
-  dy,
-  solution,
-} from '../../utils/index.js';
+import { GridPoint, Orientation, Rotation, dx, dy, solution } from '../../utils/index.js';
 
 const rotations = {
   R: Rotation.TURN_RIGHT,
   L: Rotation.TURN_LEFT,
 };
 
-const parse = (input) => (
+const parse = (input) =>
   input.split(', ').map((instruction) => ({
     rotation: rotations[instruction[0]],
     blocks: +instruction.slice(1),
-  }))
-);
+  }));
 
 const follow = (instructions, { stopOnSeen = false } = {}) => {
   const seen = new Set();

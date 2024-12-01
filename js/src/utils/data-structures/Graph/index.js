@@ -42,10 +42,7 @@ class Graph {
   }
 
   link(a, b, options) {
-    return [
-      this.edge(a, b, options),
-      this.edge(b, a, options),
-    ];
+    return [this.edge(a, b, options), this.edge(b, a, options)];
   }
 
   floydwarshall() {
@@ -105,25 +102,24 @@ class Graph {
     return this;
   }
 
-  static from(grid, {
-    isValidEdge = () => true,
-    isVertex,
-    vertexForPoint = (point, graph) => (
-      isVertex(point) && graph.lookup(point.value)
-    ),
-    ...options
-  }) {
-    const {
-      edgeClass,
-      vertexClass,
-      ...bfsOptions
-    } = options;
+  static from(
+    grid,
+    {
+      isValidEdge = () => true,
+      isVertex,
+      vertexForPoint = (point, graph) => isVertex(point) && graph.lookup(point.value),
+      ...options
+    },
+  ) {
+    const { edgeClass, vertexClass, ...bfsOptions } = options;
 
     const graph = new this({ edgeClass, vertexClass });
-    const vps = grid.map((point) => {
-      const vertex = vertexForPoint(point, graph);
-      return vertex && { point, vertex };
-    }).filter(Boolean);
+    const vps = grid
+      .map((point) => {
+        const vertex = vertexForPoint(point, graph);
+        return vertex && { point, vertex };
+      })
+      .filter(Boolean);
 
     for (const a of vps) {
       for (const b of vps) {

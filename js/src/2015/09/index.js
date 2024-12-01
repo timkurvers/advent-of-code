@@ -1,10 +1,4 @@
-import {
-  Graph,
-  permute,
-  reduceMaxBy,
-  reduceMinBy,
-  solution,
-} from '../../utils/index.js';
+import { Graph, permute, reduceMaxBy, reduceMinBy, solution } from '../../utils/index.js';
 
 const DISTANCE_MATCHER = /(\w+) to (\w+) = (\d+)/g;
 
@@ -17,14 +11,15 @@ const parse = (input) => {
   return graph;
 };
 
-const distanceFor = (route) => route.reduce((distance, current, index) => {
-  const next = route[index + 1];
-  if (next) {
-    const edge = current.edges.find((e) => e.to === next);
-    return distance + edge.cost;
-  }
-  return distance;
-}, 0);
+const distanceFor = (route) =>
+  route.reduce((distance, current, index) => {
+    const next = route[index + 1];
+    if (next) {
+      const edge = current.edges.find((e) => e.to === next);
+      return distance + edge.cost;
+    }
+    return distance;
+  }, 0);
 
 const plan = (input) => {
   const graph = parse(input);

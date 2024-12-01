@@ -39,9 +39,7 @@ const process = (schema) => {
     }
   }
 
-  const gears = schema.filter((point) => (
-    isGear(point) && point.parts.length === 2
-  ));
+  const gears = schema.filter((point) => isGear(point) && point.parts.length === 2);
 
   return { parts, gears };
 };

@@ -1,21 +1,21 @@
 /* eslint-disable no-cond-assign */
 
-import {
-  Grid, bfs, solution, sum,
-} from '../../utils/index.js';
+import { Grid, bfs, solution, sum } from '../../utils/index.js';
 
 const parse = (input) => Grid.from(input.trim(), { cast: Number });
 
 export const partOne = solution((input) => {
   const grid = parse(input);
-  return sum(grid.map((point) => {
-    const { value } = point;
-    const isHigherLevel = (neighbor) => neighbor.value > value;
-    if (point.adjacentNeighbors.every(isHigherLevel)) {
-      return 1 + value;
-    }
-    return 0;
-  }));
+  return sum(
+    grid.map((point) => {
+      const { value } = point;
+      const isHigherLevel = (neighbor) => neighbor.value > value;
+      if (point.adjacentNeighbors.every(isHigherLevel)) {
+        return 1 + value;
+      }
+      return 0;
+    }),
+  );
 });
 
 export const partTwo = solution((input) => {
@@ -28,7 +28,7 @@ export const partTwo = solution((input) => {
   const isUnprocessed = (point) => isBasinPoint(point) && !visited.has(point);
 
   let current = null;
-  while (current = grid.find(isUnprocessed)) {
+  while ((current = grid.find(isUnprocessed))) {
     const { visited: basin } = bfs(current, null, {
       neighborsFor: (point) => point.adjacentNeighbors.filter(isBasinPoint),
     });

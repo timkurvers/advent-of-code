@@ -2,13 +2,10 @@ import { astar, solution } from '../../utils/index.js';
 
 import Maze, { Type } from './Maze.js';
 
-const traverse = (start, goal) => (
+const traverse = (start, goal) =>
   astar(start, goal, {
-    neighborsFor: (point) => point.adjacentNeighbors.filter((neighbor) => (
-      neighbor.value === Type.OPEN_SPACE
-    )),
-  })
-);
+    neighborsFor: (point) => point.adjacentNeighbors.filter((neighbor) => neighbor.value === Type.OPEN_SPACE),
+  });
 
 export const partOne = solution((input, { goalX = 31, goalY = 39 }) => {
   const maze = new Maze(input);

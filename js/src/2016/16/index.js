@@ -3,9 +3,7 @@ import { solution } from '../../utils/index.js';
 const generate = (initial, { length } = {}) => {
   let a = initial;
   while (a.length < length) {
-    const b = a.replace(/\d/g, (_char, index, str) => (
-      str[str.length - 1 - index] === '1' ? '0' : '1'
-    ));
+    const b = a.replace(/\d/g, (_char, index, str) => (str[str.length - 1 - index] === '1' ? '0' : '1'));
     a = `${a}0${b}`;
   }
   return a.slice(0, length);

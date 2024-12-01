@@ -1,6 +1,4 @@
-import {
-  Orientation, Rotation, isSameOrientation, reverse,
-} from '../../utils/index.js';
+import { Orientation, Rotation, isSameOrientation, reverse } from '../../utils/index.js';
 
 import TileSide from './TileSide.js';
 

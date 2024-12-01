@@ -4,11 +4,11 @@ import { solution } from '../../utils/index.js';
 
 const { isArray } = Array;
 
-const parse = (input) => (
-  input.trim().split('\n\n').map((pair) => (
-    pair.split('\n').map(JSON.parse)
-  ))
-);
+const parse = (input) =>
+  input
+    .trim()
+    .split('\n\n')
+    .map((pair) => pair.split('\n').map(JSON.parse));
 
 const compare = (left, right) => {
   if (!isArray(left) && !isArray(right)) {

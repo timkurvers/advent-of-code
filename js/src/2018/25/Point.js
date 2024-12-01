@@ -27,9 +27,7 @@ class Point {
   }
 
   distanceTo(other) {
-    return distance3D(
-      this.x, this.y, this.z, other.x, other.y, other.z,
-    ) + Math.abs(this.t - other.t);
+    return distance3D(this.x, this.y, this.z, other.x, other.y, other.z) + Math.abs(this.t - other.t);
   }
 }
 

@@ -27,10 +27,6 @@ const run = (start, { iterations }) => {
   return current;
 };
 
-export const partOne = solution((input) => (
-  run(input, { iterations: 40 }).length
-));
+export const partOne = solution((input) => run(input, { iterations: 40 }).length);
 
-export const partTwo = solution.inefficient((input) => (
-  run(input, { iterations: 50 }).length
-));
+export const partTwo = solution.inefficient((input) => run(input, { iterations: 50 }).length);

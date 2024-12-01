@@ -27,12 +27,14 @@ const convert = (char) => {
   return ord < 88 ? ord - 64 : ord - 87;
 };
 
-const parse = (input) => (
-  input.trim().split('\n').map((line) => {
-    const [p1, p2] = line.split(' ').map(convert);
-    return { p1, p2 };
-  })
-);
+const parse = (input) =>
+  input
+    .trim()
+    .split('\n')
+    .map((line) => {
+      const [p1, p2] = line.split(' ').map(convert);
+      return { p1, p2 };
+    });
 
 // Plays a given round, returning the score obtained by player 2
 const play = (round) => {

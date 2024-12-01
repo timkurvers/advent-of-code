@@ -1,10 +1,4 @@
-import {
-  Graph,
-  Grid,
-  permute,
-  reduceMinBy,
-  solution,
-} from '../../utils/index.js';
+import { Graph, Grid, permute, reduceMinBy, solution } from '../../utils/index.js';
 
 const Type = {
   EMPTY: '.',
@@ -27,23 +21,17 @@ const travel = (route) => {
 const prepare = (input) => {
   const grid = Grid.from(input);
 
-  const isVertex = (point) => (
-    point.value !== Type.EMPTY && point.value !== Type.WALL
-  );
+  const isVertex = (point) => point.value !== Type.EMPTY && point.value !== Type.WALL;
 
   const graph = Graph.from(grid, {
     isVertex,
-    neighborsFor: (current) => (
-      current.adjacentNeighbors.filter((point) => point.value !== Type.WALL)
-    ),
+    neighborsFor: (current) => current.adjacentNeighbors.filter((point) => point.value !== Type.WALL),
   });
 
   const start = graph.find('0');
 
   // Consider all routes starting with location 0
-  const routes = Array.from(permute(graph.vertices)).filter((route) => (
-    route[0] === start
-  ));
+  const routes = Array.from(permute(graph.vertices)).filter((route) => route[0] === start);
 
   return { graph, routes, start };
 };

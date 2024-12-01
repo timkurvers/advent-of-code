@@ -6,9 +6,7 @@ const noDuplicates = (passphrase) => {
 };
 
 const noAnagrams = (passphrase) => {
-  const words = passphrase.split(' ').map((word) => (
-    word.split('').sort().join('')
-  ));
+  const words = passphrase.split(' ').map((word) => word.split('').sort().join(''));
   return words.length === new Set(words).size;
 };
 
@@ -20,10 +18,10 @@ const process = (input, validate) => {
   }));
 };
 
-export const partOne = solution((input) => (
-  process(input, noDuplicates).filter((passphrase) => passphrase.valid).length
-));
+export const partOne = solution(
+  (input) => process(input, noDuplicates).filter((passphrase) => passphrase.valid).length,
+);
 
-export const partTwo = solution((input) => (
-  process(input, noAnagrams).filter((passphrase) => passphrase.valid).length
-));
+export const partTwo = solution(
+  (input) => process(input, noAnagrams).filter((passphrase) => passphrase.valid).length,
+);

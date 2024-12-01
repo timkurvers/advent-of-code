@@ -3,7 +3,7 @@ import path from 'path';
 
 import { PUZZLE_ROOT, SRC_ROOT } from './utils/index.js';
 
-const [,, ...target] = process.argv;
+const [, , ...target] = process.argv;
 
 (async () => {
   try {

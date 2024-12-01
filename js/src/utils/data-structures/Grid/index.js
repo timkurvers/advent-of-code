@@ -7,9 +7,7 @@ class Grid {
   }
 
   get center() {
-    const {
-      minX, maxX, minY, maxY,
-    } = this;
+    const { minX, maxX, minY, maxY } = this;
     const x = minX + Math.floor((maxX - minX) / 2);
     const y = minY + Math.floor((maxY - minY) / 2);
     return this.getPoint(x, y);
@@ -225,12 +223,7 @@ class Grid {
   }
 
   toString(renderer = (point) => (point ? point.value : ' ')) {
-    const {
-      minY,
-      maxY,
-      minX,
-      maxX,
-    } = this;
+    const { minY, maxY, minX, maxX } = this;
 
     let string = '';
     for (let y = minY; y <= maxY; ++y) {
@@ -242,12 +235,7 @@ class Grid {
     return string;
   }
 
-  static from(gfx, {
-    ignoreBlanks = true,
-    pointClass,
-    splitter = '',
-    cast,
-  } = {}) {
+  static from(gfx, { ignoreBlanks = true, pointClass, splitter = '', cast } = {}) {
     const grid = new this({ pointClass });
     const lines = gfx.split('\n');
     lines.forEach((line, y) => {

@@ -1,8 +1,5 @@
 class Cache extends Map {
-  constructor({
-    init = (key) => key,
-    hash = (key) => key,
-  } = {}) {
+  constructor({ init = (key) => key, hash = (key) => key } = {}) {
     super();
 
     this.init = init;

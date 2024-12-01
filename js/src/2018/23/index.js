@@ -5,9 +5,7 @@ import Nanobot from './Nanobot.js';
 export const partOne = solution((input) => {
   const nanobots = Nanobot.from(input);
 
-  const strongest = nanobots.reduce((nanobot, next) => (
-    nanobot.radius > next.radius ? nanobot : next
-  ));
+  const strongest = nanobots.reduce((nanobot, next) => (nanobot.radius > next.radius ? nanobot : next));
   return nanobots.filter((nanobot) => strongest.inRange(nanobot)).length;
 });
 

@@ -30,9 +30,10 @@ class Fabric {
   }
 
   static from(input) {
-    const claims = input.trim().split('\n').map((definition) => (
-      new Claim(definition)
-    ));
+    const claims = input
+      .trim()
+      .split('\n')
+      .map((definition) => new Claim(definition));
     return new this(claims);
   }
 }

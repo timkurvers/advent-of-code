@@ -10,18 +10,16 @@ export { default as GridND, GridNDPoint } from './GridND/index.js';
 export { default as PriorityQueue } from './PriorityQueue/index.js';
 export { default as Queue } from './Queue.js';
 
-export const intersection = (first, ...arrays) => (
+export const intersection = (first, ...arrays) =>
   first.reduce((list, entry) => {
     if (arrays.every((array) => array.includes(entry))) {
       list.push(entry);
     }
     return list;
-  }, [])
-);
+  }, []);
 
-export const range = ({ start = 0, end, length = end + 1 - start }) => (
-  new Array(length).fill(0).map((_, index) => start + index)
-);
+export const range = ({ start = 0, end, length = end + 1 - start }) =>
+  new Array(length).fill(0).map((_, index) => start + index);
 
 // Shuffles given array in-place
 // See: https://stackoverflow.com/questions/6274339/how-can-i-shuffle-an-array
@@ -41,8 +39,5 @@ export const wrap = (index, length) => {
   return index % length;
 };
 
-export const zip = (first, ...arrays) => (
-  first.map((value, i) => (
-    arrays.reduce((zipped, current) => [...zipped, current[i]], [value])
-  ))
-);
+export const zip = (first, ...arrays) =>
+  first.map((value, i) => arrays.reduce((zipped, current) => [...zipped, current[i]], [value]));

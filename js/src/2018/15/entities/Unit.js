@@ -35,15 +35,11 @@ class Unit extends Entity {
   }
 
   get enemiesInRange() {
-    return this.enemies.filter((enemy) => (
-      this.coord.distanceTo(enemy.coord) <= 1
-    ));
+    return this.enemies.filter((enemy) => this.coord.distanceTo(enemy.coord) <= 1);
   }
 
   get enemies() {
-    return this.map.units.filter((unit) => (
-      unit.constructor !== this.constructor
-    )).sort((a, b) => a.hp - b.hp);
+    return this.map.units.filter((unit) => unit.constructor !== this.constructor).sort((a, b) => a.hp - b.hp);
   }
 
   act() {
@@ -111,11 +107,9 @@ class Unit extends Entity {
   }
 }
 
-class Elf extends Unit {
-}
+class Elf extends Unit {}
 
-class Goblin extends Unit {
-}
+class Goblin extends Unit {}
 
 export default Unit;
 export { Elf, Goblin };

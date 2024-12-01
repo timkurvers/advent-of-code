@@ -1,8 +1,6 @@
 import { CircularLinkedList, LinkedList, solution } from '../../utils/index.js';
 
-const parse = (input) => (
-  Array.from(input.trim().matchAll(/-?\d+/g)).map(Number)
-);
+const parse = (input) => Array.from(input.trim().matchAll(/-?\d+/g)).map(Number);
 
 const decrypt = (list, { rounds = 1 } = {}) => {
   const root = CircularLinkedList.from(list);

@@ -50,19 +50,22 @@ class Program {
   }
 
   static parse(input) {
-    const instructions = input.trim().split('\n').map((line) => {
-      const match = line.match(INSTRUCTION_MATCHER);
-      const adjustment = +match[3] * (match[2] === 'inc' ? 1 : -1);
-      return {
-        target: match[1],
-        adjustment,
-        condition: {
-          target: match[4],
-          operator: match[5],
-          value: +match[6],
-        },
-      };
-    });
+    const instructions = input
+      .trim()
+      .split('\n')
+      .map((line) => {
+        const match = line.match(INSTRUCTION_MATCHER);
+        const adjustment = +match[3] * (match[2] === 'inc' ? 1 : -1);
+        return {
+          target: match[1],
+          adjustment,
+          condition: {
+            target: match[4],
+            operator: match[5],
+            value: +match[6],
+          },
+        };
+      });
     return new this(instructions);
   }
 }

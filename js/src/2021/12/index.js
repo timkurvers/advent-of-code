@@ -3,7 +3,10 @@
 import { Graph, solution } from '../../utils/index.js';
 
 const parse = (input) => {
-  const routes = input.trim().split('\n').map((line) => line.split('-'));
+  const routes = input
+    .trim()
+    .split('\n')
+    .map((line) => line.split('-'));
   const graph = new Graph();
   for (const [a, b] of routes) {
     graph.link(a, b);
@@ -25,7 +28,7 @@ export const partOne = solution((input) => {
   let paths = 0;
   const frontier = [{ location: start, path: [start] }];
   let current = null;
-  while (current = frontier.pop()) {
+  while ((current = frontier.pop())) {
     const { location, path } = current;
     if (location === end) {
       ++paths;
@@ -47,11 +50,15 @@ export const partTwo = solution((input) => {
   const { start, end } = parse(input);
 
   let paths = 0;
-  const frontier = [{
-    location: start, path: [start], revisited: null,
-  }];
+  const frontier = [
+    {
+      location: start,
+      path: [start],
+      revisited: null,
+    },
+  ];
   let current = null;
-  while (current = frontier.pop()) {
+  while ((current = frontier.pop())) {
     const { location, path } = current;
     if (location === end) {
       ++paths;
@@ -70,7 +77,9 @@ export const partTwo = solution((input) => {
         revisited = edge.to;
       }
       frontier.push({
-        location: edge.to, path: [...path, edge.to], revisited,
+        location: edge.to,
+        path: [...path, edge.to],
+        revisited,
       });
     }
   }

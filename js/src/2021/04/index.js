@@ -7,10 +7,12 @@ import Board from './Board.js';
 const parse = (input) => {
   const parts = input.trim().split('\n\n');
   const queue = parts.shift().split(',').map(Number);
-  const boards = parts.map((part) => Board.from(part, {
-    splitter: /(?!^)\s+/,
-    cast: Number,
-  }));
+  const boards = parts.map((part) =>
+    Board.from(part, {
+      splitter: /(?!^)\s+/,
+      cast: Number,
+    }),
+  );
   return { queue, boards };
 };
 

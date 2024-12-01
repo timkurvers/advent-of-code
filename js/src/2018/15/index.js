@@ -15,9 +15,7 @@ const simulate = (map) => {
   }
 };
 
-export const partOne = solution.inefficient((input) => (
-  simulate(new Map(input))
-));
+export const partOne = solution.inefficient((input) => simulate(new Map(input)));
 
 export const partTwo = solution.inefficient((input) => {
   for (let ap = 4; ; ++ap) {

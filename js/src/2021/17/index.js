@@ -5,14 +5,15 @@ import { range, reduceMaxBy, solution } from '../../utils/index.js';
 const parse = (input) => {
   const [x1, x2, y1, y2] = input.trim().match(/-?\d+/g).map(Number);
   return {
-    x1, x2, y1, y2,
+    x1,
+    x2,
+    y1,
+    y2,
   };
 };
 
 const launch = (sdx, sdy, target) => {
-  const {
-    x1, x2, y1, y2,
-  } = target;
+  const { x1, x2, y1, y2 } = target;
 
   let dx = sdx;
   let dy = sdy;
@@ -34,9 +35,9 @@ const launch = (sdx, sdy, target) => {
     dx += -Math.sign(dx);
 
     if (
-      (y < y1 && dy < 0) // Will never get in Y-range
-      || (x < x1 && dx < 0) // Will never get in X-range
-      || (dx === 0 && (x < x1 || x > x2)) // Yeeting straight up into space
+      (y < y1 && dy < 0) || // Will never get in Y-range
+      (x < x1 && dx < 0) || // Will never get in X-range
+      (dx === 0 && (x < x1 || x > x2)) // Yeeting straight up into space
     ) {
       break;
     }

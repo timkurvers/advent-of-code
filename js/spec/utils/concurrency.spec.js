@@ -31,10 +31,7 @@ describe('concurrency utilities', () => {
     it('delays execution for given duration', async () => {
       const spy = jest.spyOn(global, 'setTimeout');
       await wait(100);
-      expect(spy).toHaveBeenCalledWith(
-        expect.any(Function),
-        100,
-      );
+      expect(spy).toHaveBeenCalledWith(expect.any(Function), 100);
     });
   });
 });

@@ -1,8 +1,6 @@
 /* eslint-disable no-cond-assign, no-loop-func */
 
-import {
-  Grid, dx, dy, multiply, solution, stripIndent,
-} from '../../utils/index.js';
+import { Grid, dx, dy, multiply, solution, stripIndent } from '../../utils/index.js';
 
 import Tile from './Tile.js';
 
@@ -12,12 +10,13 @@ const SEA_MONSTER = Grid.from(stripIndent`
  #  #  #  #  #  #
 `);
 
-const parse = (input) => input.split('\n\n').map((raw) => {
-  const parts = raw.split(':\n');
-  const id = +parts[0].slice(4);
-  const grid = Grid.from(parts[1]);
-  return new Tile(id, grid);
-});
+const parse = (input) =>
+  input.split('\n\n').map((raw) => {
+    const parts = raw.split(':\n');
+    const id = +parts[0].slice(4);
+    const grid = Grid.from(parts[1]);
+    return new Tile(id, grid);
+  });
 
 // Prepares a jigsaw blueprint (a grid of tiles)
 const prepare = (tiles) => {
@@ -29,7 +28,7 @@ const prepare = (tiles) => {
   blueprint.set(0, 0, current);
 
   const frontier = [current];
-  while (current = frontier.pop()) {
+  while ((current = frontier.pop())) {
     // Find current tile position in blueprint
     const { x: cx, y: cy } = blueprint.find((point) => point.value === current);
 
@@ -114,9 +113,7 @@ export const partTwo = solution((input) => {
   const jigsaw = assemble(blueprint);
 
   // Find sea monsters, executing jigsaw operations as long as none are found
-  const operations = [
-    'rotate', 'rotate', 'rotate', 'flipX', 'rotate', 'rotate', 'rotate',
-  ];
+  const operations = ['rotate', 'rotate', 'rotate', 'flipX', 'rotate', 'rotate', 'rotate'];
   let seaMonsters = findSeaMonsters(jigsaw);
   while (!seaMonsters.length) {
     const operation = operations.shift();

@@ -7,9 +7,11 @@ const directions = {
   R: 'right',
 };
 
-const parse = (input) => (
-  input.trim().split('\n').map((row) => row.split('').map((dir) => directions[dir]))
-);
+const parse = (input) =>
+  input
+    .trim()
+    .split('\n')
+    .map((row) => row.split('').map((dir) => directions[dir]));
 
 const crack = (keypad, instructions) => {
   let code = '';

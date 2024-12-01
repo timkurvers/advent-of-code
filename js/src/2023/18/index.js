@@ -2,13 +2,15 @@ import { Orientation, cast, dx, dy, solution } from '../../utils/index.js';
 
 const INSTRUCTION_MATCHER = /(\w) (\d+) \(#(\w{6})\)/;
 
-const parse = (input) => (
-  input.trim().split('\n').map((line) => {
-    const match = line.match(INSTRUCTION_MATCHER);
-    const [_, op, count, color] = match;
-    return { op, count: cast(count), color };
-  })
-);
+const parse = (input) =>
+  input
+    .trim()
+    .split('\n')
+    .map((line) => {
+      const match = line.match(INSTRUCTION_MATCHER);
+      const [_, op, count, color] = match;
+      return { op, count: cast(count), color };
+    });
 
 const OPERATIONS = {
   R: Orientation.RIGHT,
@@ -30,7 +32,7 @@ const excavate = (plan) => {
     };
 
     // See: https://en.wikipedia.org/wiki/Shoelace_formula
-    area += (current.x * next.y) - (current.y * next.x);
+    area += current.x * next.y - current.y * next.x;
     perimeter += count;
 
     current = next;

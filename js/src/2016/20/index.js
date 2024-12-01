@@ -3,10 +3,13 @@ import { cast, solution } from '../../utils/index.js';
 const TOTAL_IPS = 4294967296;
 
 const parse = (input) => {
-  const ranges = input.trim().split('\n').map((range) => {
-    const [min, max] = range.split('-');
-    return { min: cast(min), max: cast(max) };
-  });
+  const ranges = input
+    .trim()
+    .split('\n')
+    .map((range) => {
+      const [min, max] = range.split('-');
+      return { min: cast(min), max: cast(max) };
+    });
   ranges.sort((a, b) => {
     if (a.min === b.min) {
       return a.max - b.max;

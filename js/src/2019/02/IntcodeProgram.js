@@ -67,7 +67,7 @@ class IntcodeProgram {
     while (!this.halt) {
       const int = this.read();
       const opcode = int % 100;
-      const modes = int / 100 | 0;
+      const modes = (int / 100) | 0;
       const operation = operations.get(opcode);
       if (!operation) {
         throw new Error(`Unknown opcode: ${opcode} @ ${this.pointer}`);

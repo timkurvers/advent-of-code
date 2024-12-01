@@ -1,11 +1,6 @@
 /* eslint-disable no-param-reassign */
 
-import {
-  combine,
-  reduceMaxBy,
-  reduceMinBy,
-  solution,
-} from '../../utils/index.js';
+import { combine, reduceMaxBy, reduceMinBy, solution } from '../../utils/index.js';
 
 import Unit from './Unit.js';
 import { Armor, Ring, Weapon } from './Equipment.js';
@@ -37,14 +32,17 @@ const Shop = [
 ];
 
 const validate = (equipment) => {
-  const count = equipment.reduce((totals, item) => {
-    ++totals[item.type];
-    return totals;
-  }, {
-    [Armor]: 0,
-    [Ring]: 0,
-    [Weapon]: 0,
-  });
+  const count = equipment.reduce(
+    (totals, item) => {
+      ++totals[item.type];
+      return totals;
+    },
+    {
+      [Armor]: 0,
+      [Ring]: 0,
+      [Weapon]: 0,
+    },
+  );
 
   return count[Armor] <= 1 && count[Ring] <= 2 && count[Weapon] === 1;
 };

@@ -29,6 +29,6 @@ export const partTwo = solution((input) => {
   }
 
   // c) Highest third power twice (example: 3², 9 fits twice in 21)
-  const quotient = elves / highestThirdPower | 0;
-  return highestThirdPower + (quotient * remainder);
+  const quotient = (elves / highestThirdPower) | 0;
+  return highestThirdPower + quotient * remainder;
 });

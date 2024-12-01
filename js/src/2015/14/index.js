@@ -22,7 +22,7 @@ const pinpoint = (reindeer, t) => {
   const cycle = duration + rest;
   const cycles = (t / cycle) | 0;
   const remainder = t % cycle;
-  const flown = (cycles * duration + Math.min(remainder, duration));
+  const flown = cycles * duration + Math.min(remainder, duration);
   return flown * speed;
 };
 

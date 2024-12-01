@@ -16,12 +16,11 @@ const next = (row) => {
     const ctrap = row[x] === Tile.TRAP;
     const rtrap = row[x + 1] === Tile.TRAP;
 
-    const trap = (
-      (ltrap && ctrap && !rtrap)
-      || (!ltrap && ctrap && rtrap)
-      || (ltrap && !ctrap && !rtrap)
-      || (!ltrap && !ctrap && rtrap)
-    );
+    const trap =
+      (ltrap && ctrap && !rtrap) ||
+      (!ltrap && ctrap && rtrap) ||
+      (ltrap && !ctrap && !rtrap) ||
+      (!ltrap && !ctrap && rtrap);
 
     result += trap ? Tile.TRAP : Tile.SAFE;
   }
@@ -41,9 +40,7 @@ const traverse = (input, { numRows } = {}) => {
   return { safeCount };
 };
 
-export const partOne = solution((input, { numRows = 40 }) => (
-  traverse(input, { numRows }).safeCount
-));
+export const partOne = solution((input, { numRows = 40 }) => traverse(input, { numRows }).safeCount);
 
 export const partTwo = solution.inefficient((input) => {
   const numRows = 400000;

@@ -35,12 +35,7 @@ const bossTurn = (state) => {
   state.player.hp -= dmg;
 };
 
-const defaultSteps = [
-  applyEffects,
-  playerTurn,
-  applyEffects,
-  bossTurn,
-];
+const defaultSteps = [applyEffects, playerTurn, applyEffects, bossTurn];
 
 const round = (previous, steps, spell) => {
   const state = clone(previous);
@@ -78,13 +73,15 @@ const simulate = (input, { steps = defaultSteps, hp, mp }) => {
       const { player } = current;
 
       // Spells castable by player at this point
-      const castables = Object.values(spells).filter((spell) => (
-        player.mp >= spell.cost
-        && !player.effects.find((entry) => (
-          // Allow effects that are expiring this turn to be cast again
-          entry.id === spell.id && entry.duration > 1
-        ))
-      ));
+      const castables = Object.values(spells).filter(
+        (spell) =>
+          player.mp >= spell.cost &&
+          !player.effects.find(
+            (entry) =>
+              // Allow effects that are expiring this turn to be cast again
+              entry.id === spell.id && entry.duration > 1,
+          ),
+      );
 
       // Simulate next rounds for these castable spells
       const nodes = [];

@@ -28,11 +28,7 @@ class Program {
   }
 
   clone() {
-    const clone = new this.constructor(
-      this.instructions,
-      this.operations,
-      this.pid + 1,
-    );
+    const clone = new this.constructor(this.instructions, this.operations, this.pid + 1);
     return clone;
   }
 
@@ -83,14 +79,17 @@ class Program {
   }
 
   static from(input, operations) {
-    const instructions = input.trim().split('\n').map((line) => {
-      const [opcode, register, value] = line.split(' ');
-      return {
-        opcode,
-        register: cast(register),
-        value: cast(value),
-      };
-    });
+    const instructions = input
+      .trim()
+      .split('\n')
+      .map((line) => {
+        const [opcode, register, value] = line.split(' ');
+        return {
+          opcode,
+          register: cast(register),
+          value: cast(value),
+        };
+      });
     return new this(instructions, operations);
   }
 }

@@ -16,7 +16,15 @@ const snapshot = (stars, t) => {
   const size = (maxX - minX) * (maxY - minY);
 
   return {
-    points, xs, ys, minX, maxX, minY, maxY, size, t,
+    points,
+    xs,
+    ys,
+    minX,
+    maxX,
+    minY,
+    maxY,
+    size,
+    t,
   };
 };
 
@@ -40,9 +48,7 @@ const find = (input) => {
 };
 
 export const partOne = solution((input) => {
-  const {
-    minY, maxY, minX, maxX, points,
-  } = find(input);
+  const { minY, maxY, minX, maxX, points } = find(input);
 
   let output = '\n';
   for (let y = minY; y <= maxY; ++y) {

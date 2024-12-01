@@ -1,11 +1,4 @@
-import {
-  cast,
-  clone,
-  identity,
-  isNumber,
-  isPrimitive,
-  noop,
-} from '../../src/utils/index.js';
+import { cast, clone, identity, isNumber, isPrimitive, noop } from '../../src/utils/index.js';
 
 describe('type utilities', () => {
   describe('cast()', () => {

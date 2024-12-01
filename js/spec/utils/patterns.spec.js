@@ -1,20 +1,13 @@
 import { patterns } from '../../src/utils/index.js';
 
-const {
-  entirely, literal, oneOf, sequence,
-} = patterns;
+const { entirely, literal, oneOf, sequence } = patterns;
 
 describe('pattern matching utilities', () => {
   describe('entirely()', () => {
     it('creates a matcher to match a string in its entirety', () => {
-      const matcher = entirely(sequence(
-        literal('a'),
-        oneOf(
-          literal('b'),
-          sequence(literal('b'), literal('c')),
-        ),
-        literal('d'),
-      ));
+      const matcher = entirely(
+        sequence(literal('a'), oneOf(literal('b'), sequence(literal('b'), literal('c'))), literal('d')),
+      );
       expect(matcher('abd')).toBe('abd');
       expect(matcher('abcd')).toBe('abcd');
       expect(matcher('ad')).toBe(false);
@@ -49,10 +42,7 @@ describe('pattern matching utilities', () => {
 
   describe('sequence()', () => {
     it('creates a matcher to match a sequence of patterns', () => {
-      const matcher = sequence(
-        literal('a'),
-        oneOf(literal('b'), literal('c')),
-      );
+      const matcher = sequence(literal('a'), oneOf(literal('b'), literal('c')));
       expect(matcher('ab')).toEqual(['ab']);
       expect(matcher('ac')).toEqual(['ac']);
       expect(matcher('a')).toEqual([]);

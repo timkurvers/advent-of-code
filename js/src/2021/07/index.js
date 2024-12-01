@@ -1,8 +1,6 @@
 import { solution } from '../../utils/index.js';
 
-const parse = (input) => (
-  input.trim().split(',').map(Number)
-);
+const parse = (input) => input.trim().split(',').map(Number);
 
 export const partOne = solution((input) => {
   const crabs = parse(input).sort((a, b) => a - b);

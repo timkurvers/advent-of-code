@@ -43,10 +43,6 @@ const isActuallyNice = (str) => {
   return true;
 };
 
-export const partOne = solution((input) => (
-  parse(input).filter(isNice).length
-));
+export const partOne = solution((input) => parse(input).filter(isNice).length);
 
-export const partTwo = solution((input) => (
-  parse(input).filter(isActuallyNice).length
-));
+export const partTwo = solution((input) => parse(input).filter(isActuallyNice).length);

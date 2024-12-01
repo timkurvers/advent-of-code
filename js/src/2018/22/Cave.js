@@ -4,11 +4,7 @@ import Region from './Region/index.js';
 
 class Cave {
   constructor(definition) {
-    [
-      this.depth,
-      this.targetX,
-      this.targetY = this.targetX,
-    ] = definition.match(/\d+/g).map(Number);
+    [this.depth, this.targetX, this.targetY = this.targetX] = definition.match(/\d+/g).map(Number);
 
     this.width = Math.ceil(this.targetX * 7);
     this.height = Math.ceil(this.targetY * 1.5);
@@ -32,9 +28,7 @@ class Cave {
   }
 
   get visual() {
-    return this.grid.map((row) => (
-      row.map((region) => region.visual).join('')
-    )).join('\n');
+    return this.grid.map((row) => row.map((region) => region.visual).join('')).join('\n');
   }
 }
 

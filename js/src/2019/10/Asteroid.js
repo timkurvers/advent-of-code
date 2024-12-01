@@ -15,7 +15,7 @@ class Asteroid {
     const dy = this.y - other.y;
     const dx = this.x - other.x;
     // Angle based on UP-orientation for laser requirements
-    return ((Math.atan2(dy, dx) + TAU + Orientation.UP) % TAU);
+    return (Math.atan2(dy, dx) + TAU + Orientation.UP) % TAU;
   }
 
   distanceTo(other) {

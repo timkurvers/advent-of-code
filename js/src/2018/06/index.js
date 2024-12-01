@@ -4,9 +4,10 @@ import Coordinate from './Coordinate.js';
 import Location from './Location.js';
 
 const build = (input) => {
-  const coords = input.trim().split('\n').map((definition) => (
-    new Coordinate(...definition.split(', '))
-  ));
+  const coords = input
+    .trim()
+    .split('\n')
+    .map((definition) => new Coordinate(...definition.split(', ')));
 
   const cols = Math.max(...coords.map((coord) => coord.x)) + 1;
   const rows = Math.max(...coords.map((coord) => coord.y)) + 1;

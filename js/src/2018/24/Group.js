@@ -1,6 +1,7 @@
 /* eslint-disable prefer-destructuring */
 
-const DEFINITION_MATCHER = /(\d+) units each with (\d+) hit points(?: \((.+?)\))? with an attack that does (\d+) (\w+) damage at initiative (\d+)/;
+const DEFINITION_MATCHER =
+  /(\d+) units each with (\d+) hit points(?: \((.+?)\))? with an attack that does (\d+) (\w+) damage at initiative (\d+)/;
 
 class Group {
   constructor(army, definition) {
@@ -88,10 +89,7 @@ class Group {
       } else if (damage === maxDamage) {
         if (group.effectivePower > target.effectivePower) {
           target = group;
-        } else if (
-          group.effectivePower === target.effectivePower
-          && group.initiative > target.initiative
-        ) {
+        } else if (group.effectivePower === target.effectivePower && group.initiative > target.initiative) {
           target = group;
         }
       }

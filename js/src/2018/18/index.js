@@ -8,8 +8,8 @@ const isOpenGround = (tile) => tile === OPEN_GROUND;
 const isTrees = (tile) => tile === TREES;
 const isLumberyard = (tile) => tile === LUMBERYARD;
 
-const next = ({ grid, maxX, maxY }) => (
-  grid.map((row, y) => (
+const next = ({ grid, maxX, maxY }) =>
+  grid.map((row, y) =>
     row.map((tile, x) => {
       const neighbors = [
         y > 0 ? grid[y - 1][x - 1] : null,
@@ -28,23 +28,21 @@ const next = ({ grid, maxX, maxY }) => (
       if (isTrees(tile) && neighbors.filter(isLumberyard).length >= 3) {
         return LUMBERYARD;
       }
-      if (isLumberyard(tile) && (
-        neighbors.filter(isLumberyard).length < 1
-        || neighbors.filter(isTrees).length < 1
-      )) {
+      if (
+        isLumberyard(tile) &&
+        (neighbors.filter(isLumberyard).length < 1 || neighbors.filter(isTrees).length < 1)
+      ) {
         return OPEN_GROUND;
       }
       return tile;
-    })
-  ))
-);
+    }),
+  );
 
-const flatten = (grid) => (
+const flatten = (grid) =>
   grid.reduce((flattened, row) => {
     flattened.push(...row);
     return flattened;
-  }, [])
-);
+  }, []);
 
 const generate = (input, generations, hook = null) => {
   const initial = input.split('\n').map((line) => line.split(''));
@@ -63,9 +61,7 @@ const generate = (input, generations, hook = null) => {
   return final.filter(isTrees).length * final.filter(isLumberyard).length;
 };
 
-export const partOne = solution((input) => (
-  generate(input, 10)
-));
+export const partOne = solution((input) => generate(input, 10));
 
 export const partTwo = solution((input) => {
   const cache = {};

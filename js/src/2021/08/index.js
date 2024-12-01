@@ -8,9 +8,7 @@ const createMapping = (str) => str.split('').map((c) => toASCII(c) - 97);
 const parse = (input) => {
   const corrected = input.trim().replace(/\|\n/g, '|');
   const entries = corrected.split('\n').map((entry) => {
-    const [rawPatterns, rawSignals] = entry.split('|').map((part) => (
-      part.trim().split(' ')
-    ));
+    const [rawPatterns, rawSignals] = entry.split('|').map((part) => part.trim().split(' '));
     const patterns = rawPatterns.map(createMapping);
     const signals = rawSignals.map(createMapping);
     return { patterns, signals };
@@ -47,9 +45,7 @@ const countSegments = (mask) => mask.toString(2).match(/1/g).length;
 
 export const partOne = solution((input) => {
   const entries = parse(input);
-  const lengths = [
-    digits[1], digits[4], digits[7], digits[8],
-  ].map(countSegments);
+  const lengths = [digits[1], digits[4], digits[7], digits[8]].map(countSegments);
 
   let sum = 0;
   for (const { signals } of entries) {
@@ -62,9 +58,7 @@ export const partOne = solution((input) => {
   return sum;
 });
 
-const createMaskFor = (mapping, config) => (
-  mapping.reduce((acc, m) => acc | config[m], 0)
-);
+const createMaskFor = (mapping, config) => mapping.reduce((acc, m) => acc | config[m], 0);
 
 const findDigitByMask = (mask) => {
   for (const [digit, config] of digits.entries()) {
@@ -82,9 +76,9 @@ const findDigitByMask = (mask) => {
 // 3. The correct permutation has been found when all patterns match a digit
 const findConfigurationFor = (entry) => {
   for (const permutation of permute(bits)) {
-    const matches = entry.patterns.every((mapping) => (
-      findDigitByMask(createMaskFor(mapping, permutation)) != null
-    ));
+    const matches = entry.patterns.every(
+      (mapping) => findDigitByMask(createMaskFor(mapping, permutation)) != null,
+    );
     if (matches) {
       return permutation;
     }
@@ -104,9 +98,7 @@ export const partTwo = solution((input) => {
   let sum = 0;
   for (const entry of entries) {
     const config = findConfigurationFor(entry);
-    sum += entry.signals.reduce((acc, signal) => (
-      acc * 10 + decodeSignal(signal, config)
-    ), 0);
+    sum += entry.signals.reduce((acc, signal) => acc * 10 + decodeSignal(signal, config), 0);
   }
   return sum;
 });

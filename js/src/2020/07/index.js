@@ -14,9 +14,7 @@ class Bag {
 
   // Computes amount of bags within this bag (inclusive)
   get bagCount() {
-    return 1 + sum(this.contains.map((entry) => (
-      entry.quantity * entry.bag.bagCount
-    )));
+    return 1 + sum(this.contains.map((entry) => entry.quantity * entry.bag.bagCount));
   }
 }
 
@@ -51,7 +49,7 @@ export const partOne = solution((input) => {
   const containers = new Set();
   const candidates = [...shiny.containedBy];
   let candidate;
-  while (candidate = candidates.shift()) {
+  while ((candidate = candidates.shift())) {
     containers.add(candidate);
     candidates.push(...candidate.containedBy);
   }

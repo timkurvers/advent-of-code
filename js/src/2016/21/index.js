@@ -7,13 +7,15 @@ import * as operations from './operations.js';
 const INSTRUCTION_MATCHER = /^(\w+)/;
 const ARGUMENT_MATCHER = /(?<=\s)(left|right|\w)(?=\s|$)/g;
 
-const parse = (input) => (
-  input.trim().split('\n').map((line) => {
-    const [opcode] = line.match(INSTRUCTION_MATCHER);
-    const args = line.match(ARGUMENT_MATCHER);
-    return { opcode, args };
-  })
-);
+const parse = (input) =>
+  input
+    .trim()
+    .split('\n')
+    .map((line) => {
+      const [opcode] = line.match(INSTRUCTION_MATCHER);
+      const args = line.match(ARGUMENT_MATCHER);
+      return { opcode, args };
+    });
 
 const scramble = (instructions, password) => {
   const chars = password.split('');
@@ -35,10 +37,8 @@ const unscramble = (instructions, scrambled) => {
   }
 };
 
-export const partOne = solution((input, { password = 'abcdefgh' }) => (
-  scramble(parse(input), password)
-));
+export const partOne = solution((input, { password = 'abcdefgh' }) => scramble(parse(input), password));
 
-export const partTwo = solution.inefficient((input, { scrambled = 'fbgdceah' }) => (
-  unscramble(parse(input), scrambled)
-));
+export const partTwo = solution.inefficient((input, { scrambled = 'fbgdceah' }) =>
+  unscramble(parse(input), scrambled),
+);

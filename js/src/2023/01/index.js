@@ -14,33 +14,32 @@ const WORDS_TO_DIGIT = {
   nine: 9,
 };
 
-const parse = (input) => (
-  input.trim().split('\n')
-);
+const parse = (input) => input.trim().split('\n');
 
 const findDigitsAsStrings = (input) => input.match(/\d/g);
 
 // In addition to regular digits, also finds digit words (one, two, etc.))
-const findAllDigitsAsStrings = (input) => (
+const findAllDigitsAsStrings = (input) =>
   // Overlapping ensures `one2eightwo` becomes ['1', '2', '8', '2']
   overlappingMatch(input, COMPLEX_DIGIT_MATCHER).map((digit) => {
     if (digit in WORDS_TO_DIGIT) {
       return String(WORDS_TO_DIGIT[digit]);
     }
     return digit;
-  })
-);
+  });
 
 export const partOne = solution((input) => {
   const lines = parse(input).map(findDigitsAsStrings);
-  return lines.reduce((total, stringDigits) => (
-    total + Number(stringDigits[0] + stringDigits[stringDigits.length - 1])
-  ), 0);
+  return lines.reduce(
+    (total, stringDigits) => total + Number(stringDigits[0] + stringDigits[stringDigits.length - 1]),
+    0,
+  );
 });
 
 export const partTwo = solution((input) => {
   const lines = parse(input).map(findAllDigitsAsStrings);
-  return lines.reduce((total, stringDigits) => (
-    total + Number(stringDigits[0] + stringDigits[stringDigits.length - 1])
-  ), 0);
+  return lines.reduce(
+    (total, stringDigits) => total + Number(stringDigits[0] + stringDigits[stringDigits.length - 1]),
+    0,
+  );
 });

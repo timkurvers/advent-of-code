@@ -36,14 +36,17 @@ class Program {
       return program;
     };
 
-    input.trim().split('\n').forEach((line) => {
-      const [id, rest] = line.split(' <-> ');
-      const connections = rest.split(', ').map(Number).map(lookup);
-      const program = lookup(+id);
-      for (const connection of connections) {
-        program.connect(connection);
-      }
-    });
+    input
+      .trim()
+      .split('\n')
+      .forEach((line) => {
+        const [id, rest] = line.split(' <-> ');
+        const connections = rest.split(', ').map(Number).map(lookup);
+        const program = lookup(+id);
+        for (const connection of connections) {
+          program.connect(connection);
+        }
+      });
 
     return Array.from(cache.values());
   }

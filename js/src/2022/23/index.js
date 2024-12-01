@@ -40,7 +40,7 @@ const step = (grove, round) => {
       const offset = (round - 1) % 4;
       for (let i = 0; i < 4; ++i) {
         const move = moves[(i + offset) % 4];
-        if (target = move(elf)) {
+        if ((target = move(elf))) {
           movement = true;
           break;
         }
@@ -70,7 +70,7 @@ export const partOne = solution((input) => {
   }
 
   const elves = grove.filter((point) => point.value === ELF);
-  return (grove.width * grove.height) - elves.length;
+  return grove.width * grove.height - elves.length;
 });
 
 export const partTwo = solution.inefficient((input) => {

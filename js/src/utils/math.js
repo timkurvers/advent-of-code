@@ -5,39 +5,46 @@ import { Cache } from './index.js';
 // Allows for implementations to be Number / BigInt agnostic
 const variations = {
   [BigInt]: {
-    ZERO: 0n, ONE: 1n, TWO: 2n, type: BigInt,
+    ZERO: 0n,
+    ONE: 1n,
+    TWO: 2n,
+    type: BigInt,
   },
   [Number]: {
-    ZERO: 0, ONE: 1, TWO: 2, type: Number,
+    ZERO: 0,
+    ONE: 1,
+    TWO: 2,
+    type: Number,
   },
 };
 const variance = (value) => variations[value.constructor];
 
 export const TAU = 2 * Math.PI;
 
-export const bitsNeededFor = (n) => Math.log2(n) + 1 | 0;
+export const bitsNeededFor = (n) => (Math.log2(n) + 1) | 0;
 
 export const multiply = (array) => array.reduce((total, next) => total * next, 1);
 export const sum = (array) => array.reduce((total, next) => total + next, 0);
 
-export const maxIndex = (array) => array.reduce((current, value, index) => (
-  value > array[current] ? index : current
-), 0);
+export const maxIndex = (array) =>
+  array.reduce((current, value, index) => (value > array[current] ? index : current), 0);
 
-export const groupBy = (array, prop) => array.reduce((groups, current) => {
-  const value = current[prop];
-  const group = groups.lookup(value);
-  group.push(current);
-  return groups;
-}, new Cache({ init: () => [] }));
+export const groupBy = (array, prop) =>
+  array.reduce(
+    (groups, current) => {
+      const value = current[prop];
+      const group = groups.lookup(value);
+      group.push(current);
+      return groups;
+    },
+    new Cache({ init: () => [] }),
+  );
 
-export const reduceMinBy = (array, prop) => array.reduce((candidate, other) => (
-  candidate[prop] > other[prop] ? other : candidate
-));
+export const reduceMinBy = (array, prop) =>
+  array.reduce((candidate, other) => (candidate[prop] > other[prop] ? other : candidate));
 
-export const reduceMaxBy = (array, prop) => array.reduce((candidate, other) => (
-  candidate[prop] < other[prop] ? other : candidate
-));
+export const reduceMaxBy = (array, prop) =>
+  array.reduce((candidate, other) => (candidate[prop] < other[prop] ? other : candidate));
 
 // Adjusted from: https://gist.github.com/axelpale/3118596
 export function* combine(array, { k } = {}) {
@@ -161,9 +168,7 @@ export const modMulInv = (a, m) => {
 // Calculates base to power of given exponent over given modulo
 // See: https://github.com/juanelas/bigint-crypto-utils
 export const modPow = (b, e, m) => {
-  const {
-    ZERO, ONE, TWO, type,
-  } = variance(b);
+  const { ZERO, ONE, TWO, type } = variance(b);
 
   if (m === ZERO) {
     throw new RangeError('modulus cannot be 0');
@@ -172,7 +177,7 @@ export const modPow = (b, e, m) => {
   }
 
   b %= m;
-  b = (b < 0) ? b + m : b;
+  b = b < 0 ? b + m : b;
 
   if (e < ZERO) {
     return modMulInv(modPow(b, -e, m), m);
@@ -180,14 +185,14 @@ export const modPow = (b, e, m) => {
 
   let r = ONE;
   while (e > ZERO) {
-    if ((e % TWO) === ONE) {
+    if (e % TWO === ONE) {
       r = (r * b) % m;
     }
     e /= TWO;
     if (type === Number) {
       e = Math.floor(e);
     }
-    b = (b ** TWO) % m;
+    b = b ** TWO % m;
   }
   return r;
 };

@@ -1,11 +1,4 @@
-import {
-  Grid,
-  Orientation,
-  Rotation,
-  dx,
-  dy,
-  solution,
-} from '../../utils/index.js';
+import { Grid, Orientation, Rotation, dx, dy, solution } from '../../utils/index.js';
 
 const State = {
   CLEAN: '.',

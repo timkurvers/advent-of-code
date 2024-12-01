@@ -1,9 +1,5 @@
 import IntcodeProgram from '../02/IntcodeProgram.js';
-import {
-  Grid,
-  solution,
-  wait,
-} from '../../utils/index.js';
+import { Grid, solution, wait } from '../../utils/index.js';
 
 const Type = {
   EMPTY: 0,

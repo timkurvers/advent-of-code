@@ -1,10 +1,6 @@
-const opposites = (a, b) => (
-  a && b && Math.abs(a.charCodeAt(0) - b.charCodeAt(0)) === 32
-);
+const opposites = (a, b) => a && b && Math.abs(a.charCodeAt(0) - b.charCodeAt(0)) === 32;
 
-const match = (a, b) => (
-  a === b || opposites(a, b)
-);
+const match = (a, b) => a === b || opposites(a, b);
 
 class Polymer {
   constructor(units) {
@@ -18,9 +14,7 @@ class Polymer {
   }
 
   without(exclude) {
-    return new this.constructor(
-      this.units.filter((unit) => !match(unit, exclude)),
-    );
+    return new this.constructor(this.units.filter((unit) => !match(unit, exclude)));
   }
 
   react() {
