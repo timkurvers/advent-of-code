@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 
-import { solution, sum } from '../../utils';
+import { solution, sum } from '../../utils/index.js';
 
 const parse = (input) => input.trim().split('\n\n').map((raw) => {
   const participants = raw.split('\n').map((line) => line.split(''));

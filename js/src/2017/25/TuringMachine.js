@@ -1,4 +1,4 @@
-import State from './State';
+import State from './State.js';
 
 class TuringMachine {
   constructor(stateId, numSteps, states) {

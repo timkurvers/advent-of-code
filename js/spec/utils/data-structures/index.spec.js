@@ -1,6 +1,6 @@
 import {
   intersection, range, shuffle, wrap, zip,
-} from '../../../src/utils';
+} from '../../../src/utils/index.js';
 
 describe('data structure utilities', () => {
   describe('intersection()', () => {

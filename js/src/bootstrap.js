@@ -1,7 +1,7 @@
 import fs from 'fs-extra';
 import path from 'path';
 
-import { PUZZLE_ROOT, SRC_ROOT } from './utils';
+import { PUZZLE_ROOT, SRC_ROOT } from './utils/index.js';
 
 const [,, ...target] = process.argv;
 

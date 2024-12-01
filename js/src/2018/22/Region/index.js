@@ -1,5 +1,5 @@
-import RegionWithTool from './WithTool';
-import Type from './Type';
+import RegionWithTool from './WithTool.js';
+import Type from './Type.js';
 
 class Region {
   constructor(cave, x, y) {

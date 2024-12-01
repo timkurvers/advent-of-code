@@ -1,4 +1,4 @@
-import { Grid } from '../../utils';
+import { Grid } from '../../utils/index.js';
 
 const Type = {
   OPEN_SPACE: true,

@@ -1,6 +1,6 @@
 import {
   multiply, solution, sum, zip,
-} from '../../utils';
+} from '../../utils/index.js';
 
 const TICKET_FIELD_MATCHER = /(.+): (\d+)-(\d+) or (\d+)-(\d+)/g;
 const TICKET_NUMBER_MATCHER = /\d+/g;

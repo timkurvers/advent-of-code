@@ -1,4 +1,4 @@
-import { bisect, range } from '../../src/utils';
+import { bisect, range } from '../../src/utils/index.js';
 
 describe('search utilities', () => {
   describe('bisect()', () => {

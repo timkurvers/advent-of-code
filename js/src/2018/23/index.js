@@ -1,6 +1,6 @@
-import { solution } from '../../utils';
+import { solution } from '../../utils/index.js';
 
-import Nanobot from './Nanobot';
+import Nanobot from './Nanobot.js';
 
 export const partOne = solution((input) => {
   const nanobots = Nanobot.from(input);

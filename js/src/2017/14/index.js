@@ -1,9 +1,9 @@
 /* eslint-disable no-param-reassign */
 
-import { Grid, solution } from '../../utils';
-import { knothash } from '../10/knothash';
+import { Grid, solution } from '../../utils/index.js';
+import { knothash } from '../10/knothash.js';
 
-import Region from './Region';
+import Region from './Region.js';
 
 const keyToGrid = (key, size = 128) => {
   const grid = new Grid();

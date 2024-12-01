@@ -1,4 +1,4 @@
-import { Grid, cast, solution } from '../../utils';
+import { Grid, cast, solution } from '../../utils/index.js';
 
 const parse = (input) => Grid.from(input, { cast });
 

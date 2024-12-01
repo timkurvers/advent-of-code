@@ -1,6 +1,6 @@
-import { reduceMinBy, solution } from '../../utils';
+import { reduceMinBy, solution } from '../../utils/index.js';
 
-import { Dir, File } from './fs';
+import { Dir, File } from './fs.js';
 
 // Behold the monstrosity!
 const parse = (input) => {

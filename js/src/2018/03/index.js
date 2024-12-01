@@ -1,6 +1,6 @@
-import { solution } from '../../utils';
+import { solution } from '../../utils/index.js';
 
-import Fabric from './Fabric';
+import Fabric from './Fabric.js';
 
 export const partOne = solution((input) => {
   const fabric = Fabric.from(input);

@@ -1,6 +1,6 @@
-import { solution } from '../../utils';
+import { solution } from '../../utils/index.js';
 
-import Box from './Box';
+import Box from './Box.js';
 
 const parse = (input) => input.trim().split('\n').map((id) => new Box(id));
 

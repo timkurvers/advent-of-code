@@ -1,4 +1,4 @@
-import { basename, dirname } from '../../src/utils';
+import { basename, dirname } from '../../src/utils/index.js';
 
 describe('ESM utilities', () => {
   const path = 'file:///advent-of-code/year/day/file.js';

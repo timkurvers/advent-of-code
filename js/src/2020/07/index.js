@@ -1,6 +1,6 @@
 /* eslint-disable no-cond-assign */
 
-import { Cache, solution, sum } from '../../utils';
+import { Cache, solution, sum } from '../../utils/index.js';
 
 const BAG_RULES_SPLIT = ' bags contain ';
 const BAG_RULES_CONTENTS_MATCHER = /(?<quantity>\d+) (?<name>.+?) bags?/g;

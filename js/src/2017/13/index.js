@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 
-import { solution } from '../../utils';
+import { solution } from '../../utils/index.js';
 
 const parse = (input) => input.trim().split('\n').reduce((firewall, line) => {
   const [depth, range] = line.split(': ').map(Number);

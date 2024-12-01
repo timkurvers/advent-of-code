@@ -1,6 +1,6 @@
 /* eslint-disable no-cond-assign, no-param-reassign */
 
-import { Cache, bisect, solution } from '../../utils';
+import { Cache, bisect, solution } from '../../utils/index.js';
 
 const REACTION_MATCHER = /(\d+) (\w+)/g;
 

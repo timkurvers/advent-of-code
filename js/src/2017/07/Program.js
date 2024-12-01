@@ -1,4 +1,4 @@
-import { sum } from '../../utils';
+import { sum } from '../../utils/index.js';
 
 const REPORT_MATCHER = /(\w+)\s\((\d+)\)(?:\s->\s(.+))?/;
 

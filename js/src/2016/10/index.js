@@ -1,8 +1,8 @@
 /* eslint-disable no-cond-assign */
 
-import { Cache, cast, solution } from '../../utils';
+import { Cache, cast, solution } from '../../utils/index.js';
 
-import Bot from './Bot';
+import Bot from './Bot.js';
 
 const BOT_MATCHER = /value (\d+) goes to (.+)/g;
 const INSTRUCTION_MATCHER = /(.+) gives low to (.+) and high to (.+)/g;

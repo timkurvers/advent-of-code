@@ -1,8 +1,8 @@
 /* eslint-disable consistent-return, no-param-reassign */
 
-import { permute, solution } from '../../utils';
+import { permute, solution } from '../../utils/index.js';
 
-import * as operations from './operations';
+import * as operations from './operations.js';
 
 const INSTRUCTION_MATCHER = /^(\w+)/;
 const ARGUMENT_MATCHER = /(?<=\s)(left|right|\w)(?=\s|$)/g;

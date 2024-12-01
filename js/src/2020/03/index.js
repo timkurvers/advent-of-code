@@ -1,6 +1,6 @@
 import {
   Grid, multiply, solution, wrap,
-} from '../../utils';
+} from '../../utils/index.js';
 
 const isTree = (value) => value === '#';
 

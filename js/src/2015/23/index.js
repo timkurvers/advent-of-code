@@ -1,6 +1,6 @@
-import { solution } from '../../utils';
+import { solution } from '../../utils/index.js';
 
-import Program from './Program';
+import Program from './Program.js';
 
 export const partOne = solution((input, { register = 'b' } = {}) => {
   const program = Program.from(input);

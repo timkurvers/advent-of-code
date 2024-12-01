@@ -1,6 +1,6 @@
 /* eslint-disable no-cond-assign, no-param-reassign */
 
-import { solution } from '../../utils';
+import { solution } from '../../utils/index.js';
 
 const DANCE_MOVE_MATCHER = /(s|x|p)(\w+)(?:\/(\w+))?/g;
 

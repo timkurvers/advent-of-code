@@ -1,6 +1,6 @@
 /* eslint-disable key-spacing, no-multi-spaces */
 
-import { Grid, solution } from '../../utils';
+import { Grid, solution } from '../../utils/index.js';
 
 const Type = {
   EMPTY: 'L',

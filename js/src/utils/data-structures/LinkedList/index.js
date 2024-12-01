@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 
-import Node from './Node';
+import Node from './Node.js';
 
 class LinkedList {
   static toArray(start) {

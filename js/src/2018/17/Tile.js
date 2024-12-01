@@ -1,4 +1,4 @@
-import { GridPoint } from '../../utils';
+import { GridPoint } from '../../utils/index.js';
 
 const Type = {
   SPRING: 1,

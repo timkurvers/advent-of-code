@@ -4,7 +4,7 @@ import colors from 'colors';
 import minimist from 'minimist';
 import table from 'table';
 
-import { Challenge, groupBy, range } from './utils';
+import { Challenge, groupBy, range } from './utils/index.js';
 
 const args = minimist(process.argv.slice(2));
 const markInefficient = args['mark-inefficient'];

@@ -1,6 +1,6 @@
 import colors from 'colors';
 
-import operations from '../16/operations';
+import operations from '../16/operations.js';
 
 const Interceptor = {
   HALT: 0,

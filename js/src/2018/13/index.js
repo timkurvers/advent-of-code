@@ -1,6 +1,6 @@
-import { solution } from '../../utils';
+import { solution } from '../../utils/index.js';
 
-import Mine from './Mine';
+import Mine from './Mine.js';
 
 export const partOne = solution((input) => {
   try {

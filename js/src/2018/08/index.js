@@ -1,6 +1,6 @@
-import { solution, sum } from '../../utils';
+import { solution, sum } from '../../utils/index.js';
 
-import Node from './Node';
+import Node from './Node.js';
 
 const build = (input) => {
   const data = input.split(' ');

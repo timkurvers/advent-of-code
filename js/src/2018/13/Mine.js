@@ -1,6 +1,6 @@
 /* eslint-disable quote-props */
 
-import Cart from './Cart';
+import Cart from './Cart.js';
 
 const CART_REPLACEMENTS = {
   '>': '-',

@@ -13,7 +13,7 @@ import {
   isVerticalRotation,
   distance2D,
   distance3D,
-} from '../../src/utils';
+} from '../../src/utils/index.js';
 
 describe('navigation utilities', () => {
   describe('Orientation', () => {

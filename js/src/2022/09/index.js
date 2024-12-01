@@ -1,4 +1,4 @@
-import { Grid, solution } from '../../utils';
+import { Grid, solution } from '../../utils/index.js';
 
 const parse = (input) => (
   input.trim().split('\n').map((line) => {

@@ -1,6 +1,6 @@
 /* eslint-disable no-cond-assign, no-loop-func */
 
-import { shuffle, solution } from '../../utils';
+import { shuffle, solution } from '../../utils/index.js';
 
 const REPLACEMENT_MATCHER = /(\w+) => (\w+)/g;
 

@@ -1,4 +1,4 @@
-import { Grid, sum } from '../../utils';
+import { Grid, sum } from '../../utils/index.js';
 
 const BINGO = 'x';
 

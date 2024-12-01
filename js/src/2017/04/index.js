@@ -1,4 +1,4 @@
-import { solution } from '../../utils';
+import { solution } from '../../utils/index.js';
 
 const noDuplicates = (passphrase) => {
   const words = passphrase.split(' ');

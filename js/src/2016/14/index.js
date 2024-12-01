@@ -1,4 +1,4 @@
-import { hexmd5, solution } from '../../utils';
+import { hexmd5, solution } from '../../utils/index.js';
 
 const TRIPLET_MATCHER = /(\w)\1{2}/;
 

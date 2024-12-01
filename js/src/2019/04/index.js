@@ -1,4 +1,4 @@
-import { range, solution } from '../../utils';
+import { range, solution } from '../../utils/index.js';
 
 const parse = (input) => {
   const [start, end] = input.split('-');

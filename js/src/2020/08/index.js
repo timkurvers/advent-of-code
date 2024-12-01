@@ -1,9 +1,9 @@
 /* eslint-disable no-param-reassign */
 
-import { solution } from '../../utils';
+import { solution } from '../../utils/index.js';
 
-import Program from './Program';
-import * as operations from './operations';
+import Program from './Program.js';
+import * as operations from './operations.js';
 
 const INSTRUCTION_MATCHER = /(.{3}) ([+-]\d+)/g;
 

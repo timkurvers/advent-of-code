@@ -1,4 +1,4 @@
-import { CircularLinkedList, LinkedListNode, solution } from '../../utils';
+import { CircularLinkedList, LinkedListNode, solution } from '../../utils/index.js';
 
 export const partOne = solution((input) => {
   const steps = +input;

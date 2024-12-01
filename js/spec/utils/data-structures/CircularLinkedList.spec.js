@@ -1,4 +1,4 @@
-import { CircularLinkedList, CircularLinkedListNode } from '../../../src/utils';
+import { CircularLinkedList, CircularLinkedListNode } from '../../../src/utils/index.js';
 
 describe('CircularLinkedList', () => {
   describe('Node', () => {

@@ -1,6 +1,6 @@
 import {
   Orientation, Rotation, dx, dy, solution,
-} from '../../utils';
+} from '../../utils/index.js';
 
 const NAV_INSTRUCTION_MATCHER = /(.)(\d+)\s?/g;
 

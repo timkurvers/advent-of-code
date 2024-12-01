@@ -1,4 +1,4 @@
-import { Grid, cast, isNumber, multiply, solution, sum } from '../../utils';
+import { Grid, cast, isNumber, multiply, solution, sum } from '../../utils/index.js';
 
 const EMPTY = '.';
 const GEAR = '*';

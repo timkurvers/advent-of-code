@@ -1,4 +1,4 @@
-import { solution } from '../../utils';
+import { solution } from '../../utils/index.js';
 
 const generate = (input) => {
   let output = '';

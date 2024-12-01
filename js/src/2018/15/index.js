@@ -1,9 +1,9 @@
 /* eslint-disable no-loop-func, no-param-reassign */
 
-import { solution, sum } from '../../utils';
+import { solution, sum } from '../../utils/index.js';
 
-import Map from './Map';
-import { Elf } from './entities';
+import Map from './Map.js';
+import { Elf } from './entities/index.js';
 
 const simulate = (map) => {
   try {

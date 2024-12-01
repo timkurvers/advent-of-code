@@ -1,4 +1,4 @@
-import IntcodeProgram from '../02/IntcodeProgram';
+import IntcodeProgram from '../02/IntcodeProgram.js';
 import {
   Grid,
   Orientation,
@@ -7,7 +7,7 @@ import {
   dy,
   identity,
   solution,
-} from '../../utils';
+} from '../../utils/index.js';
 
 const Panel = {
   BLACK: 0,

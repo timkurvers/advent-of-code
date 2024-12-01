@@ -1,4 +1,4 @@
-import { patterns } from '../../src/utils';
+import { patterns } from '../../src/utils/index.js';
 
 const {
   entirely, literal, oneOf, sequence,

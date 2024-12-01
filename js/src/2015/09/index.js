@@ -4,7 +4,7 @@ import {
   reduceMaxBy,
   reduceMinBy,
   solution,
-} from '../../utils';
+} from '../../utils/index.js';
 
 const DISTANCE_MATCHER = /(\w+) to (\w+) = (\d+)/g;
 

@@ -1,4 +1,4 @@
-import { Orientation, cast, dx, dy, solution } from '../../utils';
+import { Orientation, cast, dx, dy, solution } from '../../utils/index.js';
 
 const INSTRUCTION_MATCHER = /(\w) (\d+) \(#(\w{6})\)/;
 

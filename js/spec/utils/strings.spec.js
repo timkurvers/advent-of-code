@@ -6,7 +6,7 @@ import {
   humanize,
   camelcase,
   titleize,
-} from '../../src/utils';
+} from '../../src/utils/index.js';
 
 describe('string utilities', () => {
   describe('toASCII()', () => {

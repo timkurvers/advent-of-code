@@ -1,6 +1,6 @@
-import { solution } from '../../utils';
+import { solution } from '../../utils/index.js';
 
-import Star from './Star';
+import Star from './Star.js';
 
 const snapshot = (stars, t) => {
   const points = stars.map((star) => star.at(t));

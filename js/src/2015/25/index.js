@@ -1,4 +1,4 @@
-import { solution } from '../../utils';
+import { solution } from '../../utils/index.js';
 
 export const finalPart = solution((input) => {
   const [row, column] = input.match(/\d+/g).map(Number);

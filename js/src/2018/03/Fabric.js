@@ -1,4 +1,4 @@
-import Claim from './Claim';
+import Claim from './Claim.js';
 
 class Fabric {
   constructor(claims) {

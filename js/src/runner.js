@@ -2,7 +2,7 @@
 
 import minimist from 'minimist';
 
-import { Challenge } from './utils';
+import { Challenge } from './utils/index.js';
 
 const args = minimist(process.argv.slice(2));
 const { benchmark, 'exit-code': exitCode } = args;

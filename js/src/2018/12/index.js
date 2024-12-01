@@ -1,6 +1,6 @@
 /* eslint-disable no-loop-func */
 
-import { solution } from '../../utils';
+import { solution } from '../../utils/index.js';
 
 const NOTE_MATCHER = /((?:\.|#){2})(\.|#)((?:\.|#){2}) => (#|\.)/;
 

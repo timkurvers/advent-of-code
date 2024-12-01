@@ -1,4 +1,4 @@
-import { noop } from '../../../utils';
+import { noop } from '../../../utils/index.js';
 
 class Operation {
   constructor(definition) {

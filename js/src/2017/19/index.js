@@ -4,9 +4,9 @@ import {
   dx,
   dy,
   solution,
-} from '../../utils';
+} from '../../utils/index.js';
 
-import Diagram from './Diagram';
+import Diagram from './Diagram.js';
 
 const follow = (diagram) => {
   const position = diagram.start.clone();

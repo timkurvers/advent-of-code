@@ -1,4 +1,4 @@
-import { distance2D } from '../../navigation';
+import { distance2D } from '../../navigation.js';
 
 class Point {
   constructor(grid, x = 0, y = 0, value = undefined) {

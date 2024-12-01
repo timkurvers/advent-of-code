@@ -1,4 +1,4 @@
-import operations from './operations';
+import operations from './operations.js';
 
 const DEFINITION_REGEXP = /\d+/g;
 

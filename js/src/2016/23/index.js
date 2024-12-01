@@ -1,6 +1,6 @@
-import { solution } from '../../utils';
+import { solution } from '../../utils/index.js';
 
-import AssembunnyProgram from '../12/AssembunnyProgram';
+import AssembunnyProgram from '../12/AssembunnyProgram.js';
 
 export const partOne = solution((input) => {
   const program = AssembunnyProgram.from(input);

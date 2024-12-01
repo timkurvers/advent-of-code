@@ -1,8 +1,8 @@
 /* eslint-disable consistent-return */
 
-import { solution } from '../../utils';
+import { solution } from '../../utils/index.js';
 
-import Board from './Board';
+import Board from './Board.js';
 
 const parse = (input) => {
   const parts = input.trim().split('\n\n');

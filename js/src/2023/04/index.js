@@ -1,6 +1,6 @@
 /* eslint-disable no-cond-assign, no-loop-func */
 
-import { cast, solution } from '../../utils';
+import { cast, solution } from '../../utils/index.js';
 
 const parse = (input) => (
   input.trim().split('\n').map((line) => {

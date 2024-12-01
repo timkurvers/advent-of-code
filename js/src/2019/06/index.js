@@ -1,6 +1,6 @@
-import { astar, solution } from '../../utils';
+import { astar, solution } from '../../utils/index.js';
 
-import Planet from './Planet';
+import Planet from './Planet.js';
 
 const ORBIT_MATCHER = /(\w+)\)(\w+)/g;
 

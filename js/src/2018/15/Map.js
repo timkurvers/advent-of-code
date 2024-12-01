@@ -2,10 +2,10 @@
 
 import colors from 'colors';
 
-import Coord from './Coord';
+import Coord from './Coord.js';
 import {
   Elf, Goblin, Unit, Wall,
-} from './entities';
+} from './entities/index.js';
 
 const CHAR_MAPPINGS = {
   '#': Wall,

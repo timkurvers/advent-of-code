@@ -3,7 +3,7 @@ import {
   astar,
   cast,
   solution,
-} from '../../utils';
+} from '../../utils/index.js';
 
 const NODE_MATCHER = /.+?node-x(\d+)-y(\d+)\s+(\d+)T\s+(\d+)T\s+(\d+)T\s+(\d+)%/g;
 

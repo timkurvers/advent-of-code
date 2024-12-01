@@ -17,7 +17,7 @@ import {
   lcm2,
   gcd,
   lcm,
-} from '../../src/utils';
+} from '../../src/utils/index.js';
 
 describe('math utilities', () => {
   describe('TAU', () => {

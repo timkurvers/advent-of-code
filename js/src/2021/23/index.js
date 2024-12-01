@@ -2,7 +2,7 @@
 
 import {
   Cache, Graph, Grid, astar, solution,
-} from '../../utils';
+} from '../../utils/index.js';
 
 const parse = (input) => Grid.from(input);
 

@@ -1,4 +1,4 @@
-import { cast, solution } from '../../utils';
+import { cast, solution } from '../../utils/index.js';
 
 const TOTAL_IPS = 4294967296;
 

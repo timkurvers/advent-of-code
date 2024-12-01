@@ -5,7 +5,7 @@ import {
   multiply,
   solution,
   sum,
-} from '../../utils';
+} from '../../utils/index.js';
 
 const parse = (input) => input.trim().split(/\s+/).map(Number);
 const qe = (numbers) => multiply(numbers);

@@ -2,8 +2,8 @@
 
 import colors from 'colors';
 
-import Tile, { Type } from './Tile';
-import { Grid } from '../../utils';
+import Tile, { Type } from './Tile.js';
+import { Grid } from '../../utils/index.js';
 
 const AREA_MATCHER = /(x|y)=(\d+)(?:\.\.(\d+))?, (x|y)=(\d+)(?:\.\.(\d+))?/;
 

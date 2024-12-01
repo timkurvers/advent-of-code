@@ -1,4 +1,4 @@
-import { solution } from '../../utils';
+import { solution } from '../../utils/index.js';
 
 const process = (input, strangerThings = false) => {
   const registry = input.trim().split('\n').map(Number);

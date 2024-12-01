@@ -1,6 +1,6 @@
 /* eslint-disable consistent-return, quote-props */
 
-import { Grid, Orientation, dx, dy, solution } from '../../utils';
+import { Grid, Orientation, dx, dy, solution } from '../../utils/index.js';
 
 const PIPES = {
   '|': { // vertical pipe connecting north and south.

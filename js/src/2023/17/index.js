@@ -1,4 +1,4 @@
-import { Cache, Grid, Orientation, Rotation, astar, cast, dx, dy, normalizeOrientation, solution } from '../../utils';
+import { Cache, Grid, Orientation, Rotation, astar, cast, dx, dy, normalizeOrientation, solution } from '../../utils/index.js';
 
 const parse = (input) => Grid.from(input.trim(), { cast });
 

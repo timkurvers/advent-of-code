@@ -1,6 +1,6 @@
 /* eslint-disable no-loop-func, no-param-reassign */
 
-import { solution } from '../../utils';
+import { solution } from '../../utils/index.js';
 
 const parse = (input) => input.split('').map(Number);
 

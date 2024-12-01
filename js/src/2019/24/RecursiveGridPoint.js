@@ -1,6 +1,6 @@
 /* eslint-disable no-multi-spaces */
 
-import { GridNDPoint } from '../../utils';
+import { GridNDPoint } from '../../utils/index.js';
 
 // Indices to mark the outer and inner ring in a 5x5 grid
 const OUTER_RING_MIN = 0;

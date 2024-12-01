@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 
-import { range, solution } from '../../utils';
+import { range, solution } from '../../utils/index.js';
 
 const parse = (input) => (
   input.trim().split('\n').map((s) => s.split('').map(Number))

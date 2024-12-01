@@ -1,4 +1,4 @@
-import { Grid, identity } from '../../utils';
+import { Grid, identity } from '../../utils/index.js';
 
 class Diagram extends Grid {
   static from(...args) {

@@ -1,6 +1,6 @@
-import { cast } from '../../utils';
+import { cast } from '../../utils/index.js';
 
-import * as operations from './operations';
+import * as operations from './operations.js';
 
 const INSTRUCTION_MATCHER = /(\w+) ([-+ab0-9]+)(?:, ([-+ab0-9]+))?/g;
 

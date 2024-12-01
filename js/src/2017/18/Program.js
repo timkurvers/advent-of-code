@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 
-import { cast } from '../../utils';
+import { cast } from '../../utils/index.js';
 
 const DONE = -1;
 

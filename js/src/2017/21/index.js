@@ -1,4 +1,4 @@
-import { solution, stripIndent } from '../../utils';
+import { solution, stripIndent } from '../../utils/index.js';
 
 const Pixel = {
   ON: '#',

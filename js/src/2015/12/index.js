@@ -1,6 +1,6 @@
 import {
   identity, isNumber, isPrimitive, solution, sum,
-} from '../../utils';
+} from '../../utils/index.js';
 
 const parse = (input) => JSON.parse(input);
 

@@ -1,6 +1,6 @@
 /* eslint-disable no-cond-assign, no-param-reassign */
 
-import { solution, sum } from '../../utils';
+import { solution, sum } from '../../utils/index.js';
 
 // Parses given hex string into a bit stream (keeping leading zero bits)
 const parse = (hex) => {

@@ -1,4 +1,4 @@
-import { solution } from '../../utils';
+import { solution } from '../../utils/index.js';
 
 const A = 'a'.charCodeAt(0);
 const Z = 'z'.charCodeAt(0);

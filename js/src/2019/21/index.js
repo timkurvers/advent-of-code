@@ -1,13 +1,13 @@
 import assert from 'assert';
 
-import IntcodeProgram from '../02/IntcodeProgram';
+import IntcodeProgram from '../02/IntcodeProgram.js';
 import {
   Grid,
   fromASCII,
   solution,
   stripIndent,
   toASCII,
-} from '../../utils';
+} from '../../utils/index.js';
 
 const ground = '#';
 const hole = '.';

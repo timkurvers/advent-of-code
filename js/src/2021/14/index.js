@@ -1,4 +1,4 @@
-import { solution } from '../../utils';
+import { solution } from '../../utils/index.js';
 
 const parse = (input) => {
   const [template, rest] = input.trim().split('\n\n');

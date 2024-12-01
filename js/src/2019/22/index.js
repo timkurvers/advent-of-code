@@ -2,9 +2,9 @@
 
 import {
   mod, modPow, range, solution,
-} from '../../utils';
+} from '../../utils/index.js';
 
-import { cut, dealIntoNewStack, dealWithIncrement } from './techniques';
+import { cut, dealIntoNewStack, dealWithIncrement } from './techniques.js';
 
 const parse = (input, cast = Number) => input.trim().split('\n').map((line) => {
   if (line.includes('increment')) {

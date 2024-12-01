@@ -5,10 +5,10 @@ import {
   reduceMaxBy,
   reduceMinBy,
   solution,
-} from '../../utils';
+} from '../../utils/index.js';
 
-import Unit from './Unit';
-import { Armor, Ring, Weapon } from './Equipment';
+import Unit from './Unit.js';
+import { Armor, Ring, Weapon } from './Equipment.js';
 
 const parse = (input) => {
   const [hp, damage, armor] = input.match(/\d+/g).map(Number);

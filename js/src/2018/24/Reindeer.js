@@ -1,5 +1,5 @@
-import Army from './Army';
-import Group from './Group';
+import Army from './Army.js';
+import Group from './Group.js';
 
 const DRAW = Symbol('draw');
 

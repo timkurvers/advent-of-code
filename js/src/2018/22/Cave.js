@@ -1,6 +1,6 @@
 /* eslint-disable prefer-destructuring */
 
-import Region from './Region';
+import Region from './Region/index.js';
 
 class Cave {
   constructor(definition) {

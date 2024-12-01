@@ -1,6 +1,6 @@
 /* eslint-disable no-cond-assign */
 
-import { sum } from '../../utils';
+import { sum } from '../../utils/index.js';
 
 class Planet {
   constructor(id) {

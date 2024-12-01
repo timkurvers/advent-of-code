@@ -1,4 +1,4 @@
-import { distance2D } from '../../utils/navigation';
+import { distance2D } from '../../utils/navigation.js';
 
 let ord = 65;
 

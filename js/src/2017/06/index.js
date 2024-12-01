@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 
-import { maxIndex, solution } from '../../utils';
+import { maxIndex, solution } from '../../utils/index.js';
 
 const parse = (input) => input.split(/\s+/).map(Number);
 

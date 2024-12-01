@@ -1,4 +1,4 @@
-import { CircularLinkedListNode as Marble, solution } from '../../utils';
+import { CircularLinkedListNode as Marble, solution } from '../../utils/index.js';
 
 const entryToConfig = (entry) => {
   const match = entry.match(/\d+/g);

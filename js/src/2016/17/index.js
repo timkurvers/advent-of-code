@@ -4,9 +4,9 @@ import {
   bfs,
   solution,
   stripIndent,
-} from '../../utils';
+} from '../../utils/index.js';
 
-import Point from './Point';
+import Point from './Point/index.js';
 
 const build = () => {
   const definition = stripIndent`

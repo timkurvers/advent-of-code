@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 
-export { set, mul } from '../../18/operations/base';
+export { set, mul } from '../../18/operations/base.js';
 
 // jnz: jumps with an offset of the value of Y, but only if the value of X is not zero.
 export const jnz = (program, register, value) => {

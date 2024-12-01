@@ -1,6 +1,6 @@
 /* eslint-disable prefer-const */
 
-import { solution } from '../../utils';
+import { solution } from '../../utils/index.js';
 
 const ROCK = 1;
 const PAPER = 2;

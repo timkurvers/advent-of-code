@@ -1,6 +1,6 @@
 /* eslint-disable object-curly-newline */
 
-import { GridND, GridNDPoint, range, stripIndent } from '../../../src/utils';
+import { GridND, GridNDPoint, range, stripIndent } from '../../../src/utils/index.js';
 
 describe('GridND', () => {
   const dimensions = ['x', 'y', 'z', 'w'];

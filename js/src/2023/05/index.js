@@ -1,6 +1,6 @@
 /* eslint-disable no-cond-assign, no-param-reassign */
 
-import { cast, solution } from '../../utils';
+import { cast, solution } from '../../utils/index.js';
 
 const MAP_HEADER_MATCHER = /(\w+)-to-(\w+)/;
 const MAP_MATCHER = /(\d+) (\d+) (\d+)/g;

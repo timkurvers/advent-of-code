@@ -1,4 +1,4 @@
-import { CircularLinkedList, solution } from '../../utils';
+import { CircularLinkedList, solution } from '../../utils/index.js';
 
 const parse = (input) => input.split('').map(Number);
 

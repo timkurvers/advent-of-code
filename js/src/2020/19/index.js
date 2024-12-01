@@ -1,6 +1,6 @@
 /* eslint-disable no-cond-assign, no-param-reassign */
 
-import { cast, patterns, solution } from '../../utils';
+import { cast, patterns, solution } from '../../utils/index.js';
 
 // Creates a rule for given raw rule arguments
 const create = (raw, rules) => {

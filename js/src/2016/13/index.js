@@ -1,6 +1,6 @@
-import { astar, solution } from '../../utils';
+import { astar, solution } from '../../utils/index.js';
 
-import Maze, { Type } from './Maze';
+import Maze, { Type } from './Maze.js';
 
 const traverse = (start, goal) => (
   astar(start, goal, {

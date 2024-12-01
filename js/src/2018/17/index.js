@@ -1,6 +1,6 @@
-import { solution } from '../../utils';
+import { solution } from '../../utils/index.js';
 
-import Ground from './Ground';
+import Ground from './Ground.js';
 
 const prepare = (input) => {
   const ground = new Ground(input);

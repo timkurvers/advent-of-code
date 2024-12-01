@@ -1,4 +1,4 @@
-import * as operations from '.';
+import * as operations from './index.js';
 
 const lookup = new Map();
 for (const operation of Object.values(operations)) {

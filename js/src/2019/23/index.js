@@ -1,6 +1,6 @@
-import { solution } from '../../utils';
+import { solution } from '../../utils/index.js';
 
-import Network from './Network';
+import Network from './Network.js';
 
 export const partOne = solution(async (input) => {
   const network = new Network(input);

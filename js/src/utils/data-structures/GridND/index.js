@@ -1,6 +1,6 @@
-import { dfor } from '../../math';
+import { dfor } from '../../math.js';
 
-import Point from './Point';
+import Point from './Point.js';
 
 class GridND {
   constructor(dimensions, { pointClass = Point.for(dimensions) } = {}) {

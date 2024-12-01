@@ -1,4 +1,4 @@
-import { time, wait } from '../../src/utils';
+import { time, wait } from '../../src/utils/index.js';
 
 describe('concurrency utilities', () => {
   describe('time()', () => {

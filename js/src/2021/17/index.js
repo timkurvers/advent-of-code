@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 
-import { range, reduceMaxBy, solution } from '../../utils';
+import { range, reduceMaxBy, solution } from '../../utils/index.js';
 
 const parse = (input) => {
   const [x1, x2, y1, y2] = input.trim().match(/-?\d+/g).map(Number);

@@ -1,7 +1,7 @@
-import { toASCII, wait } from '../../utils';
+import { toASCII, wait } from '../../utils/index.js';
 
-import Operand from './operations/Operand';
-import operations from './operations/lookup';
+import Operand from './operations/Operand.js';
+import operations from './operations/lookup.js';
 
 class IntcodeProgram {
   constructor(source) {

@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 
-import { Grid, combine, distance2D, solution } from '../../utils';
+import { Grid, combine, distance2D, solution } from '../../utils/index.js';
 
 const parse = (input) => {
   const grid = Grid.from(input.trim());

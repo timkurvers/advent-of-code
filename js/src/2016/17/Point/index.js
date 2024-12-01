@@ -1,6 +1,6 @@
-import { GridPoint } from '../../../utils';
+import { GridPoint } from '../../../utils/index.js';
 
-import PointWithPath from './WithPath';
+import PointWithPath from './WithPath.js';
 
 class Point extends GridPoint {
   constructor(...args) {

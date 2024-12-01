@@ -4,7 +4,7 @@ import {
   isHorizontalOrientation,
   dx,
   dy,
-} from '../../utils';
+} from '../../utils/index.js';
 
 const INTERSECTION_OPTIONS = [
   Rotation.TURN_LEFT,

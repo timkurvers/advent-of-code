@@ -1,4 +1,4 @@
-import { BinaryHeap, range } from '../../../src/utils';
+import { BinaryHeap, range } from '../../../src/utils/index.js';
 
 describe('BinaryHeap', () => {
   class BinaryMaxHeap extends BinaryHeap {

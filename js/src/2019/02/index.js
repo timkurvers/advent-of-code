@@ -1,8 +1,8 @@
 /* eslint-disable consistent-return */
 
-import { range, solution } from '../../utils';
+import { range, solution } from '../../utils/index.js';
 
-import IntcodeProgram from './IntcodeProgram';
+import IntcodeProgram from './IntcodeProgram.js';
 
 export const partOne = solution(async (input, { overrideMemory = true }) => {
   const program = IntcodeProgram.from(input);

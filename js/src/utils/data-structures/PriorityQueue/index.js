@@ -1,6 +1,6 @@
-import { BinaryHeap } from '..';
+import { BinaryHeap } from '../index.js';
 
-import Entry from './Entry';
+import Entry from './Entry.js';
 
 // Loosely based on Python's PriorityQueue
 // See: https://docs.python.org/3/library/queue.html#queue.PriorityQueue

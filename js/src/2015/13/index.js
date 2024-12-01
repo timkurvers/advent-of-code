@@ -3,9 +3,9 @@ import {
   solution,
   sum,
   wrap,
-} from '../../utils';
+} from '../../utils/index.js';
 
-import Person from './Person';
+import Person from './Person.js';
 
 const REACTION_MATCHER = /(\w+) .+ (gain|lose) (\d+) .+ to (\w+)/g;
 

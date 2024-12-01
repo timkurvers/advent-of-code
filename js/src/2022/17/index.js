@@ -1,4 +1,4 @@
-import { Grid, reduceMinBy, solution } from '../../utils';
+import { Grid, reduceMinBy, solution } from '../../utils/index.js';
 
 const parse = (input) => (
   input.trim().split('').map((c) => (c === '<' ? -1 : 1))

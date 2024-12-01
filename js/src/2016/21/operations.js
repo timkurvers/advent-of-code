@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 
-import { wrap } from '../../utils';
+import { wrap } from '../../utils/index.js';
 
 const resolve = (chars, ref) => {
   if (chars[ref]) {

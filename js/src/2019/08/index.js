@@ -1,4 +1,4 @@
-import { Grid, reduceMinBy, solution } from '../../utils';
+import { Grid, reduceMinBy, solution } from '../../utils/index.js';
 
 const Pixel = {
   BLACK: '0',

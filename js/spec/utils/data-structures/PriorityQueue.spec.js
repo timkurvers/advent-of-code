@@ -1,4 +1,4 @@
-import { PriorityQueue, time } from '../../../src/utils';
+import { PriorityQueue, time } from '../../../src/utils/index.js';
 
 describe('PriorityQueue', () => {
   describe('constructor', () => {

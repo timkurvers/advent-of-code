@@ -1,4 +1,4 @@
-import { solution } from '../../utils';
+import { solution } from '../../utils/index.js';
 
 const SHARED = 7;
 const DIVISOR = 20201227;

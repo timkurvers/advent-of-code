@@ -1,4 +1,4 @@
-import * as operations from './operations';
+import * as operations from './operations.js';
 
 class AssembunnyProgram {
   constructor(instructions) {

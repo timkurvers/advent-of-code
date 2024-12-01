@@ -1,6 +1,6 @@
-import { solution } from '../../utils';
+import { solution } from '../../utils/index.js';
 
-import Facility from './Facility';
+import Facility from './Facility.js';
 
 export const partOne = solution((input) => {
   const facility = new Facility(input);

@@ -1,6 +1,6 @@
-import { solution } from '../../utils';
+import { solution } from '../../utils/index.js';
 
-import Grid from './Grid';
+import Grid from './Grid.js';
 
 export const partOne = solution((serialNumber) => {
   const grid = new Grid(serialNumber);

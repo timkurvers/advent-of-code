@@ -1,6 +1,6 @@
 /* eslint-disable no-cond-assign */
 
-import { solution } from '../../utils';
+import { solution } from '../../utils/index.js';
 
 const decompress = (str, { recursive } = {}) => {
   const matcher = /\((\d+)x(\d+)\)/y;

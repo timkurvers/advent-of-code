@@ -1,6 +1,6 @@
 /* eslint-disable no-shadow */
 
-import { multiply, solution, sum } from '../../utils';
+import { multiply, solution, sum } from '../../utils/index.js';
 
 const GAME_MATCHER = /Game (?<id>\d+): (?<rest>.+)/;
 const REVEAL_MATCHER = /(?<amount>\d+) (?<color>blue|red|green)/g;

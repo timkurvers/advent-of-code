@@ -1,4 +1,4 @@
-import { cast, solution, sum } from '../../utils';
+import { cast, solution, sum } from '../../utils/index.js';
 
 const parse = (input) => (
   input.trim().split('\n\n').map((inventory) => (

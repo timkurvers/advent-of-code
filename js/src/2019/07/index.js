@@ -1,5 +1,5 @@
-import IntcodeProgram from '../02/IntcodeProgram';
-import { permute, solution } from '../../utils';
+import IntcodeProgram from '../02/IntcodeProgram.js';
+import { permute, solution } from '../../utils/index.js';
 
 const calculate = async (input, phases, { feedback } = {}) => {
   const programs = [];

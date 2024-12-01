@@ -1,6 +1,6 @@
-import { cast, isNumber, solution } from '../../utils';
+import { cast, isNumber, solution } from '../../utils/index.js';
 
-import * as operations from './operations';
+import * as operations from './operations.js';
 
 const INSTRUCTION_MATCHER = /(?:(NOT) )?(.+?)(?: (.+?) (.+?))? -> (.+)/;
 

@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 
-import IntcodeProgram from '../02/IntcodeProgram';
+import IntcodeProgram from '../02/IntcodeProgram.js';
 import {
   Grid,
   Orientation,
@@ -9,7 +9,7 @@ import {
   dx,
   dy,
   solution,
-} from '../../utils';
+} from '../../utils/index.js';
 
 const Move = {
   [Orientation.UP]: 1,

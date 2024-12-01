@@ -1,8 +1,8 @@
-import { solution } from '../../utils';
+import { solution } from '../../utils/index.js';
 
-import Event from './Event';
-import Guard from './Guard';
-import Shift from './Shift';
+import Event from './Event.js';
+import Guard from './Guard.js';
+import Shift from './Shift.js';
 
 const schedule = (input) => {
   const events = input.trim().split('\n').sort().map((definition) => (

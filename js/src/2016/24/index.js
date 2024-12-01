@@ -4,7 +4,7 @@ import {
   permute,
   reduceMinBy,
   solution,
-} from '../../utils';
+} from '../../utils/index.js';
 
 const Type = {
   EMPTY: '.',

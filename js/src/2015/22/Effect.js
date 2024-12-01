@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign, object-curly-newline */
 
-import { noop } from '../../utils';
+import { noop } from '../../utils/index.js';
 
 class Effect {
   constructor({ id, apply, dissipate, duration, proc }) {

@@ -2,7 +2,7 @@
 
 import {
   cast, multiply, modMulInv, solution, zip,
-} from '../../utils';
+} from '../../utils/index.js';
 
 const parse = (input) => {
   const lines = input.trim().split('\n');

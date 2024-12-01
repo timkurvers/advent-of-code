@@ -1,4 +1,4 @@
-import { Grid, solution, sum } from '../../utils';
+import { Grid, solution, sum } from '../../utils/index.js';
 
 const ROCK = 'O';
 const BLOCK = '#';

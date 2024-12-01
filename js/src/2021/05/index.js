@@ -1,6 +1,6 @@
 /* eslint-disable no-nested-ternary */
 
-import { Grid, cast, solution } from '../../utils';
+import { Grid, cast, solution } from '../../utils/index.js';
 
 const LINE_MATCHER = /(-?\d+),(-?\d+) -> (-?\d+),(-?\d+)/;
 

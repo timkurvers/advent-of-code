@@ -1,8 +1,8 @@
 /* eslint-disable no-cond-assign */
 
-import { Cache, Grid, solution } from '../../utils';
+import { Cache, Grid, solution } from '../../utils/index.js';
 
-import CompassPoint from './CompassPoint';
+import CompassPoint from './CompassPoint.js';
 
 const ELF = '#';
 

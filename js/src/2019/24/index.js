@@ -1,8 +1,8 @@
 import {
   Grid, GridND, solution, sum,
-} from '../../utils';
+} from '../../utils/index.js';
 
-import RecursiveGridPoint from './RecursiveGridPoint';
+import RecursiveGridPoint from './RecursiveGridPoint.js';
 
 const GRID_SIZE = 5;
 const CENTER = GRID_SIZE / 2 | 0;

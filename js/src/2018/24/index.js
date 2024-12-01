@@ -1,6 +1,6 @@
-import { bisect, solution } from '../../utils';
+import { bisect, solution } from '../../utils/index.js';
 
-import Reindeer from './Reindeer';
+import Reindeer from './Reindeer.js';
 
 export const partOne = solution((input) => {
   const reindeer = new Reindeer(input);

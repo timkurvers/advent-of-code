@@ -1,9 +1,9 @@
 /* eslint-disable no-cond-assign, no-loop-func */
 
-import { solution } from '../../utils';
+import { solution } from '../../utils/index.js';
 
-import Step from './Step';
-import Worker from './Worker';
+import Step from './Step.js';
+import Worker from './Worker.js';
 
 const solve = (steps, { instantCompletion, workerCount = 1, fixedDuration = 0 }) => {
   const workers = Array.from(new Array(workerCount).keys(), (nr) => (

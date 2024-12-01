@@ -1,4 +1,4 @@
-import { Graph, lcm, solution } from '../../utils';
+import { Graph, lcm, solution } from '../../utils/index.js';
 
 const PATH_MATCHER = /(\w+) = \((\w+), (\w+)\)/g;
 

@@ -1,9 +1,9 @@
 /* eslint-disable no-param-reassign */
 
-import Program from '../18/Program';
-import { solution } from '../../utils';
+import Program from '../18/Program.js';
+import { solution } from '../../utils/index.js';
 
-import * as operations from './operations';
+import * as operations from './operations/index.js';
 
 const isPrime = (value) => {
   for (let i = 2; i < value; i++) {

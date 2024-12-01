@@ -1,5 +1,5 @@
-import IntcodeProgram from '../02/IntcodeProgram';
-import { Grid, bisect, solution } from '../../utils';
+import IntcodeProgram from '../02/IntcodeProgram.js';
+import { Grid, bisect, solution } from '../../utils/index.js';
 
 const Type = {
   BEAM: '#',

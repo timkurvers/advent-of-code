@@ -1,8 +1,8 @@
 import {
   Orientation, Rotation, isSameOrientation, reverse,
-} from '../../utils';
+} from '../../utils/index.js';
 
-import TileSide from './TileSide';
+import TileSide from './TileSide.js';
 
 class Tile {
   constructor(id, grid) {

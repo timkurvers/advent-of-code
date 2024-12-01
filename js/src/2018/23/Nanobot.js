@@ -1,4 +1,4 @@
-import { distance3D } from '../../utils/navigation';
+import { distance3D } from '../../utils/navigation.js';
 
 class Nanobot {
   constructor(x, y, z, radius) {

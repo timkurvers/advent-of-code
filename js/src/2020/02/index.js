@@ -1,4 +1,4 @@
-import { solution } from '../../utils';
+import { solution } from '../../utils/index.js';
 
 const PWDB_ROW_MATCHER = /(?<min>\d+)-(?<max>\d+) (?<char>.): (?<pw>.+)/;
 

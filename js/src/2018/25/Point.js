@@ -1,6 +1,6 @@
-import { distance3D } from '../../utils/navigation';
+import { distance3D } from '../../utils/navigation.js';
 
-import Constellation from './Constellation';
+import Constellation from './Constellation.js';
 
 class Point {
   constructor(definition) {

@@ -1,4 +1,4 @@
-import { GridPoint } from '../../utils';
+import { GridPoint } from '../../utils/index.js';
 
 // Represent a hex grid using axial coordinates
 // See: https://www.redblobgames.com/grids/hexagons/

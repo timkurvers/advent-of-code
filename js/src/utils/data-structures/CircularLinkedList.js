@@ -1,4 +1,4 @@
-import LinkedList, { LinkedListNode } from './LinkedList';
+import LinkedList, { LinkedListNode } from './LinkedList/index.js';
 
 class Node extends LinkedListNode {
   constructor(...args) {

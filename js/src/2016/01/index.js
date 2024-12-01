@@ -5,7 +5,7 @@ import {
   dx,
   dy,
   solution,
-} from '../../utils';
+} from '../../utils/index.js';
 
 const rotations = {
   R: Rotation.TURN_RIGHT,

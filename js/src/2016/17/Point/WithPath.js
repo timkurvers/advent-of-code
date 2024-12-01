@@ -1,4 +1,4 @@
-import { hexmd5 } from '../../../utils';
+import { hexmd5 } from '../../../utils/index.js';
 
 const isUnlocked = (str) => str > 'a';
 

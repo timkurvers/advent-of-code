@@ -1,9 +1,9 @@
 /* eslint-disable no-param-reassign */
 
-import { wait } from '../../../utils';
+import { wait } from '../../../utils/index.js';
 
-import Operand from './Operand';
-import Operation from './Operation';
+import Operand from './Operand.js';
+import Operation from './Operation.js';
 
 export const halt = new Operation({
   opcode: 99,

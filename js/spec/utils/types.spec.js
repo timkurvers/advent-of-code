@@ -5,7 +5,7 @@ import {
   isNumber,
   isPrimitive,
   noop,
-} from '../../src/utils';
+} from '../../src/utils/index.js';
 
 describe('type utilities', () => {
   describe('cast()', () => {

@@ -1,4 +1,4 @@
-import { solution } from '../../utils';
+import { solution } from '../../utils/index.js';
 
 export const partOne = solution((input) => {
   let sum = 0;

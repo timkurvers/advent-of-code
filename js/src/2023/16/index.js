@@ -1,6 +1,6 @@
 /* eslint-disable max-len, no-cond-assign, no-shadow, prefer-const */
 
-import { Grid, Orientation, Rotation, dx, dy, isHorizontalOrientation, isVerticalOrientation, solution } from '../../utils';
+import { Grid, Orientation, Rotation, dx, dy, isHorizontalOrientation, isVerticalOrientation, solution } from '../../utils/index.js';
 
 const parse = (input) => Grid.from(input.trim());
 

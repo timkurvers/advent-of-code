@@ -1,4 +1,4 @@
-import { Grid, solution, wrap } from '../../utils';
+import { Grid, solution, wrap } from '../../utils/index.js';
 
 const INSTRUCTION_MATCHER = /(rect|row|column).+?(\d+).+?(\d+)/;
 

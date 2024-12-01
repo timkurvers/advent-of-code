@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 
-import { TAU } from './math';
+import { TAU } from './math.js';
 
 const EPSILON = 0.000000001;
 

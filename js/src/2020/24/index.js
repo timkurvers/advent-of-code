@@ -1,6 +1,6 @@
-import { Grid, solution } from '../../utils';
+import { Grid, solution } from '../../utils/index.js';
 
-import HexGridPoint from './HexGridPoint';
+import HexGridPoint from './HexGridPoint.js';
 
 const DIRECTION_MATCHER = /se|sw|ne|nw|e|w/g;
 

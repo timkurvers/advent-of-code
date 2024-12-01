@@ -1,4 +1,4 @@
-import IntcodeProgram from '../02/IntcodeProgram';
+import IntcodeProgram from '../02/IntcodeProgram.js';
 
 class Computer extends IntcodeProgram {
   get idle() {

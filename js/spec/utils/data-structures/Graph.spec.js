@@ -6,7 +6,7 @@ import {
   GraphVertex,
   Grid,
   stripIndent,
-} from '../../../src/utils';
+} from '../../../src/utils/index.js';
 
 const sample = new Graph();
 sample.edge(1, 3, { cost: -2 });

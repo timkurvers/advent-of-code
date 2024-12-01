@@ -1,4 +1,4 @@
-import { Grid, astar, solution } from '../../utils';
+import { Grid, astar, solution } from '../../utils/index.js';
 
 const parse = (input) => {
   const grid = Grid.from(input);

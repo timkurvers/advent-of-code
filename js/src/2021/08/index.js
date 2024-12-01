@@ -1,6 +1,6 @@
 /* eslint-disable consistent-return */
 
-import { permute, solution, toASCII } from '../../utils';
+import { permute, solution, toASCII } from '../../utils/index.js';
 
 // Transforms a given string into a mapping (e.g 'cbae' -> [2, 1, 0, 4])
 const createMapping = (str) => str.split('').map((c) => toASCII(c) - 97);

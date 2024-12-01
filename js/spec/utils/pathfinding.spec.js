@@ -3,7 +3,7 @@ import {
   astar,
   bfs,
   stripIndent,
-} from '../../src/utils';
+} from '../../src/utils/index.js';
 
 describe('pathfinding utilities', () => {
   const grid = Grid.from(stripIndent`

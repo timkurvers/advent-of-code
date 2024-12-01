@@ -1,6 +1,6 @@
-import { solution, sum } from '../../utils';
+import { solution, sum } from '../../utils/index.js';
 
-import Program from './Program';
+import Program from './Program.js';
 
 export const partOne = solution((input) => {
   const program = new Program(input);

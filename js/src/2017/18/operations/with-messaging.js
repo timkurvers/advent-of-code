@@ -1,6 +1,6 @@
 /* eslint-disable max-len, no-param-reassign */
 
-export * from './base';
+export * from './base.js';
 
 // snd: sends the value of X to the other program.
 export const snd = (program, register) => {

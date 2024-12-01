@@ -1,4 +1,4 @@
-import { Orientation, TAU, distance2D } from '../../utils';
+import { Orientation, TAU, distance2D } from '../../utils/index.js';
 
 class Asteroid {
   constructor(field, x, y) {

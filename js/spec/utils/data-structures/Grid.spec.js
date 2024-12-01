@@ -1,6 +1,6 @@
 /* eslint-disable object-curly-newline */
 
-import { Grid, GridPoint, stripIndent } from '../../../src/utils';
+import { Grid, GridPoint, stripIndent } from '../../../src/utils/index.js';
 
 describe('Grid', () => {
   describe('constructor', () => {

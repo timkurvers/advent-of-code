@@ -1,4 +1,4 @@
-import { LinkedList, LinkedListNode } from '../../../src/utils';
+import { LinkedList, LinkedListNode } from '../../../src/utils/index.js';
 
 describe('LinkedList', () => {
   describe('Node', () => {

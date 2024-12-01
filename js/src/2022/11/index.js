@@ -2,7 +2,7 @@
 
 import {
   cast, lcm, solution, stripIndent,
-} from '../../utils';
+} from '../../utils/index.js';
 
 const MONKEY_MATCHER = new RegExp(stripIndent`
   Monkey (?<id>\\d+):

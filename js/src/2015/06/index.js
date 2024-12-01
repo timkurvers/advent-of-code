@@ -1,6 +1,6 @@
 /* eslint-disable object-curly-newline */
 
-import { Grid, solution, sum } from '../../utils';
+import { Grid, solution, sum } from '../../utils/index.js';
 
 const INSTRUCTION_MATCHER = /(on|off|toggle) (\d+),(\d+) through (\d+),(\d+)/;
 

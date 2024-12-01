@@ -1,4 +1,4 @@
-import { CircularLinkedList, LinkedList, solution } from '../../utils';
+import { CircularLinkedList, LinkedList, solution } from '../../utils/index.js';
 
 const parse = (input) => (
   Array.from(input.trim().matchAll(/-?\d+/g)).map(Number)

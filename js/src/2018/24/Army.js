@@ -1,4 +1,4 @@
-import { sum } from '../../utils';
+import { sum } from '../../utils/index.js';
 
 class Army {
   constructor(label) {

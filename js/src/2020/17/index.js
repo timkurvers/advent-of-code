@@ -1,4 +1,4 @@
-import { GridND, solution } from '../../utils';
+import { GridND, solution } from '../../utils/index.js';
 
 const State = {
   ACTIVE: '#',

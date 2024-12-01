@@ -1,4 +1,4 @@
-import { Cache } from '../../../src/utils';
+import { Cache } from '../../../src/utils/index.js';
 
 describe('Cache', () => {
   describe('constructor', () => {

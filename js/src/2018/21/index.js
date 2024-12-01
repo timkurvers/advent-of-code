@@ -1,7 +1,7 @@
 /* eslint-disable prefer-destructuring */
 
-import Program, { Interceptor } from '../19/Program';
-import { solution } from '../../utils';
+import Program, { Interceptor } from '../19/Program.js';
+import { solution } from '../../utils/index.js';
 
 export const partOne = solution((input) => {
   const program = new Program(input);

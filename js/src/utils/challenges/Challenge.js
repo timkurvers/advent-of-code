@@ -9,7 +9,7 @@ import globby from 'globby';
 
 import {
   camelcase, sum, time, titleize,
-} from '..';
+} from '../index.js';
 
 const SRC_ROOT = 'src';
 const PUZZLE_ROOT = '../puzzles';
@@ -44,7 +44,7 @@ class Challenge {
   }
 
   async parts() {
-    return import(path.resolve(this.path));
+    return import(path.resolve(this.path, 'index.js'));
   }
 
   async run({ benchmark = false } = {}) {

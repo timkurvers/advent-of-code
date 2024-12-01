@@ -1,4 +1,4 @@
-import { reduceMaxBy, solution } from '../../utils';
+import { reduceMaxBy, solution } from '../../utils/index.js';
 
 const REINDEER_MATCHER = /(\w+) .+ (\d+) .+ (\d+) .+ (\d+)/g;
 

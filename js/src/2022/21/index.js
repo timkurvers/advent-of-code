@@ -1,6 +1,6 @@
 /* eslint-disable consistent-return, default-case */
 
-import { Cache, solution } from '../../utils';
+import { Cache, solution } from '../../utils/index.js';
 
 const MONKEY_MATCHER = /(?<id>[a-z]{4}): (?:(?<nr>\d+)|(?<a>[a-z]{4}) (?<op>[-/+*]) (?<b>[a-z]{4}))/g;
 

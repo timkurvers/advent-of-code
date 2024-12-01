@@ -1,6 +1,6 @@
-import { solution } from '../../utils';
+import { solution } from '../../utils/index.js';
 
-import Polymer from './Polymer';
+import Polymer from './Polymer.js';
 
 export const partOne = solution((input) => {
   const polymer = Polymer.fromString(input);

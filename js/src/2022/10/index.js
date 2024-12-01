@@ -1,4 +1,4 @@
-import { solution } from '../../utils';
+import { solution } from '../../utils/index.js';
 
 const INSTRUCTION_MATCHER = /(?<op>[a-z]{4})(?: (?<arg>-?\d+))?/g;
 

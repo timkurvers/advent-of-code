@@ -1,6 +1,6 @@
 /* eslint-disable no-eval */
 
-import { solution, sum } from '../../utils';
+import { solution, sum } from '../../utils/index.js';
 
 const parse = (input) => input.trim().split('\n').map((code) => ({
   code,

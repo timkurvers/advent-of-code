@@ -1,9 +1,9 @@
 /* eslint-disable no-param-reassign, object-curly-newline */
 
-import { astar, clone, solution } from '../../utils';
+import { astar, clone, solution } from '../../utils/index.js';
 
-import * as effects from './Effect';
-import * as spells from './Spell';
+import * as effects from './Effect.js';
+import * as spells from './Spell.js';
 
 const parse = (input) => input.match(/\d+/g).map(Number);
 

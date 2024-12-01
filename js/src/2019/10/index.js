@@ -1,6 +1,6 @@
-import { CircularLinkedList, reduceMaxBy, solution } from '../../utils';
+import { CircularLinkedList, reduceMaxBy, solution } from '../../utils/index.js';
 
-import Asteroid from './Asteroid';
+import Asteroid from './Asteroid.js';
 
 const parse = (input) => {
   const field = [];

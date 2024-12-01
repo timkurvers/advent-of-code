@@ -1,7 +1,7 @@
-import { solution } from '../../utils';
+import { solution } from '../../utils/index.js';
 
-import Sample from './Sample';
-import operations from './operations';
+import Sample from './Sample.js';
+import operations from './operations.js';
 
 const parse = (input) => {
   const [sampling, program] = input.split('\n\n\n\n');

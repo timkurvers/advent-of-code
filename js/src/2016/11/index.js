@@ -4,9 +4,9 @@ import {
   astar,
   combine,
   solution,
-} from '../../utils';
+} from '../../utils/index.js';
 
-import Component from './Component';
+import Component from './Component.js';
 
 const COMPONENT_MATCHER = /[\w-]+ (microchip|generator)+/g;
 const ELEVATOR_BIT = 1 << 0;

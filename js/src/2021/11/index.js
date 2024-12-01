@@ -1,6 +1,6 @@
 /* eslint-disable no-cond-assign, no-param-reassign */
 
-import { Grid, solution } from '../../utils';
+import { Grid, solution } from '../../utils/index.js';
 
 const parse = (input) => Grid.from(input, { cast: Number });
 

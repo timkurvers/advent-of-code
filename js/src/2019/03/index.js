@@ -6,7 +6,7 @@ import {
   reduceMinBy,
   solution,
   sum,
-} from '../../utils';
+} from '../../utils/index.js';
 
 const orientations = {
   U: Orientation.UP,

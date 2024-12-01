@@ -1,5 +1,5 @@
-import IntcodeProgram from '../02/IntcodeProgram';
-import { solution } from '../../utils';
+import IntcodeProgram from '../02/IntcodeProgram.js';
+import { solution } from '../../utils/index.js';
 
 export const partOne = solution(async (input) => {
   const program = IntcodeProgram.from(input);

@@ -1,4 +1,4 @@
-import { LinkedListNode } from '.';
+import { LinkedListNode } from './index.js';
 
 class Queue {
   constructor() {

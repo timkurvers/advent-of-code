@@ -1,6 +1,6 @@
-import { solution, sum } from '../../utils';
+import { solution, sum } from '../../utils/index.js';
 
-import Present from './Present';
+import Present from './Present.js';
 
 export const partOne = solution((input) => {
   const presents = Present.from(input);

@@ -3,7 +3,7 @@ import {
   reduceMinBy,
   solution,
   sum,
-} from '../../utils';
+} from '../../utils/index.js';
 
 const parse = (input) => input.trim().split('\n').map(Number);
 

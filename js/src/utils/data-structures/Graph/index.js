@@ -1,9 +1,9 @@
 /* eslint-disable no-param-reassign */
 
-import { bfs } from '../..';
+import { bfs } from '../../index.js';
 
-import Edge from './Edge';
-import Vertex from './Vertex';
+import Edge from './Edge.js';
+import Vertex from './Vertex.js';
 
 class Graph {
   constructor({ edgeClass = Edge, vertexClass = Vertex } = {}) {

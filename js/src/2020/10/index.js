@@ -1,4 +1,4 @@
-import { Graph, solution } from '../../utils';
+import { Graph, solution } from '../../utils/index.js';
 
 const parse = (input) => input.trim().split('\n').map(Number).sort((a, b) => a - b);
 

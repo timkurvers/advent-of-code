@@ -1,4 +1,4 @@
-import { overlappingMatch, solution } from '../../utils';
+import { overlappingMatch, solution } from '../../utils/index.js';
 
 const COMPLEX_DIGIT_MATCHER = /\d|one|two|three|four|five|six|seven|eight|nine/g;
 

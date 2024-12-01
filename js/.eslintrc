@@ -9,6 +9,7 @@
   "rules": {
     "default-case-last": "off",
     "function-paren-newline": "off",
+    "import/extensions": ["error", "ignorePackages"],
     "import/no-cycle": "off",
     "max-classes-per-file": "off",
     "no-await-in-loop": "off",

@@ -1,4 +1,4 @@
-import { solution } from '../../utils';
+import { solution } from '../../utils/index.js';
 
 function* generator(seed, factor, onlyMultiplesOf = null) {
   let previous = seed;

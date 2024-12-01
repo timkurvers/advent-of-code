@@ -1,6 +1,6 @@
 /* eslint-disable no-labels */
 
-import { clone, combine, solution } from '../../utils';
+import { clone, combine, solution } from '../../utils/index.js';
 
 const parse = (input) => input.trim().split('\n').map(JSON.parse);
 

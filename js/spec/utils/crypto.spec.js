@@ -1,4 +1,4 @@
-import { hexmd5 } from '../../src/utils';
+import { hexmd5 } from '../../src/utils/index.js';
 
 describe('crypto utilities', () => {
   describe('hexmd5()', () => {

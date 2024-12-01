@@ -1,4 +1,4 @@
-import { bfs, solution } from '../../utils';
+import { bfs, solution } from '../../utils/index.js';
 
 const serialize = (cube) => cube.join(',');
 

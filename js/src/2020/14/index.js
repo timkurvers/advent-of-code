@@ -1,4 +1,4 @@
-import { combine, solution, sum } from '../../utils';
+import { combine, solution, sum } from '../../utils/index.js';
 
 const MEM_MATCHER = /mem\[(\d+)\] = (\d+)/;
 const SIZE = 36;

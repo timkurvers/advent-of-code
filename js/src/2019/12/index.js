@@ -3,9 +3,9 @@ import {
   lcm,
   solution,
   sum,
-} from '../../utils';
+} from '../../utils/index.js';
 
-import Moon from './Moon';
+import Moon from './Moon.js';
 
 const step = (moons) => {
   const pairs = combine(moons, { k: 2 });

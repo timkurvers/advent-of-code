@@ -1,6 +1,6 @@
-import { solution } from '../../utils';
+import { solution } from '../../utils/index.js';
 
-import Point from './Point';
+import Point from './Point.js';
 
 export const finalPart = solution((input) => {
   const points = input.trim().split('\n').map((line) => new Point(line));

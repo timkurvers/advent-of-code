@@ -1,4 +1,4 @@
-import { Grid, solution } from '../../utils';
+import { Grid, solution } from '../../utils/index.js';
 
 const FOLD_MATCHER = /(x|y)=(\d+)/;
 

@@ -1,14 +1,14 @@
 /* eslint-disable no-param-reassign */
 
-export { default as BinaryHeap } from './BinaryHeap';
-export { default as Cache } from './Cache';
-export { default as CircularLinkedList, CircularLinkedListNode } from './CircularLinkedList';
-export { default as LinkedList, LinkedListNode } from './LinkedList';
-export { default as Graph, GraphEdge, GraphVertex } from './Graph';
-export { default as Grid, GridPoint } from './Grid';
-export { default as GridND, GridNDPoint } from './GridND';
-export { default as PriorityQueue } from './PriorityQueue';
-export { default as Queue } from './Queue';
+export { default as BinaryHeap } from './BinaryHeap.js';
+export { default as Cache } from './Cache.js';
+export { default as CircularLinkedList, CircularLinkedListNode } from './CircularLinkedList.js';
+export { default as LinkedList, LinkedListNode } from './LinkedList/index.js';
+export { default as Graph, GraphEdge, GraphVertex } from './Graph/index.js';
+export { default as Grid, GridPoint } from './Grid/index.js';
+export { default as GridND, GridNDPoint } from './GridND/index.js';
+export { default as PriorityQueue } from './PriorityQueue/index.js';
+export { default as Queue } from './Queue.js';
 
 export const intersection = (first, ...arrays) => (
   first.reduce((list, entry) => {

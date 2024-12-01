@@ -1,4 +1,4 @@
-import { cast, solution, wrap } from '../../utils';
+import { cast, solution, wrap } from '../../utils/index.js';
 
 const DISC_MATCHER = /Disc #(\d+) has (\d+) .+ position (\d+)./g;
 

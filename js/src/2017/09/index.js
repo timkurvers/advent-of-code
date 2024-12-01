@@ -1,6 +1,6 @@
-import { solution } from '../../utils';
+import { solution } from '../../utils/index.js';
 
-import Group from './Group';
+import Group from './Group.js';
 
 const parse = (input) => {
   const { length } = input;

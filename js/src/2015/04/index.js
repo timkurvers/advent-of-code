@@ -1,4 +1,4 @@
-import { hexmd5, solution } from '../../utils';
+import { hexmd5, solution } from '../../utils/index.js';
 
 const mine = (secret, { startPattern } = {}) => {
   let index = 1;

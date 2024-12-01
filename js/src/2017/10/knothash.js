@@ -1,4 +1,4 @@
-import { CircularLinkedList, range as createBaseRange } from '../../utils';
+import { CircularLinkedList, range as createBaseRange } from '../../utils/index.js';
 
 export const parse = (source, { asASCII = false } = {}) => {
   if (asASCII) {

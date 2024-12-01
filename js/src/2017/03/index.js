@@ -1,4 +1,4 @@
-import { Grid, solution, sum } from '../../utils';
+import { Grid, solution, sum } from '../../utils/index.js';
 
 const spiral = (until) => {
   const grid = new Grid();

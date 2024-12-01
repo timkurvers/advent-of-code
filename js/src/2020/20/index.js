@@ -2,9 +2,9 @@
 
 import {
   Grid, dx, dy, multiply, solution, stripIndent,
-} from '../../utils';
+} from '../../utils/index.js';
 
-import Tile from './Tile';
+import Tile from './Tile.js';
 
 const SEA_MONSTER = Grid.from(stripIndent`
                   #

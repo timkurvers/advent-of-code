@@ -1,6 +1,6 @@
 /* eslint-disable no-cond-assign */
 
-import { solution, sum } from '../../utils';
+import { solution, sum } from '../../utils/index.js';
 
 const DIGIT_MATCHER = /\d+/;
 

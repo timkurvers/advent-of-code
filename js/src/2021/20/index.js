@@ -1,4 +1,4 @@
-import { Grid, solution } from '../../utils';
+import { Grid, solution } from '../../utils/index.js';
 
 const parse = (input) => {
   const [algonl, image] = input.trim().split('\n\n');

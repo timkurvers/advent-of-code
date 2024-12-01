@@ -5,7 +5,7 @@ import {
   Grid,
   astar,
   solution,
-} from '../../utils';
+} from '../../utils/index.js';
 
 const Type = {
   EMPTY: '.',

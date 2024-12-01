@@ -1,6 +1,6 @@
 /* eslint-disable no-multi-assign */
 
-import { solution } from '../../utils';
+import { solution } from '../../utils/index.js';
 
 const CRATE_MATCHER = /\[([A-Z])\]/g;
 const MOVE_MATCHER = /move (?<count>\d+) from (?<from>\d+) to (?<to>\d+)/g;

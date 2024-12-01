@@ -1,7 +1,7 @@
-import { solution } from '../../utils';
+import { solution } from '../../utils/index.js';
 
-import Coordinate from './Coordinate';
-import Location from './Location';
+import Coordinate from './Coordinate.js';
+import Location from './Location.js';
 
 const build = (input) => {
   const coords = input.trim().split('\n').map((definition) => (

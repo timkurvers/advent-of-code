@@ -1,4 +1,4 @@
-import { cast, reduceMaxBy, solution } from '../../utils';
+import { cast, reduceMaxBy, solution } from '../../utils/index.js';
 
 const INGREDIENT_MATCHER = /(\w+).+?(-?\d+).+?(-?\d+).+?(-?\d+).+?(-?\d+).+?(-?\d+)/g;
 

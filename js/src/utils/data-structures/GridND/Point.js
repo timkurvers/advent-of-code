@@ -1,5 +1,5 @@
-import Cache from '../Cache';
-import { dfor } from '../../math';
+import Cache from '../Cache.js';
+import { dfor } from '../../math.js';
 
 // Holds matrices with deltas on how to reach neighbors for each dimension
 const neighborMatrices = new Cache({

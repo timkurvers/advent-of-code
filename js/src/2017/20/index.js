@@ -1,4 +1,4 @@
-import { reduceMinBy, solution } from '../../utils';
+import { reduceMinBy, solution } from '../../utils/index.js';
 
 const parse = (input) => {
   const matches = Array.from(input.matchAll(/p=<(.+),(.+),(.+)>, v=<(.+),(.+),(.+)>, a=<(.+),(.+),(.+)>/g));

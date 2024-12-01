@@ -1,6 +1,6 @@
 /* eslint-disable no-cond-assign */
 
-import { reduceMaxBy, solution, sum } from '../../utils';
+import { reduceMaxBy, solution, sum } from '../../utils/index.js';
 
 const parse = (input) => (
   input.trim().split('\n').map((line) => line.split('/').map(Number))

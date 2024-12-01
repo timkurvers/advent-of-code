@@ -1,6 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 
-import { PriorityQueue, Queue } from './data-structures';
+import { PriorityQueue, Queue } from './data-structures/index.js';
 
 const reconstruct = (cameFrom, goal) => {
   const path = [];

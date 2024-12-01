@@ -1,8 +1,8 @@
 /* eslint-disable consistent-return */
 
-import { range, wait } from '../../utils';
+import { range, wait } from '../../utils/index.js';
 
-import Computer from './Computer';
+import Computer from './Computer.js';
 
 class Network extends Array {
   constructor(input, { computerCount = 50, NAT = null } = {}) {

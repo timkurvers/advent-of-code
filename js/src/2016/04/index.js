@@ -1,4 +1,4 @@
-import { solution, sum } from '../../utils';
+import { solution, sum } from '../../utils/index.js';
 
 const ALPHABET_START = 'a'.charCodeAt(0);
 const ROOM_MATCHER = /([a-z-]+)-(\d+)\[([a-z]+)\]/;

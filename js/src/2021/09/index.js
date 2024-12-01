@@ -2,7 +2,7 @@
 
 import {
   Grid, bfs, solution, sum,
-} from '../../utils';
+} from '../../utils/index.js';
 
 const parse = (input) => Grid.from(input.trim(), { cast: Number });
 

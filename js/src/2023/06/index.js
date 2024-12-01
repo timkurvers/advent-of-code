@@ -1,4 +1,4 @@
-import { cast, multiply, solution } from '../../utils';
+import { cast, multiply, solution } from '../../utils/index.js';
 
 const parse = (input) => {
   const nrs = input.trim().match(/\d+/g).map(cast);

@@ -1,6 +1,6 @@
 /* eslint-disable max-len, no-param-reassign */
 
-export * from './base';
+export * from './base.js';
 
 // snd: plays a sound with a frequency equal to the value of X.
 export const snd = (program, register) => {

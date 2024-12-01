@@ -6,7 +6,7 @@ import {
   dx,
   dy,
   solution,
-} from '../../utils';
+} from '../../utils/index.js';
 
 const directions = {
   '^': Orientation.UP,

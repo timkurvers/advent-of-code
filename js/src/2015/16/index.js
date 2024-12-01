@@ -1,6 +1,6 @@
 /* eslint-disable guard-for-in */
 
-import { solution } from '../../utils';
+import { solution } from '../../utils/index.js';
 
 const LINE_MATCHER = /Sue (\d+): (\w+): (\d+), (\w+): (\d+), (\w+): (\d+)/;
 

@@ -1,7 +1,7 @@
-import { astar, solution, sum } from '../../utils';
+import { astar, solution, sum } from '../../utils/index.js';
 
-import Cave from './Cave';
-import { Tool } from './Region/WithTool';
+import Cave from './Cave.js';
+import { Tool } from './Region/WithTool.js';
 
 export const partOne = solution((input) => {
   const cave = new Cave(input);

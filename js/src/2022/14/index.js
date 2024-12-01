@@ -1,6 +1,6 @@
 /* eslint-disable no-cond-assign */
 
-import { Grid, solution } from '../../utils';
+import { Grid, solution } from '../../utils/index.js';
 
 const POINT_MATCHER = /(?<x>\d+),(?<y>\d+)/g;
 

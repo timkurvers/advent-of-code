@@ -1,4 +1,4 @@
-import { solution, sum } from '../../utils';
+import { solution, sum } from '../../utils/index.js';
 
 export const partOne = solution((input) => {
   const diffs = input.split('\n').map((line) => {

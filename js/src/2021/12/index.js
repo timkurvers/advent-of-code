@@ -1,6 +1,6 @@
 /* eslint-disable no-cond-assign */
 
-import { Graph, solution } from '../../utils';
+import { Graph, solution } from '../../utils/index.js';
 
 const parse = (input) => {
   const routes = input.trim().split('\n').map((line) => line.split('-'));

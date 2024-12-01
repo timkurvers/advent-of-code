@@ -8,7 +8,7 @@ import {
   astar,
   solution,
   sum,
-} from '../../utils';
+} from '../../utils/index.js';
 
 const Type = {
   EMPTY: '.',

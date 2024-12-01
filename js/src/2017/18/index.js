@@ -1,8 +1,8 @@
-import { solution } from '../../utils';
+import { solution } from '../../utils/index.js';
 
-import Program from './Program';
-import * as operationsWithMessaging from './operations/with-messaging';
-import * as operationsWithSounds from './operations/with-sounds';
+import Program from './Program.js';
+import * as operationsWithMessaging from './operations/with-messaging.js';
+import * as operationsWithSounds from './operations/with-sounds.js';
 
 export const partOne = solution((input) => {
   const program = Program.from(input, operationsWithSounds);

@@ -1,4 +1,4 @@
-import { Queue } from '../../../src/utils';
+import { Queue } from '../../../src/utils/index.js';
 
 describe('Queue', () => {
   describe('constructor', () => {

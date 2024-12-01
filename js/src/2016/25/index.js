@@ -1,6 +1,6 @@
-import { solution } from '../../utils';
+import { solution } from '../../utils/index.js';
 
-import AssembunnyProgram from '../12/AssembunnyProgram';
+import AssembunnyProgram from '../12/AssembunnyProgram.js';
 
 const isClockSignal = (signal) => signal.every((value, index) => (
   value === index % 2

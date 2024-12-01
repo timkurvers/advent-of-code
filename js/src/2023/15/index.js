@@ -1,4 +1,4 @@
-import { Cache, cast, solution, sum } from '../../utils';
+import { Cache, cast, solution, sum } from '../../utils/index.js';
 
 const STEP_MATCHER = /(\w+)(=|-)(\d+)?/;
 

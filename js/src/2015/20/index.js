@@ -1,4 +1,4 @@
-import { solution } from '../../utils';
+import { solution } from '../../utils/index.js';
 
 const distribute = ({ numHouses, perHouse, maxDeliveries = Infinity }) => {
   const houses = new Array(Math.ceil(numHouses)).fill(0);

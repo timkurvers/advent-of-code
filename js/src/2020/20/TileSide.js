@@ -1,6 +1,6 @@
 import {
   Orientation, Rotation, normalizeOrientation, isHorizontalRotation, isSameOrientation,
-} from '../../utils';
+} from '../../utils/index.js';
 
 class TileSide {
   constructor(tile, rotation) {
