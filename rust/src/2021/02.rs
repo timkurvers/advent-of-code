@@ -48,7 +48,7 @@ fn navigate(commands: Vec<Command>, rtfm: bool) -> u64 {
             Command::Up(value) => { aim -= value },
         }
     }
-    (position * depth).try_into().unwrap()
+    (position * depth) as u64
 }
 
 fn part_one(input: &PuzzleInput, _args: &RawPuzzleArgs) -> Solution {

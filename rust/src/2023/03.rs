@@ -22,7 +22,7 @@ impl From<&str> for Schema {
             for (x, char) in line.chars().enumerate() {
                 let point = match char {
                     '0'..='9' => { SchemaEntry::Number(char.to_digit(10).unwrap())}
-                    '*' => { SchemaEntry::Gear(0, 0) }
+                    '*' => { SchemaEntry::Gear }
                     '.' => { SchemaEntry::Empty }
                     _ => SchemaEntry::Other
                 };
@@ -36,7 +36,7 @@ impl From<&str> for Schema {
 #[derive(Debug, Default)]
 enum SchemaEntry {
     Number(u32),
-    Gear(u32, u32),
+    Gear,
     Other,
     #[default]
     Empty,
@@ -46,7 +46,7 @@ impl fmt::Display for SchemaEntry {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         let char = match self {
             Self::Number(nr) => { char::from_digit(*nr, 10).unwrap() },
-            Self::Gear(_, _) => { '*' },
+            Self::Gear => { '*' },
             Self::Empty => { '.' },
             Self::Other => { '?' }
         };
@@ -56,7 +56,7 @@ impl fmt::Display for SchemaEntry {
 }
 
 fn is_symbol(entry: &SchemaEntry) -> bool {
-    matches!(entry, SchemaEntry::Gear(_, _)) || matches!(entry, SchemaEntry::Other)
+    matches!(entry, SchemaEntry::Gear) || matches!(entry, SchemaEntry::Other)
 }
 
 fn parse(input: &PuzzleInput) -> Schema {
