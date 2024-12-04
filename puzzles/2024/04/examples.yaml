@@ -1,0 +1,43 @@
+part-one:
+  - input: |
+      S..S..S
+      .A.A.A.
+      ..MMM..
+      SAMXMAS
+      ..MMM..
+      .A.A.A.
+      S..S..S
+    answer: 8
+
+  - input: &example1 |
+      MMMSXXMASM
+      MSAMXMSMSA
+      AMXSXMAAMM
+      MSAMASMSMX
+      XMASAMXAMM
+      XXAMMXXAMA
+      SMSMSASXSS
+      SAXAMASAAA
+      MAMMMXMMMM
+      MXMXAXMASX
+    answer: 18
+
+part-two:
+  - input: |
+      M.S
+      .A.
+      M.S
+    answer: 1
+
+  - input: |
+      MMMSXXMASM
+      MSAMXMSMSA
+      AMXSXMAAMM
+      MSAMASMSMX
+      XMASAMXAMM
+      XXAMMXXAMA
+      SMSMSASXSS
+      SAXAMASAAA
+      MAMMMXMMMM
+      MXMXAXMASX
+    answer: 9
