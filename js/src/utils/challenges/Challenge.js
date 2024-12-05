@@ -33,7 +33,12 @@ class Challenge {
   }
 
   get input() {
-    return fs.readFileSync(path.resolve(PUZZLE_ROOT, this.id, 'input.txt'), 'utf8');
+    try {
+      const input = fs.readFileSync(path.resolve(PUZZLE_ROOT, this.id, 'input.txt'), 'utf8');
+      return input;
+    } catch (e) {
+      return undefined;
+    }
   }
 
   get path() {

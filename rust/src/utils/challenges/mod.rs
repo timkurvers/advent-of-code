@@ -28,6 +28,7 @@ pub enum Solution {
     Answer(u64),
     StringAnswer(String),
     Unsolved,
+    MissingInput,
 }
 
 impl fmt::Display for Solution {
@@ -36,6 +37,7 @@ impl fmt::Display for Solution {
             Solution::Answer(nr) => nr.to_string(),
             Solution::StringAnswer(str) => format!("'{}'", str),
             Solution::Unsolved => "Unsolved".to_string(),
+            Solution::MissingInput => "MissingInput".to_string(),
         })
     }
 }
@@ -106,8 +108,7 @@ impl Challenge {
         let mut path: PathBuf = self.puzzle_path();
         path.push("input.txt");
 
-        fs::read_to_string(&path)
-            .expect(&format!("No puzzle input in {:?}", path))
+        fs::read_to_string(&path).unwrap_or_default()
     }
 
     fn examples(&self) -> ExamplesByPart {
@@ -194,8 +195,12 @@ impl Challenge {
                 }
             }
 
-            let (result, duration, bench) = self.execute(part, &input, &args, iterations);
-            self.output(&result, &duration, None, None, bench);
+            if input.is_empty() {
+                self.output(&Solution::MissingInput, &Duration::default(), None, None, None);
+            } else {
+                let (result, duration, bench) = self.execute(part, &input, &args, iterations);
+                self.output(&result, &duration, None, None, bench);
+            }
             println!();
         }
     }
@@ -228,6 +233,7 @@ impl Challenge {
                 }
             },
             Solution::Unsolved => "[not yet solved]".red(),
+            Solution::MissingInput => "[[no puzzle input provided]".red(),
         };
 
         let fmt_suffix = if bench.is_none() && matches!(result, Solution::Answer(_)) {
