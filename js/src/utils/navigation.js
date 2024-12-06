@@ -4,6 +4,22 @@ import { TAU } from './math.js';
 
 const EPSILON = 0.000000001;
 
+export const CARDINAL_DIRECTIONS = [
+  [0, -1],
+  [-1, 0],
+  [1, 0],
+  [0, 1],
+];
+
+export const INTERCARDINAL_DIRECTIONS = [
+  [-1, -1],
+  [1, -1],
+  [-1, 1],
+  [1, 1],
+];
+
+export const ALL_DIRECTIONS = CARDINAL_DIRECTIONS.concat(INTERCARDINAL_DIRECTIONS);
+
 export const Orientation = {
   // UP / DOWN are flipped to ensure proper vertical movements in grids
   UP: Math.PI * 1.5,

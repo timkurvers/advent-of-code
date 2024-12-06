@@ -1,20 +1,8 @@
-import { Grid, solution } from '../../utils/index.js';
+import { ALL_DIRECTIONS, INTERCARDINAL_DIRECTIONS, Grid, solution } from '../../utils/index.js';
 
 const parse = (input) => Grid.from(input);
 
-const DIRECTIONS = [
-  [-1, -1],
-  [0, -1],
-  [1, -1],
-  [-1, 0],
-  [1, 0],
-  [-1, 1],
-  [0, 1],
-  [1, 1],
-];
-
-// Keep diagonals only
-const CROSS_PATTERN_DIRECTIONS = DIRECTIONS.filter(([dx, dy]) => dx !== 0 && dy !== 0);
+const CROSS_PATTERN_DIRECTIONS = INTERCARDINAL_DIRECTIONS;
 
 // Whether given letters are all encountered when walking the grid from starting point in the dx/dy direction
 const matches = (letters, { grid, point, dx, dy }) =>
@@ -27,7 +15,7 @@ const search = (grid, word) => {
   const letters = word.split('');
   let count = 0;
   for (const point of grid) {
-    for (const [dx, dy] of DIRECTIONS) {
+    for (const [dx, dy] of ALL_DIRECTIONS) {
       count += +matches(letters, { grid, point, dx, dy });
     }
   }
