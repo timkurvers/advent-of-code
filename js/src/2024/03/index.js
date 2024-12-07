@@ -1,5 +1,3 @@
-/* eslint-disable no-param-reassign */
-
 import { solution } from '../../utils/index.js';
 
 const INSTRUCTION_MATCHER = /(?<type>mul|do|don't)\((?:(?<a>\d+),(?<b>\d+))?\)/g;

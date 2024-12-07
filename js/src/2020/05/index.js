@@ -1,5 +1,3 @@
-/* eslint-disable no-param-reassign */
-
 import { bitsNeededFor, reduceMaxBy, solution } from '../../utils/index.js';
 
 const parse = (input) => input.trim().split('\n');

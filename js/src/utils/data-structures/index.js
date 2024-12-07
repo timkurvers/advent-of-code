@@ -1,5 +1,3 @@
-/* eslint-disable no-param-reassign */
-
 export { default as BinaryHeap } from './BinaryHeap.js';
 export { default as Cache } from './Cache.js';
 export { default as CircularLinkedList, CircularLinkedListNode } from './CircularLinkedList.js';

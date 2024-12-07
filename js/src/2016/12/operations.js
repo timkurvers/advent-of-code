@@ -1,5 +1,3 @@
-/* eslint-disable no-param-reassign */
-
 const resolve = (program, value) => (value in program.data ? program.data[value] : +value);
 
 // cpy x y: copies x (either an int or the value of a register) into register y.

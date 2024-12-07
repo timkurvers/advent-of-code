@@ -1,5 +1,3 @@
-/* eslint-disable no-param-reassign */
-
 import { cast, dfor, solution, sum } from '../../utils/index.js';
 
 const HAND_BID_MATCHER = /(\w{5}) (\d+)/;

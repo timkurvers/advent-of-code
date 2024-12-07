@@ -1,4 +1,4 @@
-/* eslint-disable no-loop-func, no-param-reassign */
+/* eslint-disable no-loop-func */
 
 import { solution, sum } from '../../utils/index.js';
 

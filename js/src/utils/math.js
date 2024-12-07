@@ -1,5 +1,3 @@
-/* eslint-disable no-param-reassign */
-
 import { Cache } from './index.js';
 
 // Allows for implementations to be Number / BigInt agnostic

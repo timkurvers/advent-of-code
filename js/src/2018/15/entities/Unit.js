@@ -1,5 +1,3 @@
-/* eslint-disable no-param-reassign */
-
 import { astar } from '../../../utils/index.js';
 
 import Entity from './Entity.js';

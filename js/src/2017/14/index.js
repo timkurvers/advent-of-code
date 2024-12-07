@@ -1,5 +1,3 @@
-/* eslint-disable no-param-reassign */
-
 import { Grid, solution } from '../../utils/index.js';
 import { knothash } from '../10/knothash.js';
 

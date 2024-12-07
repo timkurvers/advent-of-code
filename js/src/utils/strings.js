@@ -1,4 +1,4 @@
-/* eslint-disable no-cond-assign, no-param-reassign */
+/* eslint-disable no-cond-assign */
 
 export const toASCII = (string) => {
   if (string.length > 1) {

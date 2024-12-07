@@ -1,5 +1,3 @@
-/* eslint-disable no-param-reassign */
-
 import { bfs } from '../../index.js';
 
 import Edge from './Edge.js';

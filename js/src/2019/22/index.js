@@ -1,5 +1,3 @@
-/* eslint-disable no-param-reassign */
-
 import { mod, modPow, range, solution } from '../../utils/index.js';
 
 import { cut, dealIntoNewStack, dealWithIncrement } from './techniques.js';

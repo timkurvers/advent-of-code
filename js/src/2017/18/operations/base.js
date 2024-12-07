@@ -1,4 +1,4 @@
-/* eslint-disable max-len, no-param-reassign */
+/* eslint-disable max-len */
 
 // set: sets register X to the value of Y.
 export const set = (program, register, value) => {

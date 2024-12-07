@@ -1,4 +1,4 @@
-/* eslint-disable max-len, no-param-reassign, no-unused-vars */
+/* eslint-disable max-len, no-unused-vars */
 
 /* Addition */
 

@@ -1,4 +1,4 @@
-/* eslint-disable consistent-return, no-param-reassign */
+/* eslint-disable consistent-return */
 
 import { permute, solution } from '../../utils/index.js';
 

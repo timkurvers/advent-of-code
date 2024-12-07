@@ -1,5 +1,3 @@
-/* eslint-disable no-param-reassign */
-
 // hlf r sets register r to half its current value, then continues with the next instruction.
 export const hlf = (program, r) => {
   program.data[r] /= 2;

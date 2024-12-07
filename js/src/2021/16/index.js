@@ -1,4 +1,4 @@
-/* eslint-disable no-cond-assign, no-param-reassign */
+/* eslint-disable no-cond-assign */
 
 import { solution, sum } from '../../utils/index.js';
 

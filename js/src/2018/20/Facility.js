@@ -1,5 +1,3 @@
-/* eslint-disable no-param-reassign */
-
 import Coord, { Type } from './Coord.js';
 
 class Facility {

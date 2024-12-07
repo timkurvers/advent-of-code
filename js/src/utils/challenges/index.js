@@ -1,5 +1,3 @@
-/* eslint-disable no-param-reassign */
-
 export { default as Challenge, PUZZLE_ROOT, SRC_ROOT } from './Challenge.js';
 
 const augment = (prop) => (fn) => {

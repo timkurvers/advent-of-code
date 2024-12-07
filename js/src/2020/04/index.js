@@ -1,5 +1,3 @@
-/* eslint-disable no-param-reassign */
-
 import { solution } from '../../utils/index.js';
 
 const PASSPORT_MATCHER = /(?<field>[^:]+):(?<value>[^\s]+)\s*/g;

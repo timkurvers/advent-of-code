@@ -1,5 +1,3 @@
-/* eslint-disable no-param-reassign */
-
 import { solution, sum } from '../../utils/index.js';
 
 const parse = (input) =>

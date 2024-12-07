@@ -1,5 +1,3 @@
-/* eslint-disable no-param-reassign */
-
 export const acc = (program, value) => {
   program.accumulator += value;
   ++program.ip;

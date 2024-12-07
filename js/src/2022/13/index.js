@@ -1,5 +1,3 @@
-/* eslint-disable no-param-reassign */
-
 import { solution } from '../../utils/index.js';
 
 const { isArray } = Array;

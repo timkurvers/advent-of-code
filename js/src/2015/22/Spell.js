@@ -1,5 +1,3 @@
-/* eslint-disable no-param-reassign */
-
 import * as effects from './Effect.js';
 
 class Spell {

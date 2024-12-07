@@ -17,6 +17,7 @@
     "no-console": "off",
     "no-constant-condition": "off",
     "no-continue": "off",
+    "no-param-reassign": "off",
     "no-plusplus": "off",
     "no-promise-executor-return": "off",
     "no-restricted-syntax": "off",

@@ -1,5 +1,3 @@
-/* eslint-disable no-param-reassign */
-
 import { range, solution } from '../../utils/index.js';
 
 const parse = (input) =>

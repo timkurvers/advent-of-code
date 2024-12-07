@@ -1,5 +1,3 @@
-/* eslint-disable no-param-reassign */
-
 import { solution } from '../../utils/index.js';
 
 import Program from './Program.js';

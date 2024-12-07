@@ -1,4 +1,4 @@
-/* eslint-disable no-param-reassign,prefer-const */
+/* eslint-disable prefer-const */
 
 import colors from 'colors';
 

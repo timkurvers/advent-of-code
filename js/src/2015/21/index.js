@@ -1,5 +1,3 @@
-/* eslint-disable no-param-reassign */
-
 import { combine, reduceMaxBy, reduceMinBy, solution } from '../../utils/index.js';
 
 import Unit from './Unit.js';

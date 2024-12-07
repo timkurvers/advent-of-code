@@ -1,5 +1,3 @@
-/* eslint-disable no-param-reassign */
-
 import { wrap } from '../../utils/index.js';
 
 const resolve = (chars, ref) => {

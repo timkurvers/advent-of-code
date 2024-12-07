@@ -1,4 +1,4 @@
-/* eslint-disable max-len, no-param-reassign */
+/* eslint-disable max-len */
 
 export * from './base.js';
 

@@ -1,5 +1,3 @@
-/* eslint-disable no-param-reassign */
-
 class Node {
   constructor(value) {
     this.value = value;

@@ -1,4 +1,4 @@
-/* eslint-disable import/prefer-default-export, no-param-reassign */
+/* eslint-disable import/prefer-default-export */
 
 // See: https://en.wikipedia.org/wiki/Bisection_method
 // And: https://github.com/3rd-Eden/node-bisection

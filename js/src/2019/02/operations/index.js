@@ -1,5 +1,3 @@
-/* eslint-disable no-param-reassign */
-
 import { wait } from '../../../utils/index.js';
 
 import Operand from './Operand.js';

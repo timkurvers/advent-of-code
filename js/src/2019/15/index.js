@@ -1,5 +1,3 @@
-/* eslint-disable no-param-reassign */
-
 import IntcodeProgram from '../02/IntcodeProgram.js';
 import { Grid, Orientation, Rotation, astar, dx, dy, solution } from '../../utils/index.js';
 

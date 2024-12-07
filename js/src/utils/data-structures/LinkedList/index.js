@@ -1,5 +1,3 @@
-/* eslint-disable no-param-reassign */
-
 import Node from './Node.js';
 
 class LinkedList {

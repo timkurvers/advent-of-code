@@ -1,5 +1,3 @@
-/* eslint-disable no-param-reassign */
-
 import { sum } from '../../utils/index.js';
 
 let ord = 65;

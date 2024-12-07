@@ -1,4 +1,4 @@
-/* eslint-disable no-param-reassign, object-curly-newline */
+/* eslint-disable object-curly-newline */
 
 import { noop } from '../../utils/index.js';
 
