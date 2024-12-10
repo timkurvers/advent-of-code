@@ -1,0 +1,16 @@
+part-one:
+  - input: &example1 |
+      2333133121414131402
+    answer: 1928
+
+  - input: |
+      233313312141413140211
+    answer: 2132
+
+  - input: |
+      233313312141413140256
+    answer: 3383
+
+part-two:
+  - input: *example1
+    answer: 2858
