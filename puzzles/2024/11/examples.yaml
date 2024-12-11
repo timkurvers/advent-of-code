@@ -1,0 +1,17 @@
+part-one:
+  - input: |
+      0 1 10 99 999
+    answer: 7
+    args:
+      blinks: 1
+
+  - input: &example1 |
+      125 17
+    answer: 22
+    args:
+      blinks: 6
+
+  - input: *example1
+    answer: 55312
+    args:
+      blinks: 25
