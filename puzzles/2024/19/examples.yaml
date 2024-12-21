@@ -1,0 +1,17 @@
+part-one:
+  - input: &example1 |
+      r, wr, b, g, bwu, rb, gb, br
+
+      brwrr
+      bggr
+      gbbr
+      rrbgbr
+      ubwu
+      bwurrg
+      brgr
+      bbrgwb
+    answer: 6
+
+part-two:
+  - input: *example1
+    answer: 16
