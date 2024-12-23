@@ -1,4 +1,4 @@
-import { Grid, astar, bfs, solution, stripIndent } from '../../utils/index.js';
+import { Grid, astar, floodfill, solution, stripIndent } from '../../utils/index.js';
 
 import Point from './Point/index.js';
 
@@ -31,7 +31,7 @@ export const partOne = solution((passcode) => {
 export const partTwo = solution((passcode) => {
   const { start, goal } = build();
 
-  const { visited } = bfs(start.withPath(), null, {
+  const { visited } = floodfill(start.withPath(), null, {
     neighborsFor: (current) =>
       // Limit problem space by not traversing past the goal
       current.point === goal ? [] : current.options(passcode),

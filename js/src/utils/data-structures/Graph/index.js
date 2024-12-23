@@ -1,4 +1,4 @@
-import { bfs } from '../../index.js';
+import { floodfill } from '../../index.js';
 
 import Edge from './Edge.js';
 import Vertex from './Vertex.js';
@@ -125,7 +125,7 @@ class Graph {
           continue;
         }
 
-        const { path } = bfs(a.point, b.point, bfsOptions);
+        const { path } = floodfill(a.point, b.point, bfsOptions);
         if (!path) {
           continue;
         }

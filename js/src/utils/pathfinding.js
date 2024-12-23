@@ -1,6 +1,4 @@
-/* eslint-disable import/prefer-default-export */
-
-import { PriorityQueue, Queue } from './data-structures/index.js';
+import { Cache, PriorityQueue, Queue } from './data-structures/index.js';
 
 const reconstruct = (cameFrom, goal) => {
   const path = [];
@@ -20,6 +18,7 @@ export const astar = (
   {
     cost = () => 1,
     done = (current, _goal) => current === goal,
+    hash = (node) => node,
     heuristic = () => 0,
     nodesFor,
     neighborsFor = nodesFor,
@@ -33,6 +32,8 @@ export const astar = (
   cameFrom.set(start, null);
   costSoFar.set(start, 0);
 
+  const cache = new Cache({ hash });
+
   while (!frontier.isEmpty) {
     const current = frontier.get();
 
@@ -43,7 +44,8 @@ export const astar = (
       };
     }
 
-    for (const neighbor of neighborsFor(current)) {
+    for (const neighborUncached of neighborsFor(current)) {
+      const neighbor = cache.lookup(neighborUncached);
       const newCost = costSoFar.get(current) + cost(current, neighbor);
       if (!costSoFar.has(neighbor) || newCost < costSoFar.get(neighbor)) {
         costSoFar.set(neighbor, newCost);
@@ -57,8 +59,58 @@ export const astar = (
   return null;
 };
 
+// Breadth-first search returning all paths (if any)
 // See: https://en.wikipedia.org/wiki/Breadth-first_search
 export const bfs = (
+  start,
+  goal,
+  {
+    cost = () => 1,
+    done = (current, _goal, _path, _cost) => current === goal,
+    hash = (node) => node,
+    nodesFor,
+    neighborsFor = nodesFor,
+    maxCost = Infinity,
+    maxResults = Infinity,
+  },
+) => {
+  const frontier = new Queue();
+  frontier.enqueue({ path: [start], cost: 0 });
+
+  const cache = new Cache({ hash });
+
+  const results = [];
+  while (!frontier.isEmpty) {
+    const entry = frontier.dequeue();
+    const current = entry.path.at(-1);
+
+    if (done(current, goal, entry.path, entry.cost)) {
+      results.push({ path: entry.path, score: entry.cost });
+
+      if (results.length >= maxResults) {
+        break;
+      }
+    }
+
+    for (const neighbor of neighborsFor(current)) {
+      const node = cache.lookup(neighbor);
+      if (entry.path.includes(node)) {
+        continue;
+      }
+
+      const newCost = entry.cost + cost(current, neighbor);
+      if (newCost > maxCost) {
+        continue;
+      }
+      frontier.enqueue({ path: [...entry.path, node], cost: newCost });
+    }
+  }
+
+  return results;
+};
+
+// Floodfills returning a single shortest path (if any) + visited nodes
+export const floodfill = (
   start,
   goal,
   { done = (current, _goal) => current === goal, nodesFor, neighborsFor = nodesFor },

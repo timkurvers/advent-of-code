@@ -1,4 +1,4 @@
-import { bfs, solution } from '../../utils/index.js';
+import { floodfill, solution } from '../../utils/index.js';
 
 const serialize = (cube) => cube.join(',');
 
@@ -58,7 +58,7 @@ export const partTwo = solution((input) => {
     target[2] > max[2] + 1;
 
   let surface = 0;
-  bfs(min, null, {
+  floodfill(min, null, {
     nodesFor: (current) => {
       const nodes = [];
       for (const side of sides) {

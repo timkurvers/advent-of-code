@@ -1,4 +1,4 @@
-import { Grid, astar, bfs, stripIndent } from '../../src/utils/index.js';
+import { Grid, astar, bfs, floodfill, stripIndent } from '../../src/utils/index.js';
 
 describe('pathfinding utilities', () => {
   const grid = Grid.from(stripIndent`
@@ -16,7 +16,7 @@ describe('pathfinding utilities', () => {
   const isUnknown = (point) => point.value === '?';
   const neighborsFor = (point) => point.adjacentNeighbors.filter(isPassable);
 
-  // From S to G
+  // From S to G (directly)
   const path = [
     start,
     grid.getPoint(0, 1),
@@ -26,7 +26,7 @@ describe('pathfinding utilities', () => {
     goal,
   ];
 
-  // From S to G ignoring ?s
+  // From S to G ignoring ?s (via X)
   const longPath = [
     start,
     grid.getPoint(1, 0),
@@ -37,6 +37,36 @@ describe('pathfinding utilities', () => {
     grid.getPoint(3, 3),
     grid.getPoint(3, 4),
     grid.getPoint(2, 4),
+    goal,
+  ];
+
+  // From S to G via middle (underneath X)
+  const curvedRightPath = [
+    start,
+    grid.getPoint(0, 1),
+    grid.getPoint(0, 2),
+    grid.getPoint(1, 2),
+    grid.getPoint(2, 2),
+    grid.getPoint(3, 2),
+    grid.getPoint(3, 3),
+    grid.getPoint(3, 4),
+    grid.getPoint(2, 4),
+    goal,
+  ];
+
+  // From S to G via middle (via X, then left)
+  const curvedLeftPath = [
+    start,
+    grid.getPoint(1, 0),
+    grid.getPoint(2, 0),
+    grid.getPoint(3, 0),
+    grid.getPoint(3, 1),
+    grid.getPoint(3, 2),
+    grid.getPoint(2, 2),
+    grid.getPoint(1, 2),
+    grid.getPoint(0, 2),
+    grid.getPoint(0, 3),
+    grid.getPoint(0, 4),
     goal,
   ];
 
@@ -92,8 +122,45 @@ describe('pathfinding utilities', () => {
   });
 
   describe('bfs()', () => {
+    it('returns all paths', () => {
+      const results = bfs(start, goal, {
+        neighborsFor,
+      });
+
+      expect(results).toHaveLength(4);
+      expect(results).toContainEqual({ score: 5, path });
+      expect(results).toContainEqual({ score: 9, path: longPath });
+      expect(results).toContainEqual({ score: 11, path: curvedLeftPath });
+      expect(results).toContainEqual({ score: 9, path: curvedRightPath });
+    });
+
+    it('supports custom done condition and maxResults', () => {
+      const results = bfs(start, null, {
+        done: (point) => point.value === 'X',
+        maxResults: 1,
+        neighborsFor,
+      });
+
+      expect(results).toHaveLength(1);
+      expect(results).toContainEqual({ score: 4, path: pathX });
+    });
+
+    it('omits paths exceeding maxCost', () => {
+      const results = bfs(start, goal, {
+        maxCost: 9,
+        neighborsFor,
+      });
+
+      expect(results).toHaveLength(3);
+      expect(results).toContainEqual({ score: 5, path });
+      expect(results).toContainEqual({ score: 9, path: longPath });
+      expect(results).toContainEqual({ score: 9, path: curvedRightPath });
+    });
+  });
+
+  describe('floodfill()', () => {
     it('returns shortest path as well as list of visited nodes', () => {
-      const result = bfs(start, goal, {
+      const result = floodfill(start, goal, {
         neighborsFor,
       });
       expect(result.path).toEqual(path);
@@ -102,7 +169,7 @@ describe('pathfinding utilities', () => {
     });
 
     it('supports custom done condition', () => {
-      const result = bfs(start, null, {
+      const result = floodfill(start, null, {
         done: (point) => point.value === 'X',
         neighborsFor,
       });
@@ -112,7 +179,7 @@ describe('pathfinding utilities', () => {
     });
 
     it('supports nodesFor as an alternative to neighborsFor', () => {
-      const result = bfs(start, goal, {
+      const result = floodfill(start, goal, {
         nodesFor: neighborsFor,
       });
       expect(result.path).toEqual(path);
@@ -122,7 +189,7 @@ describe('pathfinding utilities', () => {
 
     it('omits path if none to goal exists', () => {
       const fake = Symbol();
-      const result = bfs(start, fake, {
+      const result = floodfill(start, fake, {
         neighborsFor,
       });
       expect(result.path).toEqual(null);

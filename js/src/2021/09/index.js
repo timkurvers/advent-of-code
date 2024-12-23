@@ -1,6 +1,6 @@
 /* eslint-disable no-cond-assign */
 
-import { Grid, bfs, solution, sum } from '../../utils/index.js';
+import { Grid, floodfill, solution, sum } from '../../utils/index.js';
 
 const parse = (input) => Grid.from(input.trim(), { cast: Number });
 
@@ -29,7 +29,7 @@ export const partTwo = solution((input) => {
 
   let current = null;
   while ((current = grid.find(isUnprocessed))) {
-    const { visited: basin } = bfs(current, null, {
+    const { visited: basin } = floodfill(current, null, {
       neighborsFor: (point) => point.adjacentNeighbors.filter(isBasinPoint),
     });
     for (const point of basin) {
