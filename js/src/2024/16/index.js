@@ -1,9 +1,9 @@
 import {
-  Cache,
   Grid,
   Orientation,
   Rotation,
   astar,
+  bfs,
   dx,
   dy,
   normalizeOrientation,
@@ -19,35 +19,66 @@ const parse = (input) => {
   return { maze, start, end };
 };
 
-const speedrun = ({ maze, start, end }) => {
+const traverse = ({ method, start, end }, options) => {
+  const hash = (entry) => `${entry.point.label}:${entry.facing}`;
+
+  const seen = new Map();
+
   const initial = { point: start, facing: Orientation.EAST };
 
-  const hash = (entry) => `${entry.point.label}:${entry.facing}`;
-  const cache = new Cache({ hash });
-
-  const best = astar(initial, null, {
+  return method(initial, null, {
     cost: (from, to) => (from.point === to.point ? 1000 : 1),
     done: (current) => current.point === end,
-    nodesFor: ({ point, facing }) => {
+    hash,
+    neighborsFor: (current, cost) => {
+      const { point, facing } = current;
+
+      if ((seen.get(hash(current)) ?? cost) !== cost) {
+        return [];
+      }
+      seen.set(hash(current), cost);
+
       const nodes = [
-        cache.lookup({ point, facing: normalizeOrientation(facing + Rotation.TURN_RIGHT) }),
-        cache.lookup({ point, facing: normalizeOrientation(facing + Rotation.TURN_LEFT) }),
+        { point, facing: normalizeOrientation(facing + Rotation.TURN_RIGHT) },
+        { point, facing: normalizeOrientation(facing + Rotation.TURN_LEFT) },
       ];
 
-      const forwards = maze.getPoint(point.x + dx(facing), point.y + dy(facing));
+      const forwards = point.grid.getPoint(point.x + dx(facing), point.y + dy(facing));
       if (forwards && !isWall(forwards)) {
-        nodes.push(cache.lookup({ point: forwards, facing }));
+        nodes.push({ point: forwards, facing });
       }
       return nodes;
     },
+    ...options,
   });
-
-  return best;
 };
 
 export const partOne = solution((input) => {
-  const { maze, start, end } = parse(input);
-  return speedrun({ method: astar, maze, start, end }).score;
+  const { start, end } = parse(input);
+  return traverse({ method: astar, start, end }).score;
 });
 
-// TODO: Part two requires signficant changes to generic bfs implementation: later ;)
+export const partTwo = solution.inefficient((input) => {
+  const { start, end } = parse(input);
+
+  const best = traverse({ method: astar, start, end });
+
+  const results = traverse(
+    {
+      method: bfs,
+      start,
+      end,
+    },
+    {
+      maxCost: best.score,
+    },
+  );
+
+  const spots = new Set();
+  for (const result of results) {
+    for (const entry of result.path) {
+      spots.add(entry.point);
+    }
+  }
+  return spots.size;
+});

@@ -44,7 +44,7 @@ export const astar = (
       };
     }
 
-    for (const neighborUncached of neighborsFor(current)) {
+    for (const neighborUncached of neighborsFor(current, costSoFar.get(current))) {
       const neighbor = cache.lookup(neighborUncached);
       const newCost = costSoFar.get(current) + cost(current, neighbor);
       if (!costSoFar.has(neighbor) || newCost < costSoFar.get(neighbor)) {
@@ -74,14 +74,14 @@ export const bfs = (
     maxResults = Infinity,
   },
 ) => {
-  const frontier = new Queue();
-  frontier.enqueue({ path: [start], cost: 0 });
+  const frontier = new PriorityQueue();
+  frontier.put({ path: [start], cost: 0 }, 0);
 
   const cache = new Cache({ hash });
 
   const results = [];
   while (!frontier.isEmpty) {
-    const entry = frontier.dequeue();
+    const entry = frontier.get();
     const current = entry.path.at(-1);
 
     if (done(current, goal, entry.path, entry.cost)) {
@@ -92,7 +92,7 @@ export const bfs = (
       }
     }
 
-    for (const neighbor of neighborsFor(current)) {
+    for (const neighbor of neighborsFor(current, entry.cost)) {
       const node = cache.lookup(neighbor);
       if (entry.path.includes(node)) {
         continue;
@@ -102,7 +102,7 @@ export const bfs = (
       if (newCost > maxCost) {
         continue;
       }
-      frontier.enqueue({ path: [...entry.path, node], cost: newCost });
+      frontier.put({ path: [...entry.path, node], cost: newCost }, newCost);
     }
   }
 
