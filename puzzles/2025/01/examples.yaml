@@ -1,0 +1,34 @@
+part-one:
+  - input: &example1 |
+      L68
+      L30
+      R48
+      L5
+      R60
+      L55
+      L1
+      L99
+      R14
+      L82
+    answer: 3
+
+part-two:
+  - input: *example1
+    answer: 6
+
+  - input: |
+      R1000
+      L1000
+      L50
+      R1
+      L1
+      L1
+      R1
+      R100
+      R1
+    answer: 24
+
+  - input: |
+      R40
+      R669
+    answer: 7
