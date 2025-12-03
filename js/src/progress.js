@@ -13,6 +13,9 @@ const DAYS = range({ start: 1, end: 25 });
 const EMPTY_CELL = '';
 const STAR = '★';
 
+// For now, only 2025 is a 12-day year :)
+const shortenedYears = 1;
+
 const progressFor = (solution) =>
   markInefficient && solution.inefficient ? colors.red.bold(STAR) : colors.yellow.bold(STAR);
 
@@ -25,7 +28,7 @@ const progressFor = (solution) =>
 
     // Counting stars
     let acquired = 0;
-    const total = years.length * 25 * 2;
+    const total = (years.length - shortenedYears) * 25 * 2 + shortenedYears * 12 * 2;
 
     // Year headings
     data.push([EMPTY_CELL, ...years]);
