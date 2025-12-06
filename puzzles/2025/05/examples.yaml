@@ -1,0 +1,26 @@
+part-one:
+  - input: &example1 |
+      3-5
+      10-14
+      16-20
+      12-18
+
+      1
+      5
+      8
+      11
+      17
+      32
+    answer: 3
+
+part-two:
+  - input: *example1
+    answer: 14
+
+  - input: |
+      8-10
+      9-11
+      8-11
+
+      (not-needed)
+    answer: 4
